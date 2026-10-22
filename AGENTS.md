@@ -61,8 +61,9 @@
 - **分支保护的现状（2026-10 实测）**：GitHub 免费版的**私有**仓库不支持分支保护 / Rulesets（返回 403，需 GitHub Pro 或改为公开仓）。因此「不直接提交 main、必须 PR + 同伴核查」目前靠**约定 + 合并前自觉**执行。一旦升级 Pro 或仓库转为公开，应立即在 Settings → Branches 开启保护（要求 1 人 approve）。
 
 ## 五、每周节奏
-- 每周一名**轮值整理人**轮换；
-- 用 `templates/weekly-curation.md` 把本周微信群讨论整理成问题 / 经验 / 任务 / 能力包候选；
+- 每周一名**轮值整理人**轮换（职责、交接与排班表见 `docs/轮值整理人排班.md`）；
+- 用 `prompts/02-weekly-curation.md` 的提示词 + `templates/weekly-curation.md` 的格式，把本周微信群讨论整理成问题 / 经验 / 任务 / 能力包候选；
+- 产出的《周精选》提交进 `docs/周精选/`（命名与流程见该目录 README）；
 - 任务、卡点、能力包候选分别开对应类型的 Issue；
 - 周末用 `checklist/weekly-checklist.md` 自检。
 

@@ -59,7 +59,13 @@ checklist/
   ai-task-deliverables.md     给 AI 派任务的六项交付标准
   human-only-steps.md         AI 替不了、必须由人完成的环节
 assets/
-  collaboration-map.md        八环节流程图 + 单一事实源对照
+  collaboration-map.md        八环节流程图 + 单一事实源对照（第七节为本组登记表）
+docs/
+  README.md                   docs 放什么、两条规则
+  轮值整理人排班.md            轮值顺序、职责、交接
+  周精选/                     每周一份《周精选》归档
+prompts/
+  02-weekly-curation.md       每周精选的整理提示词（照此执行，产出格式一致）
 ```
 
 ## 五、怎么开始一次协作
@@ -73,8 +79,9 @@ assets/
 
 ## 六、每周节奏
 
-- 一名轮值整理人（每周轮换，建议 30–45 分钟）；
-- 把群里有价值的讨论交给 AI，用 `templates/weekly-curation.md` 整理成**问题 / 经验 / 任务 / 能力包候选**；
+- 一名轮值整理人（每周轮换，30–45 分钟）——职责与交接见 [排班表](docs/轮值整理人排班.md)；
+- 把群里有价值的讨论交给 AI，用 [整理提示词](prompts/02-weekly-curation.md) + `templates/weekly-curation.md` 整理成**问题 / 经验 / 任务 / 能力包候选**；
+- 产出提交进 [`docs/周精选/`](docs/周精选/README.md)；
 - 相关成员确认后：任务 → 研究任务 Issue；卡点 → 卡点求助 Issue；可复用方法 → 能力包候选 Issue；纯经验 → `docs/` 或周报；
 - 周末用 `checklist/weekly-checklist.md` 过一遍。
 
