@@ -9,7 +9,7 @@
 |---|---|
 | 小组名称 | 区域小组 |
 | 研究方向 | C^∞ 函数在加权 Triebel 空间中的稠密性问题 |
-| 仓库 | `AI4Math-区域小组`（私有） |
+| 仓库 | [`MWkiku/AI4Math-region-group`](https://github.com/MWkiku/AI4Math-region-group)（私有）<br>GitHub 仓库名只接受 ASCII，故 slug 为英文；中文「区域小组」只作显示名 |
 | 默认分支 | `main`（日常在功能分支上做，见第四节） |
 | 轮值整理人（本周） | **待补充** |
 
