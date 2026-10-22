@@ -1,0 +1,27 @@
+# 大文件与本地临时文件不进 git（大文件放坚果云，见 AGENTS.md 第三节）
+*.zip
+*.7z
+*.rar
+*.mp4
+*.mov
+*.avi
+*.ppt
+*.pptx
+*.pdf
+*.key
+*.numbers
+
+# Office / 压缩软件产生的临时文件
+~$*
+*.tmp
+*.bak
+
+# 操作系统杂项
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地环境与凭据（绝不提交）
+.env
+.env.*
+*.pem
