@@ -68,9 +68,9 @@
 |---|---|---|---|---|
 | 交流过程 | 微信群 | 课程小组微信群 | 全员 | ✅ 已建 |
 | 正式任务 / 决定 | GitHub Issues | https://github.com/MWkiku/AI4Math-region-group/issues | 全员 | ✅ 已建 |
-| 文献条目 / 阅读笔记 | Zotero 共享库 | **待补充**（群组库名 + 链接） | **待补充** | ⛔ 未建 |
-| 数据 / 录屏 / PPT / 大附件 | 坚果云共享文件夹 | **待补充**（文件夹名 + 共享链接） | **待补充** | ⚠️ 已有坚果云，共享文件夹待确认 |
-| 协作中的数学正文 | Overleaf 项目 | **待补充**（项目名 + 分享链接） | **待补充** | ⛔ 未建 |
+| 文献条目 / 阅读笔记 | Zotero 共享库 | **待补充**（群组库名 + 链接） | **待补充** | ⛔ 未建 → [Issue #1](https://github.com/MWkiku/AI4Math-region-group/issues/1) |
+| 数据 / 录屏 / PPT / 大附件 | 坚果云共享文件夹 | **待补充**（文件夹名 + 共享链接） | **待补充** | ⚠️ 已有坚果云，共享文件夹待建 → [Issue #1](https://github.com/MWkiku/AI4Math-region-group/issues/1) |
+| 协作中的数学正文 | Overleaf 项目 | **待补充**（项目名 + 分享链接） | **待补充** | ⛔ 未建 → [Issue #1](https://github.com/MWkiku/AI4Math-region-group/issues/1) |
 | 成熟成果 / 下载 | 课程主页 / 技能包库 | **待补充**（老师侧入口） | 老师 + 整理人 | ⏳ 阶段 5 |
 
 ### 组内分工（阶段 2 确定）
