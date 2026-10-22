@@ -68,7 +68,7 @@
 |---|---|---|---|---|
 | 交流过程 | 微信群 | 课程小组微信群 | 全员 | ✅ 已建 |
 | 正式任务 / 决定 | GitHub Issues | https://github.com/MWkiku/AI4Math-region-group/issues | 全员 | ✅ 已建 |
-| 文献条目 / 阅读笔记 | Zotero 共享库 | **待补充**（群组库名 + 链接） | **陆昊楠** | ⛔ 未建 → [Issue #1](https://github.com/MWkiku/AI4Math-region-group/issues/1) |
+| 文献条目 / 阅读笔记 | Zotero 共享库 | **待补充**（群组库名 + 链接） | **陆昊楠**（条目与分类）+ **王嘉怡**（综述） | ⛔ 未建 → [Issue #1](https://github.com/MWkiku/AI4Math-region-group/issues/1) |
 | 数据 / 录屏 / PPT / 大附件 | 坚果云共享文件夹 | **待补充**（文件夹名 + 共享链接） | **陆昊楠** | ⚠️ 已有坚果云，共享文件夹待建 → [Issue #1](https://github.com/MWkiku/AI4Math-region-group/issues/1) |
 | 协作中的数学正文 | Overleaf 项目 | **待补充**（项目名 + 分享链接） | **王广正 + 李振永**（结构与编译；**正文全员写**） | ⛔ 未建 → [Issue #1](https://github.com/MWkiku/AI4Math-region-group/issues/1) |
 | 成熟成果 / 下载 | 课程主页 / 技能包库 | **待补充**（老师侧入口） | 老师 + 整理人 | ⏳ 阶段 5 |
@@ -80,8 +80,8 @@
 | 王广正 | 组长 / 对外接口；GitHub 仓库 owner；反例与边界情形；Overleaf 共同负责 | ✅ 已确认 |
 | 朱晨峰 | 数学核对人（终审） | ✅ 已确认 |
 | 李振永 | 证明路线 A 主笔；Overleaf 共同负责 | ✅ 已确认 |
-| 陆昊楠 | 文献与资料负责人（Zotero + 坚果云） | ✅ 已确认 |
-| 王嘉怡 | **待确认**（候选：证明路线 B / 计算与数值验证 / 过程记录与周报） | ⏳ 待定 |
+| 陆昊楠 | 文献与资料负责人（工具与流程）：Zotero 条目/分类、坚果云 PDF 落位 | ✅ 已确认 |
+| 王嘉怡 | 文献综述主笔（与陆昊楠共管文献）：检索、归类比较、综述写作 | ✅ 已确认 |
 
 ### 文献与资料的口径（Zotero + 坚果云归一人后必须写清）
 
