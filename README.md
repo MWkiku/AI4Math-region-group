@@ -48,11 +48,12 @@
 AGENTS.md                     协作守则（含本组约定）
 README.md                     本文件
 .github/
-  ISSUE_TEMPLATE/             研究任务 / 卡点求助 / 能力包候选
+  ISSUE_TEMPLATE/             研究任务 / 卡点求助 / 能力包候选 / 生成核查记录
   PULL_REQUEST_TEMPLATE.md    PR 模板（含数学审阅要点、AI 署名、同伴核查）
 templates/
   weekly-curation.md          周精选
   小组周报.md                  小组周报
+  周汇报.md                    课上 5 分钟汇报（轮值主讲人用）
   problem-map.md              问题地图
   研究路线笔记.md              单条研究路线笔记
 checklist/
@@ -64,8 +65,10 @@ assets/
   collaboration-map.md        八环节流程图 + 单一事实源对照（第七节为本组登记表）
 docs/
   README.md                   docs 放什么、两条规则
-  轮值整理人排班.md            轮值顺序、职责、交接
+  轮值整理人排班.md            轮值主讲人顺序、职责、交接
   周精选/                     每周一份《周精选》归档
+  论文/                       生成—核查流水线、定理登记表、错误类型清单
+  能力包改进记录.md            流程改进 → 能力包版本
 prompts/
   02-weekly-curation.md       每周精选的整理提示词（照此执行，产出格式一致）
 ```
