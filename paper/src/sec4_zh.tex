@@ -1,0 +1,233 @@
+% ===================================================================
+%  第 4 组：主强化定理与反例
+% ===================================================================
+
+本节把前面两种情形合并为整个论证的主强化定理：当 $s\in(0,1)$ 且 $p=q$ 时，Hardy 加强空间 $\wt F^s_{p,p}(\Om,d^{-aq})$ 中 $C_c^\infty$ 与 $C^\infty$ 的闭包不但彼此相等，而且都等于整个空间。随后的小节处理权不可积的情形 (II)，说明此时 $\wt F^s$ 整体退化为零空间，而较弱的 $\wh F^s$ 只在 $L^p$ Hardy 项可积时保留常数函数，且 $C_c^\infty$ 的闭包恒为零；最后一小节给出区间 $(0,1)$ 上的具体反例，表明 $C^\infty$ 可以稠密而 $C_c^\infty$ 不稠密，因此形如 $F^{s,1}=F^s$ 的加强在一般情况下不成立，而仅仅是两个闭包相等这一"修正的稠密性"才是可证的。
+
+%==================================================================
+\subsection{主强化定理：\texorpdfstring{$C_c^\infty$}{Cc-infinity} 的闭包等于整个 Hardy 加强空间}
+
+\begin{theorem}[关于 $s\in(0,1)$ 与 $p=q$ 的强化：$C_c^\infty$ 的闭包等于整个 Hardy 加强空间]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$a>0$，$s\in(0,1)$，$p\in[1,\infty)$（本节记 $q:=p$，故 $d^{-aq}=d^{-ap}$，两种写法通用）。设 $\wt F^s_{p,p}(\Om,d^{-aq})$ 为附录 A 中的 Hardy 加强空间，即所有满足
+\[
+  \|f\|_{\wt F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p}+\|f d^{-(s+a+n/p)}\|_{L^p}<\infty ,
+\]
+的 $f\in F^s_{p,p}(\Om,d^{-aq})$ 所构成的空间，并设 $\wt F^{s,1}_{p,p}(\Om,d^{-aq})$ 与 $\wt F^{s,2}_{p,p}(\Om,d^{-aq})$ 分别为
+\[
+  C_c^\infty(\Om)\cap\wt F^s_{p,p}(\Om,d^{-aq})
+  \quad\text{与}\quad
+  C^\infty(\Om)\cap\wt F^s_{p,p}(\Om,d^{-aq})
+\]
+在 $\wt F^s_{p,p}(\Om,d^{-aq})$ 中的闭包。则
+\[
+  \wt F^{s,1}_{p,p}(\Om,d^{-aq})
+  =\wt F^{s,2}_{p,p}(\Om,d^{-aq})
+  =\wt F^s_{p,p}(\Om,d^{-aq}) .
+\]
+特别地，$C_c^\infty(\Om)$ 在 $\wt F^s_{p,p}(\Om,d^{-aq})$ 中稠密。
+\end{theorem}
+
+\begin{proof}
+设 $\Om$ 为 $\R^n$ 中的非空有界域，$a>0$，$s\in(0,1)$，$p\in[1,\infty)$，并令
+\[
+  \wt F^s:=\wt F^s_{p,p}(\Om,d^{-aq})
+\]
+为 Hardy 加强空间，其范数为
+\[
+  \|f\|_{\wt F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p}+\|f d^{-(s+a+n/p)}\|_{L^p} .
+\]
+设 $\wt F^{s,1}$ 与 $\wt F^{s,2}$ 分别为 $C_c^\infty(\Om)\cap\wt F^s$ 与 $C^\infty(\Om)\cap\wt F^s$ 在 $\wt F^s$ 中的闭包。
+
+\emph{外部输入}。我们使用如下完整陈述（\texttt{CLWZ\_2026}，Theorem~1.2(i)）：对 $\R^n$ 中的每个有界域 $\Om$、每个 $s\in(0,1)$、每个 $p,q\in[1,\infty)$ 以及每个 $a\in(0,\infty)$，均有
+\[
+  \wt F^{s,1}_{p,q}(\Om,d^{-aq})=\wt F^{s,2}_{p,q}(\Om,d^{-aq}) .
+\]
+
+\emph{第一步（应用二择一定理）}。由附录 A，下列两种情形恰有一种成立。
+
+\emph{情形 (I)：$\int_\Om d(y)^{-ap}\,dy<\infty$}。此时由附录 A 可知 $C^\infty(\Om)\cap\wt F^s$ 在 $\wt F^s$ 中稠密，即
+\[
+  \wt F^{s,2}=\wt F^s ;
+\]
+结合外部 Theorem~1.2(i)（取 $q=p$）可得
+\[
+  \wt F^{s,1}=\wt F^{s,2}=\wt F^s .
+\]
+
+\emph{情形 (II)：$\int_\Om d(y)^{-ap}\,dy=\infty$}。此时由附录 A 得 $\wt F^s=\{0\}$，从而
+\[
+  \wt F^{s,1}=\wt F^{s,2}=\wt F^s=\{0\} .
+\]
+
+\emph{第二步（合并两种情形）}。由于情形 (I) 与 (II) 穷尽所有可能，故在任何情形下都有
+\[
+  \wt F^{s,1}_{p,p}(\Om,d^{-aq})
+  =\wt F^{s,2}_{p,p}(\Om,d^{-aq})
+  =\wt F^s_{p,p}(\Om,d^{-aq}) .
+\]
+特别地，$C_c^\infty(\Om)\cap\wt F^s$ 在 $\wt F^s$ 中稠密，即 $C_c^\infty(\Om)$ 在 $\wt F^s_{p,p}(\Om,d^{-aq})$ 中稠密。
+\end{proof}
+
+\begin{remark}[直觉]
+在情形 (I) 中，$C^\infty$ 的闭包已经填满整个 Hardy 加强空间，而外部定理 Theorem~1.2(i) 又把两个闭包等同起来；在情形 (II) 中，三个空间一起退化为 $\{0\}$。两种情形穷尽了所有可能，所以结论无条件成立。
+\end{remark}
+
+%==================================================================
+\subsection{非可积权情形：\texorpdfstring{$\wt F^s$}{tilde-F-s} 空间退化为 \texorpdfstring{$\{0\}$}{\{0\}} 与 \texorpdfstring{$\wh F^s$}{hat-F-s} 的结构}
+
+\begin{theorem}[权不可积情形下 $s\in(0,1)$ 的强化]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$0<s<1$，$p,q\in[1,\infty)$，$a>0$，并假设
+\[
+  \int_\Om d(y)^{-aq}\,dy=\infty
+\]
+（附录 A 的情形 (II)）。设 $F^s_{p,q}(\Om,d^{-aq})$ 为附录 A 中的加权内蕴空间。对 $f\in F^s$ 定义
+\[
+  \|f\|_{\wt F^s}:=\|f\|_{F^s}
+  +\|f d^{-(s+a)}\|_{L^p(\Om)}
+  +\|f d^{-(s+a+n/q)}\|_{L^q(\Om)}
+\]
+与
+\[
+  \|f\|_{\wh F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p(\Om)} ,
+\]
+并置
+\[
+  \wt F^s_{p,q}(\Om,d^{-aq}):=\{f\in F^s : \|f\|_{\wt F^s}<\infty\},
+  \qquad
+  \wh F^s_{p,q}(\Om,d^{-aq}):=\{f\in F^s : \|f\|_{\wh F^s}<\infty\} .
+\]
+设 $\wt F^{s,1}$、$\wh F^{s,1}$ 分别为 $C_c^\infty(\Om)\cap\wt F^s$ 在 $\wt F^s$ 中、$C_c^\infty(\Om)\cap\wh F^s$ 在 $\wh F^s$ 中的闭包，并设 $\wt F^{s,2}$、$\wh F^{s,2}$ 分别为 $C^\infty(\Om)\cap\wt F^s$、$C^\infty(\Om)\cap\wh F^s$ 在相应范数下的闭包。则：
+\begin{enumerate}[label=(\roman*)]
+  \item $\wt F^s_{p,q}(\Om,d^{-aq})=\{0\}$，从而
+  \[
+    \wt F^{s,1}=\wt F^{s,2}=\wt F^s=\{0\} .
+  \]
+  \item 若 $\int_\Om d(y)^{-(s+a)p}\,dy=\infty$，则 $\wh F^s_{p,q}(\Om,d^{-aq})=\{0\}$；若 $\int_\Om d(y)^{-(s+a)p}\,dy<\infty$，则 $\wh F^s_{p,q}(\Om,d^{-aq})=\R\cdot 1$（即常数函数）。
+  \item 在所有情形下 $\wh F^{s,2}=\wh F^s$ 且 $\wh F^{s,1}=\{0\}$；因此 $\wh F^{s,1}=\wh F^s$ 当且仅当 $\int_\Om d(y)^{-(s+a)p}\,dy=\infty$，而当 $\int_\Om d(y)^{-(s+a)p}\,dy<\infty$ 时强化 $\wh F^{s,1}=\wh F^s$ 不成立。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$0<s<1$，$p,q\in[1,\infty)$，$a>0$，并假设 $\int_\Om d(y)^{-aq}\,dy=\infty$（情形 (II)）。由附录 A（DEGENERACY THEOREM，取 $k=0$ 与 $\sigma=s\in(0,1)$）可得
+\[
+  F^s_{p,q}(\Om,d^{-aq})=P_0=\R\cdot 1 ,
+\]
+即 $\Om$ 上的常数函数，并且
+\[
+  C_c^\infty(\Om)\cap F^s=\{0\} .
+\]
+
+对 $f\in F^s$ 置
+\[
+  \|f\|_{\wt F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p}+\|f d^{-(s+a+n/q)}\|_{L^q}
+\]
+与
+\[
+  \|f\|_{\wh F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p} ,
+\]
+并定义
+\[
+  \wt F^s:=\{f\in F^s : \|f\|_{\wt F^s}<\infty\},
+  \qquad
+  \wh F^s:=\{f\in F^s : \|f\|_{\wh F^s}<\infty\} .
+\]
+设 $\wt F^{s,1}$、$\wh F^{s,1}$ 分别为 $C_c^\infty(\Om)\cap\wt F^s$ 在 $\wt F^s$ 中、$C_c^\infty(\Om)\cap\wh F^s$ 在 $\wh F^s$ 中的闭包，并设 $\wt F^{s,2}$、$\wh F^{s,2}$ 分别为 $C^\infty(\Om)\cap\wt F^s$、$C^\infty(\Om)\cap\wh F^s$ 的闭包。
+
+\emph{第一步（$\wt F^s=\{0\}$）}。由于 $F^s=\R\cdot 1$，每个 $f\in F^s$ 都是常数 $c$。对 $c\ne 0$，有
+\[
+  \|c\,d^{-(s+a+n/q)}\|^q_{L^q(\Om)}
+  =|c|^q\int_\Om d(y)^{-[(s+a)q+n]}\,dy .
+\]
+又 $(s+a)q+n\ge aq$，这是因为
+\[
+  (s+a)q+n-aq=sq+n>0 .
+\]
+于是由附录 A（MONOTONICITY OF DIVERGENCE，取 $c_1=aq$ 与 $c_2=(s+a)q+n$）可知，最后的积分发散至无穷。因此对每个 $c\ne 0$ 都有 $\|c\|_{\wt F^s}=\infty$，故
+\[
+  \wt F^s=\{0\} .
+\]
+由于零函数同时属于 $C_c^\infty(\Om)$ 与 $C^\infty(\Om)$，故得 $C^\infty(\Om)\cap\wt F^s=\{0\}=\wt F^s$ 且 $C_c^\infty(\Om)\cap\wt F^s=\{0\}$；因此两个闭包都等于 $\{0\}$，即
+\[
+  \wt F^{s,1}=\wt F^{s,2}=\wt F^s=\{0\} .
+\]
+
+\emph{第二步（$\wh F^s$ 的结构）}。仍有 $F^s=\R\cdot 1$。对常数 $c$，有
+\[
+  \|c\,d^{-(s+a)}\|^p_{L^p(\Om)}
+  =|c|^p\int_\Om d(y)^{-(s+a)p}\,dy .
+\]
+因此，若 $\int_\Om d(y)^{-(s+a)p}\,dy=\infty$，则 $\wh F^s=\{0\}$；若 $\int_\Om d(y)^{-(s+a)p}\,dy<\infty$，则 $\wh F^s=\R\cdot 1$（在后一情形中，常数函数 $1$ 具有有限的 $F^s$ 范数 $|\Om|^{1/p}$ 与有限的 $L^p$ Hardy 项）。
+
+\emph{第三步（$\wh F$ 的两个闭包）}。由于 $\wh F^s$ 包含于 $F^s=\R\cdot 1$，$\wh F^s$ 的每个元素都是常数，从而属于 $C^\infty(\Om)$；因此 $C^\infty(\Om)\cap\wh F^s=\wh F^s$，且闭包 $\wh F^{s,2}$ 等于 $\wh F^s$。另一方面
+\[
+  C_c^\infty(\Om)\cap\wh F^s\subset C_c^\infty(\Om)\cap F^s=\{0\},
+\]
+故 $C_c^\infty(\Om)\cap\wh F^s=\{0\}$；因此
+\[
+  \wh F^{s,1}=\{0\} .
+\]
+
+\emph{第四步（结论）}。由第二步与第三步，$\wh F^{s,1}=\{0\}$ 且 $\wh F^{s,2}=\wh F^s$。因此 $\wh F^{s,1}=\wh F^s$ 当且仅当 $\wh F^s=\{0\}$，亦即当且仅当 $\int_\Om d(y)^{-(s+a)p}\,dy=\infty$；当该积分有限时，$\wh F^s=\R\cdot 1$ 而 $\wh F^{s,1}=\{0\}$，故强化不成立。至于 $\wt F$ 空间，第一步给出
+\[
+  \wt F^{s,1}=\wt F^{s,2}=\wt F^s=\{0\}
+\]
+在情形 (II) 下无条件成立。
+\end{proof}
+
+\begin{remark}[直觉]
+在权不可积的情形下，内在空间只剩下常数；而 $L^q$ 的 Hardy 项对应指数 $(s+a)q+n>aq$，奇性太强，连常数都被消灭，于是整个 $\wt F$ 空间退化为 $\{0\}$。$\wh F$ 空间只含较弱的 $L^p$ Hardy 指数项，因此当该项可积时才保住常数函数。
+\end{remark}
+
+%==================================================================
+\subsection{反例：\texorpdfstring{$C^\infty$}{C-infinity} 稠密而 \texorpdfstring{$C_c^\infty$}{Cc-infinity} 不稠密}
+
+\begin{theorem}[反例：$C^\infty$ 稠密而 $C_c^\infty$ 不稠密]
+取 $n=1$、$\Om=(0,1)$、$d(x)=\min(x,1-x)$、$s=1/2$、$p=q=2$ 与 $a=1$。则
+\[
+  \nuA(\Om)=\int_0^1 d(y)^{-2}\,dy=\infty .
+\]
+于是由附录 A（取 $k=0$ 与 $\sigma=1/2$）可知，空间 $F^{1/2}_{2,2}(\Om,d^{-2})$ 等于 $P_0(\Om)$，即 $\Om$ 上的常数函数。因此 $C^\infty(\Om)\cap F^{1/2}_{2,2}(\Om,d^{-2})$ 等于 $F^{1/2}_{2,2}(\Om,d^{-2})$，并在其中稠密，而
+\[
+  C_c^\infty(\Om)\cap F^{1/2}_{2,2}(\Om,d^{-2})=\{0\} .
+\]
+由于 $F^{1/2}_{2,2}(\Om,d^{-2})$ 非零，$C_c^\infty(\Om)$ 在 $F^{1/2}_{2,2}(\Om,d^{-2})$ 中不稠密；等价地
+\[
+  F^{1/2,1}_{2,2}(\Om,d^{-2})=\{0\}
+  \quad\text{while}\quad
+  F^{1/2,2}_{2,2}(\Om,d^{-2})=F^{1/2}_{2,2}(\Om,d^{-2}) .
+\]
+因此存在 $(\Om,s,p,q,a)$ 使得 $C^\infty$ 稠密而 $C_c^\infty$ 不稠密；修正的稠密性（两个闭包之比较）严格弱于经典的 $C_c^\infty$ 稠密性，且在一般情况下不能加强为 $F^{s,1}=F^s$。
+\end{theorem}
+
+\begin{proof}
+对 $\Om=(0,1)$，有 $d(y)=\min(y,1-y)$，故当 $y\in(0,1/2)$ 时 $d(y)=y$，且
+\[
+  \int_0^{1/2} y^{-2}\,dy=\infty .
+\]
+因此
+\[
+  \nuA(\Om)=\int_\Om d(y)^{-2}\,dy=\infty .
+\]
+
+\emph{第一步（验证退化定理的假设）}。附录 A 的假设在 $n=1$、$\Om=(0,1)$、$a=1$、$q=2$、$s=1/2$、$k=0$、$\sigma=1/2$、$p=2$ 时得到满足。该事实给出
+\[
+  F^{1/2}_{2,2}(\Om,d^{-2})=P_0(\Om)=\R\cdot 1 ,
+\]
+即常数函数。
+
+\emph{第二步（两个闭包）}。该事实的 (a) 部分给出
+\[
+  C^\infty(\Om)\cap F^{1/2}_{2,2}(\Om,d^{-2})=F^{1/2}_{2,2}(\Om,d^{-2}) ,
+\]
+故闭包 $F^{1/2,2}_{2,2}(\Om,d^{-2})$ 等于 $F^{1/2}_{2,2}(\Om,d^{-2})$。(b) 部分给出
+\[
+  C_c^\infty(\Om)\cap F^{1/2}_{2,2}(\Om,d^{-2})=\{0\} ,
+\]
+故闭包 $F^{1/2,1}_{2,2}(\Om,d^{-2})$ 为 $\{0\}$。
+
+\emph{第三步（结论：$C_c^\infty$ 不稠密）}。常数函数 $1$ 属于 $F^{1/2}_{2,2}(\Om,d^{-2})$ 且不为零元，故 $\{0\}$ 是 $F^{1/2}_{2,2}(\Om,d^{-2})$ 的真子集；因此 $C_c^\infty(\Om)$ 在 $F^{1/2}_{2,2}(\Om,d^{-2})$ 中不稠密。这是 $C^\infty$ 稠密成立而 $C_c^\infty$ 稠密失效的一个具体实例。
+\end{proof}
+
+\begin{remark}[直觉]
+在区间 $(0,1)$ 上权 $d^{-2}$ 不可积，因此分数阶半范数只能对最高阶导数取常值的函数有限；这里 $k=0$，于是只有常数能够存活。常数是光滑的，所以 $C^\infty$ 稠密；但每个紧支撑光滑函数都在边界附近消失，从而具有无穷半范数，于是 $C_c^\infty$ 被压缩成 $\{0\}$。
+\end{remark}

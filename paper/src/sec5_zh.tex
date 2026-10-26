@@ -1,0 +1,361 @@
+% ===================================================================
+%  第 5 组：临界条件——边界余维数，而非权可积性
+% ===================================================================
+
+本节把前面关于稠密性的正面结论反过来使用：在 $\Om=(0,1)$ 这类最简单的有界区域上，权 $d^{-aq}$ 本身完全可积（$aq=1/2<1$，即情形 (I)），$C^\infty(\Om)$ 也确实稠密，然而 $C_c^\infty(\Om)$ 并不稠密。决定性的原因是 Hardy 指数 $sp+aq=3/2$ 超过了边界 $\partial\Om=\{0,1\}$ 的 Assouad 余维数 $1$，而不是权自身的可积性。随后的两条事实把这一定性观察提升为一般原理：$C_c^\infty$ 的闭包恰由 Hardy 条件刻画（Kijaczko 定理 4），临界比较发生在 $sp+b$ 与 $\codimA(\partial\Om)$ 之间而非 $b$ 与 $1$ 之间；最后一条事实则澄清 CLWZ 范数中带权的变量是内层变量 $y$，其指数是 $q$，因此可积性条件用的是 $aq$ 而不是 $ap$。
+
+%==================================================================
+\subsection{可积权情形 (I) 的反例：\texorpdfstring{$C^\infty$}{C-infinity} 稠密而 \texorpdfstring{$C_c^\infty$}{Cc-infinity} 不稠密}
+
+\begin{theorem}[第二个反例：在可积权情形 (I) 中 $C^\infty$ 稠密而 $C_c^\infty$ 不稠密]
+设 $\Om:=(0,1)$（$\R=\R^1$ 的开子集），并对 $x\in\Om$ 设 $d(x):=\min(x,1-x)=\dist(x,\{0,1\})$。设 $p:=q:=2$，$s:=1/2$，$a:=1/4$。设 $\Fsp$ 为 CLWZ 的加权内蕴 Triebel--Lizorkin 空间，即公式 (1.2)（采用 CLWZ 第 3 页的加权 Gagliardo 范数，它与该文记号下的 $W^{s,p}(\Om,d^{-ap})$ 一致）；由于 $p=q=2$，其范数为
+\[
+  \|f\|_{F^s}:=\|f\|_{L^2(\Om)}
+  +\Big(\int_\Om\int_\Om|f(x)-f(y)|^2\,|x-y|^{-1-2s}\,d(y)^{-aq}\,dy\,dx\Big)^{1/2}
+\]
+上式对 $\Om$ 上一切使右端两项均有限的可测函数 $f$ 成立。设 $F^{s,1}_{p,q}(\Om,d^{-aq})$ 为 $C_c^\infty(\Om)\cap\Fsp$ 在 $\Fsp$ 中的闭包，$F^{s,2}_{p,q}(\Om,d^{-aq})$ 为 $C^\infty(\Om)\cap F^s$ 在 $F^s$ 中的闭包。则：
+\begin{enumerate}[label=(\roman*)]
+  \item $\displaystyle\int_\Om d(y)^{-aq}\,dy=\int_0^1 d(y)^{-1/2}\,dy=2\sqrt2<\infty$；从而对边界距离权而言，$(\Om,s,p,q,a)$ 落在二分法的情形 (I) 中。
+  \item 常函数 $1$（即 $1_\Om$）属于 $\Fsp$，但 $1$ 不属于 $F^{s,1}_{p,q}(\Om,d^{-aq})$。因此 $F^{s,1}_{p,q}(\Om,d^{-aq})$ 是 $\Fsp$ 的真闭向量子空间，且 $C_c^\infty(\Om)\cap\Fsp$ 在 $\Fsp$ 中不稠密。
+  \item $C^\infty(\Om)\cap\Fsp$ 在 $\Fsp$ 中稠密；即 $F^{s,2}_{p,q}(\Om,d^{-aq})=\Fsp$。
+\end{enumerate}
+因此对这些数据有 $F^{s,1}\neq F^s=F^{s,2}$：$C^\infty(\Om)$ 在 $\Fsp$ 中稠密，而 $C_c^\infty(\Om)$ 不稠密，且这已在可积权情形 (I) 中发生（事实上 $aq=1/2<1$，只是 $(s+a)q=3/2>1=\codimA(\partial\Om)$）。所以该现象并不局限于二分法的退化情形 (II)，并且在情形 (I) 中修正后的稠密性质 $F^{s,1}=F^{s,2}$ 也严格弱于经典稠密性质 $F^{s,1}=F^s$。
+\end{theorem}
+
+\begin{proof}
+记 $d(x)=\min(x,1-x)$，于是 $d(x)=\dist(x,\partial\Om)$，其中 $\partial\Om=\{0,1\}$；并令
+\[
+  [f]:=\Big(\int_\Om\int_\Om|f(x)-f(y)|^2\,|x-y|^{-2}\,d(y)^{-1/2}\,dy\,dx\Big)^{1/2},
+\]
+\[
+  F^s:=\big\{f:\Om\to\R\ \text{Lebesgue measurable}:\ \|f\|_{L^2(\Om)}+[f]<\infty\big\}.
+\]
+注意由 $s=1/2$ 得 $|x-y|^{-1-2s}=|x-y|^{-2}$，由 $a=1/4$ 与 $q=2$ 得 $d(y)^{-aq}=d(y)^{-1/2}$。
+
+\emph{第一步（与 Kijaczko 空间的等同）}. 设 $W:=W^{s,p;\alpha,\beta}(\Om)$ 为 Kijaczko 的加权分数次 Sobolev 空间（arXiv:2110.04012），取 $d:=1$、$s:=1/2$、$p:=2$、$\alpha:=1/2$、$\beta:=0$。按 Kijaczko 的定义（第 1 节定义 1 及记号 $W^{s,p;w_\alpha,v_\beta}=:W^{s,p;\alpha,\beta}$），$W^{s,p;\alpha,\beta}(\Om)$ 的半范数为
+\[
+  [f]_{W}=\Big(\int_\Om\int_\Om|f(x)-f(y)|^p\,|x-y|^{-d-sp}\,w_\alpha(y)\,v_\beta(x)\,dy\,dx\Big)^{1/p}
+\]
+其中 $w_\alpha(y)=d(y)^{-\alpha}=d(y)^{-1/2}$，$v_\beta(x)=d(x)^{-\beta}=1$，即 $[f]_{W}=[f]$；$W$ 的范数为 $\|f\|_{L^p(\Om)}+[f]_{W}=\|f\|_{L^2(\Om)}+[f]$。因此作为赋范空间有 $F^s=W^{1/2,2;1/2,0}(\Om)$。按 Kijaczko 的定义 1，$W_0^{1/2,2;1/2,0}(\Om)$ 是 $C_c^\infty(\Om)\cap W^{1/2,2;1/2,0}(\Om)$ 在该范数下的闭包；由于 $C_c^\infty(\Om)\cap F^s=C_c^\infty(\Om)\cap W^{1/2,2;1/2,0}(\Om)$，该闭包恰为 $F^{s,1}$。于是
+\begin{equation}\label{eq:sec5f1-ident}
+  F^{s,1}_{p,q}(\Om,d^{-aq})=W_0^{1/2,2;1/2,0}(\Om).
+\end{equation}
+
+\emph{第二步（$\Om$ 是有界一致域）}. $\Om=(0,1)$ 非空、有界且开。对 $\Om$ 中的 $x<y$，取 $\Gamma:=[x,y]$ 为线段；则 $L(\Gamma)=|x-y|$，故 $c_1:=1$ 可用。设 $z\in\Gamma$。若 $|x-z|\le|y-z|$，则由 $x>0$ 得 $|x-z|=z-x\le z$，且由 $y<1$ 得 $|x-z|\le|y-z|=y-z\le1-z$；故 $|x-z|\le\min(z,1-z)=d(z)$。若 $|y-z|<|x-z|$，则交换 $x$ 与 $y$ 的角色作同样的计算，得 $|y-z|\le\min(z,1-z)=d(z)$。因此对每个 $z\in\Gamma$ 有 $\min\{|x-z|,|y-z|\}\le d(z)$，故 $c_2:=1$ 可用。所以 $\Om$ 是 Kijaczko 第 2.3 节（以及 CLWZ 第 3 页）意义下的一致域。
+
+\emph{第三步（边界的 Assouad 余维数）}. 设 $E:=\partial\Om=\{0,1\}$，并对 $r>0$ 设 $\wt E_r:=\{t\in\R:\dist(t,E)\le r\}=[-r,r]\cup[1-r,1+r]$ 为 $E$ 的管状邻域。这里 $\diam(E)=1$。回忆（Kijaczko 定义 9）：$\codimAl(E)$ 是满足下述条件的 $q\ge0$ 的上确界：存在 $C=C(q)\ge1$，使得
+\[
+  |\wt E_r\cap B(x,R)|\le C\,|B(x,R)|\,(r/R)^q
+\]
+对所有 $x\in E$ 与 $0<r<R<\diam(E)$ 成立；$\codimAu(E)$ 是满足下述条件的 $s\ge0$ 的下确界：存在 $c=c(s)>0$，使得
+\[
+  |\wt E_r\cap B(x,R)|\ge c\,|B(x,R)|\,(r/R)^s
+\]
+对所有 $x\in E$ 与 $0<r<R<\diam(E)$ 成立。在 $\R^1$ 中 $|B(x,R)|=2R$。
+
+\emph{$\codimAu(E)$ 的计算}. 由于 $\wt E_r$ 包含 $[-r,r]$，对 $x=0$ 与 $0<r<R<1$ 有
+\[
+  |\wt E_r\cap B(0,R)|\ge|[-r,r]|=2r=2R\,(r/R)=|B(0,R)|\,(r/R);
+\]
+由对称性，对 $x=1$ 同样成立。故 $c(1):=1$ 与 $s=1$ 可用，从而 $\codimAu(E)\le1$。反之，设 $0\le s<1$，且某个 $c>0$ 对所有 $x\in E$ 与 $0<r<R<1$ 满足 $|\wt E_r\cap B(x,R)|\ge c|B(x,R)|(r/R)^s$。取 $x=0$。由于 $\wt E_r=[-r,r]\cup[1-r,1+r]$，有 $|\wt E_r\cap B(0,R)|\le|\wt E_r|\le4r$。于是所需不等式将迫使
+\[
+  4r\ge c\cdot2R\,(r/R)^s=2c\,r^sR^{1-s},
+\]
+即 $2\ge c\,r^{s-1}R^{1-s}=c\,(R/r)^{1-s}$。因 $1-s>0$，当 $R/r$ 趋于 $+\infty$ 时右端 $c(R/r)^{1-s}$ 趋于 $+\infty$，故当 $R/r$ 较大时该不等式不成立；由于 $0<r<R<1$ 任意，这样的 $c$ 不存在。因此 $\codimAu(E)=1$。
+
+\emph{$\codimAl(E)$ 的计算}. 对 $x\in E$ 与 $0<r<R<1$，集合 $\wt E_r\cap B(x,R)$ 包含于 $B(x,r)$ 与 $B(x',r)$ 的并，其中 $x'$ 为 $E$ 的另一点，故
+\[
+  |\wt E_r\cap B(x,R)|\le2\cdot2r=4r=2\cdot2R\,(r/R)=2\,|B(x,R)|\,(r/R);
+\]
+故 $C(1):=2$ 与 $q=1$ 可用，且 $\codimAl(E)\ge1$。反之，设 $q>1$，且某个 $C\ge1$ 对所有 $x\in E$ 与 $0<r<R<1$ 满足 $|\wt E_r\cap B(x,R)|\le C|B(x,R)|(r/R)^q$。取 $x=0$。由于 $\wt E_r$ 包含 $[-r,r]$，有 $|\wt E_r\cap B(0,R)|\ge2r$，于是所需不等式将迫使
+\[
+  2r\le C\cdot2R\,(r/R)^q=2C\,r^qR^{1-q},
+\]
+即 $1\le C\,r^{q-1}R^{1-q}=C\,(r/R)^{q-1}$。因 $q-1>0$，当 $r/R$ 趋于 $0$ 时右端 $C(r/R)^{q-1}$ 趋于 $0$，故当 $r/R$ 较小时该不等式不成立；由于 $0<r<R<1$ 任意，这样的 $C$ 不存在。因此 $\codimAl(E)=1$。于是
+\begin{equation}\label{eq:sec5f1-codim}
+  \codimAl(\partial\Om)=\codimAu(\partial\Om)=1.
+\end{equation}
+
+\emph{第四步（Kijaczko 定理 4）}. 我们使用 Kijaczko（arXiv:2110.04012）定理 4，其陈述为：设 $\Om$ 为 $\R^d$ 中非空、有界、一致的开集，$0<s<1$、$1\le p<\infty$ 且 $0\le\alpha,\beta<\codimAl(\partial\Om)$；若 $sp+\alpha+\beta>\codimAu(\partial\Om)$，则
+\[
+  W_0^{s,p;\alpha,\beta}(\Om)
+  =\Big\{f\in W^{s,p;\alpha,\beta}(\Om):\int_\Om|f(x)|^p d(x)^{-(sp+\alpha+\beta)}\,dx<\infty\Big\}.
+\]
+取 $d=1$、$s=1/2$、$p=2$、$\alpha=1/2$、$\beta=0$ 时假设成立：$0<1/2<1$；$1\le2<\infty$；由 \eqref{eq:sec5f1-codim} 得 $0\le\alpha=1/2<1$ 与 $0\le\beta=0<1$；由第二步，$\Om$ 有界、非空、开且一致；并由 \eqref{eq:sec5f1-codim} 得 $sp+\alpha+\beta=(1/2)\cdot2+1/2+0=3/2>1=\codimAu(\partial\Om)$。结论给出
+\[
+  W_0^{1/2,2;1/2,0}(\Om)=\Big\{f\in W^{1/2,2;1/2,0}(\Om):\int_\Om|f(x)|^2d(x)^{-3/2}\,dx<\infty\Big\},
+\]
+即由 \eqref{eq:sec5f1-ident} 得
+\begin{equation}\label{eq:sec5f1-closure}
+  F^{s,1}=\Big\{f\in F^s:\int_\Om|f(x)|^2d(x)^{-3/2}\,dx<\infty\Big\}.
+\end{equation}
+
+\emph{第五步（常数函数 $1$）}. 函数 $1$ 属于 $L^2(\Om)$ 且 $\|1\|_{L^2}=1$；因被积函数 $|1-1|^2|x-y|^{-2}d(y)^{-1/2}$ 恒为零，故 $[1]=0$；于是 $1\in F^s$。另一方面，对 $x\in(0,1/2]$ 有 $d(x)^{-3/2}\ge x^{-3/2}$，且对 $0<\varepsilon<1/2$ 有
+\[
+  \int_\varepsilon^{1/2}x^{-3/2}\,dx=\Big[-2x^{-1/2}\Big]_\varepsilon^{1/2}=2\big(\varepsilon^{-1/2}-\sqrt2\big),
+\]
+该式当 $\varepsilon\to0$ 时趋于 $+\infty$。因此 $\int_\Om d(x)^{-3/2}\,dx=+\infty$，故由 \eqref{eq:sec5f1-closure}，常函数 $1$ 不属于 $F^{s,1}$。
+
+\emph{第六步（$F^{s,1}$ 是非零真闭子空间）}. 按定义 $F^{s,1}$ 是 $F^s$ 的闭向量子空间；由第五步它不含 $1$，而 $1\in F^s$；因此 $F^{s,1}$ 是 $F^s$ 的真子空间，且 $C_c^\infty(\Om)\cap F^s$ 在 $F^s$ 中不稠密，这正是 (ii)。它非零：若 $g\in C_c^\infty(\Om)$，则 $g'$ 有界且 $\|g'\|_{L^\infty(\Om)}<\infty$；又因 $\Om$ 凸，连接 $x$ 与 $y$ 的线段落在 $\Om$ 内，故由中值定理得 $|g(x)-g(y)|\le\|g'\|_{L^\infty(\Om)}|x-y|$；因此
+\[
+  [g]^2\le\|g'\|_{L^\infty(\Om)}^2\int_\Om\int_\Om d(y)^{-1/2}\,dy\,dx
+  =\|g'\|_{L^\infty(\Om)}^2\,|\Om|\cdot2\sqrt2<\infty,
+\]
+并且 $\|g\|_{L^2(\Om)}\le\|g\|_{L^\infty(\Om)}<\infty$，故 $g\in C_c^\infty(\Om)\cap F^s$。因此 $C_c^\infty(\Om)\cap F^s$ 是 $F^s$ 的非零子集，其闭包 $F^{s,1}$ 为真子空间。
+
+\emph{第七步（第 (iii) 部分）}. 我们对已核实的附录 A（情形 (I) 中 $p=q$、$s\in(0,1)$ 的 $C^\infty$ 稠密性）取 $n:=1$、$\Om:=(0,1)$、$a:=1/4$、$s:=1/2$、$p:=2$。其假设为 $\int_\Om d(y)^{-ap}\,dy<\infty$，而确实 $ap=(1/4)\cdot2=1/2$，故 $\int_\Om d(y)^{-1/2}\,dy=2\sqrt2<\infty$，与 (i) 中所算一致（在 $(0,1)$ 上，$\int_0^1 d(y)^{-1/2}\,dy=2\int_0^{1/2}y^{-1/2}\,dy=2\cdot2\cdot(1/2)^{1/2}=2\sqrt2$）。因此 $C^\infty(\Om)\cap F^s$ 在 $F^s$ 中稠密，即 $F^{s,2}=F^s$，这正是 (iii)。
+
+最后，(i) 即上面刚作的计算：$\int_\Om d(y)^{-aq}\,dy=\int_0^1 d(y)^{-1/2}\,dy=2\sqrt2<\infty$，故由二分法的附录 A，当前数据落在情形 (I)。结合 (ii) 与 (iii) 得 $F^{s,1}\neq F^s=F^{s,2}$。
+\end{proof}
+
+\begin{remark}[直觉]
+权的可积性 $aq=1/2<1$ 只保证 $C^\infty$ 稠密；$C_c^\infty$ 的闭包由 Kijaczko 定理 4 精确刻画为 $F^s$ 中满足 Hardy 条件 $\int|f|^2d^{-3/2}<\infty$ 的子空间。这里 Hardy 指数 $sp+aq=3/2$ 大于边界的 Assouad 余维数 $1$，于是该子空间是真子空间；加权半范数在常数上消失的常数函数 $1$ 恰好违反这一 Hardy 条件，因而落在闭包之外。同一个例子于是同时展示了情形 (I) 中 $C^\infty$ 稠密与 $C_c^\infty$ 不稠密并存。
+\end{remark}
+
+%==================================================================
+\subsection{区间例子：闭包的精确刻画与 Hardy 指数 \texorpdfstring{$sp+aq$}{sp+aq} 的临界性}
+
+\begin{theorem}[区间例子：在可积权情形 (I) 中 $C^\infty$ 稠密而 $C_c^\infty$ 不稠密]
+设 $\Om:=(0,1)\subset\R$，对 $x\in\Om$ 设 $d(x):=\min(x,1-x)=\dist(x,\{0,1\})$，并设 $p:=q:=2$，$s:=1/2$，$a:=1/4$。设 $F^s:=F^s_{2,2}(\Om,d^{-aq})$ 为 CLWZ (1.1)--(1.2) 的加权内蕴 Triebel--Lizorkin 空间，即 $\Om$ 上使
+\[
+  \|f\|_{F^s}:=\|f\|_{L^2(\Om)}
+  +\Big(\int_\Om\int_\Om|f(x)-f(y)|^2\,|x-y|^{-2}\,d(y)^{-1/2}\,dy\,dx\Big)^{1/2}
+\]
+有限的可测函数 $f$ 之集。设 $F^{s,1}$ 为 $C_c^\infty(\Om)\cap F^s$ 在 $F^s$ 中的闭包，$F^{s,2}$ 为 $C^\infty(\Om)\cap F^s$ 在 $F^s$ 中的闭包。则：
+\begin{enumerate}[label=(\roman*)]
+  \item $\displaystyle\int_\Om d(y)^{-1/2}\,dy=2\sqrt2<\infty$，故对权 $d^{-aq}$ 而言 $(\Om,s,p,q,a)$ 属于情形 (I)（可积权）。
+  \item 常函数 $1$ 属于 $F^s$ 且 $\|1\|_{F^s}=1$，但 $1$ 不属于 $F^{s,1}$。更精确地，
+  \[
+    F^{s,1}=\Big\{f\in F^s:\int_\Om|f(x)|^2d(x)^{-3/2}\,dx<\infty\Big\}.
+  \]
+  \item $C^\infty(\Om)\cap F^s$ 在 $F^s$ 中稠密，即 $F^{s,2}=F^s$。
+  \item 因此 $F^{s,1}\neq F^s=F^{s,2}$：$C^\infty(\Om)$ 在 $F^s$ 中稠密而 $C_c^\infty(\Om)$ 不稠密，尽管权 $d^{-1/2}$ 可积（$aq=1/2<1$）。在此例中，$C_c^\infty$ 的不稠密性是由 Hardy 指数 $sp+aq=3/2$ 超过边界余维数 $1$ 造成的，而不是由可积性指数 $aq=1/2$ 造成的。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{第零步（等同与外部结果）}. 由于 $p=q=2$ 且 $s=1/2\in(0,1)$，陈述中所写的范数恰是 Kijaczko 加权分数次 Sobolev 空间 $W^{s,p;\alpha,\beta}(\Om)$ 在 $p=2$、$s=1/2$、$\alpha=1/2$（内层变量 $y$ 上的权为 $d(y)^{-1/2}$）、$\beta=0$（$x$ 上无权）时的范数 $\|f\|_{L^2}+[f]$；见 arXiv:2110.04012 第 1 节，其中
+\[
+  [f]_{W^{s,p;\alpha,\beta}}=\Big(\int_\Om\int_\Om|f(x)-f(y)|^p\,|x-y|^{-d-sp}\,d(y)^{-\alpha}\,d(x)^{-\beta}\,dy\,dx\Big)^{1/p}.
+\]
+故 $F^s=W^{1/2,2;1/2,0}(\Om)$，且范数相等。
+
+我们使用三条外部结果，并完整引用。以下对 $\R^d$ 中的集合 $E$，$\codimAl(E)$ 与 $\codimAu(E)$ 分别表示 $E$ 的下 Assouad 余维数与上 Assouad 余维数（Kijaczko，arXiv:2110.04012，定义 9）。
+
+(A) Kijaczko，arXiv:2110.04012，定理 4。设 $\Om$ 为 $\R^d$ 中非空、有界、一致的开集，$0<s<1$、$1\le p<\infty$，并设 $\alpha,\beta$ 为满足 $0\le\alpha,\beta<\codimAl(\partial\Om)$ 的实数。若 $sp+\alpha+\beta>\codimAu(\partial\Om)$，则
+\[
+  W_0^{s,p;\alpha,\beta}(\Om)=\Big\{f\in W^{s,p;\alpha,\beta}(\Om):\int_\Om|f(x)|^p d_\Om(x)^{-sp-\alpha-\beta}\,dx<\infty\Big\},
+\]
+其中 $d_\Om(x)=\dist(x,\partial\Om)$，$W_0^{s,p;\alpha,\beta}(\Om)$ 是 $C_c^\infty(\Om)\cap W^{s,p;\alpha,\beta}(\Om)$ 在 $W^{s,p;\alpha,\beta}(\Om)$ 中关于范数 $\|f\|_{L^p}+[f]_{W^{s,p;\alpha,\beta}}$ 的闭包（Kijaczko 定义 1）。
+
+(B) Kijaczko，arXiv:2110.04012，定理 19。设 $\Om$ 为 $\R^d$ 中非空开集，$0<s<1$ 且 $p\in[1,\infty)$，并设 $w,v$ 为非负权，它们局部有界且满足
+\[
+  \int_\Om w(x)(1+|x|)^{-d-sp}\,dx<\infty
+  \quad\text{与}\quad
+  \int_\Om v(x)(1+|x|)^{-d-sp}\,dx<\infty
+\]
+（条件 (6)）。则 $C^\infty(\Om)\cap\wt W^{s,p;w,v}(\Om)$ 在半赋范空间 $\wt W^{s,p;w,v}(\Om)$ 中稠密，其中
+\[
+  \wt W^{s,p;w,v}(\Om)=\Big\{f\ \text{measurable on}\ \Om:\int_\Om\int_\Om|f(x)-f(y)|^p|x-y|^{-d-sp}w(x)v(y)\,dx\,dy<\infty\Big\}
+\]
+并赋以相应的半范数；此外 $W_0^{s,p;w,v}(\Om)=W_c^{s,p;w,v}(\Om)$，其中 $W_c^{s,p;w,v}(\Om)$ 是 $\Om$ 上紧支可测函数在 $\wt W^{s,p;w,v}(\Om)$ 中的闭包。
+
+(C) Dyda--Kijaczko，arXiv:2009.00077，定理 3。设 $p\in[1,\infty)$ 且 $f\in L^p(\Om)$。若对 $\Om$ 的某个 Whitney 分解 $\{Q_n\}$ 的每个 Whitney 立方体 $Q$ 有 $\eta_k(Q)\to0$，则 $\lim_{k\to\infty}\|P^{\eta_k}f-f\|_{L^p(\Om)}=0$，其中 $P^\eta$ 是该文的 Whitney 局部磨光算子
+\[
+  P^\eta f=\sum_n (f\psi_n)*h_{\eta(Q_n)}
+\]
+（$\psi_n$ 为从属于 $\{Q_n\}$ 的单位分解，$h$ 为固定磨光核，$h_t(x)=t^{-d}h(x/t)$）。
+
+\emph{第一步（情形 (I)）}. 由于在 $(0,1/2)$ 上 $d(y)=y$，在 $(1/2,1)$ 上 $d(y)=1-y$，故
+\[
+  \int_\Om d(y)^{-1/2}\,dy=2\int_0^{1/2}y^{-1/2}\,dy=2\big[2y^{1/2}\big]_0^{1/2}=4\sqrt{1/2}=2\sqrt2<\infty.
+\]
+于是取 $a=1/4$、$q=2$ 时 $\nuA(\Om)=\int_\Om d^{-aq}=\int_\Om d^{-1/2}=2\sqrt2<\infty$，即二分法的情形 (I) 成立（二分法见附录 A）。
+
+\emph{第二步（边界的余维数等于 $1$）}. 这里 $\partial\Om=\{0,1\}$。对 $\R$ 中的集合 $E$，记 $\wt E_r=\{t\in\R:\dist(t,E)\le r\}$ 为其管状邻域。对 $E=\{0,1\}$ 有 $\wt E_r=[-r,r]\cup[1-r,1+r]$。固定 $x\in E$ 与 $0<r<R<\diam(E)=1$。若 $x=0$，则 $B(x,R)=(-R,R)$，而 $\wt E_r\cap B(x,R)$ 包含 $(-r,r)$，故其 Lebesgue 测度至少为 $2r$；又 $\wt E_r\cap B(x,R)$ 包含于 $[-r,r]\cup[1-r,R)$，因 $R<1$ 其测度至多为 $2r+(R-(1-r))_+\le2r+r=3r$。因此 $2r\le|\wt E_r\cap B(x,R)|\le3r$。由于 $|B(x,R)|=2R$，比值 $|\wt E_r\cap B(x,R)|/|B(x,R)|$ 介于 $(r/R)$ 与 $(3/2)(r/R)$ 之间。由对称性，$x=1$ 时同样成立。
+
+\emph{下余维数}. 由刚证的上界，取 $q=1$、$C=3/2$ 即可用。若某个 $q>1$ 与某个 $C=C(q)$ 可容许，则对所有 $x\in E$ 与 $0<r<R<1$ 将有
+\[
+  2r\le|\wt E_r\cap B(x,R)|\le C\,|B(x,R)|\,(r/R)^q=2CR\,(r/R)^q=2C\,r^qR^{1-q}.
+\]
+除以 $2r>0$ 得 $1\le C\,r^{q-1}R^{1-q}=C\,(r/R)^{q-1}$。固定 $R=1/2$，则右端等于 $C(2r)^{q-1}$，因 $q-1>0$，当 $r\to0$ 时它趋于 $0$。故对所有充分小的 $r>0$ 该不等式不成立，矛盾。因此没有 $q>1$ 可容许，$\codimAl(\partial\Om)=1$。
+
+\emph{上余维数}. 使存在 $c=c(s)>0$、对所有 $x\in E$ 与 $0<r<R<1$ 满足 $|\wt E_r\cap B(x,R)|\ge c|B(x,R)|(r/R)^s$ 的 $s\ge0$ 之集包含 $s=1$，这由下界 $2r\ge2R(r/R)/2=|B(x,R)|(r/R)/2$（取 $c=1/2$）可得。若 $s<1$，则 $|\wt E_r\cap B(x,R)|\le3r$，而 $c|B(x,R)|(r/R)^s=2cR(r/R)^s=2c\,r^sR^{1-s}$；令 $R\to1$、$r\to0$ 得 $3r\ge c'\,r^s$，因 $s<1$ 该式对小 $r$ 不成立。因此 $\codimAu(\partial\Om)=1$。
+
+区间 $\Om=(0,1)$ 是有界一致域：其中任意两点 $x<y$ 由线段 $[x,y]$ 相连，其长度为 $|x-y|$（故取 $c_1=1$ 有 $L(\Gamma)\le c_1|x-y|$）；且对 $z\in[x,y]$ 有 $\min\{|x-z|,|y-z|\}\le\min(z-x,y-z)\le\min(z,1-z)=d(z)$（$z\le1/2$ 时用 $\min\{|x-z|,|y-z|\}\le z-x\le z$，$z\ge1/2$ 时用 $\le y-z\le1-z$），故一致域条件以 $c_1=c_2=1$ 成立。
+
+\emph{第三步（闭包的刻画）}. 对定理 (A) 取 $d=1$、$s=1/2$、$p=2$、$\alpha=1/2$、$\beta=0$。假设成立：$\Om$ 有界且一致（第二步）；$0\le\alpha=1/2<1=\codimAl(\partial\Om)$ 且 $0\le\beta=0<1$；以及 $sp+\alpha+\beta=(1/2)(2)+1/2+0=3/2>1=\codimAu(\partial\Om)$。由于 $W^{1/2,2;1/2,0}(\Om)=F^s$ 且范数相等（第零步），并 $W_0^{1/2,2;1/2,0}(\Om)=F^{s,1}$，定理 (A) 给出
+\[
+  F^{s,1}=\Big\{f\in F^s:\int_\Om|f(x)|^2d(x)^{-(sp+\alpha+\beta)}\,dx<\infty\Big\}
+  =\Big\{f\in F^s:\int_\Om|f(x)|^2d(x)^{-3/2}\,dx<\infty\Big\}.
+\]
+这就是所断言的 $F^{s,1}$ 的精确刻画。注意指数是 $sp+\alpha+\beta=3/2$，而不是权的可积性指数 $aq=1/2$。
+
+\emph{第四步（$1$ 在 $F^s$ 中但不在 $F^{s,1}$ 中）}. 常函数 $1$ 满足 $\|1\|_{L^2(\Om)}=|\Om|^{1/2}=1$，其加权 Gagliardo 半范数为零，因为对所有 $x,y\in\Om$ 有 $|1(x)-1(y)|=0$。故 $1\in F^s$ 且 $\|1\|_{F^s}=1$。另一方面
+\[
+  \int_\Om|1(x)|^2d(x)^{-3/2}\,dx=\int_\Om d(x)^{-3/2}\,dx=2\int_0^{1/2}y^{-3/2}\,dy=\infty;
+\]
+等价地，取 $c=3/2\ge1$，附录 A（对有界 Lipschitz 域，对每个实数 $c\ge1$ 有 $\int_\Om d^{-c}=\infty$）给出该积分发散。由第三步的刻画，$1$ 不在 $F^{s,1}$ 中。因此 $F^{s,1}$ 是 $F^s$ 的真闭子空间，且 $C_c^\infty(\Om)\cap F^s$ 在 $F^s$ 中不稠密。
+
+\emph{第五步（$C^\infty$ 稠密性）}. 附录 A 的假设均满足：$n=1$，$\Om=(0,1)$ 为非空有界域，$a=1/4>0$，$s=1/2\in(0,1)$，$p=2\in[1,\infty)$，且 $\int_\Om d(y)^{-ap}\,dy=\int_\Om d(y)^{-1/2}\,dy=2\sqrt2<\infty$（第一步）。该事实（其证明恰如上文定理 (B) 与 (C) 那样引用 Kijaczko 定理 19 与 Dyda--Kijaczko 定理 3）给出 $C^\infty(\Om)\cap F^s$ 在 $F^s$ 中稠密，即 $F^{s,2}=F^s$。为完整起见，其论证为：取 $w:=1$、$v:=d^{-1/2}$，两权在 $\Om$ 上均局部有界，而因 $\Om$ 有界，定理 (B) 的条件 (6) 化为 $w\in L^1(\Om)$ 与 $v\in L^1(\Om)$；前者由 $|\Om|<\infty$ 成立，后者即第一步。于是定理 (B) 适用，其 Whitney 磨光逼近列 $P^{\eta_k}f$（满足 $\eta_k(Q_n)\to0$）在加权 Gagliardo 半范数下收敛于 $f$；由定理 (C) 同一列在 $L^2(\Om)$ 中收敛于 $f$；故它在完整范数 $\|f\|_{F^s}=\|f\|_{L^2}+[f]$ 下收敛，且每个 $P^{\eta_k}f$ 属于 $C^\infty(\Om)\cap F^s$。
+
+\emph{第六步（结论）}. 由第四步，$F^{s,1}$ 是 $F^s$ 的真子空间；由第五步，$F^{s,2}=F^s$。因此 $F^{s,1}\neq F^s=F^{s,2}$。至此 (i)--(iv) 得证。
+\end{proof}
+
+\begin{remark}[直觉]
+权的可积性（情形 (I)，$aq=1/2<1$）只保证 $C^\infty$ 稠密，并不保证 $C_c^\infty$ 稠密。Kijaczko 定理 4 精确描述了 $C_c^\infty$ 的闭包：它是 $F^s$ 中由 Hardy 条件 $\int|f|^p d^{-(sp+aq)}<\infty$ 切出的子空间。这里 $sp+aq=3/2>\codimA(\partial\Om)=1$，所以它是真子空间，而加权半范数消失的常数函数 $1$ 恰好违反该条件。于是同一个例子同时展示了情形 (I) 中 $C^\infty$ 稠密与 $C_c^\infty$ 不稠密的失败。
+\end{remark}
+
+%==================================================================
+\subsection{为何 CLWZ 的 Hardy 项不可省，以及临界指数是 \texorpdfstring{$sp+aq$}{sp+aq} 而非 \texorpdfstring{$aq$}{aq}}
+
+\begin{theorem}[为何 CLWZ 的 Hardy 项并非冗余，以及为何临界指数是 $sp+aq$ 而非 $aq$]
+设 $n\ge1$，$\Om$ 为 $\R^n$ 中非空有界 Lipschitz 域，设 $d(x)=\dist(x,\partial\Om)$，$0<s<1$、$p\in[1,\infty)$ 且 $b\ge0$。定义
+\[
+  W_b^{s,p}(\Om):=\Big\{f\in L^p(\Om):
+  [f]_{s,p,b}:=\Big(\int_\Om\int_\Om|f(x)-f(y)|^p|x-y|^{-n-sp}d(y)^{-b}\,dy\,dx\Big)^{1/p}<\infty\Big\},
+\]
+并以 $\|f\|_{W_b^{s,p}}:=\|f\|_{L^p(\Om)}+[f]_{s,p,b}$ 赋范；设 $W_{b,0}^{s,p}(\Om)$ 为 $C_c^\infty(\Om)\cap W_b^{s,p}(\Om)$ 在 $W_b^{s,p}(\Om)$ 中的闭包。设 $\codimAl(\partial\Om)$ 与 $\codimAu(\partial\Om)$ 为 $\partial\Om$ 的下、上 Assouad 余维数，$\dimM(\partial\Om)$ 为其上 Minkowski 维数。则：
+\begin{enumerate}[label=(\roman*)]
+  \item （闭包刻画，Kijaczko 定理 4）若 $0\le b<\codimAl(\partial\Om)$ 且 $sp+b>\codimAu(\partial\Om)$，则
+  \[
+    W_{b,0}^{s,p}(\Om)=\Big\{f\in W_b^{s,p}(\Om):\int_\Om|f(x)|^p d(x)^{-(sp+b)}\,dx<\infty\Big\}.
+  \]
+  在这些假设下该子空间为真子空间：$\Om$ 是 $\kappa$-plump 的（有界 Lipschitz 域是一致域，而一致域是 $\kappa$-plump 的），故 Kijaczko 定理 3(III) 在 $sp+b>\codimAu(\partial\Om)$ 下适用，并给出 $W_{b,0}^{s,p}(\Om)\neq W_b^{s,p}(\Om)$。
+  \item （哪个指数是临界的）若 $sp+b<n-\dimM(\partial\Om)$，则 $W_{b,0}^{s,p}(\Om)=W_b^{s,p}(\Om)$（Kijaczko 定理 3(I)）。可积性条件 $\int_\Om d^{-b}<\infty$（在远离临界情形时等价于 $b<n-\dimM(\partial\Om)$）是 Kijaczko $C^\infty$ 稠密性定理（定理 19）的假设，它只保证 $C^\infty(\Om)\cap W_b^{s,p}(\Om)$ 在 $W_b^{s,p}(\Om)$ 中稠密。在子区间 $0\le b<\codimAl(\partial\Om)$ 且 $sp+b>\codimAu(\partial\Om)$ 内（该子区间非空：有界 Lipschitz 域的边界是 $(n-1)$ 维 Ahlfors 正则集，故
+$\codimAl(\partial\Om)=\codimAu(\partial\Om)=n-(n-1)=1$；于是所论区间即 $\big(\max\{0,1-sp\},\,1\big)$，而 $s>0$、$p\ge1$ 给出 $sp>0$，故它非空）有 $b<n-\dimM(\partial\Om)<sp+b$，故 $C^\infty$ 稠密而 $C_c^\infty$ 不稠密。因此决定 $C_c^\infty$ 稠密性的指数是 $sp+b$，而不是权的可积性指数 $b$：临界比较发生在 $sp+b$ 与边界余维数之间，而不是 $\int_\Om d^{-b}$ 的有限性。
+  \item （区间见证）对 $\Om=(0,1)$、$n=1$、$s=1/2$、$p=2$、$b=1/2$ 有 $\int_\Om d^{-b}=2\sqrt2<\infty$ 且
+  \[
+    b=1/2<1=n-\dimM(\partial\Om)=\codimAl(\partial\Om)=\codimAu(\partial\Om),
+  \]
+  但 $sp+b=3/2>1$。故 (i) 适用，并得
+  \[
+    W_{b,0}^{s,p}(\Om)=\Big\{f\in W_b^{s,p}(\Om):\int_\Om|f(x)|^2d(x)^{-3/2}\,dx<\infty\Big\},
+  \]
+  该子空间为真子空间且不含常数 $1$。因此情形 (I)（$\int d^{-aq}<\infty$）并不蕴含 $C_c^\infty$ 稠密性。
+  \item （CLWZ 的 Hardy 项）设 $a>0$、$q\in[1,\infty)$，并设 $F^s:=\Fsp$ 为 CLWZ 加权内蕴空间 (1.1)--(1.2)，其中 $s\in(0,\infty)\setminus\N$。
+  \begin{enumerate}[label=(\alph*)]
+    \item 若 $0<s<1$、$p=q$ 且 $b=aq$，则 $sp+b=sp+aq=(s+a)p$；此外在 $0\le aq<\codimAl(\partial\Om)$ 且 $sp+aq>\codimAu(\partial\Om)$ 的情形下，部分 (i) 给出
+    \begin{align*}
+      F^{s,1}&=W_{b,0}^{s,p}(\Om)
+      =\Big\{f\in F^s:\int_\Om|f(x)|^p d(x)^{-(s+a)p}\,dx<\infty\Big\}\\
+      &=\Big\{f\in F^s:\|f\,d^{-(s+a)}\|_{L^p(\Om)}<\infty\Big\}.
+    \end{align*}
+    在此情形下，第一个 CLWZ Hardy 范数恰是定义 $C_c^\infty$ 闭包所缺的那个条件，故它并非冗余。
+    \item 不论处于何种情形，若 $(s+a)p\ge1$，则常函数 $1$ 属于 $F^s$，但 $\int_\Om d^{-(s+a)p}\,dx=\infty$（附录 A，取 $c=(s+a)p\ge1$），故 $\|1\cdot d^{-(s+a)}\|_{L^p(\Om)}=\infty$；因此在该范围内第一个 Hardy 项不是内蕴范数的推论。
+    \item 对每个 $s\in(0,\infty)\setminus\N$、每个 $a>0$ 与每个 $q\in[1,\infty)$，常数 $1$ 属于 $F^s$，且 $\|1\cdot d^{-(s+a+n/q)}\|_{L^q(\Om)}=\infty$：其 $q$ 次幂为 $\int_\Om d^{-(s+a)q-n}\,dx$，而 $c:=(s+a)q+n>n\ge1$，故由附录 A 得 $\int_\Om d^{-c}\,dx=\infty$。因此第二个 Hardy 项也绝不冗余。
+  \end{enumerate}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+我们完整引用 Kijaczko（arXiv:2110.04012）的定理 4 与定理 3。
+
+\emph{Kijaczko 定理 4}. 设 $\Om$ 为 $\R^d$ 中非空、有界、一致的开集，$0<s<1$、$1\le p<\infty$，并设 $\alpha,\beta$ 为满足 $0\le\alpha,\beta<\codimAl(\partial\Om)$ 的实数。若 $sp+\alpha+\beta>\codimAu(\partial\Om)$，则
+\[
+  W_0^{s,p;\alpha,\beta}(\Om)=\Big\{f\in W^{s,p;\alpha,\beta}(\Om):\int_\Om|f(x)|^p d_\Om(x)^{-sp-\alpha-\beta}\,dx<\infty\Big\},
+\]
+其中 $d_\Om(x)=\dist(x,\partial\Om)$，$W_0^{s,p;\alpha,\beta}(\Om)$ 为 $C_c^\infty(\Om)\cap W^{s,p;\alpha,\beta}(\Om)$ 在 $W^{s,p;\alpha,\beta}(\Om)$ 中的闭包（同上文定义 1）。
+
+\emph{Kijaczko 定理 3}. 设 $\Om$ 为 $\R^d$ 中非空、有界开集，$0<s<1$、$1\le p<\infty$、$\alpha,\beta\ge0$。
+\begin{enumerate}[label=(\Roman*)]
+  \item 若 $sp+\alpha+\beta<d-\dimM(\partial\Om)$，则 $W_0^{s,p;\alpha,\beta}(\Om)=W^{s,p;\alpha,\beta}(\Om)$。
+  \item 若 $\Om$ 是 $(d-sp-\alpha-\beta)$-齐次的，$p>1$ 且 $sp+\alpha+\beta=\codimAl(\partial\Om)$，则 $W_0^{s,p;\alpha,\beta}(\Om)=W^{s,p;\alpha,\beta}(\Om)$。
+  \item 若 $\Om$ 是 $\kappa$-plump 的且 $sp+\alpha+\beta>\codimAu(\partial\Om)$，则 $W_0^{s,p;\alpha,\beta}(\Om)\neq W^{s,p;\alpha,\beta}(\Om)$。
+\end{enumerate}
+
+这里 $W^{s,p;\alpha,\beta}(\Om)$ 是 $L^p(\Om)$ 中使下述半范数有限的 $f$ 所成空间：
+\[
+  \Big(\int_\Om\int_\Om|f(x)-f(y)|^p|x-y|^{-d-sp}d(y)^{-\alpha}d(x)^{-\beta}\,dy\,dx\Big)^{1/p},
+\]
+并以 $\|f\|_{L^p}+[f]$ 赋范，$W_0^{s,p;\alpha,\beta}(\Om)$ 是 $C_c^\infty(\Om)\cap W^{s,p;\alpha,\beta}(\Om)$ 在其中的闭包。陈述中的单权空间 $W_b^{s,p}(\Om)$ 是 $\alpha,\beta$ 之一等于 $b$、另一个等于 $0$ 的特殊情形：两种取法下权均为 $d(y)^{-b}$（至多交换变量的名称），$sp+\alpha+\beta=sp+b$，且假设 $0\le\alpha,\beta<\codimAl(\partial\Om)$ 等价于 $0\le b<\codimAl(\partial\Om)$。
+
+\emph{所用的结构事实}. (1) 每个有界 Lipschitz 域都是一致域（有界 Lipschitz 域是 $(\varepsilon,\delta)$-域，而作为 $(\varepsilon,\delta)$-域的有界域是一致域；参见 CLWZ 第 3--4 页关于 $(\varepsilon,\delta)$-域与一致域的讨论）。(2) 每个一致域对某个 $\kappa\in(0,1)$ 是 $\kappa$-plump 的（Kijaczko，定理 7 的证明）。(3) Kijaczko 第 2.1 节（定义 11 之后）记载：对 $\R^d$ 中的 $E$ 有 $\codimAl(E)\le d-\dimM(E)$；对偶地有 $d-\dimM(E)\le\codimAu(E)$。因此 $d-\dimM(\partial\Om)$ 介于下 Assouad 余维数与上 Assouad 余维数之间。(4) 距离 zeta 函数
+\[
+  \zeta_\Om(q)=\int_\Om d_\Om(x)^{-q}\,dx
+\]
+当 $q<n-\dimM(\partial\Om)$ 时有限，当 $q>n-\dimM(\partial\Om)$ 时无穷（Kijaczko，第 2.1 节，定义 11 及其后数行，依据 [14, Lemma 3.3 and Lemma 3.5]）。
+
+\emph{(i) 的证明}. 对定理 4 取 $d=n$ 与 $\{\alpha,\beta\}=\{b,0\}$。假设 $0\le b<\codimAl(\partial\Om)$ 与 $sp+b>\codimAu(\partial\Om)$ 正是 (i) 的假设，故定理 4 给出 $W_{b,0}^{s,p}(\Om)$ 的所述刻画。关于真性：由 (1)--(2)，有界 Lipschitz 域 $\Om$ 是一致域，从而是 $\kappa$-plump 的；以相同的 $\{\alpha,\beta\}=\{b,0\}$ 与假设 $sp+b>\codimAu(\partial\Om)$ 应用定理 3(III)，得 $W_{b,0}^{s,p}(\Om)\neq W_b^{s,p}(\Om)$。因此所刻画的子空间为真子空间。
+
+\emph{(ii) 的证明}. 对定理 3(I) 取 $d=n$ 与 $\{\alpha,\beta\}=\{b,0\}$：由 $sp+b<n-\dimM(\partial\Om)$ 得 $W_{b,0}^{s,p}(\Om)=W_b^{s,p}(\Om)$。由 (4)，$\int_\Om d^{-b}<\infty$ 等价于（在 $b=n-\dimM(\partial\Om)$ 之外）$b<n-\dimM(\partial\Om)$；这恰是 Kijaczko 定理 19 的假设，该定理给出 $C^\infty(\Om)\cap W_b^{s,p}(\Om)$ 在半赋范空间中稠密（与 Dyda--Kijaczko，arXiv:2009.00077，定理 3 结合则得完整范数下的稠密性）。因 $s>0$，有 $sp+b>b$，故对子区间 $0\le b<\codimAl(\partial\Om)$ 且 $sp+b>\codimAu(\partial\Om)$ 中的 $b$，利用 (3) 得
+\[
+  b<\codimAl(\partial\Om)\le n-\dimM(\partial\Om)\le\codimAu(\partial\Om)<sp+b;
+\]
+因此由部分 (i)，在该子区间内 $C^\infty$ 稠密而 $C_c^\infty$ 不稠密。该子区间的非空性并不来自 (iii)：有界 Lipschitz 域的边界是 $(n-1)$ 维 Ahlfors 正则集，故 $\codimAl(\partial\Om)=\codimAu(\partial\Om)=1$，所论区间即 $\big(\max\{0,1-sp\},\,1\big)$，而 $sp>0$ 保证其非空（(iii) 只是 $\Om=(0,1)$ 的一个具体见证）。这就证明了临界指数是 $sp+b$ 而非 $b$。
+
+\emph{(iii) 的证明}. 对 $\Om=(0,1)$ 有 $\partial\Om=\{0,1\}$、$n=1$、$\dimM(\partial\Om)=0$ 且 $\codimAl(\partial\Om)=\codimAu(\partial\Om)=1$（见附录 A 第二步中的计算），且 $(0,1)$ 是有界 Lipschitz 域。取 $s=1/2$、$p=2$、$b=1/2$：
+\[
+  \int_\Om d^{-b}=\int_0^1 d^{-1/2}=2\sqrt2<\infty
+\]
+（附录 A 第一步），故 $b=1/2<1=\codimAl(\partial\Om)$；且 $sp+b=(1/2)(2)+1/2=3/2>1=\codimAu(\partial\Om)$。于是 (i) 适用，并给出
+\[
+  W_{b,0}^{s,p}(\Om)=\Big\{f\in W_b^{s,p}(\Om):\int_\Om|f(x)|^2d(x)^{-3/2}\,dx<\infty\Big\}.
+\]
+该子空间为真子空间且不含 $1$，因为 $\int_\Om d^{-3/2}=\infty$（附录 A，取 $c=3/2\ge1$；完整计算见附录 A 第四步）。因此 $\int d^{-aq}<\infty$ 并不蕴含 $C_c^\infty$ 稠密性。
+
+\emph{(iv) 的证明}. 部分 (a)：若 $0<s<1$ 且 $p=q$，则 CLWZ 带单权 $d(y)^{-aq}$ 的加权内蕴空间 $F^s_{p,p}(\Om,d^{-aq})$ 恰是 $b=aq$ 时的 $W_b^{s,p}(\Om)$（半范数相同），且 $F^{s,1}=W_{b,0}^{s,p}(\Om)$。又 $sp+b=sp+aq=sp+ap=(s+a)p$。在所设情形下部分 (i) 适用，给出
+\begin{align*}
+  F^{s,1}&=\Big\{f\in F^s:\int_\Om|f(x)|^p d(x)^{-(sp+b)}\,dx<\infty\Big\}\\
+  &=\Big\{f\in F^s:\int_\Om|f|^p d(x)^{-(s+a)p}\,dx<\infty\Big\}\\
+  &=\Big\{f\in F^s:\|f\,d^{-(s+a)}\|_{L^p(\Om)}<\infty\Big\}.
+\end{align*}
+因此在该情形下第一个 CLWZ Hardy 范数恰是定义 $C_c^\infty$ 闭包的条件，故在该情形下它不能省略。
+
+部分 (b)：对 $s\in(0,\infty)\setminus\N$、$a>0$ 与 $p\in[1,\infty)$，常数 $1$ 属于 $F^s$ 且 $\|1\|_{F^s}=|\Om|^{1/p}$（论证见附录 A 第一步）。若 $(s+a)p\ge1$，则由附录 A（取 $c=(s+a)p\ge1$）得 $\int_\Om d^{-(s+a)p}\,dx=\infty$，故 $\|1\cdot d^{-(s+a)}\|_{L^p(\Om)}=\infty$，而 $1$ 属于 $F^s$。因此在该范围内第一个 Hardy 范数不受内蕴范数控制。
+
+部分 (c)：$\|1\cdot d^{-(s+a+n/q)}\|_{L^q(\Om)}$ 的 $q$ 次幂为 $\int_\Om d(x)^{-(s+a)q-n}\,dx$。这里 $c:=(s+a)q+n>n\ge1$，故由附录 A 该积分为无穷。因此对一切 $s\in(0,\infty)\setminus\N$、一切 $a>0$ 与一切 $q\in[1,\infty)$，常数 $1$ 的第二个 Hardy 范数为无穷，第二个 Hardy 项绝不冗余。
+\end{proof}
+
+\begin{remark}[直觉]
+加权内在半范数在常数上消失，因此它看不到边界迹；而 Hardy 项恰恰能看见边界迹，所以它们是与内在范数独立的附加条件，不可省略。对 $C_c^\infty$ 稠密性而言，决定性的比较发生在 Hardy 指数 $sp+aq$ 与边界余维数之间，而不是在 $aq$ 与 $1$ 之间：权的可积性只给出 $C^\infty$ 稠密（Kijaczko 定理 19），而 $C_c^\infty$ 的闭包是由定理 4 描述的 Hardy 子空间。在 $(0,1)$ 上取 $s=1/2$、$p=2$、$aq=1/2$ 时 $aq<1$ 但 $sp+aq=3/2>1$，这正是常数 $1$ 属于内在空间却不属于 $C_c^\infty$ 闭包的原因。第二个 Hardy 项的奇性更强：其指数 $(s+a)q+n$ 恒大于 $n$，因此在任意参数下都在边界处发散，绝不可能冗余。
+\end{remark}
+
+%==================================================================
+\subsection{可积性指数是 \texorpdfstring{$aq$}{aq} 而非 \texorpdfstring{$ap$}{ap}}
+
+\begin{theorem}[Kijaczko 关于距离权 $d^{-aq}$ 的稠密性条件：可积性指数是 $aq$ 而非 $ap$]
+设 $n\ge1$，$\Om$ 为 $\R^n$ 中非空有界域，$0<s<1$ 且 $1\le p<\infty$，并设 $w,v:\Om\to[0,\infty)$ 为 Borel 权。Kijaczko（arXiv:2110.04012，定理 19）考虑单指数单侧加权空间
+\[
+  \wt W^{s,p;w,v}(\Om):=\Big\{f\ \text{measurable on}\ \Om:
+  \int_\Om\int_\Om|f(x)-f(y)|^p|x-y|^{-n-sp}w(x)v(y)\,dx\,dy<\infty\Big\},
+\]
+以相应的半范数赋范，并证明：当 $w$ 与 $v$ 局部有界且满足积分条件
+\[
+  (6)\qquad
+  \int_\Om w(x)(1+|x|)^{-n-sp}\,dx<\infty
+  \quad\text{与}\quad
+  \int_\Om v(x)(1+|x|)^{-n-sp}\,dx<\infty .
+\]
+时，$C^\infty(\Om)\cap\wt W^{s,p;w,v}(\Om)$ 在 $\wt W^{s,p;w,v}(\Om)$ 中稠密。则：
+\begin{enumerate}[label=(\roman*)]
+  \item 因 $\Om$ 有界，对 $x\in\Om$ 有 $1\le(1+|x|)^{n+sp}\le(1+\sup_\Om|x|)^{n+sp}<\infty$，故条件 (6) 等价于 $w\in L^1(\Om)$ 与 $v\in L^1(\Om)$，即等价于 $\int_\Om w<\infty$ 与 $\int_\Om v<\infty$（此即 Kijaczko 的注 20）。
+  \item 取 $\Om$ 上 $w:=1$，$v(y):=d(y)^{-aq}$，其中 $a>0$、$q\in[1,\infty)$ 为 CLWZ 范数 (1.2) 的内层指数。则条件 (6) 等价于
+  \[
+    \nuA(\Om)=\int_\Om d(y)^{-aq}\,dy<\infty,
+  \]
+  其中 $\nuA(E):=\int_E d(y)^{-aq}\,dy$。因此需要可积的指数是 $aq$，即混合范数 (1.2) 中附着于内层积分变量 $y$ 的指数，而不是 $ap$。当 $p=q$ 时两指数 $aq$ 与 $ap$ 相同；当 $p\neq q$ 时它们不同，且 $ap<1$ 与 $aq<1$ 两个条件互不蕴含：对 $\Om=(0,1)$ 与 $d(y)=\min(y,1-y)$，$\int_\Om d^{-b}<\infty$ 当且仅当 $b<1$，故若 $p<q$ 且 $1/q\le a<1/p$，则 $ap<1$ 但 $aq\ge1$；而若 $p>q$ 且 $1/p\le a<1/q$，则 $aq<1$ 但 $ap\ge1$。
+  \item 因此，在情形 (I)（$\nuA(\Om)<\infty$）下，Kijaczko 定理 19 对每个 $p\in[1,\infty)$ 给出 $C^\infty(\Om)\cap\wt W^{s,p;1,d^{-aq}}(\Om)$ 在半赋范空间 $\wt W^{s,p;1,d^{-aq}}(\Om)$ 中稠密，即在加权 Gagliardo 半范数下逼近成立。当 $p=q$ 时该半范数正是 CLWZ 范数 (1.2) 中的加权 Gagliardo 半范数部分；定理 19 只控制 CLWZ 范数的这一部分，而不控制额外的 $L^q(\Om)$ 项。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{第一部分}. 部分 (i) 是直接的：当 $\Om$ 有界时，因子 $(1+|x|)^{-n-sp}$ 被仅依赖 $\Om,n,s,p$ 的正常数从上下方控制（因 $0<(1+|x|)^{-n-sp}\le1$ 且 $(1+|x|)^{n+sp}\le(1+\sup_{x\in\Om}|x|)^{n+sp}<\infty$），故 (6) 中每个积分有限当且仅当该权在 $\Om$ 上的相应积分有限，即当且仅当该权属于 $L^1(\Om)$。Kijaczko 在 arXiv:2110.04012 的注 20 中对有界 $\Om$ 陈述了同样的等价性。
+
+\emph{第二部分}. 部分 (ii)：对 (i) 取 $w:=1$（此时 $\int_\Om w=|\Om|<\infty$）与 $v:=d^{-aq}$，后者在开集 $\Om$ 上连续且为正，故局部有界。由 (i)，(6) 中第二个条件等价于 $\int_\Om d(y)^{-aq}\,dy<\infty$，即 $\nuA(\Om)<\infty$。对 $\Om=(0,1)$ 与 $d(y)=\min(y,1-y)$，直接计算得
+\[
+  \int_0^1 d(y)^{-b}\,dy=2\int_0^{1/2}y^{-b}\,dy=\frac{2^b}{1-b}
+  \quad\text{for } b<1,
+  \qquad\text{与}\qquad =+\infty \quad\text{for } b\ge1 .
+\]
+因此两条件分别读作 $ap<1$ 与 $aq<1$。若 $p<q$ 且 $1/q\le a<1/p$，则 $ap<1$ 且 $aq\ge1$；若 $p>q$ 且 $1/p\le a<1/q$，则 $aq<1$ 且 $ap\ge1$。两种情形下恰有一个条件成立，故两条件互不蕴含。
+
+\emph{第三部分}. 部分 (iii)：在情形 (I) 下，以单指数 $p$、$w:=1$ 与 $v:=d^{-aq}$（二者局部有界，且由 (ii) 满足 (6)）应用 Kijaczko 定理 19，得 $C^\infty(\Om)\cap\wt W^{s,p;1,d^{-aq}}(\Om)$ 在半赋范空间 $\wt W^{s,p;1,d^{-aq}}(\Om)$ 中稠密：逼近函数在加权 Gagliardo 半范数下收敛，该半范数为
+\[
+  \Big(\int_\Om\int_\Om|f(x)-f(y)|^p|x-y|^{-n-sp}d(y)^{-aq}\,dy\,dx\Big)^{1/p}.
+\]当 $p=q$ 时该半范数正是 CLWZ 范数 (1.2) 在 $p=q$ 时出现的加权 Gagliardo 半范数；$p=q$ 时的完整 CLWZ 范数是该半范数加上 $L^q(\Om)$ 范数 $\|f\|_{L^q(\Om)}$，故定理 19 只控制半范数部分，$L^q$ 部分需要单独的逼近论证。
+\end{proof}
+
+\begin{remark}[直觉]
+权 $d^{-aq}$ 落在内层（$y$-）积分上，而该积分对应的指数是 $q$；Kijaczko 的可积性条件对"哪个指数乘上权"并不敏感，因为在他的空间里单个指数 $p$ 同时乘在两个变量上。因此情形 (I) 的阈值是 $\int d^{-aq}<\infty$，而当 $p\neq q$ 时必须把它与任何 $ap$ 条件分开验证。
+\end{remark}

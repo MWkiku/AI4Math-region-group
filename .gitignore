@@ -25,3 +25,6 @@ desktop.ini
 .env
 .env.*
 *.pem
+
+# 论文归档快照：只放定稿 PDF，中间版本走坚果云
+!paper/**/*.pdf

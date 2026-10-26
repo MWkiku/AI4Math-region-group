@@ -1,0 +1,305 @@
+
+本节汇总论证所依赖的六条基础引理。前三条围绕边界距离权重 $d^{-aq}$ 的二分类现象展开：该权重或者整体可积，或者在每个边界层上都已经发散，而后者正是迫使函数为常数的刚性机制；第四条与第五条分别提供"高阶弱导数恒定蕴含多项式"的代数工具与加权积分散射性的单调性；第六条则给出 Lipschitz 区域边界层的线性下界，从而保证所有 $d^{-c}$（$c\ge 1$）都不可积。这些结论彼此独立而又相互配合，是后续加权 Triebel--Lizorkin 空间估计的出发点。
+
+%==================================================================
+\subsection{边界距离权重的二分性}
+
+\begin{lemma}[边界距离权重的二分性]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域（非空、连通、有界、开），对 $x\in\Om$ 令 $d(x)=\dist(x,\partial\Om)$，设 $a>0$、$q\in[1,\infty)$，并设 $\nuA$ 为 $\Om$ 上由
+\[
+  \nuA(E)=\int_E d(y)^{-aq}\,dy .
+\]
+定义的 Borel 测度。对 $r>0$ 令 $\Omr=\{x\in\Om : d(x)<r\}$。则下述两种情形恰有一种成立：
+\begin{enumerate}[label=(\Roman*)]
+\item $\nuA(\Om)<\infty$；
+\item $\nuA(\Om)=\infty$，而在此情形下自动对每个 $r>0$ 都有 $\nuA(\Omr)=\infty$。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+由于 $d$ 在 $\Om$ 上连续且为正，且 $aq\ge 0$，函数 $d^{-aq}$ 在 $\Om$ 上 Borel 可测且非负，故对每个 Borel 集 $E\subseteq\Om$，$\nuA(E)$ 有定义（可能为 $+\infty$）；$\Omr$ 是开集，从而是 Borel 集。$\nuA(\Om)<\infty$ 与 $\nuA(\Om)=\infty$ 恰有一个成立，因此只需证明第二种情形蕴含对每个 $r>0$ 都有 $\nuA(\Omr)=\infty$。
+
+设 $\nuA(\Om)=\infty$ 并固定 $r>0$。则 $\Om$ 是 $\Omr$ 与 $\Om\setminus\Omr$ 的不交并，故
+\[
+  \nuA(\Om)=\nuA(\Omr)+\int_{\Om\setminus\Omr} d(y)^{-aq}\,dy .
+\]
+对 $y\in\Om\setminus\Omr$ 有 $d(y)\ge r$，故 $d(y)^{-aq}\le r^{-aq}$；因此
+\[
+  \int_{\Om\setminus\Omr} d(y)^{-aq}\,dy\le r^{-aq}\,|\Om|<\infty ,
+\]
+因为 $\Om$ 有界。由于 $\nuA(\Om)=\infty$ 而第二项有限，故 $\nuA(\Omr)=\infty$。又 $r>0$ 任意，结论成立。
+\end{proof}
+
+\begin{remark}[直觉]
+密度为 $d^{-aq}$ 的测度要么总质量有限；要么一旦总质量无限，就已经在每个边界层上无限。原因在于边界层之外密度被常数 $r^{-aq}$ 控制，而 $\Om$ 的体积有限。
+\end{remark}
+
+%==================================================================
+\subsection{\texorpdfstring{$\sigma$}{sigma}-引理：权重不可积时的刚性}
+
+\begin{lemma}[$\sigma$-引理：权重不可积时最高阶导数为常数]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$a>0$，$q\in[1,\infty)$，$\sigma\in(0,1)$，$p\in[1,\infty)$，并在 $\Om$ 上令 $\nuA(dy)=d(y)^{-aq}\,dy$。对 $r>0$ 令 $\Omr=\{y\in\Om : d(y)<r\}$。假设 $\nuA(\Om)=\infty$。设 $g:\Om\to\R$ 为 Lebesgue 可测，并假设
+\[
+  \int_\Om \Big(\int_\Om |g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,\nuA(dy)\Big)^{p/q} dx<\infty ,
+\]
+其中内层积分遍历全部 $y\in\Om$。则 $g$ 在 $\Om$ 上几乎处处为常数。
+\end{lemma}
+
+\begin{proof}
+设 $\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$a>0$，$q\in[1,\infty)$，$\sigma\in(0,1)$，$p\in[1,\infty)$，且 $\nuA(dy)=d(y)^{-aq}\,dy$。对 $r>0$ 令 $\Omr:=\{y\in\Om : d(y)<r\}$。假设 $\nuA(\Om)=\infty$。设 $g:\Om\to\R$ 为 Lebesgue 可测，并假设
+\[
+  W:=\int_\Om \big(J(x)\big)^{p/q}\,dx<\infty ,
+\]
+其中
+\[
+  J(x):=\int_\Om |g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,\nuA(dy)\in[0,\infty]
+\]
+为 Borel 可测（被积函数联合可测）。由已验证的附录 A（边界距离权重的二分性），将其应用于 $\Om$、$a$、$q$，得到对每个 $r>0$ 都有 $\nuA(\Omr)=\infty$。
+
+\emph{第一步（好点）.} 由于 $J\ge 0$ 且 $\int_\Om J^{p/q}<\infty$，集合
+\[
+  G:=\{x\in\Om : J(x)<\infty\}
+\]
+在 $\Om$ 中具有满 Lebesgue 测度。固定 $x\in G$ 并令 $r_x:=d(x)/2>0$。对每个 $y\in\Om$（特别对 $y\in\Om_{r_x}$）都有 $|x-y|\le\diam(\Om)<\infty$，因为 $\Om$ 有界。故 $|x-y|^{-n-\sigma q}\ge(\diam\Om)^{-n-\sigma q}$，从而
+\[
+  J(x)\ge(\diam\Om)^{-n-\sigma q}\int_{\Om_{r_x}} |g(x)-g(y)|^q\,\nuA(dy) .
+\]
+于是
+\[
+  \int_{\Om_{r_x}} |g(x)-g(y)|^q\,\nuA(dy)\le(\diam\Om)^{n+\sigma q}J(x)<\infty .
+\]
+
+\emph{第二步（集合 $B_\varepsilon(x)$）}. 对 $\varepsilon>0$ 令
+\[
+  A_\varepsilon(x):=\{y\in\Om_{r_x} : |g(x)-g(y)|>\varepsilon\},
+  \qquad
+  B_\varepsilon(x):=\{y\in\Om_{r_x} : |g(x)-g(y)|\le\varepsilon\} .
+\]
+两者均可测，且 $\Om_{r_x}$ 是它们的不交并。由第一步，
+\[
+  \varepsilon^q\,\nuA\big(A_\varepsilon(x)\big)
+  \le\int_{A_\varepsilon(x)} |g(x)-g(y)|^q\,\nuA(dy)
+  \le(\diam\Om)^{n+\sigma q}J(x)<\infty .
+\]
+由附录 A，$\nuA(\Om_{r_x})=\infty$，故
+\[
+  \nuA\big(B_\varepsilon(x)\big)=\nuA(\Om_{r_x})-\nuA\big(A_\varepsilon(x)\big)=\infty .
+\]
+
+\emph{第三步（配对两个好点）}. 设 $x_1,x_2\in G$，并令 $r:=\min(r_{x_1},r_{x_2})>0$。对 $i=1,2$ 有 $B_\varepsilon(x_i)\subseteq\Om_{r_{x_i}}$，且由 $r\le r_{x_i}$ 得 $\Omr\subseteq\Om_{r_{x_i}}$。因此
+\[
+  \Omr\setminus\big(A_\varepsilon(x_1)\cup A_\varepsilon(x_2)\big)\subseteq B_\varepsilon(x_1)\cap B_\varepsilon(x_2),
+\]
+并利用可加性以及第二步所得的 $\nuA(A_\varepsilon(x_1))<\infty$ 与 $\nuA(A_\varepsilon(x_2))<\infty$，
+\[
+  \nuA\big(B_\varepsilon(x_1)\cap B_\varepsilon(x_2)\big)
+  \ge\nuA(\Omr)-\nuA\big(A_\varepsilon(x_1)\big)-\nuA\big(A_\varepsilon(x_2)\big)=\infty ,
+\]
+这里再次用了应用于 $r$ 的附录 A。特别地，$B_\varepsilon(x_1)\cap B_\varepsilon(x_2)$ 非空；在其中取 $y$。则
+\[
+  |g(x_1)-g(x_2)|\le|g(x_1)-g(y)|+|g(y)-g(x_2)|\le 2\varepsilon .
+\]
+由于 $\varepsilon>0$ 任意，得 $g(x_1)=g(x_2)$。
+
+\emph{第四步（结论）}. 第三步表明 $g$ 在满测度集 $G$ 上为常数。由于 $\Om$ 非空且开，$|\Om|>0$，故 $G$ 非空；取 $x_0\in G$ 并令 $c:=g(x_0)$。则 $g=c$ 在 $\Om$ 上几乎处处成立。命题得证。
+\end{proof}
+
+\begin{remark}[直觉]
+若权重不可积，则每个边界层 $\Om_{d(x)/2}$ 都携带无限权重；对任意两点 $x_1,x_2$，使 $g$ 保持在 $g(x_i)$ 的 $\varepsilon$ 邻域内的两个集合在一个公共内层 $\Omr$ 中都具有无限权重，因此必然相交，从而迫使 $|g(x_1)-g(x_2)|\le 2\varepsilon$。
+\end{remark}
+
+%==================================================================
+\subsection{非可积刚性（\texorpdfstring{$\sigma$}{sigma}-引理，第二版本）}
+
+\begin{lemma}[不可积刚性]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，对 $x\in\Om$ 令 $d(x)=\dist(x,\partial\Om)$，设 $a>0$，$q\in[1,\infty)$，$\sigma\in(0,1)$，$p\in[1,\infty)$。在 $\Om$ 上定义 Borel 测度 $\nuA$：$\nuA(E)=\int_E d(y)^{-aq}\,dy$，并假设 $\nuA(\Om)=\infty$。设 $g:\Om\to\R$ 为 Lebesgue 可测，且假设
+\[
+  \int_\Om \Big(\int_\Om |g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\Big)^{p/q} dx<\infty .
+\]
+则 $g$ 在 $\Om$ 上 Lebesgue 几乎处处为常数。
+\end{lemma}
+
+\begin{proof}
+由于 $d$ 在开集 $\Om$ 上连续且严格为正，且 $aq\ge 0$，函数 $y\mapsto d(y)^{-aq}$ 是 $\Om$ 上的非负 Borel 函数；故 $\nuA$ 是 $\Om$ 上取值于 $[0,+\infty]$ 的、定义良好的 Borel 测度，并且对每个 $r>0$，$\Omr=\{y\in\Om : d(y)<r\}$ 是开集，从而是 Borel 集。令 $D:=\diam(\Om)=\sup\{|u-v| : u,v\in\Om\}$；由于 $\Om$ 有界且非空，$0<D<\infty$。
+
+对 $x\in\Om$ 令
+\[
+  J(x):=\int_\Om |g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\in[0,+\infty] .
+\]
+被积函数 $(x,y)\mapsto|g(x)-g(y)|^q|x-y|^{-n-\sigma q}d(y)^{-aq}$ 在对角线之外（一个 Lebesgue 零集）Borel 可测且非负，故由 Tonelli 定理，$J$ 是 Borel 可测的。假设给出 $\int_\Om J(x)^{p/q}\,dx<\infty$；由于 $p/q>0$，这迫使对几乎每个 $x\in\Om$（Lebesgue 意义下）都有 $J(x)<\infty$。又对每个 $x\in\Om$ 有 $d(x)>0$：$d$ 在开集 $\Om$ 上连续，而 $d(x)=0$ 会使 $x$ 落在 $\partial\Om$ 中，它与 $\Om$ 不交。令
+\[
+  E:=\{x\in\Om : J(x)<\infty\} ;
+\]
+则 $E$ 是 Lebesgue 可测的且 $|\Om\setminus E|=0$。
+
+\emph{断言.} 若 $x$ 与 $z$ 属于 $E$，则 $g(x)=g(z)$。
+
+固定 $x\in E$ 并令 $r_x:=d(x)/2>0$。对 $y\in\Om_{r_x}$ 有 $d(y)<r_x=d(x)/2<d(x)$，故 $y$ 不是 $x$ 的最近边界点，而距离函数的反向三角不等式给出
+\[
+  |x-y|\ge d(x)-d(y)>d(x)/2=r_x>0 .
+\]
+另一方面，由 $y\in\Om$ 与 $x\in\Om$ 得 $|x-y|\le D$。因此对每个 $y\in\Om_{r_x}$，
+\[
+  |x-y|^{-n-\sigma q}\ge D^{-n-\sigma q},
+\]
+并且由于 $\Om_{r_x}$ 含于 $\Om$，
+\begin{equation}
+  \int_{\Om_{r_x}} |g(x)-g(y)|^q\,d(y)^{-aq}\,dy\le D^{n+\sigma q}J(x)<\infty . \tag{1}
+\end{equation}
+对 $\varepsilon>0$ 令 $S_x:=\{y\in\Om_{r_x} : |g(x)-g(y)|>\varepsilon\}$。则利用 (1)，
+\[
+  \varepsilon^q\,\nuA(S_x)
+  =\int_{S_x}\varepsilon^q\,d(y)^{-aq}\,dy
+  \le\int_{S_x}|g(x)-g(y)|^q\,d(y)^{-aq}\,dy
+  \le D^{n+\sigma q}J(x)<\infty ,
+\]
+故 $\nuA(S_x)<\infty$。由于 $\nuA(\Om)=\infty$ 且 $r_x>0$，二分性引理（附录 A）给出 $\nuA(\Om_{r_x})=\infty$；因此 $\nuA(\Om_{r_x}\setminus S_x)=\infty$。
+
+现令 $z$ 为 $E$ 中的第二个点，并令 $r_z:=d(z)/2>0$、$r:=\min(r_x,r_z)>0$。定义 $S_z:=\{y\in\Om_{r_z} : |g(z)-g(y)|>\varepsilon\}$，由同样的论证有 $\nuA(S_z)<\infty$。由于 $\Omr$ 同时含于 $\Om_{r_x}$ 与 $\Om_{r_z}$，有
+\[
+  \Omr\setminus(S_x\cup S_z)=\Omr\setminus\big((S_x\cap\Omr)\cup(S_z\cap\Omr)\big)
+\]
+从而
+\[
+\begin{aligned}
+  \nuA\big(\Omr\setminus(S_x\cup S_z)\big)
+  &\ge\nuA(\Omr)-\nuA(S_x\cap\Omr)-\nuA(S_z\cap\Omr)\\
+  &\ge\nuA(\Omr)-\nuA(S_x)-\nuA(S_z)=\infty ,
+\end{aligned}
+\]
+这是因为 $\nuA(\Omr)=\infty$（二分性引理，$r>0$），而 $\nuA(S_x)$、$\nuA(S_z)$ 有限。特别地，$\Omr\setminus(S_x\cup S_z)$ 非空；在其中取 $y$。则 $y\in\Omr$ 且 $y\notin S_x$，故 $|g(x)-g(y)|\le\varepsilon$；同理 $|g(z)-g(y)|\le\varepsilon$。因此
+\[
+  |g(x)-g(z)|\le|g(x)-g(y)|+|g(y)-g(z)|\le2\varepsilon .
+\]
+由于 $\varepsilon>0$ 任意，得 $g(x)=g(z)$，断言得证。
+
+于是 $g$ 在 $E$ 上为常数，又因 $|\Om\setminus E|=0$，$g$ 在 $\Om$ 上 Lebesgue 几乎处处为常数。
+\end{proof}
+
+\begin{remark}[直觉]
+若测度 $d^{-aq}dy$ 在每个边界层上都有无限质量，则内层积分迫使 $|g(x)-g(y)|$ 在一个 $\nuA$-测度无限的 $y$-集上很小；两个这样的集合（对应于两个好点 $x$ 与 $z$）必然相交，从而 $g(x)=g(z)$。$\Om$ 的有界性用初等估计 $|x-y|\le\diam(\Om)$ 替代了错误的边界层估计。
+\end{remark}
+
+%==================================================================
+\subsection{多项式引理}
+
+\begin{lemma}[多项式引理：最高阶弱导数为常数蕴含 $f$ 为多项式]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，设 $k\in\N_0=\{0,1,2,\dots\}$，$p\in[1,\infty)$，并设 $f\in W^{k,p}(\Om)$，即 $L^p(\Om)$ 中直到 $k$ 阶弱导数都属于 $L^p(\Om)$ 的函数构成的 Sobolev 空间。假设对每个满足 $|\beta|=k$ 的多重指标 $\beta\in\N_0^n$，都存在常数 $c_\beta\in\R$，使得弱导数 $D^\beta f$ 在 $\Om$ 上几乎处处等于 $c_\beta$。则存在 $\R^n$ 上次数至多 $k$ 的多项式 $P$，使得 $f=P$ 在 $\Om$ 上几乎处处成立。
+\end{lemma}
+
+\begin{proof}
+设 $\Om$ 为 $\R^n$ 中的非空有界域，$k\in\N_0$，$p\in[1,\infty)$，$f\in W^{k,p}(\Om)$，并假设对每个满足 $|\beta|=k$ 的多重指标 $\beta$ 都存在 $c_\beta\in\R$，使得弱导数 $D^\beta f$ 在 $\Om$ 上几乎处处等于常数 $c_\beta$。
+
+\emph{情形 $k=0$.} 此时满足 $|\beta|=0$ 的多重指标只有 $\beta=0$，且 $D^0f=f$，故 $f$ 几乎处处等于常数 $c_0$；这是次数 $0\le k$ 的多项式。
+
+\emph{情形 $k\ge 1$.} 在 $\R^n$ 上定义多项式 $Q$：
+\[
+  Q(x):=\sum_{|\beta|=k} c_\beta\,\frac{x^\beta}{\beta!} .
+\]
+其 $k$ 阶弱导数就是常数 $c_\beta$，故 $g:=f-Q$ 属于 $W^{k,p}(\Om)$，且对每个满足 $|\beta|=k$ 的 $\beta$，$D^\beta g=0$ 在 $\Om$ 上几乎处处成立。
+
+\emph{断言.} 设 $B=B(a,\rho)$ 是闭包含于 $\Om$ 的开球。则存在 $\R^n$ 上次数至多 $k-1$ 的多项式 $p_B$，使得 $g=p_B$ 在 $B$ 上几乎处处成立。
+
+\emph{断言的证明.} 设 $\rho_\varepsilon$ 为标准磨光核（非负、光滑、支集在闭单位球内、积分为 $1$），并令 $\rho_\varepsilon(z)=\varepsilon^{-n}\rho(z/\varepsilon)$。取 $\varepsilon$ 满足 $0<\varepsilon<\dist(B,\partial\Om)$。对 $x\in B$ 及每个满足 $|\beta|=k$ 的 $\beta$，关于磨光函数导数的标准恒等式给出
+\[
+  D^\beta(g*\rho_\varepsilon)(x)=(D^\beta g*\rho_\varepsilon)(x)=0 ,
+\]
+因为 $D^\beta g=0$ 几乎处处且 $\rho_\varepsilon$ 是磨光核。因此光滑函数 $g*\rho_\varepsilon$ 的所有 $k$ 阶偏导数在 $B$ 上为零。由于 $B$ 连通且所有 $k$ 阶偏导数在 $B$ 上为零，$g*\rho_\varepsilon$ 是某个次数至多 $k-1$ 的多项式 $p_\varepsilon$ 在 $B$ 上的限制（这是"连通开集上 $k$ 阶导数全为零"对多项式的标准刻画：对每个坐标方向作限制并积分 $k$ 次表明 $g*\rho_\varepsilon$ 是每个变量中次数至多 $k-1$ 的多项式，从而是多项式）。
+
+现令 $\varepsilon_j:=1/j$，其中 $j$ 充分大使得 $\varepsilon_j<\dist(B,\partial\Om)$。当 $j\to\infty$ 时，函数 $g*\rho_{\varepsilon_j}$ 在 $L^p(B)$ 中收敛于 $g$（内部磨光的标准性质）。每个 $g*\rho_{\varepsilon_j}$ 在 $B$ 上等于 $p_{\varepsilon_j}$，而 $p_{\varepsilon_j}$ 属于次数至多 $k-1$ 的多项式构成的有限维空间 $P_{k-1}$。多项式到开集 $B$ 的限制是单射，且在有限维空间 $P_{k-1}$ 上所有范数等价；于是 $p_{\varepsilon_j}$ 的系数向量构成 Cauchy 列，故存在 $p_B\in P_{k-1}$ 使得 $p_{\varepsilon_j}\to p_B$ 在 $L^p(B)$ 中成立（并且沿某个子列还逐点收敛）。由于 $p_{\varepsilon_j}=g*\rho_{\varepsilon_j}\to g$ 在 $L^p(B)$ 中，得 $g=p_B$ 在 $B$ 上几乎处处成立。断言得证。
+
+现用开球 $B_j=B(x_j,r_j)$ 覆盖 $\Om$，并要求 $B_j$ 的闭包含于 $\Om$（例如取所有中心与半径均为有理数、闭包含于 $\Om$ 的球；由于 $\Om$ 开，$\Om$ 的每一点都落在这样的球中）。对每个 $j$，设 $p_j$ 为断言所提供的、次数至多 $k-1$ 且满足 $g=p_j$ 在 $B_j$ 上几乎处处成立的多项式。若 $B_i$ 与 $B_j$ 相交，则其交为非空开集，而 $g=p_i=p_j$ 在其上几乎处处成立，故作为多项式有 $p_i=p_j$（在非空开集上相等的两个多项式相等）。由于 $\Om$ 连通，对每个 $i,j$ 都存在覆盖中的有限球链 $B_{j_0}=B_i,\dots,B_{j_m}=B_j$，使相邻的球相交：事实上，由 $B_i$ 经这样的链可达的全部球之并 $U$ 是开集，且它在 $\Om$ 中的补集也是开集（若 $x\in\Om\setminus U$ 落在 $B_k$ 中且 $B_k$ 与 $U$ 相交，则 $B_k$ 将是可达的），故由连通性 $U=\Om$。沿这样的链所有 $p$ 都相同，于是 $p_i=p_j$。因此所有 $p_j$ 都等于一个固定的次数至多 $k-1$ 的多项式 $P$，且 $g=P$ 在 $\Om$ 上几乎处处成立，即 $f=Q+P$ 在 $\Om$ 上几乎处处成立。多项式 $Q+P$ 的次数至多 $k$。命题得证。
+\end{proof}
+
+\begin{remark}[直觉]
+若全部 $k$ 阶弱导数都是常数，先减去以这些常数为 $k$ 阶导数的多项式，则所有 $k$ 阶弱导数都为零。磨光把一个 $k$ 阶导数全为零的函数在每个球上变成次数 $<k$ 的多项式，而多项式空间的有限维性与 $\Om$ 的连通性使这些局部多项式拼成一个整体多项式。
+\end{remark}
+
+%==================================================================
+\subsection{距离权重积分发散性的单调性}
+
+\begin{lemma}[距离权重积分发散性的单调性]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，对 $x\in\Om$ 令 $d(x)=\dist(x,\partial\Om)$。设 $0\le c_1\le c_2$ 为实数。若 $\int_\Om d(y)^{-c_1}\,dy=\infty$，则 $\int_\Om d(y)^{-c_2}\,dy=\infty$。特别地，若 $a>0$、$q\in[1,\infty)$ 且 $\int_\Om d(y)^{-aq}\,dy=\infty$，则对每个实数 $c\ge aq$ 都有 $\int_\Om d(y)^{-c}\,dy=\infty$。
+\end{lemma}
+
+\begin{proof}
+设 $\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$。令 $R:=\diam(\Om)$，则 $0<R<\infty$ 且对每个 $y\in\Om$ 有 $0<d(y)\le R$。设 $0\le c_1\le c_2$。对每个 $y\in\Om$ 有
+\[
+  d(y)^{-c_2}=d(y)^{-c_1}\,d(y)^{-(c_2-c_1)}\ge d(y)^{-c_1}\,R^{-(c_2-c_1)} ,
+\]
+因为 $d(y)^{-(c_2-c_1)}\ge R^{-(c_2-c_1)}$。在 $\Om$ 上积分（两端都是非负可测函数，故积分不等式在 $[0,\infty]$ 中成立）得
+\[
+  \int_\Om d(y)^{-c_2}\,dy\ge R^{-(c_2-c_1)}\int_\Om d(y)^{-c_1}\,dy .
+\]
+因此，若 $\int_\Om d(y)^{-c_1}\,dy=\infty$，则 $\int_\Om d(y)^{-c_2}\,dy=\infty$。特别地，取 $c_1=aq$ 与 $c_2=c$（$c\ge aq$），$\int_\Om d^{-aq}$ 的发散性蕴含 $\int_\Om d^{-c}$ 的发散性。
+\end{proof}
+
+\begin{remark}[直觉]
+在有界区域上距离函数不超过直径，因此 $d$ 的较高次幂至少是较低次幂的常数倍；于是较低次幂积分的发散性迫使所有更高次幂的积分发散。
+\end{remark}
+
+%==================================================================
+\subsection{Lipschitz 区域边界层的线性下界}
+
+\begin{theorem}[边界层的线性下界，以及所有幂 $d^{-c}$（$c\ge 1$）的不可积性]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的有界 Lipschitz 域（即非空有界开连通集，使得对每个 $x_0\in\partial\Om$ 都存在 $r>0$、$\R^n$ 的一个旋转以及 Lipschitz 函数 $\phi:\R^{n-1}\to\R$，满足
+\[
+  \Om\cap B(x_0,r)=\{x=(x',x_n)\in B(x_0,r) : x_n>\phi(x')\}
+\]
+以及
+\[
+  \partial\Om\cap B(x_0,r)=\{x=(x',x_n)\in B(x_0,r) : x_n=\phi(x')\}\,\big).
+\]
+令 $d(x)=\dist(x,\partial\Om)$，$\Omt=\{x\in\Om : d(x)<t\}$。则存在常数 $\kappa>0$ 与 $t_0>0$，使得对每个 $t\in(0,t_0)$ 都有 $|\Omt|\ge\kappa t$。因此，对每个实数 $c\ge1$，
+\[
+  \int_\Om d(x)^{-c}\,dx=\infty .
+\]
+\end{theorem}
+
+\begin{proof}
+设 $\Om$ 为 $\R^n$ 中的有界 Lipschitz 域，$d(x)=\dist(x,\partial\Om)$，$\Omt=\{x\in\Om : d(x)<t\}$。
+
+\emph{第一步（局部带）}. 由 Lipschitz 域的定义，对每个 $x_0\in\partial\Om$ 都存在 $r(x_0)>0$、一个旋转以及 Lipschitz 函数 $\phi$，使得
+\[
+  \Om\cap B(x_0,r(x_0))=\{(x',x_n)\in B(x_0,r(x_0)) : x_n>\phi(x')\}
+\]
+以及
+\[
+  \partial\Om\cap B(x_0,r(x_0))=\{(x',x_n)\in B(x_0,r(x_0)) : x_n=\phi(x')\} .
+\]
+由于 $\partial\Om$ 紧，这些球 $B(x_0,r(x_0))$ 中的有限多个（设为 $x_0=y_1,\dots,y_m$ 对应的那些）覆盖 $\partial\Om$。对每个 $j$，取 $\R^{n-1}$ 中的一个开球 $B'_j$（在第 $j$ 个坐标卡的旋转坐标下），使其闭包含于 $\partial\Om\cap B(y_j,r(y_j))$ 到 $\R^{n-1}$ 的投影之内，且它与该投影的补集的距离为正。由于图映射 $x'\mapsto(x',\phi_j(x'))$ 连续而该投影是相对开集，这样的球存在。由 $B'_j$ 的闭包的紧性及在坐标卡中的严格包含，存在 $t_0>0$，使得对每个 $j$、每个 $t\in(0,t_0)$ 与每个 $x'\in B'_j$，点 $(x',\phi_j(x')+t)$ 都落在 $B(y_j,r(y_j))$ 中。
+
+\emph{第二步（带落在 $\Omt$ 内）}. 对 $j$ 与 $t\in(0,t_0)$ 令
+\[
+  W_j(t):=\{(x',x_n) : x'\in B'_j,\ \phi_j(x')<x_n<\phi_j(x')+t\}
+\]
+（在第 $j$ 个旋转坐标下）。则 $W_j(t)$ 含于 $\Om\cap B(y_j,r(y_j))$，从而含于 $\Om$。对 $x=(x',x_n)\in W_j(t)$，点 $(x',\phi_j(x'))$ 属于 $\partial\Om$，故 $d(x)\le|x_n-\phi_j(x')|<t$。因此 $W_j(t)$ 含于 $\Omt$ 中。
+
+\emph{第三步（带的测度）}. 对每个 $j$ 与 $t\in(0,t_0)$，由 Fubini 定理得
+\[
+  |W_j(t)|=\int_{B'_j}\big((\phi_j(x')+t)-\phi_j(x')\big)\,dx'=t\,|B'_j| .
+\]
+由于各 $B'_j$ 为非空开球，对每个 $j$ 有 $|B'_j|>0$。故对每个 $j$ 有 $|\Omt|\ge|W_j(t)|$，特别地
+\[
+  |\Omt|\ge t\max_j|B'_j|=:\kappa t
+\]
+对所有 $t\in(0,t_0)$ 成立，其中 $\kappa>0$。
+
+\emph{第四步（发散性）}. 对 $c\ge1$，分层表示公式（作代换 $s=t^{-c}$）给出
+\[
+  \int_\Om d(x)^{-c}\,dx
+  =\int_0^\infty |\{x\in\Om : d(x)^{-c}>s\}|\,ds
+  =\int_0^\infty c\,t^{-c-1}|\Omt|\,dt ,
+\]
+因为 $\{d^{-c}>t^{-c}\}=\{d<t\}$。利用第三步在 $(0,t_0)$ 上的估计，
+\[
+  \int_\Om d(x)^{-c}\,dx
+  \ge\int_0^{t_0} c\,t^{-c-1}\,\kappa t\,dt
+  =c\kappa\int_0^{t_0} t^{-c}\,dt=\infty ,
+\]
+因为对每个 $c\ge1$ 都有 $\int_0^{t_0} t^{-c}\,dt=\infty$（当 $c=1$ 时它为 $\log(1/t_0)=\infty$；当 $c>1$ 时原函数 $t^{1-c}/(1-c)$ 在 $t\to0$ 时趋于无穷）。因此对每个 $c\ge1$ 都有 $\int_\Om d^{-c}\,dx=\infty$。
+\end{proof}
+
+\begin{remark}[直觉]
+Lipschitz 边界局部是某个函数的图像，因此在图像的每一小块上方都存在厚度为 $t$ 的带完全落在 $\Om$ 内，且带上每一点到边界的距离都 $<t$；带的测度等于底面面积乘以 $t$，而有限多个这样的带覆盖了整个边界。
+\end{remark}

@@ -1,0 +1,575 @@
+% ===================================================================
+%  第 2 组：情形 (II) —— 不可积权下的退化
+% ===================================================================
+
+本节处理边界距离权重不可积的情形，即 $\nuA(\Om)=\int_\Om d(y)^{-aq}\,dy=\infty$。此时加权内在 Triebel--Lizorkin 空间 $\Fsp$ 退化为次数不超过 $k=\lfloor s\rfloor$ 的多项式空间 $P_k(\Om)$：于是 $C^\infty(\Om)$ 自动稠密，而紧支光滑函数被完全排除。随后的三条事实表明这一退化是权重设计的产物而非本质现象——CLWZ 定义 1.3 的修改版同样只剩常数，而整数阶修改空间与"对一切导数都取加权分数阶半范数"的修正空间都保留了非多项式元素。
+
+%==================================================================
+\subsection{非可积权下分数阶空间的退化（第一版本）}
+
+\begin{theorem}[不可积情形的退化]
+设 $\Om$ 为 $\R^n$ 中的非空有界域，$a>0$ 且 $q\in[1,\infty)$，$d(y)=\dist(y,\partial\Om)$，$\nuA(E)=\int_E d(y)^{-aq}\,dy$。假设 $\nuA(\Om)=\infty$。设 $s\in(0,\infty)\setminus\N$，写 $s=k+\sigma$，其中 $k=\lfloor s\rfloor\in\N_0$、$\sigma\in(0,1)$，并设 $p\in[1,\infty)$。则由 CLWZ 的范数 (1.2) 定义的加权内蕴 Triebel--Lizorkin 空间 $\Fsp$ 与 $P_k(\Om)$ 重合，后者是总次数不超过 $k$ 的多项式在 $\Om$ 上限制所成的集合。于是：
+\begin{enumerate}[label=(\alph*)]
+\item $C^\infty(\Om)\cap\Fsp=\Fsp$;
+\item $C_c^\infty(\Om)\cap\Fsp=\{0\}$;
+\item $C^\infty(\Om)\cap F^s$ 在 $F^s$ 中的闭包 $F^{s,2}_{p,q}$ 等于 $F^s$，而 $C_c^\infty(\Om)\cap F^s$ 在 $F^s$ 中的闭包 $F^{s,1}_{p,q}$ 等于 $\{0\}$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+以下始终固定 $\Om$ 上的可测函数 $f$ 与满足 $|\beta|=k$ 的多重指标 $\beta$，并记
+\[
+  J_{\beta,f}(x)=\int_\Om |D^\beta f(x)-D^\beta f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy .
+\]
+由 CLWZ (1.2)，$f$ 在 $\Fsp$ 中的范数为
+\[
+  \|f\|=\sum_{|\alpha|\le k}\|D^\alpha f\|_{L^p(\Om)}
+  +\sum_{|\beta|=k}\Big(\int_\Om J_{\beta,f}(x)^{p/q}\,dx\Big)^{1/p},
+\]
+允许取值为 $+\infty$；$f$ 属于该空间当且仅当此量有限。
+
+\emph{第一步（边界层具有无限测度）}. 由已验证的前置附录 A（关于 $\nuA$ 的二分性），对每个 $r>0$ 都有 $\nuA(\Omr)=\infty$，其中 $\Omr=\{x\in\Om : d(x)<r\}$。为完整起见，给出一行证明：
+\[
+  \nuA(\Om)=\nuA(\Omr)+\int_{\Om\setminus\Omr} d(y)^{-aq}\,dy
+\]
+而在 $\Om\setminus\Omr$ 上 $d(y)\ge r$，故第二项不超过 $r^{-aq}|\Om|<\infty$；于是 $\nuA(\Omr)=\infty$。
+
+\emph{第二步（$\sigma$-引理）}. 设 $\sigma\in(0,1)$，$g$ 为 $\Om$ 上的可测函数，且
+\[
+  \int_\Om\Big(\int_\Om |g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\Big)^{p/q}dx<\infty .
+\]
+则 $g$ 在 $\Om$ 上几乎处处等于常数。
+
+\emph{证明}. 外层积分有限，故
+\[
+  J(x):=\int_\Om |g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy
+\]
+对几乎处处的 $x\in\Om$ 有限。固定这样的 $x$，令 $r_x=d(x)/2>0$（因 $x$ 属于开集 $\Om$，故 $d(x)>0$）。对每个 $y\in\Om_{r_x}$ 有 $|x-y|\le\diam(\Om)$，从而 $|x-y|^{-n-\sigma q}\ge(\diam\Om)^{-n-\sigma q}$；于是
+\begin{equation}
+  \int_{\Om_{r_x}} |g(x)-g(y)|^q\,d(y)^{-aq}\,dy
+  \le(\diam\Om)^{n+\sigma q}\,J(x)<\infty . \tag{2.1}
+\end{equation}
+对 $\varepsilon>0$，令 $A_\varepsilon(x)=\{y\in\Om_{r_x} : |g(x)-g(y)|>\varepsilon\}$。则
+\begin{equation}
+  \varepsilon^q\nuA\big(A_\varepsilon(x)\big)
+  \le\int_{\Om_{r_x}} |g(x)-g(y)|^q\,d(y)^{-aq}\,dy
+  \le(\diam\Om)^{n+\sigma q}\,J(x)<\infty , \tag{2.2}
+\end{equation}
+故 $\nuA(A_\varepsilon(x))<\infty$。由第一步知 $\nuA(\Om_{r_x})=\infty$，因此集合 $B_\varepsilon(x):=\Om_{r_x}\setminus A_\varepsilon(x)$ 满足 $\nuA(B_\varepsilon(x))=\infty$。现设 $x_1,x_2$ 为两个使 $J$ 有限之点，令 $r=\min(r_{x_1},r_{x_2})>0$，并令 $A=A_\varepsilon(x_1)\cup A_\varepsilon(x_2)$。两个 $A_\varepsilon(x_i)$ 的 $\nuA$-测度均有限，故 $\nuA(A)<\infty$；而 $\Om_r$ 同时含于 $\Om_{r_{x_1}}$ 与 $\Om_{r_{x_2}}$。于是 $B_\varepsilon(x_1)\cap B_\varepsilon(x_2)$ 包含 $\Om_r\setminus A$，其 $\nuA$-测度为 $\nuA(\Om_r)-\nuA(A)=\infty$，故非空。取该交集中的一点 $y$。则
+\[
+  |g(x_1)-g(x_2)|\le|g(x_1)-g(y)|+|g(y)-g(x_2)|\le 2\varepsilon .
+\]
+由 $\varepsilon>0$ 的任意性得 $g(x_1)=g(x_2)$。使 $J(x)<\infty$ 的点 $x$ 之集在 $\Om$ 中为满测集，故 $g$ 几乎处处为常数。
+
+\emph{第三步（空间的刻画）}. 设 $f\in\Fsp$。则 $f\in W^{k,p}(\Om)$，且对每个满足 $|\beta|=k$ 的多重指标 $\beta$，函数 $D^\beta f$（任一代表）属于 $L^p(\Om)$，而范数有限给出 $\int_\Om J_{\beta,f}(x)^{p/q}\,dx<\infty$。于是对几乎处处的 $x$ 有 $J_{\beta,f}(x)<\infty$，对 $g=D^\beta f$ 应用第二步即知 $D^\beta f$ 在 $\Om$ 上几乎处处为常数。因此 $f$ 的所有 $k$ 阶分布导数均为常数。
+
+下面证明：若 $f\in L^1_{\mathrm{loc}}(\Om)$ 的所有 $k$ 阶分布导数皆为常数，则该函数几乎处处等于一个次数不超过 $k$ 的多项式。取常数 $c_\beta$（$|\beta|=k$）与多项式 $P(x)=\sum_{|\beta|=k}c_\beta x^\beta/\beta!$（低阶项无关紧要）。则 $f-P$ 的所有 $k$ 阶分布导数均为零。设 $\rho$ 为标准磨光核，$\rho_\varepsilon(x)=\varepsilon^{-n}\rho(x/\varepsilon)$。对充分小的 $\varepsilon>0$，函数 $u_\varepsilon:=(f-P)*\rho_\varepsilon$ 在开集 $\Om_\varepsilon=\{x\in\Om : d(x)>\varepsilon\}$ 上光滑，且 $u_\varepsilon$ 的每个 $k$ 阶导数在其上为零；故 $u_\varepsilon$ 在 $\Om_\varepsilon$ 的每个连通分支上是次数不超过 $k-1$ 的多项式。固定紧含于 $\Om$ 的球 $B$。对所有充分小的 $\varepsilon$，$u_\varepsilon$ 在 $B$ 上是次数不超过 $k-1$ 的多项式，且当 $\varepsilon$ 趋于 $0$ 时 $u_\varepsilon$ 在 $L^1(B)$ 中趋于 $f-P$。在 $B$ 上写 $u_\varepsilon(y)=\sum_{|\gamma|\le k-1}a_\gamma(\varepsilon)y^\gamma$。由于次数不超过 $k-1$ 的多项式空间是有限维的，且 $L^1(B)$ 中的收敛蕴含所有系数收敛（与该有限维空间的对偶基作积分即可），系数 $a_\gamma(\varepsilon)$ 当 $\varepsilon$ 趋于 $0$ 时收敛到极限 $a_\gamma$。令 $Q_B(y)=\sum_{|\gamma|\le k-1}a_\gamma y^\gamma$。则 $u_\varepsilon$ 在 $L^1(B)$ 中趋于 $Q_B$，故 $f-P=Q_B$ 在 $B$ 上几乎处处成立。现用紧含于 $\Om$ 的球 $B$ 覆盖 $\Om$。若两个这样的球 $B$ 与 $B'$ 相交，则多项式 $Q_B$ 与 $Q_{B'}$ 在非空开集 $B\cap B'$ 上几乎处处相等，因而恒等。由于 $\Om$ 连通，一串相交的球可连接覆盖中任意两个球，故所有多项式 $Q_B$ 都等于同一个多项式 $Q$。因此 $f=P+Q$ 在 $\Om$ 上几乎处处成立。这就证明了 $\Fsp$ 含于 $P_k(\Om)$。
+
+反之，若 $f$ 是总次数不超过 $k$ 的多项式，则对每个 $|\beta|=k$，导数 $D^\beta f$ 为常数，故 $J_{\beta,f}=0$ 恒成立，半范数项消失；又因 $\Om$ 有界，$f$ 属于 $L^p(\Om)$，且对一切 $|\alpha|\le k$ 有 $D^\alpha f$ 属于 $L^p(\Om)$。于是 $f\in\Fsp$。因此 $\Fsp=P_k(\Om)$。
+
+\emph{第四步（推论）}. (a) 每个多项式都属于 $C^\infty(\Om)$，故 $C^\infty(\Om)\cap F^s=F^s$，且该集合在 $F^s$ 中的闭包 $F^{s,2}$ 为 $F^s$。(b) 设 $g\in C_c^\infty(\Om)\cap F^s$。由 $F^s=P_k$，存在次数不超过 $k$ 的多项式 $Q$ 使 $g=Q$ 在 $\Om$ 上几乎处处成立。因 $g$ 在 $\Om$ 中紧支，存在 $\delta>0$ 使 $g=0$ 在非空开集 $\Om_\delta$ 上成立。于是 $Q=0$ 在 $\Om_\delta$ 上几乎处处成立；在非空开集上几乎处处为零的多项式恒为零，故 $Q=0$，从而 $g=0$ 几乎处处成立。于是 $C_c^\infty(\Om)\cap F^s=\{0\}$，进而 $F^{s,1}=\{0\}$。证毕。
+\end{proof}
+
+\begin{remark}[直觉]
+当权重 $d^{-aq}$ 不可积时，分数阶半范数中的内层 $y$-积分面对的是边界点的无限质量。除非 $D^\beta f$ 为常数，对几乎每个 $x$ 差值 $|D^\beta f(x)-D^\beta f(y)|$ 都在一个具有无限加权测度的集合上为正，从而使半范数发散。因此只有次数不超过 $k$ 的多项式得以存活；光滑函数于是自动稠密，而紧支光滑函数全部被排除，因为次数不超过 $k$ 的紧支多项式必恒为零。
+\end{remark}
+
+%==================================================================
+\subsection{非可积权下的退化定理（第二版本）}
+
+\begin{theorem}[不可积权情形下的退化定理]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$a>0$，$p,q\in[1,\infty)$，并设 $s\in(0,\infty)\setminus\N$，其中 $k=\lfloor s\rfloor$、$\sigma=s-k\in(0,1)$。对可测函数 $f:\Om\to\R$ 定义
+\[
+  \|f\|_{F^s}:=\|f\|_{W^{k,p}(\Om)}
+  +\sum_{|\beta|=k}\Big(\int_\Om\Big(\int_\Om |D^\beta f(x)-D^\beta f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\Big)^{p/q}dx\Big)^{1/p},
+\]
+若 $f\notin W^{k,p}(\Om)$ 或某项为无穷则取值为 $+\infty$，其中 $\|f\|_{W^{k,p}(\Om)}$ 是 $f$ 的不超过 $k$ 阶弱导数的 $L^p(\Om)$ 范数之和。令 $\Fsp:=\{f\in L^p(\Om) : \|f\|_{F^s}<\infty\}$。假设 $\int_\Om d(y)^{-aq}\,dy=\infty$（二分性附录 A 的替代情形 (II)）。则：
+\begin{enumerate}[label=(\roman*)]
+\item $\Fsp=P_k$，其中 $P_k$ 是 $\R^n$ 上次数不超过 $k$ 的多项式在 $\Om$ 上限制所成的集合。
+\item $C^\infty(\Om)\cap\Fsp=\Fsp$，故 $C^\infty(\Om)\cap\Fsp$ 在 $\Fsp$ 中的闭包 $F^{s,2}_{p,q}(\Om,d^{-aq})$ 等于 $\Fsp$。
+\item $C_c^\infty(\Om)\cap\Fsp=\{0\}$，故 $C_c^\infty(\Om)\cap\Fsp$ 在 $\Fsp$ 中的闭包 $F^{s,1}_{p,q}(\Om,d^{-aq})$ 等于 $\{0\}$。
+\end{enumerate}
+特别地，只要 $P_k$ 不是 $\{0\}$，$C^\infty(\Om)$ 就在 $\Fsp$ 中稠密，而 $C_c^\infty(\Om)$ 不稠密。
+\end{theorem}
+
+\begin{proof}
+设 $n\ge1$，$\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$a>0$，$p,q\in[1,\infty)$。固定 $s\in(0,\infty)\setminus\N$，令 $k:=\lfloor s\rfloor$、$\sigma:=s-k\in(0,1)$。对可测函数 $f:\Om\to\R$ 令
+\[
+  \|f\|_{F^s}:=\|f\|_{W^{k,p}(\Om)}
+  +\sum_{|\beta|=k}\Big(\int_\Om\Big(\int_\Om |D^\beta f(x)-D^\beta f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\Big)^{p/q}dx\Big)^{1/p},
+\]
+若 $f\notin W^{k,p}(\Om)$ 或某项为无穷则取值为 $+\infty$，其中 $\|f\|_{W^{k,p}(\Om)}:=\sum_{|\alpha|\le k}\|D^\alpha f\|_{L^p(\Om)}$。令 $F^s:=\Fsp:=\{f\in L^p(\Om) : \|f\|_{F^s}<\infty\}$。假设 $\nuA(\Om)=\int_\Om d(y)^{-aq}\,dy=\infty$（附录 A 的替代情形 (II)）。令 $D:=\diam(\Om)\in(0,\infty)$，于是对一切 $x,y\in\Om$ 有 $|x-y|\le D$，从而对一切 $x,y\in\Om$ 有 $|x-y|^{-n-\sigma q}\ge D^{-n-\sigma q}$。
+
+\emph{第一步（多项式属于空间）}. 设 $P\in P_k$。因 $\Om$ 有界，$P$ 在 $\Om$ 上有界，故 $P\in W^{k,p}(\Om)$ 且范数有限。对每个满足 $|\beta|=k$ 的 $\beta$，弱导数 $D^\beta P$ 为常数，故对一切 $x,y$ 有 $D^\beta P(x)-D^\beta P(y)=0$，相应的内层积分恒为零。于是 $\|P\|_{F^s}<\infty$ 且 $P\in F^s$；从而 $P_k$ 含于 $F^s$。
+
+\emph{第二步（只有多项式属于空间）}. 设 $f\in F^s$。则 $f\in W^{k,p}(\Om)$，且对每个满足 $|\beta|=k$ 的 $\beta$，可测函数 $g_\beta:=D^\beta f$ 满足
+\[
+  \int_\Om\Big(\int_\Om |g_\beta(x)-g_\beta(y)|^q\,|x-y|^{-n-\sigma q}\,\nuA(dy)\Big)^{p/q}dx<\infty ,
+\]
+因为这是 $\|f\|_{F^s}$ 中相应于 $\beta$ 的求和项。附录 A（SIGMA-LEMMA）的假设均成立（$\Om$ 为非空有界域，$a>0$，$q\in[1,\infty)$，$\sigma\in(0,1)$，$p\in[1,\infty)$，$\nuA(\Om)=\infty$，$g_\beta$ 可测），故 $g_\beta=D^\beta f$ 在 $\Om$ 上几乎处处为常数。由于这对每个满足 $|\beta|=k$ 的 $\beta$ 都成立，将附录 A（POLYNOMIAL LEMMA）应用于 $f\in W^{k,p}(\Om)$，即得 $\R^n$ 上次数不超过 $k$ 的多项式 $P$ 使 $f=P$ 在 $\Om$ 上几乎处处成立，即 $f\in P_k$。于是 $F^s$ 含于 $P_k$，结合第一步得 $F^s=P_k$。
+
+\emph{第三步（推论 (a)）}. 每个多项式都在 $\Om$ 上无穷次可微，故 $P_k$ 含于 $C^\infty(\Om)\cap F^s$；由第二步，$F^s=P_k$ 含于 $C^\infty(\Om)\cap F^s$。于是 $C^\infty(\Om)\cap F^s=F^s$，且 $C^\infty(\Om)\cap F^s$ 在 $F^s$ 中的闭包 $F^{s,2}$ 等于 $F^s$。
+
+\emph{第四步（推论 (b)）}. 设 $g\in C_c^\infty(\Om)\cap F^s$，并设 $g$ 不恒为零。令 $\delta:=\dist(\supp g,\partial\Om)>0$；则 $g=0$ 在边界层 $\Om_\delta:=\{y\in\Om : d(y)<\delta\}$ 上成立，且每个 $x\in\supp g$ 满足 $d(x)\ge\delta$。回顾初等估计：对一切 $x,y\in\Om$ 有 $|x-y|^{-n-\sigma q}\ge D^{-n-\sigma q}$。
+
+\emph{情形 $k=0$}. 集合 $U:=\{x\in\Om : g(x)\ne 0\}$ 非空（因 $g$ 不恒为零）且为开集（因 $g$ 连续），故其 Lebesgue 测度为正；又 $U$ 含于 $\supp g$，故对 $x\in U$ 有 $d(x)\ge\delta$。固定 $x\in U$。因 $g=0$ 在 $\Om_\delta$ 上成立，
+\begin{align*}
+  \int_\Om |g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,\nuA(dy)
+  &\ge D^{-n-\sigma q}\int_{\Om_\delta}|g(x)-g(y)|^q\,\nuA(dy)\\
+  &=D^{-n-\sigma q}|g(x)|^q\nuA(\Om_\delta)=\infty ,
+\end{align*}
+其中 $\nuA(\Om_\delta)=\infty$ 由附录 A 给出。故对每个 $x\in U$ 内层积分均为无穷，于是
+\[
+  \int_\Om\big(\text{inner integral}\big)^{p/q}dx\ge|U|\cdot(+\infty)=+\infty ,
+\]
+这与 $g\in F^s$ 相矛盾。
+\emph{情形 $k\ge1$}. 若每个满足 $|\beta|=k$ 的弱导数 $D^\beta g$ 都恒为零，则由附录 A，$g$ 几乎处处与某多项式一致；因 $g$ 连续且 $\Om$ 为连通开集，$g$ 在 $\Om$ 上将等于该多项式，而在有界域 $\Om$ 中具紧支的多项式恒为零，这与 $g\ne0$ 矛盾。故存在满足 $|\beta|=k$ 的 $\beta$ 使 $h:=D^\beta g$ 不恒为零。则 $h\in C_c^\infty(\Om)$，$\supp h$ 含于 $\supp g$，且 $h=0$ 在 $\Om_\delta$ 上成立。集合 $U:=\{x\in\Om : h(x)\ne0\}$ 非空且为开集，故测度为正，且含于 $\supp h$，进而含于 $\supp g$，故对 $x\in U$ 有 $d(x)\ge\delta$。固定 $x\in U$。因 $h=0$ 在 $\Om_\delta$ 上成立且 $|x-y|^{-n-\sigma q}\ge D^{-n-\sigma q}$，
+\[
+  \int_\Om |h(x)-h(y)|^q\,|x-y|^{-n-\sigma q}\,\nuA(dy)
+  \ge D^{-n-\sigma q}|h(x)|^q\nuA(\Om_\delta)=\infty ,
+\]
+此处再次用到附录 A。故对每个 $x\in U$ 内层积分均为无穷，并且
+\[
+  \int_\Om\big(\text{inner integral}\big)^{p/q}dx\ge|U|\cdot(+\infty)=+\infty ,
+\]
+这与 $\|g\|_{F^s}$ 中第 $\beta$ 项有限相矛盾。
+
+两种情形都得到 $g=0$，即 $C_c^\infty(\Om)\cap F^s=\{0\}$，且 $C_c^\infty(\Om)\cap F^s$ 在 $F^s$ 中的闭包 $F^{s,1}$ 为 $\{0\}$。
+\end{proof}
+
+\begin{remark}[直觉]
+若边界权重不可积，则对每个使某个最高阶导数非零的 $x$，内层积分都在一薄边界层上看到无限多个使该导数为零的点 $y$，而核函数有下界 $\diam(\Om)^{-n-\sigma q}$；于是内层积分在该导数非零的非空开集上处处为无穷，外层积分随之发散。
+\end{remark}
+
+%==================================================================
+\subsection{修改后的高阶内在空间的退化}
+
+\begin{theorem}[修改后的高阶内蕴空间的退化]
+设 $n\ge1$，$\Om$ 为 $\R^n$ 中的非空有界域，对 $x\in\Om$ 令 $d(x)=\dist(x,\partial\Om)$，设 $k\ge1$ 为整数，$\sigma\in(0,1)$，$p,q\in[1,\infty)$，并令 $s:=k+\sigma$。假设 $\int_\Om d(y)^{-kq}\,dy=\infty$。设 $f$ 为 $\Om$ 上的 Lebesgue 可测函数，其所有满足 $|\beta|\le k$ 的弱导数 $D^\beta f$ 均存在且 Lebesgue 可测，并令
+\[
+  S(f):=\sum_{|\beta|\le k}\Big(\int_\Om\Big[\int_\Om |D^\beta f(x)-D^\beta f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-(k-|\beta|)q}\,dy\Big]^{p/q}dx\Big)^{1/p},
+\]
+其中若相应积分非有限，则该求和项规定为 $+\infty$。若 $S(f)<\infty$，则 $f$ 在 $\Om$ 上 Lebesgue 几乎处处为常数。于是：
+\begin{enumerate}[label=(\roman*)]
+\item 参考论文定义 1.3 中修改后的加权内蕴 Triebel--Lizorkin 空间（其范数为 $\|f\|_{F^s_{p,q}(\Om)}+S(f)$，其中 $\|\cdot\|_{F^s_{p,q}(\Om)}$ 为无权 Triebel--Lizorkin 范数）恰为常数函数构成的一维空间 $\R\cdot\mathbf{1}$；
+\item 使 Hardy 加强总量
+\[
+  T(f):=S(f)+\sum_{|\beta|\le k}\Big(\|D^\beta f/d^{s-|\beta|}\|_{L^p(\Om)}+\|D^\beta f/d^{s-|\beta|+n/q}\|_{L^q(\Om)}\Big)
+\]
+有限的可测函数构成的空间为零空间 $\{0\}$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+以下 $\nuA$ 表示 $\Om$ 上以 $d(y)^{-aq}$ 为密度的 Borel 测度，故 $\nuA(\Om)=\int_\Om d(y)^{-aq}\,dy$。命题中的假设是
+\[
+  \nu_k(\Om)=\int_\Om d(y)^{-kq}\,dy=\infty .
+\]
+
+\emph{第一步（$\beta=0$ 的项与 $\sigma$-引理）}. $S(f)$ 中相应于 $\beta=0$ 的求和项为
+\[
+  \Big(\int_\Om\Big[\int_\Om |f(x)-f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-kq}\,dy\Big]^{p/q}dx\Big)^{1/p},
+\]
+它不超过 $S(f)<\infty$。故非负可测函数
+\[
+  x\mapsto J(x):=\int_\Om |f(x)-f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-kq}\,dy
+\]
+满足 $\int_\Om J(x)^{p/q}\,dx<\infty$。取 $a:=k$（于是 $\sigma$-引理中的权 $d(y)^{-aq}$ 即 $d(y)^{-kq}$），$n$、$q$、$\sigma$、$p$、$\Om$ 均不变，$g:=f$，此时 $\sigma$-引理（附录 A）还要求假设 $\nuA(\Om)=\infty$，而这正是我们的假设 $\nu_k(\Om)=\infty$。$\sigma$-引理的其余假设（$n\ge1$，$a=k>0$，$q\in[1,\infty)$，$\sigma\in(0,1)$，$p\in[1,\infty)$，$\Om$ 为非空有界域，$g=f$ 为 Lebesgue 可测）均成立。其结论给出 $f$ 在 $\Om$ 上 Lebesgue 几乎处处为常数。
+
+\emph{第二步（(i)）}. 设 $X$ 为范数 $\|f\|_{F^s_{p,q}(\Om)}+S(f)$ 有限的可测函数 $f$ 构成的空间；这就是参考论文定义 1.3 中修改后的加权内蕴空间（无权范数 $\|\cdot\|_{F^s_{p,q}(\Om)}$ 即公式 (1.3) 中取 $a=0$ 的范数）。若 $f\in X$，则 $S(f)<\infty$，故由第一步 $f$ 几乎处处为常数；于是 $X$ 含于常数函数构成的空间 $\R\cdot\mathbf{1}$（模去几乎处处相等）。反之，设 $c$ 为实常数，在 $\Om$ 上 $f=c$。$f$ 的所有正阶弱导数均为零，且对每个多重指标 $\beta$，$D^\beta f$ 或为 $0$（若 $|\beta|\ge1$）或为常数 $c$（若 $\beta=0$）；两种情形下 $D^\beta f$ 在连通集 $\Om$ 上均为常数，故对一切 $x,y\in\Om$ 有 $|D^\beta f(x)-D^\beta f(y)|=0$，$S(f)$ 的每个求和项均为零，即 $S(f)=0$。此外，在无权范数 $\|\cdot\|_{F^s_{p,q}(\Om)}$ 中一切正阶导数均为零，一切最高阶差分半范数均为零，故
+\[
+  \|f\|_{F^s_{p,q}(\Om)}=\|c\|_{L^p(\Om)}=|c|\,|\Om|^{1/p}<\infty .
+\]
+于是 $f\in X$，且 $X=\R\cdot\mathbf{1}$。
+
+\emph{第三步（(ii)）}. 设 $Y$ 为满足 $T(f)<\infty$ 的可测函数 $f$ 构成的空间，其中 $T$ 为命题中的 Hardy 加强总量。若 $f\in Y$，则 $S(f)\le T(f)<\infty$，故由第一步，$f=c$ 在 $\Om$ 上几乎处处为常数。对该常数，$T(f)$ 中满足 $|\beta|\ge1$ 的求和项均为零，剩余的求和项为
+\[
+  \|c/d^{s}\|_{L^p(\Om)}=|c|\Big(\int_\Om d(y)^{-sp}\,dy\Big)^{1/p}
+\]
+以及
+\[
+  \|c/d^{s+n/q}\|_{L^q(\Om)}
+  =|c|\Big(\int_\Om d(y)^{-(s+n/q)q}\,dy\Big)^{1/q}
+  =|c|\Big(\int_\Om d(y)^{-sq-n}\,dy\Big)^{1/q}.
+\]
+我们断言 $\int_\Om d(y)^{-sq-n}\,dy=\infty$。事实上，对 $y\in\Om$ 有 $d(y)\le\diam(\Om)=:D$，其中 $0<D<\infty$（$\Om$ 有界），且因 $s=k+\sigma$ 而 $\sigma>0$，故 $sq+n>kq$；于是
+\[
+  d(y)^{-sq-n}=d(y)^{-kq}\,d(y)^{-(sq+n-kq)}\ge D^{-(sq+n-kq)}\,d(y)^{-kq},
+\]
+故
+\[
+  \int_\Om d(y)^{-sq-n}\,dy\ge D^{-(sq+n-kq)}\int_\Om d(y)^{-kq}\,dy=\infty
+\]
+由假设。因此 $T(f)<\infty$ 迫使 $|c|=0$，即 $f=0$ 几乎处处成立，从而 $Y=\{0\}$。
+\end{proof}
+
+\begin{remark}[直觉]
+修改后范数中 $\beta=0$ 的项就是 $f$ 本身带权 $d^{-kq}$ 的加权分数阶半范数。由于 $k\ge1$ 且 $q\ge1$，指数 $kq$ 至少为 $1$，故在 Lipschitz 型区域上该权在边界附近不可积；$\sigma$-引理于是迫使 $f$ 为常数。可见为吸收 Leibniz 法则的溢出而引入的额外距离权 $d^{-(k-|\beta|)q}$ 过度了：在 $\beta=0$ 处它除常数外一概消灭。
+\end{remark}
+
+%==================================================================
+\subsection{整数阶修改空间的非退化性}
+
+\begin{theorem}[整数阶修正空间的非退化（修正版）]
+\label{thm:int-nondegen}
+设 $\Om$ 为 $\R^n$ 中的非空有界域，$k\in\N$，$p,q\in[1,\infty)$。设 $F^k_{p,q}(\Om)$ 为 CLWZ 定义 1.6 中修正后的加权 Triebel--Lizorkin 空间，其范数为
+\[
+  \|f\|_{F^k_{p,q}}=\|f\|_{L^p(\Om)}+\sum_{r=0}^k[f]_{r,k}+\|f/d^k\|_{L^p(\Om)},
+\]
+其中
+\[
+  [f]_{r,k}=\Big(\int_\Om\Big(\int_{|h|<d(x)/(2(k+1))}|\Delta_h^{k+1-r}f(x)|^q\,|h|^{-n-(k-r)q}\,d(x)^{-rq}\,dh\Big)^{p/q}dx\Big)^{1/p},
+\]
+$\Delta_h^m f(x)=\sum_{\nu=0}^m(-1)^{m-\nu}\binom{m}{\nu}f(x+\nu h)$，且 $d(x)=\dist(x,\partial\Om)$。
+则
+\[
+  C_c^\infty(\Om)\subset F^k_{p,q}(\Om),
+\]
+从而 $F^k_{p,q}(\Om)\not\subset P_{k-1}(\Om)$，后者是总次数不超过 $k-1$ 的多项式在 $\Om$ 上限制所成的集合。
+
+特别地，若对某个 $a>0$ 有
+\[
+  \nuA(\Om)=\int_\Om d(x)^{-aq}\,dx=\infty ,
+\]
+则对每个非整数 $s$，分数阶空间 $\Fsp$ 都退化为多项式（附录 A），而整数阶修正空间 $F^k_{p,q}(\Om)$ 仍含有非多项式函数。
+\end{theorem}
+
+\begin{proof}
+\textbf{第一步（witness 的选择）}。原事实取 $f_0(x)=d(x)^k$ 作 witness，该选择不成立（原因见评注 \ref{rem:int-why-fail} 与 \ref{rem:int-counter}）。本证明改取 $\varphi\in C_c^\infty(\Om)$（该论证已由独立复核确认，附录 A）。差别在于：$\varphi$ 光滑且支集紧，其 $m$ 阶差分具有\emph{全阶}消失量 $|h|^m$，恰好抵消核 $|h|^{-n-(k-r)q}$ 的奇性；而 $d$ 仅有 Lipschitz 正则性，$d^k$ 的差分至多只有一阶消失量，无法抵消。
+
+\textbf{第二步（$L^p$ 项与 Hardy 权项）}。取 $\delta>0$ 使 $\supp\varphi\subset\{x\in\Om:\ d(x)\ge\delta\}$。则
+\[
+  \|\varphi\|_{L^p(\Om)}<\infty,\qquad
+  \Big\|\frac{\varphi}{d^k}\Big\|_{L^p(\Om)}\le\delta^{-k}\|\varphi\|_{L^p(\Om)}<\infty .
+\]
+
+\textbf{第三步（半范数：抵消核的奇性）}。固定 $r\in\{0,\dots,k\}$，记 $m=k+1-r$、$c=1/(2(k+1))$，并令
+\[
+  M_m:=\max_{|\alpha|=m}\|D^\alpha\varphi\|_{L^\infty(\Om)}<\infty .
+\]
+由 $m$ 重积分表示（或对 $\Delta_h^m$ 作 Taylor 展开）得
+\begin{equation}\label{eq:int-diff}
+  |\Delta_h^m\varphi(x)|\le C_m\,M_m\,|h|^m\qquad (x\in\Om,\ |h|\le1).
+\end{equation}
+于是在 $|h|<c\,d(x)$ 上
+\[
+  |\Delta_h^m\varphi(x)|^q\,|h|^{-n-(k-r)q}
+  \le (C_mM_m)^q\,|h|^{\,mq-n-(k-r)q}
+  =(C_mM_m)^q\,|h|^{\,q-n},
+\]
+这里用到 $mq-(k-r)q=(k+1-r)q-(k-r)q=q$。又因 $q\ge1$，
+\[
+  \int_{|h|<c\,d(x)}|h|^{\,q-n}\,dh=\frac{\omega_{n-1}}{q}\big(c\,d(x)\big)^q<\infty .
+\]
+
+\textbf{第四步（支集传播：$d(x)$ 的下界）}。第三步中的估计不能直接在 $\supp\varphi$ 上使用，因为当
+$\Delta_h^m\varphi(x)\ne0$ 时，点 $x$ 本身未必落在 $\supp\varphi$ 内。注意到
+\[
+  \Delta_h^m\varphi(x)=\sum_{\nu=0}^{m}(-1)^{m-\nu}\binom{m}{\nu}\varphi(x+\nu h),
+\]
+故若它非零，则存在 $\nu\in\{0,\dots,m\}$ 使 $x+\nu h\in\supp\varphi$，从而 $d(x+\nu h)\ge\delta$。又 $\nu\le m=k+1-r\le k+1$ 且 $|h|<c\,d(x)=d(x)/(2(k+1))$，故
+\[
+  \nu|h|\le(k+1)\cdot\frac{d(x)}{2(k+1)}=\frac{d(x)}{2}.
+\]
+由 $d$ 的 $1$-Lipschitz 性得 $d(x+\nu h)\le d(x)+|x-(x+\nu h)|=d(x)+\nu|h|\le\tfrac32d(x)$，于是
+\begin{equation}\label{eq:int-support}
+  d(x)\ \ge\ \tfrac23\,\delta\qquad\text{只要}\ \ \Delta_h^m\varphi(x)\ne0 .
+\end{equation}
+特别地，$d(x)^{-rq}\le(2\delta/3)^{-rq}$ 在 $\{\Delta_h^m\varphi(x)\ne0\}$ 上一致有界（$r\ge0$）。
+
+\textbf{第五步（把 $h$ 的积分分成两段）}。$|h|$ 可能大于 $1$（当 $d(x)$ 较大时），此时不必再靠 $|h|^m$ 的小尺度消失，而用平凡界即可。由 \eqref{eq:int-diff}（该式要求 $|h|\le1$）与差分的平凡估计，
+\[
+  |\Delta_h^m\varphi(x)|^q\le
+  \begin{cases}
+    (C_mM_m)^q\,|h|^{mq}, & |h|\le1,\\[2pt]
+    \big(2^m\|\varphi\|_{L^\infty(\Om)}\big)^q=:(C_m')^q, & |h|>1 .
+  \end{cases}
+\]
+在 $|h|\le1$ 段，第三步已给出核 $|h|^{-n-(k-r)q}$ 与 $|h|^{mq}$ 相消为 $|h|^{q-n}$，其在 $|h|\le1$ 上可积。
+在 $|h|>1$ 段，
+\[
+  \int_{1<|h|<c\,d(x)}|h|^{-n-(k-r)q}\,dh\ \le\ \frac{\omega_{n-1}}{(k-r)q}<\infty\quad(r<k),
+\]
+而当 $r=k$（此时指数为 $-n$）有 $\int_{1<|h|<c\,d(x)}|h|^{-n}dh\lesssim\log\big(1+c\,d(x)\big)$，又 $d(x)\le\diam\Om<\infty$，故亦有限。
+
+\textbf{第六步（对 $x$ 积分）}。由第四步，只需在集合 $E_x:=\{x:\Delta_h^m\varphi(x)\ne0\}$ 上估计，而在其上 $d(x)\ge\tfrac23\delta$ 且 $d(x)\le\diam\Om$。合并第三、五步，存在仅依赖于 $\Om,m,q,\delta,M_m,\|\varphi\|_{L^\infty}$ 的常数 $C''$ 使
+\[
+  \int_{|h|<c\,d(x)}|\Delta_h^{k+1-r}\varphi(x)|^q\,|h|^{-n-(k-r)q}\,d(x)^{-rq}\,dh\ \le\ C''
+\qquad(x\in\Om),
+\]
+于是
+\[
+  [\varphi]_{r,k}\le (C'')^{1/q}|\Om|^{1/p}<\infty .
+\]
+对有限多个 $r=0,\dots,k$ 合并，得 $\|\varphi\|_{F^k_{p,q}}<\infty$，故 $\varphi\in F^k_{p,q}(\Om)$。
+
+\textbf{第七步（非退化）}。取非零的 $\varphi\in C_c^\infty(\Om)$。若 $\varphi$ 在 $\Om$ 上几乎处处等于某个多项式 $P$，则 $P$ 必在非空开集 $\Om\setminus\supp\varphi$ 上为零，从而 $P\equiv0$，与 $\varphi\ne0$ 矛盾。故 $\varphi\notin P_{k-1}(\Om)$，于是 $F^k_{p,q}(\Om)\not\subset P_{k-1}(\Om)$。
+
+最后一项断言：附录 A 给出对每个非整数 $s$ 有 $\Fsp=P_{\lfloor s\rfloor}$；而 $F^k_{p,q}(\Om)$ 的定义不涉及参数 $a$，且如上已证它含有非多项式函数。
+\end{proof}
+
+\begin{remark}[原证明为何失效：一个发散的积分]\label{rem:int-why-fail}
+原事实的证明在 $r<k$（此时 $(k-r)q>0$）时断言
+\[
+  \int_{|h|<c\,d(x)}|h|^{-n-(k-r)q}\,dh=C_2(n,q,k)\,d(x)^{-(k-r)q}.
+\]
+该等式\emph{不成立}。令 $\alpha=(k-r)q>0$，由极坐标公式，对任意 $R>0$
+\[
+  \int_{|h|<R}|h|^{-n-\alpha}\,dh
+  =\omega_{n-1}\int_0^R\rho^{-1-\alpha}\,d\rho=+\infty .
+\]
+故左端恒为 $+\infty$，不可能等于有限量 $C_2d(x)^{-(k-r)q}$。
+
+错误的来源是：原证明只得到与 $h$ 无关的粗糙界 $|\Delta_h^{k+1-r}f_0(x)|\le C_1d(x)^k$，其中\emph{没有任何随 $h\to0$ 消失的因子}。面对 $|h|^{-n-(k-r)q}$ 这样的奇性核，仅靠与 $h$ 无关的上界无法保证可积性。要使内层积分有限，必须从差分中提取出足够高阶的 $|h|$ 消失量；\eqref{eq:int-diff} 中 $m$ 阶全阶消失的做法正是如此。
+\end{remark}
+
+\begin{remark}[原 witness $d^k$ 的适用范围：$k=1$ 可用，$k\ge2$ 失效]\label{rem:int-counter}
+原事实以 $f_0(x)=d(x)^k$ 作 witness。经独立复核（附录 A 中相应的两条记录），
+其适用范围如下。本节初稿曾断言 $k=1$ 时 $[d]_{0,1}=+\infty$，该断言\defterm{有误}、现已撤回，理由见 \S\ref{sec:revision}。
+
+\emph{(a) $k=1$ 时 $d$ 确实属于 $F^1_{p,q}((0,1))$。}
+取 $n=1$、$\Om=(0,1)$、$d(x)=\min(x,1-x)$，并记 $\lambda(x):=|x-\tfrac12|$。对 $r=0$ 项（此时 $k+1-r=2$，核指数为 $-1-q$）有
+\[
+  |\Delta_h^2d(x)|\le 2\lambda(x),\qquad
+  \Delta_h^2d(x)=0\ \ \text{只要}\ |h|\le\tfrac12\lambda(x).
+\]
+其关键是：$d$ 在 $(0,\tfrac12)$ 与 $(\tfrac12,1)$ 上分别是恒等映射与仿射映射，故只要三点 $x,x+h,x+2h$ 不跨越中点 $\tfrac12$，二阶差分\emph{恒为零}。于是对每个固定的 $x$，集合 $\{h:\Delta_h^2d(x)\ne0\}$ 与 $0$ 有正距离，内层积分在 $|h|\to0$ 处\emph{不}发散，并可得显式界
+\[
+  I(x):=\int_{|h|<d(x)/4}|\Delta_h^2d(x)|^q\,|h|^{-1-q}\,dh\le\frac{2^{2q+1}}{q}.
+\]
+对 $r=1$ 项，由 $d$ 为 $1$-Lipschitz 得 $|\Delta_h^1d(x)|\le|h|$，从而该半范数不超过 $(2/(4^qq))^{1/q}$。故 $[d]_{0,1},[d]_{1,1}<\infty$，即 $d\in F^1_{p,q}((0,1))$。
+换言之，原 witness 在 $k=1$ 时\emph{是}可用的。
+
+\emph{(b) $k\ge2$ 时 $d^k$ 不属于 $F^k_{p,q}((0,1))$。}
+令 $\lambda_0:=1/(8(k+1))$，取 $\lambda\in(0,\lambda_0)$、$x:=\tfrac12-\lambda$、$T:=d(x)/(2(k+1))$；则 $d(x)=x$ 且 $T\asymp\lambda$。
+对 $h\in(\lambda,T)$ 与 $\nu=1,\dots,k+1$ 有 $x+\nu h\in(\tfrac12,1)$，故 $d(x+\nu h)=1-x-\nu h$。令 $S(t):=(1-t)^k$，这是次数为 $k$ 的多项式，于是
+\[
+  \Delta_h^{k+1}f_0(x)
+  =(-1)^{k+1}\big(x^k-(1-x)^k\big)+\Delta_h^{k+1}S(x)
+  =(-1)^{k+1}\big(x^k-(1-x)^k\big),
+\]
+因为 $(k+1)$ 阶差分把次数为 $k$ 的多项式打为零，即 $\Delta_h^{k+1}S\equiv0$。
+由中值定理，$\big|x^k-(1-x)^k\big|\asymp\lambda$。又因 $T\asymp\lambda$，
+\[
+  \int_{\lambda<|h|<2\lambda}|h|^{-1-kq}\,dh\ \asymp\ \lambda^{-kq},
+\]
+故（把 $h$ 限制在 $(\lambda,2\lambda)$ 上即可）
+\[
+  \int_{|h|<T}|\Delta_h^{k+1}f_0(x)|^q\,|h|^{-1-kq}\,dh
+  \ \gtrsim\ \lambda^{q}\cdot\lambda^{-kq}
+  =\lambda^{-(k-1)q}.
+\]
+由于 $(k-1)q\ge1$（由 $k\ge2$ 与 $q\ge1$），从而
+\[
+  \int_0^{\lambda_0}\lambda^{-(k-1)q}\,d\lambda=+\infty .
+\]
+故 $[f_0]_{0,k}=+\infty$，即 $f_0\notin F^k_{p,q}((0,1))$。
+
+\emph{结论}：原 witness 仅在 $k=1$ 时有效，$k\ge2$ 时必须更换。本文统一改用 $C_c^\infty$ 作 witness（见本节定理 \ref{thm:int-nondegen}），该证明已由独立复核（附录 A）确认。
+\end{remark}
+
+\begin{remark}[与 Poincar\'e 障碍并不矛盾]
+附录 A 指出：当 $s>1$ 时，$C_c^\infty(\Om)$ 在\emph{未加强}的 $F^s$ 中绝不稠密。本定理断言的是 $C_c^\infty(\Om)\subset F^k_{p,q}(\Om)$，即这些函数\emph{属于}该空间，而非\emph{稠密}于其中。二者并不冲突：前者说闭包是 $F^s$ 的真子空间，后者说 $F^k_{p,q}$ 含有非平凡元素。
+\end{remark}
+
+\begin{remark}[直觉：为何 $k=1$ 可以，$k\ge2$ 不行]
+范数用 $d(x)^{-rq}$ 给第 $r$ 个差分项加权、用 $d(x)^{-kq}$ 给零阶项加权。在半径与 $d(x)$ 相当的球上，
+$d^k$ 被常数乘 $d(x)^k$ 控制，故\emph{每个}差分都被 $Cd(x)^k$ 控制；这一步对一切 $k$ 都成立，
+但它\defterm{不足以}保证内层积分收敛，因为核 $|h|^{-n-(k-r)q}$ 在 $h=0$ 处是奇异的。
+
+真正起决定作用的是差分随 $h\to0$ 的\emph{消失阶}。
+当 $k=1$ 时 $r=0$ 项只需要二阶差分：$d$ 在中点两侧分别是恒等与仿射映射，故只要三点不跨越中点，二阶差分\emph{恒为零}；
+非零集在 $h$ 方向与 $0$ 有正距离，配合 $r=k$ 项中 Lipschitz 性给出的额外因子 $|h|$，全部内层积分收敛。
+
+当 $k\ge2$ 时 $r=0$ 项需要 $(k+1)$ 阶差分。取 $x=\tfrac12-\lambda$、$h\in(\lambda,T)$（$T\asymp\lambda$），
+则 $x+\nu h\in(\tfrac12,1)$ 对所有 $1\le\nu\le k+1$ 成立，而 $t\mapsto(1-t)^k$ 是次数恰为 $k$ 的多项式，
+其 $(k+1)$ 阶差分为零；于是 $(k+1)$ 阶差分只剩中点两侧的不平衡项 $(-1)^{k+1}(x^k-(1-x)^k)\asymp\lambda$，
+它\defterm{不随 $h\to0$ 消失}。将 $h$ 限制在 $(\lambda,2\lambda)$ 上，则
+\[
+  \int_{\lambda}^{2\lambda}h^{-1-kq}\,dh=\frac{(2\lambda)^{-kq}-\lambda^{-kq}}{-kq}\asymp\lambda^{-kq},
+\]
+故内层积分的下界为 $\lambda^{q}\cdot\lambda^{-kq}=\lambda^{-(k-1)q}$；而 $(k-1)q\ge1$（因 $k\ge2$、$q\ge1$）使
+$\int_0^{\lambda_0}\lambda^{-(k-1)q}d\lambda=+\infty$，即该积分在 $\lambda\to0$ 时发散。
+
+因此 $d^k$ 只在 $k=1$ 时是有效的 witness；一般 $k$ 必须改用 $C_c^\infty$，那里差分的全阶消失量 $|h|^{k+1-r}$ 恰好抵消核的奇性。
+\end{remark}
+
+\subsection{整数阶空间的稠密性：截断引理}
+
+\begin{theorem}[截断引理]
+设 $n \ge 1$，设 $\Om$ 是 $\R^n$ 中的非空有界区域，对 $x \in \Om$ 令 $d(x) = \dist(x, \partial\Om)$；设 $k \in \N = \{1,2,3,\dots\}$，$p, q \in [1,\infty)$。设 $F^k_{p,q}(\Om)$ 是 CLWZ 定义 1.6 中的\defterm{修正加权 Triebel--Lizorkin 空间}，其范数定义为
+\[
+\|f\|_{F^k_{p,q}} := \|f\|_{L^p(\Om)} + \sum_{r=0}^{k} [f]_{r,k} + \|f/d^k\|_{L^p(\Om)},
+\]
+其中
+\[
+[f]_{r,k} := ( \int_\Om ( \int_{|h| < T(x)} |\Delta_h^{k+1-r} f(x)|^q |h|^{-n-(k-r)q} d(x)^{-r q} dh )^{p/q} dx )^{1/p},
+\]
+这里 $T(x) := d(x)/(2(k+1))$，且 $\Delta_h^m f(x) := \sum_{\nu=0}^{m} (-1)^{m-\nu} \binom{m}{\nu} f(x+\nu h)$。设 $\varepsilon > 0$，并设 $\chi_\varepsilon : \Om \to \R$ 为 $C^\infty$ 的，满足 $0 \le \chi_\varepsilon \le 1$，$\chi_\varepsilon = 1$ 于 $\{x \in \Om : d(x) \ge 2 \varepsilon\}$ 上，$\chi_\varepsilon = 0$ 于 $\{x \in \Om : d(x) < \varepsilon\}$ 上，且对每个多重指标 $\alpha$ 都有 $|D^\alpha \chi_\varepsilon| \le C_{|\alpha|} \varepsilon^{-|\alpha|}$ 于 $\Om$ 上（$C_{|\alpha|}$ 与 $\varepsilon$ 无关）；这样的函数族是存在的（显式构造见第一步）。令 $g_\varepsilon := 1 - \chi_\varepsilon$。则对每个 $f \in F^k_{p,q}(\Om)$：(i) $f \chi_\varepsilon$ 属于 $F^k_{p,q}(\Om)$；(ii) $\|f - f \chi_\varepsilon\|_{F^k_{p,q}(\Om)}^p$ 不超过 $C(n,k,p,q)$ 乘以如下 $k+3$ 个量之和，这些量都统一在同一个边界层 $\{x \in \Om : d(x) < 4 \varepsilon\}$ 上积分：$\int_{d<4\varepsilon}|f|^p dx$，$\int_{d<4\varepsilon}|f/d^k|^p dx$，以及对 $r = 0,\dots,k$ 的 $\int_{d<4\varepsilon} I_r(x)^{p/q} dx$，其中 $I_r(x) := \int_{|h|<T(x)}|\Delta_h^{k+1-r}f(x)|^q|h|^{-n-(k-r)q}d(x)^{-rq}dh$；特别地，当 $\varepsilon \to 0$ 时 $\|f - f \chi_\varepsilon\|_{F^k_{p,q}(\Om)} \to 0$。从而线性子空间 $F^k_{p,q,c}(\Om) := \{ f \in F^k_{p,q}(\Om) : f \mbox{ 本性支撑于 } \Om \mbox{ 的某个紧子集} \}$ 在 $F^k_{p,q}(\Om)$ 中稠密。
+\end{theorem}
+
+\begin{proof}
+全文记 $T(x) = d(x)/(2(k+1))$，并对 $r = 0,\dots,k$ 记
+\[
+I_r(x) := \int_{|h|<T(x)} |\Delta_h^{k+1-r} f(x)|^q |h|^{-n-(k-r)q} d(x)^{-rq} dh,
+\]
+于是 $[f]_{r,k} = ( \int_\Om I_r(x)^{p/q} dx )^{1/p}$。由假设 $f \in F^k_{p,q}(\Om)$，故对每个 $r$ 都有 $I_r^{p/q} \in L^1(\Om)$，且 $f/d^k \in L^p(\Om)$。记 $D := \diam(\Om) \in (0,\infty)$。
+
+\textbf{第一步（截断函数的构造）} 取 $\psi \in C_c^\infty(\R^n)$ 满足 $\psi \ge 0$，$\supp \psi$ 含于闭单位球内，$\int \psi = 1$。对 $\delta > 0$ 令 $\psi_\delta(z) := \delta^{-n} \psi(z/\delta)$，并令 $G_\delta(x) := 1$（当 $x \in \Om$ 且 $d(x) \ge 3 \delta$ 时），$G_\delta(x) := 0$（其它情形）。对 $x \in \Om$ 定义
+\[
+\chi_\varepsilon(x) := (G_{\varepsilon/2} * \psi_{\varepsilon/2})(x) = \int_{\R^n} \psi_{\varepsilon/2}(z) G_{\varepsilon/2}(x-z) dz.
+\]
+则 $\chi_\varepsilon$ 在 $\Om$ 上是 $C^\infty$ 的，且 $0 \le \chi_\varepsilon \le 1$。若 $d(x) \ge 2 \varepsilon$ 且 $|z| < \varepsilon/2$，则 $d(x-z) \ge d(x) - |z| > 2\varepsilon - \varepsilon/2 > 3\varepsilon/2$ 且 $x-z \in \Om$，故 $G_{\varepsilon/2}(x-z) = 1$，从而 $\chi_\varepsilon(x) = 1$。若 $d(x) < \varepsilon$ 且 $|z| < \varepsilon/2$，则 $d(x-z) \le d(x) + |z| < 3\varepsilon/2$，故 $G_{\varepsilon/2}(x-z) = 0$，从而 $\chi_\varepsilon(x) = 0$。最后，在 $\Om$ 上 $D^\alpha \chi_\varepsilon = G_{\varepsilon/2} * D^\alpha \psi_{\varepsilon/2}$，由此
+\[
+|D^\alpha \chi_\varepsilon| \le \|G_{\varepsilon/2}\|_\infty \|D^\alpha \psi_{\varepsilon/2}\|_{L^1} = 2^{|\alpha|} \|D^\alpha \psi\|_{L^1} \varepsilon^{-|\alpha|}.
+\]
+于是 $\chi_\varepsilon$ 具有所需的诸性质，其中 $C_{|\alpha|} := 2^{|\alpha|}\|D^\alpha \psi\|_{L^1}$。（下文中只用到上面列出的这些性质。）
+
+\textbf{第二步（有限差分的 Leibniz 公式）} 对一切 $m \ge 0$、一切定义在一个（对相应平移封闭的）集合上的函数 $u, v$ 以及一切 $x, h$，有
+\[
+\Delta_h^m(uv)(x) = \sum_{a=0}^{m} \binom{m}{a} \Delta_h^a v(x+(m-a)h) \Delta_h^{m-a} u(x). \qquad (L)
+\]
+\emph{证明。} 对每个整数 $j \ge 0$ 有 $u(x+jh) = \tau_h^j u(x) = (I + \Delta_h)^j u(x) = \sum_{a=0}^{j} \binom{j}{a} \Delta_h^a u(x)$，其中 $\tau_h u = u(\cdot +h)$ 而 $I$ 是恒等算子（二项式定理）。于是
+\[
+\begin{aligned}
+\Delta_h^m(uv)(x) &= \sum_{j=0}^{m} (-1)^{m-j} \binom{m}{j} u(x+jh) v(x+jh) \\
+&= \sum_{j=0}^{m} (-1)^{m-j} \binom{m}{j} v(x+jh) \sum_{a=0}^{j} \binom{j}{a} \Delta_h^a u(x) \\
+&= \sum_{a=0}^{m} \Delta_h^a u(x) \sum_{j=a}^{m} (-1)^{m-j} \binom{m}{j} \binom{j}{a} v(x+jh).
+\end{aligned}
+\]
+由于 $\binom{m}{j} \binom{j}{a} = \binom{m}{a} \binom{m-a}{j-a}$，内层和等于 $\binom{m}{a} \sum_{b=0}^{m-a} (-1)^{m-a-b} \binom{m-a}{b} v(x+(a+b)h) = \binom{m}{a} \Delta_h^{m-a} v(x+ah)$。因此 $\Delta_h^m(uv)(x) = \sum_{a=0}^{m} \binom{m}{a} \Delta_h^a u(x) \Delta_h^{m-a}v(x+ah)$；把求和指标 $a$ 换成 $b := m-a$，并利用 $\binom{m}{m-b} = \binom{m}{b}$，即得取 $u = f$、$v = g_\varepsilon$ 的 (L)。这就证明了 (L)。
+
+\textbf{第三步（截断函数差分的尺度与支集）} 设 $1 \le a \le m$，并设 $y \in \Om$ 使得点 $y, y+h, \dots, y+a h$ 全都落在 $\Om$ 中，且连接相邻两点的线段也都落在 $\Om$ 中。由于 $\chi_\varepsilon$ 在 $\Om$ 上是 $C^\infty$ 的，且当 $|\alpha| \le a$ 时 $|D^\alpha \chi_\varepsilon| \le C_{|\alpha|} \varepsilon^{-|\alpha|}$，对中值定理取迭代积分形式（在凸球 $B(y,a|h|)$ 上）可得
+\[
+|\Delta_h^a g_\varepsilon(y)| = |\Delta_h^a \chi_\varepsilon(y)| \le C'_a \varepsilon^{-a} |h|^a, \qquad (S1)
+\]
+其中 $C'_a$ 只依赖于 $a$ 与 $n$（把因子 $n^a$ 与常数 $C_{|\alpha|}$ 一并吸收进去）。此外，若 $\Delta_h^a g_\varepsilon(y) \ne 0$，则某个点 $y + \nu h$（$0 \le \nu \le a$）满足 $g_\varepsilon(y+\nu h) \ne 0$，从而 $d(y+\nu h) < 2 \varepsilon$（因为 $g_\varepsilon = 0$ 于 $\{d \ge 2 \varepsilon\}$ 上）。特别地，若再有 $y = x+(m-a)h$，其中 $x \in \Om$ 且 $|h| < T(x)$，则
+\[
+\begin{aligned}
+d(x) &\le d(y+\nu h) + |x - (y+\nu h)| < 2 \varepsilon + (m-a+\nu)|h| \\
+&\le 2 \varepsilon + m |h| < 2 \varepsilon + d(x)/2, \qquad (S2)
+\end{aligned}
+\]
+故 $d(x) < 4 \varepsilon$。
+
+\textbf{第四步（$L^p$ 项）} 由于 $|g_\varepsilon| \le 1$ 且 $g_\varepsilon = 0$ 于 $\{d \ge 2 \varepsilon\}$ 上，
+\[
+\int_\Om |f - f \chi_\varepsilon|^p dx = \int_\Om |f|^p |g_\varepsilon|^p dx \le \int_{d < 2 \varepsilon} |f|^p dx \le \int_{d<4\varepsilon} |f|^p dx,
+\]
+\[
+\int_\Om |(f - f \chi_\varepsilon)/d^k|^p dx \le \int_{d < 2 \varepsilon} |f/d^k|^p dx \le \int_{d<4\varepsilon} |f/d^k|^p dx,
+\]
+且两者当 $\varepsilon \to 0$ 时都趋于 $0$，因为 $|f|^p, |f/d^k|^p \in L^1(\Om)$ 且 $|\{d < 4 \varepsilon\}| \to 0$。它们正是条款 (ii) 中那 $k+3$ 个量的前两个。
+
+\textbf{第五步（半范数项）} 固定 $r \in \{0,\dots,k\}$，令 $m := k+1-r$（于是 $1 \le m \le k+1$），并简记 $w := f g_\varepsilon = f - f \chi_\varepsilon$。对 $x \in \Om$ 与 $|h| < T(x)$，点 $x, x+h, \dots, x+(k+1)h$ 全都落在 $\Om$ 中，这是因为 $|x+\nu h - x| = \nu|h| \le (k+1)T(x) = d(x)/2 < d(x)$，而开球 $B(x,d(x))$ 含于 $\Om$；因此 (L) 与 (S1) 在该差分模板内均可用。由 (L) 与初等不等式 $(\sum_{a=0}^{m} c_a)^q \le C(m,q) \sum_{a=0}^{m} c_a^q$（当 $q \ge 1$ 时取 $C(m,q) := (m+1)^{q-1}$ 即成立；把二项式系数吸收进 $C(m,q)$），
+\[
+|\Delta_h^m(w)(x)|^q \le C(m,q) \sum_{a=0}^{m} |\Delta_h^a g_\varepsilon(x+(m-a)h)|^q |\Delta_h^{m-a}f(x)|^q. \qquad (4.0)
+\]
+对 $x \in \Om$ 与 $0 \le a \le m$ 定义
+\[
+J_r(x) := \int_{|h|<T(x)} |\Delta_h^m w(x)|^q |h|^{-n-(k-r)q} d(x)^{-rq} dh,
+\]
+\[
+A_a(x) := \int_{|h|<T(x)} |\Delta_h^a g_\varepsilon(x+(m-a)h)|^q |\Delta_h^{m-a}f(x)|^q |h|^{-n-(k-r)q} d(x)^{-rq} dh.
+\]
+用非负核对方程 (4.0) 积分便得 $J_r(x) \le C(m,q) \sum_{a=0}^{m} A_a(x)$。又，对 $p, q > 0$ 与 $m \ge 0$，存在常数 $C_1(m,p,q)$，使得对所有 $c_a \ge 0$ 都有 $(\sum_{a=0}^{m} c_a)^{p/q} \le C_1(m,p,q) \sum_{a=0}^{m} c_a^{p/q}$（当 $p \ge q$ 时用 $(\sum c_a)^{p/q} \le (m+1)^{p/q-1} \sum c_a^{p/q}$；当 $p < q$ 时用 $t \mapsto t^{p/q}$ 的凹性，它给出 $(\sum c_a)^{p/q} \le \sum c_a^{p/q}$）。由于 $[w]_{r,k}^{p}$ 的内层积分正是 $J_r(x)$，故
+\[
+[w]_{r,k}^p = \int_\Om J_r(x)^{p/q} dx \le C_2(m,p,q) \sum_{a=0}^{m} \int_\Om A_a(x)^{p/q} dx. \qquad (4.1)
+\]
+下面就 $a$ 的三个范围估计 $\int_\Om A_a(x)^{p/q} dx$。
+
+(a) $a = 0$。此时 $\Delta_h^0 g_\varepsilon = g_\varepsilon$，而 $\Delta_h^m f$ 是 $m$ 阶差分。由 (S2) 取 $a = 0$（这时条件只是 $g_\varepsilon(x+mh) \ne 0$，即 $d(x+mh) < 2 \varepsilon$），被积函数在 $d(x) \ge 4 \varepsilon$ 处为零，且 $|g_\varepsilon| \le 1$。故 $A_0(x) \le \mathbf{1}_{d(x)<4\varepsilon} I_r(x)$，从而
+\[
+\int_\Om A_0(x)^{p/q} dx \le \int_{d<4\varepsilon} I_r(x)^{p/q} dx \to 0,
+\]
+因为 $I_r^{p/q} \in L^1(\Om)$ 且 $|\{d<4\varepsilon\}| \to 0$。
+
+(b) $1 \le a \le m-1$。令 $r' := r+a$，则 $r' \in \{r+1,\dots,k\}$ 且 $m-a = k+1-r'$。由 (S1)，$|\Delta_h^a g_\varepsilon(x+(m-a)h)|^q \le C_a^q \varepsilon^{-aq} |h|^{aq}$。于是在集合 $d(x) < 4 \varepsilon$ 上（由 (S2)，在其外被积函数为零），
+\[
+\begin{aligned}
+A_a(x) &\le C_a^q \varepsilon^{-aq} \int_{|h|<T(x)} |h|^{aq} |\Delta_h^{m-a}f(x)|^q |h|^{-n-(k-r)q} d(x)^{-rq} dh \\
+&= C_a^q \varepsilon^{-aq} d(x)^{aq} I_{r'}(x),
+\end{aligned}
+\]
+这里用到 $aq - n - (k-r)q = -n - (k-r-a)q = -n-(k-r')q$ 以及 $d(x)^{-rq} = d(x)^{aq} d(x)^{-r'q}$（等价地 $d(x)^{-r'q} d(x)^{aq} = d(x)^{-rq}$，因为 $r' = r+a$）。在 $\{d(x) < 4 \varepsilon\}$ 上有 $\varepsilon^{-aq} d(x)^{aq} = (d(x)/\varepsilon)^{aq} < 4^{aq}$。因此
+\[
+A_a(x) \le C_a^q 4^{aq} \mathbf{1}_{d(x)<4\varepsilon} I_{r'}(x),
+\]
+\[
+\int_\Om A_a(x)^{p/q} dx \le C_a^p 4^{ap} \int_{d<4\varepsilon} I_{r'}(x)^{p/q} dx \to 0,
+\]
+因为 $I_{r'}^{p/q} \in L^1(\Om)$（这里 $r' \le k$；$r'=k$ 那一项正是 $k$ 阶源半范数，由 $f \in F^k$ 而有限）。
+
+(c) $a = m$。此时 $|\Delta_h^m g_\varepsilon| = |\Delta_h^m(1 - \chi_\varepsilon)| = |\Delta_h^m \chi_\varepsilon|$（因为常数 $1$ 的 $m$ 阶差分为零，$m \ge 1$），$\Delta_h^0 f = f$，且由 (S1) $|\Delta_h^m g_\varepsilon(x)|^q \le C_m^q \varepsilon^{-mq} |h|^{mq}$。于是在 $d(x) < 4 \varepsilon$ 上（由 (S2)），
+\[
+A_m(x) \le C_m^q \varepsilon^{-mq} |f(x)|^q d(x)^{-rq} \int_{|h|<T(x)} |h|^{mq} |h|^{-n-(k-r)q} dh.
+\]
+现在 $mq - n - (k-r)q = q - n$，故径向积分为 $\int_{|h|<T(x)} |h|^{q-n} dh = \omega_{n-1} T(x)^q / q$（指数 $q-1 > -1$ 使它在 $h = 0$ 处可积），其中 $T(x) = d(x)/(2(k+1))$。因此
+\[
+A_m(x) \le C \varepsilon^{-mq} |f(x)|^q d(x)^{-rq} d(x)^q = C \varepsilon^{-mq} |f(x)|^q d(x)^{(1-r)q},
+\]
+再取 $p/q$ 次幂，
+\[
+\begin{aligned}
+A_m(x)^{p/q} &\le C \varepsilon^{-mp} |f(x)|^p d(x)^{(1-r)p} = C \varepsilon^{-mp} (|f(x)|/d(x)^k)^p d(x)^{(k+1-r)p} \\
+&= C \varepsilon^{-mp} (|f(x)|/d(x)^k)^p d(x)^{mp},
+\end{aligned}
+\]
+这里用到 $|f|^p d^{(1-r)p} = (|f|/d^k)^p d^{kp} d^{(1-r)p} = (|f|/d^k)^p d^{(k+1-r)p}$ 以及 $m = k+1-r$。在 $\{d(x) < 4 \varepsilon\}$ 上有 $\varepsilon^{-mp} d(x)^{mp} = (d(x)/\varepsilon)^{mp} < 4^{mp}$；因此
+\[
+\int_\Om A_m(x)^{p/q} dx \le C 4^{mp} \int_{d<4\varepsilon} |f/d^k|^p dx \to 0.
+\]
+把 (a)--(c) 与 (4.1) 结合，得到对每个 $r = 0,\dots,k$ 都有 $[f - f \chi_\varepsilon]_{r,k} \to 0$，并且其 $p$ 次幂 $[f-f \chi_\varepsilon]_{r,k}^p$ 被 $C(n,k,p,q)$ 乘以相应的 $\{d<4\varepsilon\}$ 上的积分之和所界。再与第四步结合，即得 $\|f - f \chi_\varepsilon\|_{F^k_{p,q}} \to 0$ 以及条款 (ii)。特别地，对每个 $\varepsilon$ 都有 $\|w\|_{F^k_{p,q}} < \infty$，故 $w = f - f \chi_\varepsilon \in F^k_{p,q}$；又因 $f \in F^k_{p,q}$ 且 $F^k_{p,q}$ 是线性空间，故 $f \chi_\varepsilon = f - w \in F^k_{p,q}$。这就证明了 (i)。
+
+\textbf{第六步（紧支与稠密性）} 由于 $\chi_\varepsilon = 0$ 于 $\{d < \varepsilon\}$ 上，函数 $f \chi_\varepsilon$ 本性支撑于 $\{x \in \Om : d(x) \ge \varepsilon\}$，而后者是 $\R^n$ 的闭子集、含于有界集 $\Om$ 中，故为紧集且含于 $\Om$。因此 $f \chi_\varepsilon \in F^k_{p,q,c}(\Om)$，且 $\|f - f \chi_\varepsilon\|_{F^k_{p,q}} \to 0$。这就证明了 $F^k_{p,q,c}(\Om)$ 在 $F^k_{p,q}(\Om)$ 中稠密。
+\end{proof}
+
+\begin{remark}[直觉]
+这是整数阶修正空间（CLWZ 定义 1.6）稠密性问题中的截断那一半。截断误差 $w = f(1-\chi_\varepsilon)$ 支撑在边界层 $\{d<2\varepsilon\}$ 中。在 $\Delta_h^{k+1-r}(\chi_\varepsilon f)$ 的离散 Leibniz 公式中，每一项要么带有 $f$ 的差分在基点 $x$ 处的全阶消失性（$a = 0$ 的项与 $1 \le a \le m-1$ 的项），要么带有截断函数额外的消失性 $|\Delta_h^m \chi_\varepsilon| \le C(|h|/\varepsilon)^m$（$a = m$ 的项）。真正起作用的只是两个记账恒等式。在中间的项里，权重恒等式 $d(x)^{-rq} = d(x)^{aq} d(x)^{-r'q}$（其中 $r' = r+a > r$）把该项变成 $r'$ 阶的源半范数，而因子 $(d(x)/\varepsilon)^{aq} \le 4^{aq}$ 是无害的，因为该层的宽度与 $\varepsilon$ 相若。在最顶端的项里，指数恒等式 $mq - n - (k-r)q = q-n$ 使径向积分成为 $\int_{|h|<T}|h|^{q-n}dh = \omega_{n-1}T^q/q$（于是贡献一个因子 $d(x)^q$），它与 $d(x)^{-rq}$ 结合给出 $d(x)^{(1-r)q}$，再在乘除 $d(x)^{kp}$ 之后给出因子 $(|f|/d^k)^p d(x)^{mp} \le 4^{mp}(|f|/d^k)^p$。关键的手段是 Leibniz 公式的那个版本 (L)：其中 $f$ 的差分取在\defterm{基点} $x$，而截断函数的差分取在平移点 $x+(m-a)h$；这就把权重 $d(x)^{-rq}$ 与源半范数指标 $r'$ 都附着在同一个点 $x$ 上，因而无需任何环域（annulus）或移位基点的比较。（另一个版本把 $f$ 的差分取在 $x+ah$，恰恰会产生此前诸次尝试都无法克服的那种环域困难。）注意这一结果与距离幂 $d^k$ 自身的失效（当 $k \ge 2$ 时 $d^k \notin F^k$，见附录 A）并不矛盾：截断必须使用光滑的截断函数与全阶消去，而不能使用边界距离恒等式。
+\end{remark}
+
+%==================================================================
+\subsection{修正后的高阶加权空间的非退化性}
+
+\begin{theorem}[修正后的高阶加权空间非退化]
+设 $n\ge1$，$\Om$ 为 $\R^n$ 中的非空有界域，对 $x\in\Om$ 令 $d(x)=\dist(x,\partial\Om)$，设 $\sigma\in(0,1)$，$q\in[1,\infty)$，$k\ge1$ 为整数，并令 $s:=k+\sigma$。设 $a>0$ 使 $\int_\Om d(y)^{-aq}\,dy<\infty$（情形 (I)；例如对每个满足 $aq<1$ 的有界 Lipschitz 域成立）。对 $\Om$ 上的可测函数 $g$ 令
+\[
+  [g]_{\sigma,q,a}:=\Big(\int_\Om\int_\Om |g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\,dx\Big)^{1/q},
+\]
+并定义 $X$ 为这样的 Lebesgue 可测函数 $f$ 之集：其弱导数 $D^\alpha f$（$|\alpha|\le k$）存在，且
+\[
+  \|f\|_X:=\sum_{|\alpha|\le k}\|D^\alpha f\|_{L^q(\Om)}
+  +\sum_{|\beta|=k}[D^\beta f]_{\sigma,q,a}
+  +\sum_{|\alpha|\le k}[D^\alpha f]_{\sigma,q,a}
+\]
+有限（这就是内蕴的 CLWZ (1.2) 范数，只是额外要求每个导数——而不只是最高阶导数——都属于加权分数阶空间）。则每个 $f\in C_c^\infty(\Om)$ 都属于 $X$，故 $X$ 含有非常数函数；特别地，$X$ 既不是 $\{0\}$，也不是常数构成的一维空间 $\R\cdot\mathbf{1}$。这与 CLWZ 定义 1.3 的修改内蕴空间形成对照：只要 $\int_\Om d^{-kq}\,dy=\infty$，后者就等于 $\R\cdot\mathbf{1}$（在加入 Hardy 项后则为 $\{0\}$）。
+\end{theorem}
+
+\begin{proof}
+设 $f\in C_c^\infty(\Om)$；则每个满足 $|\alpha|\le k$ 的 $D^\alpha f$ 都是支集含于 $K:=\supp f$ 的有界光滑函数，故对一切 $|\alpha|\le k$ 有 $\|D^\alpha f\|_{L^q(\Om)}<\infty$。对每个 $|\alpha|\le k$ 令
+\[
+  B_\alpha:=\sup\Big\{\frac{|D^\alpha f(u)-D^\alpha f(v)|}{\min(|u-v|,2)} : u,v\in\Om,\ u\ne v\Big\}<\infty ;
+\]
+它有限，因为 $D^\alpha f$ 是梯度有界的有界光滑函数，且当 $|u-v|\le1$ 时 $\min(|u-v|,2)\le|u-v|$，而当 $|u-v|\ge1$ 时 $\min(|u-v|,2)\ge1$ 且 $D^\alpha f$ 有界。于是对一切 $u,v\in\Om$，
+\[
+  |D^\alpha f(u)-D^\alpha f(v)|\le B_\alpha\min(|u-v|,2).
+\]
+因此对每个 $|\alpha|\le k$，
+\begin{align*}
+  [D^\alpha f]^q_{\sigma,q,a}
+  &=\int_\Om\int_\Om |D^\alpha f(x)-D^\alpha f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\,dx\\
+  &\le B_\alpha^q\int_\Om d(y)^{-aq}\Big(\int_\Om \min(|x-y|,2)^q\,|x-y|^{-n-\sigma q}\,dx\Big)dy\\
+  &\le B_\alpha^q\Big(\int_\Om d(y)^{-aq}\,dy\Big)\Big(\int_{\R^n}\min(|z|,2)^q\,|z|^{-n-\sigma q}\,dz\Big),
+\end{align*}
+其中最后一步在作代换 $z=x-y$ 后，将内层的 $x$-积分（在 $\Om$ 上）延拓为 $\R^n$ 上的积分。令
+\[
+  Z:=\int_{\R^n}\min(|z|,2)^q\,|z|^{-n-\sigma q}\,dz .
+\]
+在 $|z|=2$ 处分割：当 $|z|\le2$ 时 $\min(|z|,2)^q=|z|^q$，且 $|z|^{q-n-\sigma q}$ 在 $0$ 附近可积，因为 $q-n-\sigma q=-n+(1-\sigma)q>-n$（由于 $\sigma<1$）；当 $|z|\ge2$ 时 $\min(|z|,2)^q=2^q$，且 $2^q|z|^{-n-\sigma q}$ 在无穷远处可积，因为 $\sigma q>0$。故 $Z<\infty$。由假设 $\int_\Om d(y)^{-aq}\,dy<\infty$，故对每个 $|\alpha|\le k$ 有 $[D^\alpha f]_{\sigma,q,a}<\infty$，特别对每个 $|\beta|=k$ 成立。于是 $\|f\|_X<\infty$ 且 $f\in X$。
+
+空间 $X$ 含有每个 $f\in C_c^\infty(\Om)$；取任一非零的此类 $f$（例如支集含于 $\Om$ 内某球中的非零光滑鼓包函数）即得 $X$ 中的非常数元素。故 $X$ 既不是 $\{0\}$，也不是常数空间。
+\end{proof}
+
+\begin{remark}[直觉]
+CLWZ 定义 1.3 的退化来自\emph{加大}的权重 $d^{-(k-|\beta|)q}$。自然的修正改为：每个导数都保留原来的可积权重 $d^{-aq}$，但对每个导数（而不只是最高阶导数）都取加权分数阶半范数。在原来的可积权重下，紧支光滑函数属于该空间：它们的导数以 $\min(|x-y|,2)$ 为 Lipschitz 型界，于是半范数分解为 $d^{-aq}$ 的总质量与一个有限的径向积分之积。
+\end{remark}
