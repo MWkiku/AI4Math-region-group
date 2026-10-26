@@ -1,0 +1,671 @@
+% ===================================================================
+%  第 3 组：情形 (I) —— 可积权下的稠密性
+% ===================================================================
+
+本节处理权重可积的情形 (I)，即 $\nuA(\Om)=\int_\Om d(y)^{-aq}\,dy<\infty$。此时加权内在 Triebel--Lizorkin 空间 $\Fsp$ 含有足够多的函数，稠密性不再自动成立，必须借助内点半范数估计、磨光与 Whitney 局部化来证明。第一小节给出内点加权威半范数估计及可积权下的磨光收敛这一纯技术工具，其后三条事实依次建立 $p=q$、$s\in(0,1)$ 时的 $C^\infty$ 稠密性、Hardy 加强空间中的稠密性，以及区间上 $s>1$ 的高阶稠密性；与第 2 组情形 (II) 的退化现象相对照，这些结论说明可积权下光滑函数确实可以在完整范数意义下逼近空间中每个元素。
+
+%==================================================================
+\subsection{内点加权威半范数估计与可积权下的磨光收敛}
+
+\begin{lemma}[可积情形下的内点加权威半范数估计与磨光收敛]
+设 $n\ge 1$，$\Om$ 为 $\R^n$ 中的非空有界域，对 $x\in\Om$ 记 $d(x)=\dist(x,\partial\Om)$，设 $\sigma\in(0,1)$，$q\in[1,\infty)$。设 $w\colon\Om\to[0,\infty)$ 为 Borel 函数，满足
+\[
+  \|w\|_{L^1(\Om)}=\int_\Om w(y)\,dy<\infty .
+\]
+固定 $\delta>0$，并假设
+\[
+  W_\delta:=\esssup\,\{w(y) : y\in\Om,\ d(y)\ge\delta/2\}<\infty .
+\]
+设 $h\in L^q(\Om)$ 为 Lebesgue 可测函数，在边界层 $\{x\in\Om : d(x)<\delta\}$ 上 $h=0$ a.e.，且其无权 Gagliardo 半范数有限
+\[
+  [h]_{\sigma,q}:=\Big(\int_\Om\int_\Om |h(x)-h(y)|^q\,|x-y|^{-n-\sigma q}\,dy\,dx\Big)^{1/q}<\infty .
+\]
+则
+\begin{equation}
+  \int_\Om\int_\Om |h(x)-h(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\,dx
+  \le W_\delta\,[h]^q_{\sigma,q}
+  +2^{n+\sigma q}\delta^{-n-\sigma q}\,\|w\|_{L^1(\Om)}\,\|h\|^q_{L^q(\Om)} .
+  \tag{3.1}
+\end{equation}
+此外，再假设 $w$ 在 $\Om$ 上连续。设 $\rho$ 为支于 $\R^n$ 闭单位球内的非负光滑函数，$\int\rho=1$，对 $\varepsilon>0$ 令 $\rho_\varepsilon(x)=\varepsilon^{-n}\rho(x/\varepsilon)$，设 $k$ 为 $h$ 到 $\R^n$ 的零延拓，并令 $h_\varepsilon:=(k*\rho_\varepsilon)|_\Om$。则对每个满足 $0<\varepsilon<\delta/2$ 的 $\varepsilon$，都有 $h_\varepsilon\in C^\infty(\Om)$、$h_\varepsilon=0$ 于 $\{x\in\Om : d(x)<\delta/2\}$ 上，且加权威半范数
+\[
+  \int_\Om\int_\Om |(h_\varepsilon-h)(x)-(h_\varepsilon-h)(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\,dx
+\]
+当 $\varepsilon\to 0$ 时趋于 $0$。
+\end{lemma}
+
+\begin{proof}
+\emph{第一部分（估计）}. 由于在边界层 $\{z : d(z)<\delta\}$ 上 $h=0$ a.e.，只要 $d(y)<\delta$ 且 $d(x)<\delta$，被积函数 $|h(x)-h(y)|^q|x-y|^{-n-\sigma q}w(y)$ 即为零。将 $y$ 上的积分拆成两个集合 $\{d(y)<\delta/2\}$ 与 $\{d(y)\ge\delta/2\}$。
+
+\emph{(a) 集合 $\{d(y)<\delta/2\}$}. 若 $d(x)<\delta$，则 $h(x)=h(y)=0$ a.e.，故仅有满足 $d(x)\ge\delta$ 的 $x$ 有贡献；对这种 $x$ 以及满足 $d(y)<\delta/2$ 的 $y$，距离函数的反向三角不等式给出
+\[
+  |x-y|\ge d(x)-d(y)>\delta-\delta/2=\delta/2 ,
+\]
+从而 $|x-y|^{-n-\sigma q}\le(\delta/2)^{-n-\sigma q}=2^{n+\sigma q}\delta^{-n-\sigma q}$。因此
+\begin{equation}
+\begin{split}
+  &\int_\Om\int_{d(y)<\delta/2} |h(x)-h(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\,dx \\
+  &\qquad\le 2^{n+\sigma q}\delta^{-n-\sigma q}
+  \int_{d(x)\ge\delta}|h(x)|^q\,dx\cdot\int_{d(y)<\delta/2}w(y)\,dy \\
+  &\qquad\le 2^{n+\sigma q}\delta^{-n-\sigma q}\,\|w\|_{L^1(\Om)}\,\|h\|^q_{L^q(\Om)} .
+\end{split}
+  \tag{3.2}
+\end{equation}
+
+\emph{(b) 集合 $\{d(y)\ge\delta/2\}$}. 在该集合上按定义 $w(y)\le W_\delta$，故
+\begin{equation}
+\begin{split}
+  \int_\Om\int_{d(y)\ge\delta/2} |h(x)-h(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\,dx
+  &\le W_\delta\int_\Om\int_\Om |h(x)-h(y)|^q\,|x-y|^{-n-\sigma q}\,dy\,dx \\
+  &= W_\delta\,[h]^q_{\sigma,q} .
+\end{split}
+  \tag{3.3}
+\end{equation}
+将 (3.2) 与 (3.3) 相加即得所写出的估计 (3.1)。
+
+\emph{第二部分（磨光）}. 再假设 $w$ 在 $\Om$ 上连续；此时 $w$ 在 $\Om$ 的任一紧子集上的上确界均有限，特别地
+\[
+  W':=\sup\{w(y) : d(y)\ge\delta/4\}<\infty ,
+\]
+因为 $\{d\ge\delta/4\}$ 是 $\Om$ 的紧子集。设 $k$ 为 $h$ 的零延拓。则 $k\in L^q(\R^n)$，且差一个零测集，$\supp k$ 含于 $\{z\in\Om : d(z)\ge\delta\}$ 之中，这是因为 $h$ 在 $\{d<\delta\}$ 上 a.e. 为零。
+
+\emph{断言 1（$k$ 在 $\R^n$ 上的无权 Gagliardo 半范数有限）}. 事实上有
+\begin{equation}
+\begin{split}
+  [k]^q_{\sigma,q,\R^n}
+  &=\int_{\R^n}\int_{\R^n}|k(x)-k(y)|^q\,|x-y|^{-n-\sigma q}\,dy\,dx \\
+  &=[h]^q_{\sigma,q,\Om}
+  +2\int_{x\in\supp k}\int_{y\notin\Om}|h(x)|^q\,|x-y|^{-n-\sigma q}\,dy\,dx ,
+\end{split}
+  \tag{3.4}
+\end{equation}
+而对 $x\in\supp k$ 与 $y\notin\Om$ 有 $|x-y|\ge d(x)\ge\delta$；因此
+\[
+  \int_{y\notin\Om}|x-y|^{-n-\sigma q}\,dy
+  \le\int_{|x-y|\ge\delta}|x-y|^{-n-\sigma q}\,dy
+  =\frac{\omega_{n-1}\delta^{-\sigma q}}{\sigma q}<\infty
+\]
+（径向积分：$\omega_{n-1}\int_\delta^\infty r^{-n-\sigma q}r^{n-1}dr=\omega_{n-1}\int_\delta^\infty r^{-1-\sigma q}dr=\omega_{n-1}\delta^{-\sigma q}/(\sigma q)$，其中 $\omega_{n-1}$ 是 $\R^n$ 中单位球面 $S^{n-1}$ 的 $(n-1)$ 维测度）。故 (3.4) 中的交叉项至多为
+\[
+  \frac{2\omega_{n-1}\delta^{-\sigma q}}{\sigma q}\,\|h\|^q_{L^q(\Om)}<\infty ,
+\]
+从而
+\[
+  [k]^q_{\sigma,q,\R^n}\le[h]^q_{\sigma,q}
+  +\frac{2\omega_{n-1}\delta^{-\sigma q}}{\sigma q}\,\|h\|^q_{L^q(\Om)}<\infty .
+\]
+
+\emph{断言 2（$h_\varepsilon$ 光滑且在边界附近消失）}. 函数 $h_\varepsilon:=(k*\rho_\varepsilon)|_\Om$ 在 $\Om$ 上无穷次可微；且若 $0<\varepsilon<\delta/2$，则 $h_\varepsilon$ 在 $\{x\in\Om : d(x)<\delta/2\}$ 上为零。事实上，若 $x\in\Om$ 且 $h_\varepsilon(x)\neq0$，则存在 $z\in\supp k$ 使 $|x-z|\le\varepsilon$，于是
+\[
+  d(x)\ge d(z)-|x-z|\ge\delta-\varepsilon>\delta/2 .
+\]
+
+\emph{断言 3（在 $L^q$ 与无权半范数中的收敛）}. 当 $\varepsilon\to0$ 时 $\|h_\varepsilon-h\|_{L^q(\Om)}\to0$ 且 $[h_\varepsilon-h]_{\sigma,q,\Om}\to0$。对 $L^q$ 部分，
+\[
+  \|h_\varepsilon-h\|_{L^q(\Om)}\le\|k*\rho_\varepsilon-k\|_{L^q(\R^n)}\to0 ,
+\]
+这是磨光的标准 $L^q$ 连续性：由 Minkowski 不等式
+\[
+  \|k*\rho_\varepsilon-k\|_{L^q}\le\int\rho(z)\,\|\tau_z k-k\|_{L^q}\,dz\to0
+\]
+由控制收敛可得，其中用到 $\|\tau_z k-k\|_{L^q}\le2\|k\|_{L^q}$ 以及平移在 $L^q$ 中的连续性。对半范数部分使用平移公式：对 $g\in L^q(\R^n)$，
+\begin{equation}
+  [g]^q_{\sigma,q,\R^n}=\int_{\R^n}\|\tau_z g-g\|^q_{L^q(\R^n)}\,|z|^{-n-\sigma q}\,dz ,
+  \tag{3.5}
+\end{equation}
+这由代换 $y=x-z$ 得到。由于与 $\rho_\varepsilon$ 的卷积与平移交换，
+\[
+  \tau_z(k*\rho_\varepsilon)-(k*\rho_\varepsilon)=(\tau_z k-k)*\rho_\varepsilon ,
+\]
+故
+\[
+  \tau_z(k*\rho_\varepsilon)-(k*\rho_\varepsilon)-(\tau_z k-k)=(\tau_z k-k)*\rho_\varepsilon-(\tau_z k-k),
+\]
+从而由 (3.5)
+\begin{equation}
+  [k*\rho_\varepsilon-k]^q_{\sigma,q,\R^n}
+  =\int_{\R^n}\big\|(\tau_z k-k)*\rho_\varepsilon-(\tau_z k-k)\big\|^q_{L^q(\R^n)}\,|z|^{-n-\sigma q}\,dz .
+  \tag{3.6}
+\end{equation}
+对每个固定的 $z$，函数 $\tau_z k-k$ 属于 $L^q(\R^n)$ 且
+\[
+  \big\|(\tau_z k-k)*\rho_\varepsilon-(\tau_z k-k)\big\|_{L^q}\to0
+  \qquad(\varepsilon\to0)
+\]
+（磨光在 $L^q$ 中收敛）；此外该范数至多为 $2\|\tau_z k-k\|_{L^q}$，因为由 $\int\rho=1$ 与 $\rho\ge0$（Jensen 不等式）有 $\|g*\rho_\varepsilon\|_{L^q}\le\|g\|_{L^q}$。控制函数
+\[
+  2^q\,\|\tau_z k-k\|^q_{L^q}\,|z|^{-n-\sigma q}
+\]
+由断言 1 可积，其积分为 $2^q[k]^q_{\sigma,q,\R^n}<\infty$。故由控制收敛，$[k*\rho_\varepsilon-k]^q_{\sigma,q,\R^n}\to0$；又 $h_\varepsilon-h$ 是 $k*\rho_\varepsilon-k$ 在 $\Om$ 上的限制，所以
+\[
+  [h_\varepsilon-h]^q_{\sigma,q,\Om}\le[k*\rho_\varepsilon-k]^q_{\sigma,q,\R^n}\to0 .
+\]
+
+\emph{结论}. 最后，由断言 2 以及 $h$ 在 $\{d<\delta\}$ 上为零可知，$h_\varepsilon-h$ 在 $\{d<\delta/2\}$ 上为零。于是把第一部分应用于函数 $h_\varepsilon-h$，将 $\delta$ 换为 $\delta/2$，并注意权 $w$ 在更大的集合 $\{d\ge\delta/4\}$ 上被 $W'<\infty$ 控制，即得
+\begin{equation}
+\begin{split}
+  &\int_\Om\int_\Om |(h_\varepsilon-h)(x)-(h_\varepsilon-h)(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\,dx \\
+  &\qquad\le W'\,[h_\varepsilon-h]^q_{\sigma,q}
+  +2^{n+\sigma q}(\delta/2)^{-n-\sigma q}\,\|w\|_{L^1(\Om)}\,\|h_\varepsilon-h\|^q_{L^q(\Om)}\longrightarrow0
+\end{split}
+  \tag{3.7}
+\end{equation}
+当 $\varepsilon\to0$ 时成立，此处用到断言 3。这正是所断言的、$h_\varepsilon-h$ 的加权威半范数收敛到 $0$。
+\end{proof}
+
+\begin{remark}[直觉]
+在 $h$ 的支撑集上，到边界的距离至少是 $\delta$，因此权重的奇性部分与支撑集相互分离：在那里核函数是可积的，具有径向界 $\omega_{n-1}\delta^{-\sigma q}/(\sigma q)$，而只有 $w$ 的总质量进入估计。在权重有界的地方，加权威半范数被无权半范数控制。对一个在边界距离 $\ge\delta$ 处被支撑的函数作磨光，其磨光仍保持在距离 $\ge\delta/2$ 之外，并在无权 Gagliardo 半范数下收敛，因而也在加权威半范数下收敛。
+\end{remark}
+
+%==================================================================
+\subsection{情形 (I) 中 \texorpdfstring{$C^\infty$}{C-infinity} 在 \texorpdfstring{$p=q$}{p=q}、\texorpdfstring{$s\in(0,1)$}{s in (0,1)} 时的稠密性}
+
+\begin{theorem}[情形 (I)：$p=q$、$s\in(0,1)$ 时 $C^\infty$ 的稠密性]
+设 $n\ge1$，$\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$a>0$，$s\in(0,1)$，$p\in[1,\infty)$，并假设
+\[
+  \int_\Om d(y)^{-ap}\,dy<\infty
+\]
+（附录 A 的情形 (I)）。设 $F^s_{p,p}(\Om,d^{-aq})$ 为加权内蕴空间，其范数为
+\[
+  \|f\|_{F^s}:=\|f\|_{L^p(\Om)}
+  +\Big(\int_\Om\int_\Om |f(x)-f(y)|^p\,|x-y|^{-n-sp}\,d(y)^{-ap}\,dy\,dx\Big)^{1/p}.
+\]
+则 $C^\infty(\Om)\cap F^s_{p,p}(\Om,d^{-aq})$ 在 $F^s_{p,p}(\Om,d^{-aq})$ 中稠密，即 $C^\infty(\Om)\cap F^s_{p,p}(\Om,d^{-aq})$ 在 $F^s_{p,p}(\Om,d^{-aq})$ 中的闭包 $F^{s,2}_{p,p}(\Om,d^{-aq})$ 等于 $F^s_{p,p}(\Om,d^{-aq})$。
+\end{theorem}
+
+\begin{proof}
+设 $\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$a>0$，$s\in(0,1)$，$p\in[1,\infty)$，并假设
+\[
+  \nu(\Om):=\int_\Om d(y)^{-ap}\,dy<\infty .
+\]
+令 $v(y):=d(y)^{-ap}$，
+\[
+  [f]:=\Big(\int_\Om\int_\Om |f(x)-f(y)|^p\,|x-y|^{-n-sp}\,v(y)\,dy\,dx\Big)^{1/p};
+\]
+则 $F^s_{p,p}(\Om,d^{-aq})=\{f\in L^p : \|f\|_{L^p}+[f]<\infty\}$。
+
+我们使用 Kijaczko 的结果（\texttt{arXiv:2110.04012}，定理 19），其陈述为：对 $\R^d$ 中的非空开集 $\Om$，$s\in(0,1)$，$p\in[1,\infty)$，以及非负、局部有界且满足
+\[
+  \int_\Om w(x)(1+|x|)^{-d-sp}\,dx<\infty
+  \quad\text{与}\quad
+  \int_\Om v(x)(1+|x|)^{-d-sp}\,dx<\infty ,
+\]
+的权 $w,v$，记
+\[
+  \wt W^{s,p;w,v}(\Om):=\Big\{f\ \text{measurable} :
+  \int_\Om\int_\Om |f(x)-f(y)|^p|x-y|^{-d-sp}w(x)v(y)\,dx\,dy<\infty\Big\}.
+\]
+则集合 $C^\infty(\Om)\cap\wt W^{s,p;w,v}(\Om)$ 在该半范空间中稠密。其证明通过 Whitney 型局部磨光
+\[
+  P^\eta f=\sum_n (f\psi_n)*h_{\eta(Q_n)} ,
+\]
+得到稠密性，并且尺度可取为对所有 $n$ 满足 $\eta(Q_n)<1/k$。
+
+我们还使用 Dyda--Kijaczko 的结果（\texttt{arXiv:2009.00077}，定理 3）：对 $f\in L^p(\Om)$，只要对每个 $n$ 有 $\eta(Q_n)\to0$，$P^\eta f$ 就在 $L^p(\Om)$ 中收敛到 $f$。
+
+\emph{第一步（验证外部定理的假设）}. 取 $w:=1$、$v:=d^{-ap}$，两个权都在 $\Om$ 上连续且为正，因而局部有界。由于 $\Om$ 有界，$(1+|x|)^{-n-sp}$ 在 $\Om$ 上被正常数从上、下界控制，故定理 19 的两个条件归结为 $w\in L^1(\Om)$ 与 $v\in L^1(\Om)$；前者因为 $|\Om|<\infty$ 成立，后者即 $\nu(\Om)<\infty$。于是定理 19 适用，且我们的 $F^s$ 恰为 $L^p(\Om)\cap\wt W$，其范数为 $\|f\|_{L^p}+[f]$。
+
+\emph{第二步（选择尺度）}. 设 $f\in F^s$。对每个 $k\in\N$ 选取尺度 $\eta_k$，使得对所有 $n$ 有 $\eta_k(Q_n)<1/k$ 且 $[P^{\eta_k}f-f]<1/k$（定理 19）。则对每个固定的 $n$ 有 $\eta_k(Q_n)\to0$，故由 Dyda--Kijaczko 定理 3 得 $\|P^{\eta_k}f-f\|_{L^p(\Om)}\to0$。因此
+\[
+  \|P^{\eta_k}f-f\|_{F^s}
+  =\|P^{\eta_k}f-f\|_{L^p}+[P^{\eta_k}f-f]\longrightarrow0 .
+\]
+
+\emph{第三步（逼近序列属于交集）}. 每个 $P^{\eta_k}f$ 既属于 $C^\infty(\Om)$ 又属于 $\wt W$（定理 19）。它是局部 $L^p$ 平均的有限重叠和，故
+\[
+  \|P^{\eta_k}f\|_{L^p}\le C\,\|f\|_{L^p}<\infty ;
+\]
+从而 $P^{\eta_k}f\in C^\infty(\Om)\cap F^s$。
+
+\emph{第四步（结论）}. 于是 $C^\infty(\Om)\cap F^s$ 在 $F^s$ 中稠密，即
+\[
+  F^{s,2}_{p,p}(\Om,d^{-aq})=F^s_{p,p}(\Om,d^{-aq}) .
+\]
+\end{proof}
+
+\begin{remark}[直觉]
+Kijaczko 的单侧稠密性定理在 $w=1$、$v=d^{-ap}$ 可积时适用，而它给出的 Whitney 磨光逼近序列还在 $L^p$ 中收敛（Dyda--Kijaczko 定理 3），于是得到完整范数意义下的稠密性。
+\end{remark}
+
+%==================================================================
+\subsection{情形 (I) 中 Hardy 加强空间内的稠密性}
+
+\begin{theorem}[情形 (I)：$p=q$、$s\in(0,1)$ 时 Hardy 加强空间中的稠密性]
+设 $n\ge1$，$\Om$ 为 $\R^n$ 中的非空有界域，$d(x)=\dist(x,\partial\Om)$，$a>0$，$s\in(0,1)$，$p\in[1,\infty)$，且 $\int_\Om d(y)^{-ap}\,dy<\infty$（情形 (I)）。取附录 A 中的 $F^s_{p,p}(\Om,d^{-aq})$，令
+\[
+  \wt F^s_{p,p}(\Om,d^{-aq})
+  :=\Big\{f\in F^s_{p,p}(\Om,d^{-aq}) :
+  \|f d^{-(s+a)}\|_{L^p}+\|f d^{-(s+a+n/p)}\|_{L^p}<\infty\Big\}
+\]
+（CLWZ (1.6) 的 Hardy 加强空间，$q=p$）。则 $C^\infty(\Om)\cap\wt F^s_{p,p}(\Om,d^{-aq})$ 在 $\wt F^s_{p,p}(\Om,d^{-aq})$ 中按如下范数稠密：
+\[
+  \|f\|_{\wt F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p}+\|f d^{-(s+a+n/p)}\|_{L^p} ;
+\]
+等价地，$C^\infty(\Om)\cap\wt F^s_{p,p}(\Om,d^{-aq})$ 在 $\wt F^s_{p,p}(\Om,d^{-aq})$ 中的闭包等于 $\wt F^s_{p,p}(\Om,d^{-aq})$。
+\end{theorem}
+
+\begin{proof}
+设 $\Om$ 为 $\R^n$ 中的非空有界域，$a>0$，$s\in(0,1)$，$p\in[1,\infty)$，且 $\int_\Om d^{-ap}<\infty$。记
+\[
+  \|f\|_{F^s}=\|f\|_{L^p}+[f],\qquad
+  [f]=\Big(\int\int |f(x)-f(y)|^p\,|x-y|^{-n-sp}\,d(y)^{-ap}\,dy\,dx\Big)^{1/p},
+\]
+并令 $\wt F^s$ 为由满足如下条件的 $f\in F^s$ 组成的集合：
+\[
+  \|f\|_{\wt F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p}+\|f d^{-(s+a+n/p)}\|_{L^p}<\infty .
+\]
+令
+\[
+  w_H:=d(y)^{-(s+a)p},\qquad w_Q:=d(y)^{-(s+a)p-n}.
+\]
+
+\emph{外部输入.} Kijaczko（\texttt{arXiv:2110.04012}，定理 19）：对 $\R^d$ 中的非空开集 $\Om$，$s\in(0,1)$，$p\in[1,\infty)$，以及满足
+\[
+  \int w(x)(1+|x|)^{-d-sp}\,dx<\infty
+  \quad\text{与}\quad
+  \int v(x)(1+|x|)^{-d-sp}\,dx<\infty ,
+\]
+的非负局部有界权 $w,v$，记
+\[
+  \wt W^{s,p;w,v}(\Om)
+  =\Big\{f : \int\int |f(x)-f(y)|^p|x-y|^{-d-sp}w(x)v(y)\,dx\,dy<\infty\Big\};
+\]
+则集合 $C^\infty(\Om)\cap\wt W^{s,p;w,v}(\Om)$ 在该半范空间中稠密；其证明使用 Whitney 磨光 $P^\eta f=\sum_n(f\psi_n)*h_{\eta(Q_n)}$，其中对所有 $n$ 有 $\eta(Q_n)<1/k$，而由 Dyda--Kijaczko（\texttt{arXiv:2009.00077}，定理 3），只要对所有 $n$ 有 $\eta(Q_n)\to0$，这些磨光就满足 $P^\eta f\to f$ 于 $L^p$ 中。取 $w=1$、$v=d^{-ap}$ 时假设成立，故\defterm{存在}一组满足 $\eta(Q_n)<1/k$ 的逐立方体尺度，使 $P^{\eta}f\to f$ 于 $F^s$ 中。
+这是\defterm{存在性}陈述，不能读作“任意满足该上界的尺度都收敛”；后者要靠下文由所引定理证明导出的误差预算 \eqref{eq:seminorm-budget}。固定 $f\in\wt F^s$。
+
+\emph{Whitney 立方体上的比较}. 在放大的立方体 $Q_n^{**}$ 上 $d$ 与 $l(Q_n)$ 可比，故
+\[
+  w_H\le C\,l(Q_n)^{-(s+a)p}=:H_n ,
+  \qquad
+  w_Q\le C'\,l(Q_n)^{-(s+a)p-n}=:H'_n ,
+\]
+而在较小的立方体 $Q_n^*$ 上有 $H_n\le C''d^{-(s+a)p}$ 与 $H'_n\le C''d^{-(s+a)p-n}$。令
+\[
+  u_n:=(f\psi_n)*h_{\eta_n}-f\psi_n ,
+\]
+其支集在 $Q_n^{**}$ 中；于是 $P^\eta f-f=\sum_n u_n$，且每一点至多属于 $N$ 个 $Q_n^{**}$，故
+\begin{equation}
+  \int|P^\eta f-f|^p\,w_H\le C(N)\sum_n H_n\int|u_n|^p .
+  \tag{3.8}
+\end{equation}
+对每个 $n$，
+\begin{equation}
+  \int|u_n|^p\le 2^p\int h(z)\,\|\tau_{\eta_n z}(f\psi_n)-f\psi_n\|^p_{L^p}\,dz\longrightarrow0
+  \tag{3.9}
+\end{equation}
+（平移在 $L^p$ 中的连续性）。又有
+\begin{equation}
+  \sum_n H_n\|f\psi_n\|^p_{L^p}
+  \le C''\sum_n\int_{Q_n^*}|f|^p\,d^{-(s+a)p}
+  \le C'''\int|f|^p\,w_H<\infty
+  \tag{3.10}
+\end{equation}
+由有限重叠得到。
+
+\emph{统一的一次尺度选择.}
+至此出现了\defterm{四项}互不相同的要求：
+式 (3.9) 后的收敛性需要 $\eta_k(Q_n)<1/k$；
+\defterm{原加权分数阶半范数}需要 $[P^{\eta}f-f]_{F^s}<1/k$；
+$w_H$ 项需要 $H_n\int|u_n(\eta)|^p\le 2^{-n}/(C(N)k^{p})$；$w_Q$ 项需要 $H_n'\int|u_n(\eta)|^p\le 2^{-n}/(C(N)k^{p})$——其中 $H_n,H_n'$ 是下方 (3.8) 之前定义的\defterm{Hardy 权常数}（不是局部常数 $A_n$），$C(N)$ 是 (3.8) 中由有限重叠产生的常数。
+必须说明存在\defterm{同一族}尺度同时满足这四项，否则前面的估计只是若干互不相干的“存在某尺度”陈述。
+
+\emph{第四项为何不能由前三项自动得到.}
+所引定理只断言\defterm{存在}一组尺度使半范数误差趋于零；
+而本文为控制两个 Hardy 项必须在每个立方体上\defterm{重新}选取（更小的）尺度。
+关键在于 $[P^{\eta}f-f]_{F^s}$ 关于各尺度坐标 $\eta(Q_n)$ \defterm{并不单调}——减小某个 $\eta(Q_n)$ 未必使该半范数变小，
+故“存在一组”不能推广为“任意更小尺度仍收敛”，也不能靠取所有阈值的下确界绕过。因此必须另取一个\defterm{阈值}。
+
+\emph{半范数项：恢复所引定理的二变量加权估计.}
+这里必须小心：所引定理 19 的证明\defterm{不是}对单变量函数 $f\psi_n$ 使用普通 $L^p(\Om)$ 中的平移连续性。
+该证明的核心对象是定义在 $\R^{2n}$ 上的\defterm{二变量差商}
+\begin{equation}\label{eq:gn-def}
+  g_n(x,y):=\frac{f(x)\psi_n(x)-f(y)\psi_n(y)}{|x-y|^{\,n/p+s}}\;\mathbf 1_{\Om\times\Om}(x,y),
+\end{equation}
+相应地其估计为
+\begin{equation}\label{eq:seminorm-budget}
+  [P^{\eta}f-f]_{W^{s,p;w,v}}^{p}
+  \;\le\;M\sum_{n=1}^{\infty}\int_{\R^n}
+  \big\|\tau_{\eta(Q_n)u}g_n-g_n\big\|_{L^p(\R^{2n},\,w\times v)}^{p}\,h(u)\,du ,
+  \qquad M=12^{\,n(p-1)},
+\end{equation}
+其中 $h$ 为磨光核（$\supp h=B(0,1)$、$\int h=1$、$h\in C^\infty$）、$\tau_v$ 表示平移、
+$w\times v$ 指测度 $w(x)v(y)\,dx\,dy$。算子本身为
+$P^{\eta}f=\sum_{n}(f\psi_n)*h_{\eta(Q_n)}$，其中 $\eta:\mathcal W\to(0,\infty)$ 须满足
+\begin{equation}\label{eq:eta-admissible}
+  \eta(Q)<2\varepsilon\,l(Q)\qquad(\forall Q\in\mathcal W),\qquad 0<\varepsilon<\sqrt[4]{5/4}-1<\tfrac14 ;
+\end{equation}
+这是算子有定义的前提（它保证 $P^\eta f\in C^\infty(\Om)$）。常数 $M=12^{n(p-1)}$ 来源于每点至多属于
+$12^n$ 个放大立方体 $Q_n^{**}$。
+在本节取 $w=1$、$v=d^{-ap}$ 时，\eqref{eq:seminorm-budget} 左端正是 $[\,\cdot\,]_{F^s_{p,p}(\Om,d^{-ap})}^{p}$，
+故两个空间记号在此参数下等价。
+
+必须指出两点，否则把 \eqref{eq:seminorm-budget} 换成单变量形式是\defterm{无效}的：
+\begin{enumerate}[label=(\roman*)]
+  \item \eqref{eq:seminorm-budget} 中的范数含奇异核 $|x-y|^{-n/p-s}$、指示函数 $\mathbf 1_{\Om\times\Om}$
+        与权 $w\times v$，\defterm{不是}普通 $L^p(\Om)$ 范数，普通平移连续性无法控制它；
+  \item $\omega:=w\times v$ 一般\defterm{不具平移不变性}，故 $\|\tau_{tu}G-G\|_{L^p(\omega)}\to0$ 不能由
+        “$C_c$ 在 $L^p(\omega)$ 中稠密”两句推出（稠密性论证中 $\|\tau_{tu}(G-G')\|_{L^p(\omega)}$
+        并不等于 $\|G-G'\|_{L^p(\omega)}$）。故下面的论证改用\defterm{局部项 + 交叉项}的三分解（见式 \eqref{eq:three-term}），而不在单一区域上比较权。
+\end{enumerate}
+
+\emph{$g_n$ 的支集，以及为什么必须做三分解.}
+必须注意 $g_n$ 的支集\defterm{并不}落在 $Q_n^{**}\times Q_n^{**}$ 内：取
+$x\in\supp\psi_n$ 与 $y\in\Om\setminus Q_n^{**}$，则 $\psi_n(y)=0$，但一般仍有
+\[
+  g_n(x,y)=\frac{f(x)\psi_n(x)}{|x-y|^{n/p+s}}\ \ne\ 0 .
+\]
+正确的支集包含关系是
+\begin{equation}\label{eq:gn-support}
+  \supp g_n\ \subset\ \big(Q_n^{**}\times\Om\big)\ \cup\ \big(\Om\times Q_n^{**}\big).
+\end{equation}
+同样地，$g_n$ \defterm{不是}全局差商 $g$ 在 $Q_n^{**}\times Q_n^{**}$ 上限制后乘有界因子：由
+\begin{equation}\label{eq:gn-split}
+  f(x)\psi_n(x)-f(y)\psi_n(y)
+  =\psi_n(x)\bigl(f(x)-f(y)\bigr)+f(y)\bigl(\psi_n(x)-\psi_n(y)\bigr)
+\end{equation}
+可见第二项不能被 $f(x)-f(y)$ 的差商控制。因此不能只在 $Q_n^{**}\times Q_n^{**}$ 上比较权函数，
+必须按原文把 $\|\tau_tg_n-g_n\|^p_{L^p(w\times v)}$ 分成\defterm{局部项与交叉项}。
+
+\emph{三分解.} 记 $\omega:=w\times v$。对 $t<\eta(Q_n)$，按 $(x,y)$ 是否越过 $Q_n^{**}$ 拆开积分，
+得（与文献 [\ref{ref:DK}] 定理 12 的证明、以及它在 [\ref{ref:K}] 定理 19 中的加权版本同构；
+注意 $w\times v$ 不对称，故比对称情形多一项）
+\begin{equation}\label{eq:three-term}
+  \big\|\tau_tg_n-g_n\big\|^p_{L^p(\omega)}\ \le\ I_1+I_2+I_3 ,
+\end{equation}
+其中
+\begin{align*}
+  I_1&:=\int_{Q_n^{*}}\!\int_{Q_n^{**}}
+   \frac{\bigl|f(x-t)\psi_n(x-t)-f(y-t)\psi_n(y-t)-f(x)\psi_n(x)+f(y)\psi_n(y)\bigr|^p}
+        {|x-y|^{n+sp}}\,w(x)v(y)\,dy\,dx,\\
+  I_2&:=\int_{Q_n^{*}}\!\int_{\Om\setminus Q_n^{**}}
+   \frac{\bigl|f(x)\psi_n(x)-f(x-t)\psi_n(x-t)\bigr|^p}
+        {|x-y|^{n+sp}}\,w(x)v(y)\,dy\,dx,\\
+  I_3&:=\int_{Q_n^{*}}\!\int_{\Om\setminus Q_n^{**}}
+   \frac{\bigl|f(x)\psi_n(x)-f(x-t)\psi_n(x-t)\bigr|^p}
+        {|x-y|^{n+sp}}\,w(y)v(x)\,dy\,dx .
+\end{align*}
+
+\emph{第 1 步（局部项）}. 在 $Q_n^{**}$ 上 $w$、$v$ 均有界，记
+\[
+  A_n:=\Big(\sup_{Q_n^{**}}w\Big)\Big(\sup_{Q_n^{**}}v\Big)<\infty
+  \qquad\bigl(w=1,\ v=d^{-ap}\asymp l(Q_n)^{-ap}\ \text{于}\ Q_n^{**}\bigr).
+\]
+因 $Q_n^{*}\subset Q_n^{**}$，
+\[
+  I_1\ \le\ A_n\int_{Q_n^{*}}\!\int_{Q_n^{**}}
+  \frac{\bigl|\,\cdot\,\bigr|^p}{|x-y|^{n+sp}}\,dy\,dx
+  \ \le\ A_n\big\|\tau_tg_n-g_n\big\|^p_{L^p(\R^{2n},dx)} .
+\]
+
+\emph{第 2 步（交叉项）}. 用文献 [\ref{ref:DK}] 引理 11：若 $x\in Q_n^{*}$ 而 $y\notin Q_n^{**}$，则
+\[
+  |x-y|\ \ge\ c\,|y-x_n|,\qquad c=\frac{\varepsilon}{\varepsilon+\sqrt n},
+\]
+$x_n$ 为 $Q_n$ 的中心。于是
+\[
+  I_2\le c^{-n-sp}\Big(\sup_{Q_n^{*}}w\Big)D_n^{(v)}
+  \big\|\tau_t(f\psi_n)-f\psi_n\big\|^p_{L^p(dx)},\quad
+  I_3\le c^{-n-sp}\Big(\sup_{Q_n^{*}}v\Big)D_n^{(w)}
+  \big\|\tau_t(f\psi_n)-f\psi_n\big\|^p_{L^p(dx)},
+\]
+其中
+\[
+  D_n^{(v)}:=\int_{\Om\setminus Q_n^{**}}\frac{v(y)}{|y-x_n|^{n+sp}}\,dy,\qquad
+  D_n^{(w)}:=\int_{\Om\setminus Q_n^{**}}\frac{w(y)}{|y-x_n|^{n+sp}}\,dy .
+\]
+令 $D_n:=c^{-n-sp}\max\big\{\sup_{Q_n^{*}}w\cdot D_n^{(v)},\ \sup_{Q_n^{*}}v\cdot D_n^{(w)}\big\}$，则
+$I_2+I_3\le 2D_n\|\tau_t(f\psi_n)-f\psi_n\|^p_{L^p(dx)}$。
+
+\emph{$D_n$ 的显式界（在本文假设下有限）}.
+当 $y\notin Q_n^{**}$ 时 $|y-x_n|\ge\tfrac12l(Q_n^{**})\ge\tfrac12l(Q_n)$，故
+\begin{equation}\label{eq:Dn-bounds}
+  \begin{aligned}
+    D_n^{(v)}&=\int_{\Om\setminus Q_n^{**}}\frac{d(y)^{-ap}}{|y-x_n|^{n+sp}}\,dy
+    \ \le\ \Big(\frac{l(Q_n)}{2}\Big)^{-n-sp}\int_\Om d(y)^{-ap}\,dy\\
+    &=\ 2^{\,n+sp}\,l(Q_n)^{-n-sp}\int_\Om d(y)^{-ap}\,dy\ <\ \infty ,
+  \end{aligned}
+\end{equation}
+这里用的正是本节假设 $\int_\Om d^{-ap}dy<\infty$（即 $v=d^{-ap}\in L^1(\Om)$，与 [\ref{ref:K}] 条件 (6)
+在有界域上的等价形式一致）。同理，由 $w=1$ 得
+\begin{equation}\label{eq:Dnw}
+  D_n^{(w)}=\int_{\Om\setminus Q_n^{**}}\frac{dy}{|y-x_n|^{n+sp}}
+  \ \le\ 2^{\,n+sp}l(Q_n)^{-n-sp}|\Om|\ <\ \infty .
+\end{equation}
+又 $\sup_{Q_n^{*}}w=1$、$\sup_{Q_n^{*}}v\asymp l(Q_n)^{-ap}$，故
+\[
+  D_n\ \le\ c^{-n-sp}\max\big\{D_n^{(v)},\ C\,l(Q_n)^{-ap}D_n^{(w)}\big\}\ <\ \infty ,
+\]
+其中 $D_n^{(v)},D_n^{(w)}$ 由 \eqref{eq:Dn-bounds}、\eqref{eq:Dnw} 估计。
+
+\emph{第 3 步（两个误差预算，均由 Lebesgue 平移连续性导出）}.
+所需的是 $g_n\in L^p(\R^{2n},dx)$ 与 $f\psi_n\in L^p(\R^n,dx)$。后者显然：$|\psi_n|\le1$ 给出
+$\|f\psi_n\|_{L^p}\le\|f\|_{L^p}<\infty$。前者需要一点估计，我们把它写全。
+
+\emph{引理. $g_n\in L^p(\R^{2n},dx)$。}
+由 \eqref{eq:gn-split} 作两项估计，记
+\[
+  A:=\int_{\R^n}\!\!\int_{\R^n}\frac{|f(x)-f(y)|^p|\psi_n(x)|^p}{|x-y|^{n+sp}}\,dy\,dx,
+  \qquad
+  B:=\int_{\R^n}\!\!\int_{\R^n}\frac{|f(y)|^p|\psi_n(x)-\psi_n(y)|^p}{|x-y|^{n+sp}}\,dy\,dx .
+\]
+\emph{项 $A$.} 因 $\supp\psi_n\subset Q_n^{*}$ 而 $d\asymp l(Q_n)$ 于 $Q_n^{*}$ 上，把 $y$ 的积分分两段：
+(I) $|x-y|<\tfrac12d(x)$ 时 $d(y)\asymp d(x)\asymp l(Q_n)$，故 $1\le C\,l(Q_n)^{ap}d(y)^{-ap}$，于是
+\[
+  A_{\mathrm{I}}\ \le\ C\,l(Q_n)^{ap}\int_\Om\!\!\int_\Om\frac{|f(x)-f(y)|^p}{|x-y|^{n+sp}}d(y)^{-ap}dy\,dx
+  \ =\ C\,l(Q_n)^{ap}[f]^p_{F^s};
+\]
+(II) $|x-y|\ge\tfrac12d(x)$ 时 $|x-y|\ge c\,l(Q_n)$。此处\defterm{不能}把因子 $|Q_n^{*}|$ 同时加到第一项上：
+由 $|f(x)-f(y)|^p\le2^{p-1}\big(|f(x)|^p+|f(y)|^p\big)$ 只能得到
+\[
+  \int_{Q_n^{*}}\!\!\int_\Om|f(x)-f(y)|^p\,dy\,dx
+  \ \le\ 2^{p-1}\big(|\Om|+|Q_n^{*}|\big)\|f\|^p_{L^p} ,
+\]
+故
+\[
+  A_{\mathrm{II}}\ \le\ c^{-n-sp}l(Q_n)^{-n-sp}\cdot 2^{p-1}\big(|\Om|+|Q_n^{*}|\big)\|f\|^p_{L^p}\ <\ \infty .
+\]
+因 $|Q_n^{*}|\asymp l(Q_n)^n$，该界与 $l(Q_n)^{-sp}\|f\|^p_{L^p}$ 同为 $n$ 的确定函数；
+一般情形下它\defterm{依赖}于 $n$（$f$ 的 $L^p$ 质量可以集中在很小的立方体中），
+但对\defterm{每个固定的} $n$ 均有限，而这正是本节所需的全部。
+
+\emph{项 $B$.} 用 $\psi_n\in C_c^\infty$ 的 Lipschitz 界与 $|\psi_n|\le1$：
+$|\psi_n(x)-\psi_n(y)|\le C\min\{1,|x-y|/l(Q_n)\}$（同 [\ref{ref:DK}] 中分割函数的性质）。
+于是 $|\psi_n(x)-\psi_n(y)|\ne0$ 迫使 $x$ 或 $y$ 属于 $\supp\psi_n\subset Q_n^{*}$。分两段：
+(I\('\)) $|x-y|\le 2l(Q_n)$：$|\psi_n(x)-\psi_n(y)|^p\le C^p l(Q_n)^{-p}|x-y|^{p}$，于是
+\[
+  B_{\mathrm{I}'}\le C^p l(Q_n)^{-p}\int_\Om|f(y)|^p\!\!\int_{|x-y|\le 2l(Q_n)}\!\!|x-y|^{p-n-sp}dx\,dy
+  \ \lesssim\ l(Q_n)^{-sp}\|f\|^p_{L^p},
+\]
+其中用到 $p-n-sp>-n$（即 $p>sp$，由 $0<s<1\le p$ 保证）故内层积分 $\asymp l(Q_n)^{p-sp}$；
+(II\('\)) $|x-y|>2l(Q_n)$：此时 $|\psi_n(x)-\psi_n(y)|\le2$，且
+$\int_{|x-y|>2l(Q_n)}|x-y|^{-n-sp}dx\lesssim l(Q_n)^{-sp}$，故
+$B_{\mathrm{II}'}\lesssim l(Q_n)^{-sp}\|f\|^p_{L^p}$。
+
+合并得
+\[
+  \|g_n\|^p_{L^p(\R^{2n},dx)}\ \le\ 2^{p-1}(A+B)
+  \ \lesssim\ l(Q_n)^{ap}[f]^p_{F^s}+l(Q_n)^{-sp}\|f\|^p_{L^p}\ <\ \infty .
+\]
+（注意该界依赖于 $n$，这是允许的：它只用于确定阈值 $\theta^{(1a)}_{n,k}$，而该阈值本就允许依赖于 $n$ 与 $k$。）
+
+于是\defterm{普通}（Lebesgue）平移连续性给出，并关于 $|t|$ 一致地，
+\[
+  \big\|\tau_tg_n-g_n\big\|_{L^p(\R^{2n},dx)}\longrightarrow0,
+  \qquad
+  \big\|\tau_t(f\psi_n)-f\psi_n\big\|_{L^p(\R^n,dx)}\longrightarrow0
+  \qquad(t\to0).
+\]
+据此取阈值 $\theta^{(1a)}_{n,k},\theta^{(1b)}_{n,k}>0$，使得当
+$0<|t|<\min\{\theta^{(1a)}_{n,k},\theta^{(1b)}_{n,k}\}$ 时
+\[
+  \big\|\tau_tg_n-g_n\big\|^p_{L^p(dx)}<\frac{1}{Mk^{p}2^{n+1}A_n},
+  \qquad
+  \big\|\tau_t(f\psi_n)-f\psi_n\big\|^p_{L^p(dx)}<\frac{1}{Mk^{p}2^{n+2}D_n}.
+\]
+（注意此处\defterm{仅}用到 Lebesgue 范数，不涉及非平移不变的权 $w\times v$；
+（注意此处\defterm{仅}用到 Lebesgue 范数，不涉及非平移不变的权 $w\times v$；加权的作用完全体现在 $A_n$ 与 $D_n$ 这两个有限常数上。）
+
+\emph{第 4 步（合并）}. 令 $\theta^{(1)}_{n,k}:=\min\{\theta^{(1a)}_{n,k},\theta^{(1b)}_{n,k}\}$。
+由第 1--3 步及 \eqref{eq:three-term}，只要 $0<\eta(Q_n)<\theta^{(1)}_{n,k}$，
+\[
+  \big\|\tau_{\eta(Q_n)u}g_n-g_n\big\|^p_{L^p(\omega)}
+  \le I_1+I_2+I_3
+  \le \frac{1}{Mk^{p}2^{n+1}}+\frac{2}{Mk^{p}2^{n+2}}
+  \le \frac{1}{Mk^{p}2^{n}} ,
+\]
+对一切 $|u|\le1$ 成立（因 $\supp h\subset B(0,1)$）。代入 \eqref{eq:seminorm-budget} 并注意 $\int h=1$，
+\[
+  [P^{\eta}f-f]_{F^s}^{p}
+  \ \le\ M\sum_{n}\frac{1}{Mk^{p}2^{n}}\ \le\ \frac{1}{k^{p}},
+  \qquad\text{即}\qquad
+  [P^{\eta}f-f]_{F^s}\ \le\ \frac1k .
+\]
+此结论对\defterm{任意}满足该上界的尺度族成立，这正是下文把 $\theta^{(1)}_{n,k}$ 并入统一选择的原因。
+
+为此固定 $k\in\N$ 与立方体下标 $n$，记
+\[
+  e_n(\eta):=\int|u_n(\eta)|^p,\qquad u_n(\eta):=(f\psi_n)*h_\eta-f\psi_n .
+\]
+由平移在 $L^p$ 中的连续性，对每个固定的 $n$ 有 $e_n(\eta)\to0$（$\eta\to0$）。于是可分别取阈值
+$\theta^{(2)}_{n,k}>0$、$\theta^{(3)}_{n,k}>0$，使得
+\[
+  0<\eta<\theta^{(2)}_{n,k}\ \Longrightarrow\ H_n\,e_n(\eta)\le\frac{2^{-n}}{C(N)k^{p}},
+  \qquad
+  0<\eta<\theta^{(3)}_{n,k}\ \Longrightarrow\ H'_n\,e_n(\eta)\le\frac{2^{-n}}{C(N)k^{p}}.
+\]
+令
+\[
+  \eta_k(Q_n):=\frac12\min\Big\{\frac1k,\ 2\varepsilon\,l(Q_n),\ \theta^{(1)}_{n,k},\ \theta^{(2)}_{n,k},\ \theta^{(3)}_{n,k}\Big\}>0 .
+\]
+因 $\eta_k(Q_n)\le\varepsilon\,l(Q_n)<2\varepsilon\,l(Q_n)$，算子定义所需的条件 \eqref{eq:eta-admissible} 成立；
+又因 $\eta_k(Q_n)\le 1/(2k)$，
+对每个固定的 $n$ 有 $\eta_k(Q_n)\to0$（$k\to\infty$），故 Dyda--Kijaczko 定理 3 所需的
+$\eta(Q_n)\to0$ 亦满足。
+
+\emph{逐项收敛.}
+\textbf{(半范数项)} 由 \eqref{eq:seminorm-budget} 及 $\eta_k(Q_n)<\theta^{(1)}_{n,k}$，
+\[
+  [P^{\eta_k}f-f]_{F^s}<\frac1k\longrightarrow0 .
+\]
+\textbf{($L^p$ 项)} 由 $\eta_k(Q_n)<1/k$ 与 Dyda--Kijaczko 定理 3，$\|P^{\eta_k}f-f\|_{L^p}\to0$。
+\textbf{($w_H$ 项)} 由式 (3.8) 与 $\eta_k$ 的第三项要求，
+\[
+  \int|P^{\eta_k}f-f|^p\,w_H\le C(N)\sum_n H_n\int|u_n|^p\le\frac{1}{k^{p}}\longrightarrow0 .
+\]
+\textbf{($w_Q$ 项)} 同法，由第四项要求，并利用
+\[
+  \sum_n H'_n\|f\psi_n\|^p_{L^p}\le C'''\int|f|^p\,w_Q<\infty ,
+\]
+故 $\int|P^{\eta_k}f-f|^p\,w_Q\le 1/k^{p}\longrightarrow0$。
+
+由以上四项，$\|P^{\eta_k}f-f\|_{\wt F^s}\le 1/k+1/k+1/k=3/k\longrightarrow0$，即\defterm{同一族} $\{P^{\eta_k}f\}_{k}$ 在 $\wt F^s$ 范数中收敛于 $f$；
+求和的可控性来自 $Q_n^{**}$ 的有限重叠（每点至多属于 $N:=12^{n}$ 个），与逐立方体选取的尺度无关。
+
+\emph{逼近序列属于交集}. 最后，
+\[
+  \int|P^\eta f|^p\,w_H\le C(N)\sum_n H_n\|f\psi_n\|^p_{L^p}<\infty
+\]
+对 $w_Q$ 同样成立，故每个 $P^{\eta_k}f$ 属于 $C^\infty\cap\wt F^s$。因此 $C^\infty\cap\wt F^s$ 在 $\wt F^s$ 中稠密。
+\end{proof}
+
+\begin{remark}[直觉]
+在一个 Whitney 立方体上，两个 Hardy 权重都与常数可比，因此 Hardy 加权的误差是一个有限加权的局部误差之和；由于 $f$ 属于 Hardy 加强空间，这个和收敛，而尺度的对角选取使误差趋于零。
+\end{remark}
+
+%==================================================================
+\subsection{情形 (I) 中区间上 \texorpdfstring{$s>1$}{s>1} 时的稠密性}
+
+\begin{theorem}[情形 (I)：$s\in(1,\infty)\setminus\N$、$p=q$ 时区间上 $C^\infty$ 的稠密性]
+设 $\Om:=(0,1)$，并对 $x\in(0,1)$ 令 $d(x):=\min(x,1-x)=\dist(x,\{0,1\})$。设 $s\in(1,\infty)\setminus\N$，令 $k:=\lfloor s\rfloor$，$\sigma:=s-k\in(0,1)$，设 $q\in[1,\infty)$，$a>0$。设 $F^s_{q,q}((0,1),d^{-aq})$ 为加权内蕴 Triebel--Lizorkin 空间，其范数为
+\[
+  \|f\|:=\sum_{m=0}^{k}\|f^{(m)}\|_{L^q(0,1)}+[f^{(k)}]_{\sigma,q,a},
+\]
+其中 $f^{(m)}$ 为弱导数，
+\[
+  [g]_{\sigma,q,a}:=\Big(\int_0^1\int_0^1|g(x)-g(y)|^q\,|x-y|^{-1-\sigma q}\,d(y)^{-aq}\,dy\,dx\Big)^{1/q}.
+\]
+则 $C^\infty(0,1)\cap F^s_{q,q}((0,1),d^{-aq})$ 在 $F^s_{q,q}((0,1),d^{-aq})$ 中稠密；等价地，$C^\infty(0,1)\cap F^s$ 在 $F^s$ 中的闭包等于 $F^s$。
+\end{theorem}
+
+\begin{proof}
+设 $\Om:=(0,1)$，$d(x):=\min(x,1-x)$。$f$ 的内蕴加权范数为
+\[
+  \|f\|:=\sum_{m=0}^{k}\|f^{(m)}\|_{L^q(0,1)}+[f^{(k)}]_{\sigma,q,a},
+\]
+其中
+\[
+  [g]_{\sigma,q,a}:=\Big(\int_0^1\int_0^1|g(x)-g(y)|^q\,|x-y|^{-1-\sigma q}\,d(y)^{-aq}\,dy\,dx\Big)^{1/q};
+\]
+这是 CLWZ (1.2) 的一维情形（恰有一个多重指标 $\beta$ 满足 $|\beta|=k$，即 $\beta=(k)$，且 $D^\beta f=f^{(k)}$）。
+
+\emph{情形 A：$aq<1$}. 此时
+\[
+  \int_0^1 d(y)^{-aq}\,dy=2\int_0^{1/2}y^{-aq}\,dy<\infty .
+\]
+设 $f\in F^s_{q,q}((0,1),d^{-aq})$，令 $g:=f^{(k)}$。则 $g\in L^q(0,1)$ 且 $[g]_{\sigma,q,a}<\infty$，即 $g$ 属于 CLWZ (1.2) 中 $s=\sigma\in(0,1)$、$p=q$ 的分数阶空间 $F^\sigma_{q,q}((0,1),d^{-aq})$。由附录 A（情形 (I) 中 $p=q$、$s\in(0,1)$ 的 $C^\infty$ 稠密性，应用于 $\Om=(0,1)$、$s=\sigma$、$p=q$ 以及总积分有限的同一权 $d^{-aq}$），集合 $C^\infty(0,1)\cap F^\sigma_{q,q}$ 在 $F^\sigma_{q,q}$ 中稠密。故存在 $C^\infty(0,1)$ 中的序列 $(g_j)$，使得
+\begin{equation}
+  \|g_j-g\|_{L^q(0,1)}\to0
+  \quad\text{与}\quad
+  [g_j-g]_{\sigma,q,a}\to0 .
+  \tag{3.11}
+\end{equation}
+对 $x\in(0,1)$ 定义
+\[
+  f_j(x):=\sum_{m=0}^{k-1}\frac{f^{(m)}(0)}{m!}\,x^m
+  +\frac{1}{(k-1)!}\int_0^x (x-t)^{k-1}g_j(t)\,dt .
+\]
+数 $f^{(m)}(0)$ 是定义良好的：$f\in W^{k,q}(0,1)$ 且 $q\ge1$ 时，由 $f^{(k-1)}$ 的绝对连续性与 $f^{(k)}$ 的可积性可知，极限
+\[
+  f^{(m)}(0):=\lim_{x\to0+}f^{(m)}(x)
+\]
+对 $0\le m\le k-1$ 存在且有限。每个 $g_j$ 在 $(0,1)$ 上光滑，故 $f_j$ 在 $(0,1)$ 上光滑。对积分项求导 $k$ 次得 $f_j^{(k)}=g_j$，且对 $0\le m\le k-1$ 有 $f_j^{(m)}(0)=f^{(m)}(0)$。
+
+带积分余项的 Taylor 公式对 $f\in W^{k,q}(0,1)$ 成立，因为 $f^{(k-1)}$ 绝对连续且 $f^{(k)}\in L^1(0,1)$；它给出，对 a.e.\ $x\in(0,1)$，
+\begin{equation}
+  f(x)=\sum_{m=0}^{k-1}\frac{f^{(m)}(0)}{m!}\,x^m
+  +\frac{1}{(k-1)!}\int_0^x (x-t)^{k-1}g(t)\,dt .
+  \tag{3.12}
+\end{equation}
+于是，记 $h:=g_j-g$，$e_j:=f_j-f$，有
+\begin{equation}
+  e_j(x)=\frac{1}{(k-1)!}\int_0^x (x-t)^{k-1}h(t)\,dt ,
+  \tag{3.13}
+\end{equation}
+且对 $0\le m\le k-1$，
+\begin{equation}
+  e_j^{(m)}(x)=\frac{1}{(k-1-m)!}\int_0^x (x-t)^{k-1-m}h(t)\,dt
+  \tag{3.14}
+\end{equation}
+（因为 $f_j$ 与 $f$ 的 Taylor 多项式部分相互抵消）。对 $0\le m\le k-1$，H\"older 不等式给出
+\begin{equation}
+  |e_j^{(m)}(x)|
+  \le\frac{1}{(k-1-m)!}\Big(\int_0^x (x-t)^{(k-1-m)q'}\,dt\Big)^{1/q'}\|h\|_{L^q(0,1)}
+  \le C_{k,q}\,\|h\|_{L^q(0,1)} ,
+  \tag{3.15}
+\end{equation}
+其中 $q'$ 为共轭指数（当 $q=1$ 时取 $q'=\infty$，估计立即成立），且 $t$ 积分有限是因为 $(k-1-m)q'\ge0$。因此
+\begin{equation}
+  \|e_j^{(m)}\|_{L^q(0,1)}\le C_{k,q}\,\|h\|_{L^q(0,1)}\longrightarrow0
+  \quad\text{for } 0\le m\le k-1,
+  \qquad
+  e_j^{(k)}=h ,
+  \tag{3.16}
+\end{equation}
+故由 (3.11) 得 $\|f_j-f\|_{W^{k,q}(0,1)}=\sum_{m=0}^{k}\|e_j^{(m)}\|_{L^q(0,1)}\to0$。此外由 (3.11)
+\[
+  [f_j^{(k)}-f^{(k)}]_{\sigma,q,a}=[h]_{\sigma,q,a}\longrightarrow0
+\]
+因此 $\|f_j-f\|\to0$，且 $f_j\in C^\infty(0,1)\cap F^s_{q,q}((0,1),d^{-aq})$，因为 $f_j$ 光滑，其阶数不超过 $k-1$ 的导数有界（$0\le m\le k-1$ 时 $|f_j^{(m)}|$ 被多项式部分加上 $C_{k,q}\|g_j\|_{L^q}$ 控制）；最高阶导数按构造满足 $f_j^{(k)}=g_j$，而 $g_j$ 只属于目标空间 $F^\sigma_{q,q}$，\defterm{一般并不有界}。附带说明：本步只用到 $m\le k-1$ 的有界性。这就证明了情形 A 中的稠密性。
+
+\emph{情形 B：$aq\ge1$}. 此时
+\[
+  \int_0^1 d(y)^{-aq}\,dy=\infty ,
+\]
+故对权 $d^{-aq}$，$\Om=(0,1)$ 属于情形 (II)。由附录 A（非可积情形下的退化，取 $n=1$、$\Om=(0,1)$、$a$、$q$、$p=q$、$s\in(0,\infty)\setminus\N$），加权内蕴空间 $F^s_{q,q}((0,1),d^{-aq})$ 等于 $P_k$，即次数不超过 $k$ 的实多项式在 $(0,1)$ 上限制的集合。每个这样的多项式都在 $(0,1)$ 上无穷次可微，故 $C^\infty(0,1)\cap F^s=F^s$，稠密性陈述平凡成立。
+
+两种情形合起来覆盖了所有 $a>0$，证明完成。
+\end{proof}
+
+\begin{remark}[直觉]
+在一维情形下最高阶导数可以积分回去：每个 $f\in F^s$ 都能由 $g=f^{(k)}$ 通过带积分余项的 Taylor 公式还原。于是 $g$ 在 $\sigma$ 阶空间 $F^\sigma$ 中的逼近 $g_j$（由已验证的 $s\in(0,1)$ 可积权稠密性事实给出）可以再积分成光滑的 $f_j$，满足 $f_j^{(k)}=g_j$；Taylor 余项则控制所有低阶导数。这完全绕开了 Leibniz 障碍，因为并没有对 $f$ 作截断。
+\end{remark}

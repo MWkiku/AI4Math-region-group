@@ -1,0 +1,451 @@
+% ===================================================================
+%  第 6 组：Hardy 项的非冗余性、延拓路线的终结与技术工具
+% ===================================================================
+
+本节处理论证中的两个转折点。前两条事实说明 Hardy 增广项绝不是内蕴范数的推论：常数函数 $1$ 属于 $\Fsp$ 而其第二个 Hardy 范数 $\|f d^{-(s+a+n/q)}\|_{L^q(\Om)}$ 恒为 $+\infty$，因此 $\Fsp$ 永远不含于 $\tiF$，关于稠密性的正确断言只能在 $\tiF$ 内部表述。第三条事实进一步表明，当 $s>1$ 时连经典意义下的 $C_c^\infty$ 稠密性都不成立（Poincaré 障碍），而第四条事实则终结了权化延拓算子路线：在无限质量情形下 $\R^n$ 上的加权空间退化为 $\{0\}$，CLWZ 命题 1.12 的结论不可能成立。最后两条事实是为上述全部论证提供支撑的技术工具，分别是向量值 $L^p$ 与无权重混合 Gagliardo 半范数中的平移连续性，以及混合范数加权空间在局部与情形 (I) 下的可积性。
+
+%==================================================================
+\subsection{Hardy 项的非冗余性：常数函数属于 \texorpdfstring{$F^{s}_{p,q}$}{Fsp} 但不属于 \texorpdfstring{$\tiF$}{tilde F}}
+%==================================================================
+
+\begin{theorem}[常数属于 $F^{s}_{p,q}$ 但不属于 Hardy 加强空间：内蕴空间不包含于 $\wt F^{s}_{p,q}$]
+设 $n\ge1$，$\Om$ 是 $\R^n$ 中的非空有界 Lipschitz 区域，$d(x)=\dist(x,\partial\Om)$（$x\in\Om$），$s\in(0,\infty)\setminus\N$，$a>0$，$p,q\in[1,\infty)$。记 $s=k+\sigma$，其中 $k\in\N_0$，$\sigma\in(0,1)$；设 $\Fsp$ 为 CLWZ (1.1)--(1.3) 的加权内蕴 Triebel--Lizorkin 空间，其范数定义为
+\begin{equation}\label{eq:sec6-f1-norm}
+  \begin{split}
+    \|f\|_{F^s}
+    &:=\sum_{|\alpha|\le k}\|D^\alpha f\|_{L^p(\Om)}\\
+    &\quad+\sum_{|\beta|=k}\Big(\int_\Om\Big[\int_\Om|D^\beta f(x)-D^\beta f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\Big]^{p/q}dx\Big)^{1/p},
+  \end{split}
+\end{equation}
+其中每一项在其不为有限时约定取 $+\infty$。再令
+\begin{equation}\label{eq:sec6-f1-tildenorm}
+  \|f\|_{\wt F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p(\Om)}+\|f d^{-(s+a+n/q)}\|_{L^q(\Om)},
+\end{equation}
+\begin{equation}\label{eq:sec6-f1-hatnorm}
+  \|f\|_{\wh F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p(\Om)},
+\end{equation}
+以及 $\tiF:=\{f\in\Fsp:\|f\|_{\wt F^s}<\infty\}$，$\hoF:=\{f\in\Fsp:\|f\|_{\wh F^s}<\infty\}$。则：
+\begin{enumerate}[label=(\roman*)]
+  \item 常数函数 $1$（在 $\Om$ 上恒等于 $1$）属于 $\Fsp$，且 $\|1\|_{F^s}=|\Om|^{1/p}$；
+  \item $\int_\Om d(y)^{-(s+a)q-n}\,dy=+\infty$；等价地，函数 $1\cdot d^{-(s+a+n/q)}$ 的 $L^q$ 范数为 $+\infty$；
+  \item 因此 $1$ 不属于 $\tiF$，且对每个 $s\in(0,\infty)\setminus\N$、每个 $a>0$ 与所有 $p,q\in[1,\infty)$，$\Fsp$ \emph{不}包含于 $\tiF$——特别地，对 $p=q$ 亦然；
+  \item $1$ 属于 $\hoF$ 当且仅当 $\int_\Om d(y)^{-(s+a)p}\,dy<\infty$；特别地，只要 $(s+a)p\ge1$，$1$ 就不属于 $\hoF$。
+\end{enumerate}
+(iii) 的要点在于：第二个 Hardy 范数，即 $f d^{-(s+a+n/q)}$ 的 $L^q$ 范数，永远不可能是内蕴范数的推论，因为它含有额外的因子 $d^{-n}$，而该因子使得对\emph{每一个}在边界上不消失的 $f$，相应的权都不可积（对常数 $1$ 已经如此）。因此，作为关于原始内蕴空间的陈述，$\Fsp$ 包含于 $\tiF$ 是错误的；而 Hardy 加强空间的稠密性断言必须（在已验证的 $p=q$ 结果 附录 A 中确实如此）在 $\tiF$ \emph{内部}表述。
+\end{theorem}
+
+\begin{proof}
+\emph{第 0 步（常数函数）}. 对每个满足 $|\alpha|\ge1$ 的重指标 $\alpha$ 都有 $D^\alpha 1=0$（弱导数）。若 $k\ge1$，则对每个满足 $|\beta|=k$ 的 $\beta$ 有 $D^\beta 1=0$，因为 $|\beta|=k\ge1$。若 $k=0$，第二个和只含单项 $\beta=0$，且 $\sigma=s$；该项消失，因为 $D^0 1=1$ 为常数，故对一切 $x,y\in\Om$ 有 $|D^0 1(x)-D^0 1(y)|=|1-1|=0$。于是，无论 $k=0$ 还是 $k\ge1$，\eqref{eq:sec6-f1-norm} 中 $\|1\|_{F^s}$ 的每一项都消失，仅剩第一个和中 $\alpha=0$ 的项，而该项为
+\[
+  \|1\|_{L^p(\Om)}=|\Om|^{1/p}<\infty
+\]
+（因为 $\Om$ 有界，故 $|\Om|<\infty$）。这就证明了 (i)。
+
+\emph{第 1 步（$q$-Hardy 权的发散性）}. 取 $c:=(s+a)q+n$，应用附录 A（Lipschitz 区域边界层的线性下界，以及所有幂 $d^{-c}$（$c\ge1$）的不可积性）。由于 $s>0$、$a>0$、$q\ge1$、$n\ge1$，有 $c>n\ge1$，故 $c$ 是满足 $c\ge1$ 的实数；所引事实给出
+\[
+  \int_\Om d(y)^{-c}\,dy=+\infty,
+\]
+即 $\int_\Om d(y)^{-(s+a)q-n}\,dy=+\infty$。又 $(s+a+n/q)q=(s+a)q+n$，故 $\|1\cdot d^{-(s+a+n/q)}\|_{L^q(\Om)}$ 的 $q$ 次幂等于
+\[
+  \int_\Om\big(d(y)^{-(s+a+n/q)}\big)^q\,dy=\int_\Om d(y)^{-(s+a)q-n}\,dy=+\infty.
+\]
+这就证明了 (ii)。
+
+\emph{第 2 步（不属于增广空间）}. 由 (i)，$1$ 是 $\Fsp$ 的元素。由 (ii)，$1$ 的 $L^q$-Hardy 项为无穷，故按 \eqref{eq:sec6-f1-tildenorm} 有 $\|1\|_{\wt F^s}=+\infty$，从而常数函数 $1$ 不是
+\[
+  \tiF=\{f\in\Fsp:\|f\|_{\wt F^s}<\infty\}
+\]
+的元素。由于 $1$ 属于原始空间而不属于带 tilde 的空间，原始空间 $\Fsp$ 不是 $\tiF$ 的子集。这就证明了 (iii)。注意论证中任何地方都没有用到 $p$ 与 $q$ 之间的关系，也没有用到 $d^{-aq}$ 的可积性（没有用到情形 (I)/(II) 的任何假设）：发散来自第二个 Hardy 权内部的因子 $d^{-n}$。
+
+\emph{第 3 步（hat 空间）}. 由 (i) 以及 hat 范数的定义 \eqref{eq:sec6-f1-hatnorm}，$1$ 属于 $\hoF$ 当且仅当 $\|1\cdot d^{-(s+a)}\|_{L^p(\Om)}<\infty$，亦即当且仅当
+\[
+  \int_\Om d(y)^{-(s+a)p}\,dy<\infty
+\]
+（常数的 $F^s$ 项由 (i) 有限）。若 $(s+a)p\ge1$，则 $c':=(s+a)p$ 是 $\ge1$ 的实数，以 $c=c'$ 应用附录 A 得 $\int_\Om d(y)^{-(s+a)p}\,dy=+\infty$，故 $1$ 不在 hat 空间中。这就证明了 (iv)。
+\end{proof}
+
+%==================================================================
+\subsection{同一非包含的独立证明：边界层的层饼计算}
+%==================================================================
+
+\begin{proposition}[对每个非整数光滑度与每个权，Hardy 加强空间都严格小于内蕴空间]
+设 $n\ge1$，$\Om$ 是 $\R^n$ 中的非空有界 Lipschitz 区域，$d(x)=\dist(x,\partial\Om)$（$x\in\Om$），$s\in(0,\infty)\setminus\N$，记 $k:=\lfloor s\rfloor\in\N_0$，$\sigma:=s-k\in(0,1)$，并设 $a>0$，$p,q\in[1,\infty)$。设 $\Fsp$ 为 CLWZ (1.1)--(1.2) 的加权内蕴 Triebel--Lizorkin 空间，即使得
+\begin{equation}\label{eq:sec6-f2-norm}
+  \begin{split}
+    \|f\|_{F^s}
+    &:=\sum_{|\alpha|\le k}\|D^\alpha f\|_{L^p(\Om)}\\
+    &\quad+\sum_{|\beta|=k}\Big(\int_\Om\Big[\int_\Om|D^\beta f(x)-D^\beta f(y)|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\Big]^{p/q}dx\Big)^{1/p}
+  \end{split}
+\end{equation}
+有限的 $f\in L^p(\Om)$ 之集（每一项在其不为有限时取 $+\infty$）。令 $\|f\|_{\wt F^s}:=\|f\|_{F^s}+\|f d^{-(s+a)}\|_{L^p(\Om)}+\|f d^{-(s+a+n/q)}\|_{L^q(\Om)}$，$\tiF:=\{f\in\Fsp:\|f\|_{\wt F^s}<\infty\}$。则：
+\begin{enumerate}[label=(\roman*)]
+  \item 常数函数 $1$（在 $\Om$ 上恒等于 $1$）属于 $\Fsp$，且 $\|1\|_{F^s}=|\Om|^{1/p}$；
+  \item $\int_\Om d(y)^{-(s+a)q-n}\,dy=+\infty$，等价地 $\|1\cdot d^{-(s+a+n/q)}\|_{L^q(\Om)}=+\infty$；
+  \item 从而 $1\notin\tiF$，且 $\Fsp$ \emph{不}包含于 $\tiF$。这对每个 $s\in(0,\infty)\setminus\N$、每个 $a>0$ 与所有 $p,q\in[1,\infty)$ 成立；特别地，对 $p=q$ 也成立。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\emph{第 1 步（常数 $1$ 的内蕴范数）}. 令 $f:=1$（在 $\Om$ 上）。每个满足 $|\alpha|\ge1$ 的弱导数 $D^\alpha f$ 都是零函数，且 $\|D^0 f\|_{L^p(\Om)}=\|1\|_{L^p(\Om)}=|\Om|^{1/p}$。若 $k\ge1$，则 \eqref{eq:sec6-f2-norm} 第二个和中的每一项都有 $|\beta|=k\ge1$，故 $D^\beta f=0$，相应的加权 Gagliardo 半范数消失，因为对一切 $x,y\in\Om$ 有 $|D^\beta f(x)-D^\beta f(y)|=|0-0|=0$。若 $k=0$（即 $0<s<1$），第二个和只含唯一的重指标 $\beta=0$，其对应项为
+\[
+  \Big(\int_\Om\Big[\int_\Om|1-1|^q\,|x-y|^{-n-\sigma q}\,d(y)^{-aq}\,dy\Big]^{p/q}dx\Big)^{1/p}=0.
+\]
+两种情形下整个第二个和都为零，而第一个和等于 $\|1\|_{L^p(\Om)}=|\Om|^{1/p}$。由于 $\Om$ 有界，$|\Om|<\infty$，故 $1\in\Fsp$ 且 $\|1\|_{F^s}=|\Om|^{1/p}$。这就证明了 (i)。
+
+\emph{第 2 步（Hardy 指数）}. 令 $c:=(s+a)q+n$。由于 $n\ge1$、$s>0$、$a>0$、$q\ge1$，有 $c>n\ge1$，特别地 $c\ge1$。对这样的 $c$ 应用附录 A（对 $\R^n$ 中的有界 Lipschitz 区域 $\Om$ 与每个实数 $c\ge1$，$\int_\Om d(x)^{-c}\,dx=\infty$），得
+\[
+  \int_\Om d(y)^{-(s+a)q-n}\,dy=\int_\Om d(y)^{-c}\,dy=+\infty.
+\]
+为完整起见，下面给出这一发散性的直接计算。由层饼公式，对 $c>0$ 有
+\[
+  \int_\Om d(y)^{-c}\,dy=c\int_0^\infty t^{-c-1}|\Omt|\,dt,
+  \qquad \Omt=\{y\in\Om:d(y)<t\};
+\]
+这由代换 $t=d(y)$ 与 Fubini 定理得到。由于 $\Om$ 是有界 Lipschitz 区域，存在 $\kappa>0$ 与 $t_0>0$，使得对一切 $t\in(0,t_0)$ 有 $|\Omt|\ge\kappa t$（这正是附录 A 中所证的边界层线性下界）。于是
+\[
+  \int_\Om d^{-c}\,dy\ge c\kappa\int_0^{t_0}t^{-c-1}t\,dt=c\kappa\int_0^{t_0}t^{-c}\,dt=+\infty,
+\]
+这是因为 $c\ge1$：当 $c>1$ 时原函数 $t^{1-c}/(1-c)$ 在 $t\to0^+$ 时趋于 $+\infty$，而当 $c=1$ 时截断积分等于 $\log(t_0/\varepsilon)\to+\infty$（$\varepsilon\to0^+$）。这在当前记号下重新证明了所引的发散性。
+
+\emph{第 3 步（$1$ 的 $L^q$ Hardy 范数）}. 由于 $q\ge1$，函数 $1\cdot d^{-(s+a+n/q)}$ 的 $L^q(\Om)$ 范数的 $q$ 次幂为
+\[
+  \int_\Om|1\cdot d(x)^{-(s+a+n/q)}|^q\,dx=\int_\Om d(x)^{-(s+a)q-n}\,dx,
+\]
+由第 2 步知其为 $+\infty$。故 $\|1\cdot d^{-(s+a+n/q)}\|_{L^q(\Om)}=+\infty$，这正是 (ii) 中所断言的等价性。
+
+\emph{第 4 步（$1$ 不在增广空间中）}. 常数函数 $1$ 的 $\wt F^s$ 范数为
+\[
+  \|1\|_{\wt F^s}=\|1\|_{F^s}+\|d^{-(s+a)}\|_{L^p(\Om)}+\|d^{-(s+a+n/q)}\|_{L^q(\Om)}.
+\]
+由第 1 步，第一项等于 $|\Om|^{1/p}<\infty$；第二项是非负的广义实数；由第 3 步，第三项为 $+\infty$。因此 $\|1\|_{\wt F^s}=+\infty$，故 $1\notin\tiF$。
+
+\emph{第 5 步（内蕴空间不含于增广空间）}. 由第 1 步，$1$ 属于 $\Fsp$；由第 4 步，$1$ 不属于 $\tiF$。因此 $\Fsp$ 不是 $\tiF$ 的子集。由于 $s\in(0,\infty)\setminus\N$、$a>0$、$p,q\in[1,\infty)$ 都是任意的，这就证明了 (iii)，其中包含 $p=q$ 的情形。
+\end{proof}
+
+\begin{remark}[直觉]
+内蕴的加权半范数对常数是盲的：常数 $1$ 的一切差分都消失。Hardy 项则相反，它测量边界迹。第二个 Hardy 指数为 $(s+a+n/q)q=(s+a)q+n>n$，而在有界 Lipschitz 区域上，由于边界层 $\{d<t\}$ 的测度至少是常数乘以 $t$，每个幂 $d^{-c}$（$c\ge1$）都不可积。于是对每个允许的参数，常数 $1$ 的 $L^q$ Hardy 范数都是无穷，Hardy 增广空间因而永远不包含内蕴空间；对 $s,a,p,q$ 的任何参数限制都无法使这一项成为冗余的。
+\end{remark}
+
+%==================================================================
+\subsection{Poincar\'e 障碍：非整数 \texorpdfstring{$s>1$}{s>1} 时 \texorpdfstring{$C_c^\infty$}{Cc-infinity} 从不稠密}
+%==================================================================
+
+\begin{theorem}[Poincar\'e 障碍：非整数 $s>1$ 时，紧支光滑函数在 $F^{s}$ 中从不稠密]
+设 $n\ge1$，$\Om$ 是 $\R^n$ 中的非空有界区域，$d(x)=\dist(x,\partial\Om)$（$x\in\Om$），$k\in\N$，$\sigma\in(0,1)$，$s=k+\sigma$，$q\in[1,\infty)$，$a\in\R$。令 $w(y):=d(y)^{-aq}$，并设 $F^{s}_{q,q}(\Om,d^{-aq})$ 为按 (1.2) 取 $p=q$ 赋予范数的加权内蕴空间，即
+\begin{equation}\label{eq:sec6-f3-norm}
+  \begin{split}
+    \|f\|_{F^s}
+    &:=\sum_{|\alpha|\le k}\|D^\alpha f\|_{L^q(\Om)}\\
+    &\quad+\sum_{|\beta|=k}\Big(\int_\Om\Big[\int_\Om|D^\beta f(x)-D^\beta f(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\Big]dx\Big)^{1/q}.
+  \end{split}
+\end{equation}
+则：
+\begin{enumerate}[label=(\roman*)]
+  \item 常数函数 $1$（在 $\Om$ 上恒等于 $1$）属于 $F^{s}_{q,q}(\Om,d^{-aq})$，且 $\|1\|_{F^s}=|\Om|^{1/q}$（事实上对 $|\beta|=k\ge1$ 有 $D^\beta 1=0$，故所有分数次项都消失）；
+  \item 若 $Q$ 是包含 $\Om$ 的开立方体，$L$ 为其边长，则每个 $u\in C_c^\infty(\Om)$（零延拓到 $\R^n$）满足
+  \[
+    \|u\|_{L^q(\Om)}\le L\,\|\nabla u\|_{L^q(\Om)};
+  \]
+  \item 从而，对每个满足 $u\in F^{s}_{q,q}(\Om,d^{-aq})$ 的 $u\in C_c^\infty(\Om)$ 有
+  \[
+    \|1-u\|_{F^s}\ge|\Om|^{1/q}/(1+L)>0.
+  \]
+\end{enumerate}
+于是 $C_c^\infty(\Om)\cap F^{s}_{q,q}(\Om,d^{-aq})$ 在 $F^{s}_{q,q}(\Om,d^{-aq})$ 中的闭包 $F^{s,1}_{q,q}(\Om,d^{-aq})$ 不含常数函数 $1$，从而是 $F^{s}_{q,q}(\Om,d^{-aq})$ 的真闭子空间：
+\[
+  F^{s,1}_{q,q}(\Om,d^{-aq})\ne F^{s}_{q,q}(\Om,d^{-aq})
+\]
+对每个 $a\in\R$ 与每个 $q\in[1,\infty)$ 成立。特别地，在高阶情形 $s>1$ 下，经典稠密性陈述（问题 I）对每个权指数 $a$ 都不成立，只有关于 $C^\infty$（而非 $C_c^\infty$）的较弱陈述才有可能成立。
+\end{theorem}
+
+\begin{proof}
+\emph{第 0 步（设定）}. $\Om$ 是 $\R^n$ 的非空有界开子集；令 $D:=\diam(\Om)\in(0,\infty)$。对每个实数 $a$，权 $w(y)=d(y)^{-aq}$ 是 $\Om$ 上的正 Borel 函数。\eqref{eq:sec6-f3-norm} 中所写的范数正是 CLWZ 文稿的 (1.2) 在 $p=q$ 时的形式。
+
+\emph{第 1 步（常数函数）}. 对函数 $1$ 有 $D^0 1=1$，且对每个满足 $|\alpha|\ge1$ 的重指标 $\alpha$ 有 $D^\alpha 1=0$。由于 $k\ge1$（因为 $s>1$），对每个 $|\beta|=k$ 函数 $D^\beta 1$ 恒为零，故定义第 $\beta$ 个分数次项的内层积分为零。因此
+\[
+  \|1\|_{F^s}=\|1\|_{L^q(\Om)}=|\Om|^{1/q}<\infty,
+\]
+这就证明了 (i)。
+
+\emph{第 2 步（经由立方体的 Poincar\'e 不等式）}. 取 $\R^n$ 中的开立方体 $Q=I_1\times\cdots\times I_n$，其中每个 $I_i$ 是长度为 $L$ 的开区间，使得 $\Om$ 的闭包含于 $Q$（这样的立方体存在，因为 $\Om$ 有界；例如取 $L>2\diam(\Om)$，并令 $Q$ 以 $\Om$ 中某点为中心）。设 $u\in C_c^\infty(\Om)$，$U$ 为其零延拓到 $\R^n$。则 $U$ 除可能在 $\partial\Om$ 上之外是光滑的，$U$ 是 Lebesgue 可测且有界的，且 $\supp U$ 含于 $\Om$，从而含于 $Q$。固定 $x=(x_1,\dots,x_n)\in Q$。当 $t<\inf I_1$ 时，点 $(t,x_2,\dots,x_n)$ 落在 $Q$ 之外，从而落在 $\supp U$ 之外，故 $U(t,x_2,\dots,x_n)=0$。因此由微积分基本定理，
+\[
+  U(x)=\int_{\inf I_1}^{x_1}(\partial_1U)(t,x_2,\dots,x_n)\,dt.
+\]
+由 H\"older 不等式，对 $q\in(1,\infty)$ 及其共轭指数 $q'=q/(q-1)$ 有
+\[
+  |U(x)|^q\le\Big(\int_{\inf I_1}^{x_1}1^{q'}\,dt\Big)^{q/q'}\int_{I_1}|(\partial_1U)(t,x_2,\dots,x_n)|^q\,dt
+  \le L^{q-1}\int_{I_1}|(\partial_1U)(t,x_2,\dots,x_n)|^q\,dt,
+\]
+而对 $q=1$，同一不等式以因子 $L^0=1$ 成立（直接由上述恒等式与积分的三角不等式）。将此不等式对 $x\in Q$ 积分并用 Fubini 定理，
+\[
+  \int_Q|U|^q\,dx\le L^{q-1}\cdot L\int_{Q'}\int_{I_1}|(\partial_1U)(t,x')|^q\,dt\,dx'
+  =L^q\int_Q|\partial_1U|^q\,dx\le L^q\int_Q|\nabla U|^q\,dx,
+\]
+其中 $Q'=I_2\times\cdots\times I_n$，前面的因子 $L$ 来自将 $x_1$ 变量在 $I_1$（长度为 $L$）上积分；对 $q=1$，同样的计算给出 $\int_Q|U|\le L\int_Q|\partial_1U|$。由于在 $\Om$ 上 $U=u$、在 $\Om$ 外 $U=0$，
+\[
+  \int_Q|U|^q=\|u\|^q_{L^q(\Om)},\qquad \int_Q|\nabla U|^q=\|\nabla u\|^q_{L^q(\Om)}.
+\]
+因此 $\|u\|_{L^q(\Om)}\le L\|\nabla u\|_{L^q(\Om)}$，这正是 (ii)，其中显式常数 $C_P=L$。
+
+\emph{第 3 步（下界）}. 设 $u\in C_c^\infty(\Om)$ 且 $u\in F^{s}_{q,q}(\Om,d^{-aq})$，令 $g:=1-u$。由范数的定义以及 \eqref{eq:sec6-f3-norm} 中第一个和对一切 $|\alpha|\le k$ 求和（而 $k\ge1$）可知
+\[
+  \|g\|_{F^s}\ge\sum_{|\alpha|\le k}\|D^\alpha g\|_{L^q(\Om)}
+  \ge\sum_{|\alpha|=1}\|D^\alpha g\|_{L^q(\Om)}
+  =\sum_{i=1}^n\|\partial_i u\|_{L^q(\Om)}\ge\|\nabla u\|_{L^q(\Om)},
+\]
+因为对 $|\alpha|=1$ 有 $D^\alpha 1=0$，且逐点有 $|\nabla u|=(\sum_i|\partial_i u|^2)^{1/2}\le\sum_i|\partial_i u|$。另一方面，由第 2 步，
+\[
+  \|\nabla u\|_{L^q(\Om)}\ge L^{-1}\|u\|_{L^q(\Om)}
+  \ge L^{-1}\big(\|1\|_{L^q(\Om)}-\|1-u\|_{L^q(\Om)}\big)
+  =L^{-1}\big(|\Om|^{1/q}-\|g\|_{L^q(\Om)}\big),
+\]
+其中中间的估计是三角不等式 $\|1\|\le\|u\|+\|1-u\|$。由于 $\|g\|_{L^q}\le\|g\|_{F^s}$，合并上面两式得
+\[
+  \|g\|_{F^s}\ge L^{-1}\big(|\Om|^{1/q}-\|g\|_{F^s}\big),
+\]
+故 $(1+L^{-1})\|g\|_{F^s}\ge L^{-1}|\Om|^{1/q}$，即 $\|g\|_{F^s}\ge|\Om|^{1/q}/(1+L)>0$。这就是 (iii)。
+
+\emph{第 4 步（结论）}. 由第 3 步，$F^s$ 中固定元素 $1$ 与 $C_c^\infty(\Om)\cap F^{s}_{q,q}(\Om,d^{-aq})$ 的每个元素之间的 $F^s$-距离至少为 $|\Om|^{1/q}/(1+L)>0$。因此 $1$ 不属于该集合的闭包 $F^{s,1}_{q,q}(\Om,d^{-aq})$，而由第 1 步 $1$ 确实属于 $F^{s}_{q,q}(\Om,d^{-aq})$。所以对每个实数 $a$ 与每个 $q\in[1,\infty)$，$F^{s,1}_{q,q}(\Om,d^{-aq})$ 都真包含于 $F^{s}_{q,q}(\Om,d^{-aq})$。（论证没有用到关于权的任何假设；特别地，该结论在 $\nuA=d^{-aq}dy$ 的二择情形 (I) 与情形 (II) 中都成立。）
+\end{proof}
+
+\begin{remark}[直觉]
+$F^s$ 范数控制 $W^{k,q}$ 范数（$k\ge1$），从而控制任何紧支光滑函数 $u$ 的梯度的 $L^q$ 范数。若 $u$ 在 $F^s$ 中接近常数 $1$，则 $u$ 在 $L^q$ 中接近 $1$，而其梯度必须很小；但 $W^{1,q}_0$ 的 Poincar\'e 不等式迫使紧支 $u$ 的 $L^q$ 范数被其梯度的 $L^q$ 范数控制。因此没有任何紧支光滑函数能在 $F^s$ 中逼近常数 $1$，于是对 $s>1$，$C_c^\infty$ 从不稠密。
+\end{remark}
+
+%==================================================================
+\subsection{无限质量情形：\texorpdfstring{$\R^n$}{Rn} 上的加权空间退化为 \texorpdfstring{$\{0\}$}{0}，加权延拓算子不存在}
+%==================================================================
+
+\begin{theorem}[$\R^n$ 上加权空间的平凡性，以及无限质量情形下加权延拓的不存在性]
+设 $\Om$ 是 $\R^n$ 中的非空有界区域，$d(y)=\dist(y,\partial\Om)$（$y\in\R^n$），于是 $d$ 在整个 $\R^n$ 上有定义且恰在 $\partial\Om$ 上为零；设 $a>0$，$p,q\in[1,\infty)$，$s\in(0,\infty)\setminus\N$，$k=\lfloor s\rfloor$，$\sigma=s-k\in(0,1)$。令 $w(y)=d(y)^{-aq}$，并对 $r>0$ 令 $N_r=\{y\in\R^n:d(y)<r\}$，且假设 $\mathrm{(H_{\infty})}$：对每个 $r>0$ 有 $\int_{N_r}w(y)\,dy=+\infty$。（只要 $aq\ge1$ 且 $\partial\Om$ 满足下方 Ahlfors 正则性 $|\{d<t\}|\ge ct$（对一切充分小的 $t>0$），该假设就成立；特别地，对每个有界 Lipschitz 区域都成立：Lipschitz 域的边界是 $(n-1)$ 维 Ahlfors 正则集，故存在 $c>0$ 使 $|\{d<t\}|\ge ct$ 对一切充分小的 $t>0$ 成立。）\defterm{一般一致区域不具备此处所需的该下界论证}，本文只在有界 Lipschitz 区域的情形使用 (H$_{\infty}$)。设 $F^{s}_{p,q}(\R^n,d^{-aq})$ 为 $\R^n$ 上由 CLWZ 范数 (1.2)（两个积分都在 $\R^n$ 上取，权为 $d(y)^{-aq}$）定义的加权内蕴 Triebel--Lizorkin 空间，即
+\begin{equation}\label{eq:sec6-f4-norm}
+  \begin{split}
+    \|g\|_{F^s_{p,q}(\R^n,d^{-aq})}
+    &:=\sum_{|\alpha|\le k}\|D^\alpha g\|_{L^p(\R^n)}\\
+    &\quad+\sum_{|\beta|=k}\Big(\int_{\R^n}\Big(\int_{\R^n}|D^\beta g(x)-D^\beta g(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\Big)^{p/q}dx\Big)^{1/p}.
+  \end{split}
+\end{equation}
+则 $F^{s}_{p,q}(\R^n,d^{-aq})=\{0\}$。从而，若此外还有 $\nuA(\Om)=\infty$（由前述事实，这等价于源空间 $\Fsp$ 等于 $P_k(\Om)$，而后者含常数函数 $1$），则\emph{不存在}有界线性算子
+\[
+  E\colon\Fsp\longrightarrow F^{s}_{p,q}(\R^n,d^{-aq})
+\]
+使得对源空间中的一切 $f$ 有 $(Ef)|_\Om=f$。特别地，CLWZ 命题 1.12 的结论（$\Lambda_0$ 的加权有界性）在该情形下不成立，因此区域 $aq\ge1$（带 $(n-1)$-Ahlfors 正则边界）被排除在该命题的任何正确版本之外。
+\end{theorem}
+
+\begin{proof}
+\emph{第 0 步（球上关于一般权的刚性引理）}. 设 $B$ 是 $\R^n$ 中半径为 $R$ 的开球，$w$ 是 $B$ 上的非负 Lebesgue 可测函数且 $\int_B w=\infty$，$\sigma\in(0,1)$，$p,q\in[1,\infty)$，并设 $g$ 在 $B$ 上 Lebesgue 可测且满足
+\[
+  \int_B\Big(\int_B|g(x)-g(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\Big)^{p/q}dx<\infty.
+\]
+则 $g$ 在 $B$ 上几乎处处为常数。
+
+\emph{证明}. 令 $J(x):=\int_B|g(x)-g(y)|^q|x-y|^{-n-\sigma q}w(y)\,dy$；则 $J$ 可测且 $\int_B J^{p/q}<\infty$，故对几乎每个 $x$ 有 $J(x)<\infty$。令 $E:=\{x\in B:J(x)<\infty\}$，则 $|B\setminus E|=0$。固定 $x\in E$。对一切 $y\in B$ 有 $|x-y|\le2R$，故 $|x-y|^{-n-\sigma q}\ge(2R)^{-n-\sigma q}$；因此
+\[
+  \int_B|g(x)-g(y)|^q\,w(y)\,dy\le(2R)^{n+\sigma q}J(x)<\infty.
+\]
+对 $m\in\N$ 令 $A_m(x):=\{y\in B:|g(x)-g(y)|>1/m\}$。则
+\[
+  m^{-q}\int_{A_m(x)}w\le\int_B|g(x)-g(y)|^q\,w(y)\,dy<\infty,
+\]
+故 $\int_{A_m(x)}w<\infty$，从而记 $B_m(x):=B\setminus A_m(x)$ 便有
+\[
+  \int_{B_m(x)}w=\int_B w-\int_{A_m(x)}w=\infty.
+\]
+现在取 $x_1,x_2\in E$。对每个 $m$，集合 $B_m(x_1)\cap B_m(x_2)$ 具有无限的 $w$-测度（它在 $B$ 中的补集含于 $A_m(x_1)\cup A_m(x_2)$，而后者 $w$-测度有限），故非空；取其中一点 $y$。则
+\[
+  |g(x_1)-g(x_2)|\le|g(x_1)-g(y)|+|g(y)-g(x_2)|\le2/m.
+\]
+由 $m$ 的任意性得 $g(x_1)=g(x_2)$。故 $g$ 在 $E$ 上为常数，从而在 $B$ 上几乎处处为常数。
+
+\emph{第 1 步（$\R^n$ 上的空间是 $\{0\}$）}. 设 $g\in F^{s}_{p,q}(\R^n,d^{-aq})$。则 $g\in L^p(\R^n)$，且对每个满足 $|\beta|=k$ 的重指标 $\beta$ 有 $D^\beta g\in L^p(\R^n)$，并且
+\[
+  \int_{\R^n}\Big(\int_{\R^n}|D^\beta g(x)-D^\beta g(y)|^q\,|x-y|^{-n-\sigma q}\,w(y)\,dy\Big)^{p/q}dx<\infty.
+\]
+固定一个包含 $\partial\Om$ 之邻域的球 $B_R$（例如 $\partial\Om$ 含于半径为 $R/2$ 的球中）；则按 $\mathrm{(H_{\infty})}$ 有 $\int_{B_R}w=\infty$，而限制在 $B_R\times B_R$ 上的二重积分有限。在 $B_R$ 上以 $D^\beta g$ 代替 $g$ 应用第 0 步，可知对每个 $|\beta|=k$，$D^\beta g$ 在 $B_R$ 上几乎处处为常数。由于这对一切充分大的 $R$ 成立且球 $B_R$ 穷尽 $\R^n$，所有 $D^\beta g$（$|\beta|=k$）都在 $\R^n$ 上几乎处处为常数。在 $B_R$（有界区域）上应用已验证的多项式引理 附录 A，知 $g$ 在 $B_R$ 上几乎处处等于一个次数不超过 $k$ 的多项式；令 $R$ 沿一列数趋于无穷，便得到同一个次数不超过 $k$ 的多项式 $P$ 使得 $g=P$ 在 $\R^n$ 上几乎处处成立（两个这样的多项式在一个非空开集上相等）。由于 $g\in L^p(\R^n)$ 而非零多项式不属于 $L^p(\R^n)$（\defterm{非零常数多项式}因 $\R^n$ 的测度无穷而不属于 $L^p(\R^n)$；\defterm{次数至少为 $1$ 的非零多项式}在某个正测度的锥形区域内按多项式增长，故亦不属于 $L^p(\R^n)$），故 $P=0$，即 $g=0$ 几乎处处。因此 $F^{s}_{p,q}(\R^n,d^{-aq})=\{0\}$。
+
+\emph{第 2 步（不存在有界的加权延拓）}. 再假设 $\nuA(\Om)=\infty$。由已验证的前述附录 A，$\Fsp=P_k(\Om)$，其中含常数函数 $1$。设 $E\colon\Fsp\to F^{s}_{p,q}(\R^n,d^{-aq})$ 线性有界，且对源空间中的每个 $f$ 满足 $(Ef)|_\Om=f$。则由第 1 步，目标空间中的 $E(1)$ 等于 $\{0\}$，但对每个 $x\in\Om$ 有 $((E(1))|_\Om)(x)=1$，故 $E(1)$ 不是目标空间的零元素（它在 $\R^n$ 上不几乎处处为零，在 $L^p(\R^n)$ 中也不为零）。此矛盾表明不存在这样的有界线性延拓算子。特别地，只要 $\nuA(\Om)=\infty$ 且 $\mathrm{(H_{\infty})}$ 成立，CLWZ (6.2) 中的算子 $\Lambda_0$（按构造满足在 $\Om$ 上 $\Lambda_0f=f$）就不可能从 $\Fsp$ 有界地映到 $F^{s}_{p,q}(\R^n,d^{-aq})$；因此任何能推出 CLWZ 命题 1.12 之结论的假设都必须排除这一情形，特别地，只要 $\partial\Om$ 是 $(n-1)$-Ahlfors 正则的，它就必须迫使 $aq<1$，因为此时一旦 $aq\ge1$，$\nuA(\Om)=\infty$ 与 $\mathrm{(H_{\infty})}$ 便同时成立（对 $\mathrm{(H_{\infty})}$：$|\{d<t\}|\ge ct$（$t>0$ 小）给出 $aq\ge1$ 时 $\int_{N_r}d^{-aq}\ge c\int_0^rt^{-aq}\,dt=\infty$）。
+\end{proof}
+
+\begin{remark}[直觉]
+若距离权在边界的每个邻域内都有无限质量，则分数次半范数迫使空间中的每个函数在任意球上为常数（在有界球上权的无限测度压倒了有界的核），从而整体上是多项式；而 $L^p(\R^n)$ 又消灭一切非零多项式（分常数与非常数两种情形，见第 1 步）。因此整个 $\R^n$ 上的加权空间是 $\{0\}$。由于 $\Om$ 上的源空间退化为多项式（其中含常数 $1$），而任何延拓算子都必须在 $\Om$ 上还原 $1$，故不可能存在进入这个平凡空间的有界延拓。于是 $\Lambda_0$ 的加权有界性在无限质量情形下不可能成立。
+\end{remark}
+
+%==================================================================
+\subsection{技术工具 I：向量值 \texorpdfstring{$L^p$}{Lp} 与无权重混合 Gagliardo 半范数中的平移连续性}
+%==================================================================
+
+\begin{lemma}[向量值 $L^p$ 与无权重混合 Gagliardo 半范数中的平移连续性]
+设 $n\ge1$。
+
+\emph{(a)} 设 $1\le p<\infty$，$(E,\|\cdot\|_E)$ 是 Banach 空间。设 $L^p(\R^n;E)$ 为 Bochner 可测映射 $g\colon\R^n\to E$ 且 $\int_{\R^n}\|g(x)\|_E^p\,dx<\infty$ 的 Bochner 空间，其范数为
+\[
+  \|g\|_{L^p(\R^n;E)}^p:=\int_{\R^n}\|g(x)\|_E^p\,dx.
+\]
+对 $z\in\R^n$ 令 $(\tau_zg)(x):=g(x-z)$。则对每个 $g\in L^p(\R^n;E)$ 有
+\[
+  \|\tau_zg-g\|_{L^p(\R^n;E)}\longrightarrow0\qquad(z\to0).
+\]
+
+\emph{(b)} 设 $0<s<1$，$1\le p,q<\infty$。对 Lebesgue 可测的 $h\colon\R^n\to\R$ 令
+\[
+  [h]_{\mathrm{unw},p,q}:=\Big(\int_{\R^n}\Big(\int_{\R^n}|h(x)-h(y)|^q\,|x-y|^{-n-sq}\,dy\Big)^{p/q}dx\Big)^{1/p}\in[0,\infty].
+\]
+若 $[h]_{\mathrm{unw},p,q}<\infty$，则当 $z\to0$ 时 $[\tau_zh-h]_{\mathrm{unw},p,q}\to0$。
+\end{lemma}
+
+\begin{proof}
+\emph{(a) 第 1 步}. 设 $\varphi\in C_c(\R^n;E)$（连续、紧支、$E$-值）。则 $\varphi$ 一致连续：对 $\varepsilon>0$ 存在 $\delta>0$，使得只要 $|x-y|\le\delta$ 就有 $\|\varphi(x)-\varphi(y)\|_E\le\varepsilon$。设 $\supp\varphi$ 含于 $\{|x|\le R\}$。若 $|z|\le1$，则 $\supp(\tau_z\varphi)$ 含于 $\{|x|\le R+1\}$，且
+\[
+  \|\tau_z\varphi-\varphi\|_{L^p(\R^n;E)}^p=\int_{|x|\le R+1}\|\varphi(x-z)-\varphi(x)\|_E^p\,dx\le(2R+2)^n\varepsilon^p
+\]
+对 $|z|\le\min(\delta,1)$ 成立。
+
+\emph{(a) 第 2 步}. 当 $1\le p<\infty$ 时 $C_c(\R^n;E)$ 在 $L^p(\R^n;E)$ 中稠密。给定 $g\in L^p(\R^n;E)$ 与 $\varepsilon>0$，取 $\varphi\in C_c(\R^n;E)$ 使 $\|g-\varphi\|\le\varepsilon/4$。由于范数在平移下不变，
+\[
+  \|\tau_zg-g\|\le\|\tau_z(g-\varphi)\|+\|\tau_z\varphi-\varphi\|+\|\varphi-g\|=2\|g-\varphi\|+\|\tau_z\varphi-\varphi\|;
+\]
+取 $|z|$ 充分小使 $\|\tau_z\varphi-\varphi\|\le\varepsilon/2$，便得 $\|\tau_zg-g\|\le\varepsilon$。
+
+\emph{(b) 设定}. 对 $\varepsilon>0$ 令 $\mu_\varepsilon(du):=|u|^{-n-sq}\mathbf{1}_{\{|u|\ge\varepsilon\}}\,du$。这是一个有限测度：
+\[
+  \mu_\varepsilon(\R^n)=\omega_{n-1}\int_\varepsilon^\infty r^{-1-sq}\,dr=\omega_{n-1}\varepsilon^{-sq}/(sq)<\infty .
+\]
+令 $E_\varepsilon:=L^q(\R^n,\mu_\varepsilon)$；由于 $1\le q<\infty$，这是可分 Banach 空间。定义
+\[
+  G(x)(u):=h(x)-h(x-u)\quad(x,u\in\R^n),\qquad G^\varepsilon(x)(u):=G(x)(u)\mathbf{1}_{\{|u|\ge\varepsilon\}},
+\]
+以及
+\[
+  F(x):=\Big(\int_{\R^n}|G(x)(u)|^q\,|u|^{-n-sq}\,du\Big)^{1/q},
+\]
+于是 $\int_{\R^n}F(x)^p\,dx=[h]_{\mathrm{unw},p,q}^p<\infty$；故对几乎每个 $x$ 有 $F(x)<\infty$，即对几乎每个 $x$ 与每个 $\varepsilon>0$ 有 $G(x)\in L^q(\mu_\varepsilon)$。此外，由单调收敛（先对每个 $x$ 关于 $u$，再关于 $x$），$\varepsilon\mapsto\|G^\varepsilon\|_{L^p(\R^n;E_\varepsilon)}^p$ 单调不减，且当 $\varepsilon\to0$ 时极限为 $[h]_{\mathrm{unw},p,q}^p$。
+
+\emph{(b) 第 1 步（$G^\varepsilon$ 属于 $L^p$ 且 Bochner 可测）}. 对 $M>0$ 令 $T_M(t):=\min(M,\max(-M,t))$ 为 $1$-Lipschitz 截断，并令
+\[
+  G^\varepsilon_M(x)(u):=\big(T_M(h)(x)-T_M(h)(x-u)\big)\mathbf{1}_{\{|u|\ge\varepsilon\}}.
+\]
+由于 $|T_M(a)-T_M(b)|\le|a-b|$ 且 $|T_M(t)|\le\min(|t|,M)$，对一切 $x,u$ 有 $|G^\varepsilon_M(x)(u)|\le|G^\varepsilon(x)(u)|$，且 $G^\varepsilon_M(x)\in E_\varepsilon$，并有
+\[
+  \|G^\varepsilon_M(x)\|_{E_\varepsilon}\le2M\,\mu_\varepsilon(\R^n)^{1/q}<\infty .
+\]
+我们证明 $x\mapsto G^\varepsilon_M(x)$ 是 Bochner 可测的。由于 $E_\varepsilon$ 可分，由 Pettis 定理，只需对每个 $\phi\in L^{q'}(\mu_\varepsilon)$（$1/q+1/q'=1$）证明 $x\mapsto\langle G^\varepsilon_M(x),\phi\rangle$ 可测。对这样的 $\phi$，
+\[
+  \langle G^\varepsilon_M(x),\phi\rangle=T_M(h)(x)\int\phi\,d\mu_\varepsilon-\int T_M(h)(x-u)\phi(u)\,\mu_\varepsilon(du).
+\]
+第一项可测。对第二项，固定 $R>0$：函数 $(x,u)\mapsto T_M(h)(x-u)\phi(u)$ 联合可测，且
+\[
+  \int_{|x|\le R}\int_{\R^n}|T_M(h)(x-u)|\,|\phi(u)|\,\mu_\varepsilon(du)\,dx
+  \le M\,|B_R|\,\|\phi\|_{L^1(\mu_\varepsilon)}
+  \le M\,|B_R|\,\mu_\varepsilon(\R^n)^{1/q}\|\phi\|_{L^{q'}(\mu_\varepsilon)}<\infty,
+\]
+其中对 $(\phi,1)$ 以指数 $q'$ 与 $q$ 应用了 H\"older 不等式，故 $\mu_\varepsilon(\R^n)$ 上的指数为 $1/q$。于是 Fubini 定理给出 $x\mapsto\int T_M(h)(x-u)\phi(u)\,\mu_\varepsilon(du)$ 在每个球上可测，从而在 $\R^n$ 上可测。因此 $G^\varepsilon_M$ 弱可测，且其像落在可分空间 $E_\varepsilon$ 的某个球内，故本质上是可分值的，由 Pettis 定理得 Bochner 可测。
+
+其次，由构造，当 $M\to\infty$ 时对每个 $t$ 有 $T_M(h)(t)\to h(t)$，故对一切 $(x,u)$ 有 $G^\varepsilon_M(x)(u)\to G^\varepsilon(x)(u)$。对几乎每个 $x$（即满足 $F(x)<\infty$ 的那些 $x$）有 $|G^\varepsilon_M(x)(u)-G^\varepsilon(x)(u)|\le2|G^\varepsilon(x)(u)|$，且 $u\mapsto G^\varepsilon(x)(u)$ 属于 $L^q(\mu_\varepsilon)$，故关于 $\mu_\varepsilon$ 的控制收敛给出 $\|G^\varepsilon_M(x)-G^\varepsilon(x)\|_{E_\varepsilon}\to0$。此外
+\[
+  \|G^\varepsilon_M(x)-G^\varepsilon(x)\|_{E_\varepsilon}^p\le2^pF(x)^p,
+\]
+且 $x\mapsto F(x)^p=(F(x)^q)^{p/q}$ 属于 $L^1(dx)$，因为 $\int_{\R^n}(F(x)^q)^{p/q}\,dx=[h]_{\mathrm{unw},p,q}^p=\int_{\R^n}F(x)^p\,dx<\infty$；故关于 $x$ 的控制收敛给出 $\|G^\varepsilon_M-G^\varepsilon\|_{L^p(\R^n;E_\varepsilon)}\to0$。因此 $G^\varepsilon$ 是 Bochner 可测函数的 $L^p(\R^n;E_\varepsilon)$-极限，从而 Bochner 可测，且
+\[
+  \|G^\varepsilon\|_{L^p(\R^n;E_\varepsilon)}^p\le[h]_{\mathrm{unw},p,q}^p<\infty .
+\]
+
+\emph{(b) 第 2 步（识别与小 $z$ 估计）}. 对 $z\in\R^n$ 与 $x,y\in\R^n$ 记 $u:=x-y$，则 $dy=du$ 且 $|x-y|=|u|$。于是
+\begin{align*}
+  (\tau_zh-h)(x)-(\tau_zh-h)(y)
+  &=\big[h(x-z)-h(x)\big]-\big[h(x-u-z)-h(x-u)\big]\\
+  &=\big[h(x-z)-h(x-z-u)\big]-\big[h(x)-h(x-u)\big]\\
+  &=G(x-z)(u)-G(x)(u),
+\end{align*}
+且以 $G^\varepsilon$ 代替 $G$ 的同一恒等式也成立。因此
+\[
+  [\tau_zh-h]_{\mathrm{unw},p,q}^p=\int_{\R^n}\Big(\int_{\R^n}|G(x-z)(u)-G(x)(u)|^q\,|u|^{-n-sq}\,du\Big)^{p/q}dx.
+\]
+
+现在固定 $\varepsilon>0$，把内层积分按 $|u|\ge\varepsilon$ 与 $|u|<\varepsilon$ 拆开。
+
+(i) $|u|\ge\varepsilon$ 的部分等于 $\|\tau_zG^\varepsilon-G^\varepsilon\|_{L^p(\R^n;E_\varepsilon)}^p$；对 $G^\varepsilon\in L^p(\R^n;E_\varepsilon)$ 应用部分 (a) 可知当 $z\to0$ 时它趋于 $0$。
+
+(ii) 对 $|u|<\varepsilon$ 的部分，
+\[
+  |G(x-z)(u)-G(x)(u)|^q\le2^{q-1}\big(|G(x-z)(u)|^q+|G(x)(u)|^q\big);
+\]
+将其取 $p/q$ 次幂并对 $x$ 积分，第一项经变量替换 $x\mapsto x+z$ 后与第二项取值相同；故该部分不超过 $C\,b(\varepsilon)$，其中 $C$ 只依赖于 $p,q$，而
+\[
+  b(\varepsilon):=\int_{\R^n}\Big(\int_{|u|<\varepsilon}|G(x)(u)|^q\,|u|^{-n-sq}\,du\Big)^{p/q}dx .
+\]
+这里须区分两类截断的方向。$\{|u|<\varepsilon\}$ 随 $\varepsilon\downarrow0$ \emph{收缩}，故 $b(\varepsilon)$ 关于 $\varepsilon$ 单调\emph{不增}；因此不能引用递增型单调收敛定理，而应使用\textbf{控制收敛定理}。具体地，令
+\[
+  \Phi_\varepsilon(x):=\Big(\int_{|u|<\varepsilon}|G(x)(u)|^q\,|u|^{-n-sq}\,du\Big)^{p/q},
+\]
+则 $0\le\Phi_\varepsilon\le\Phi:=F^{\,p}$，而 $\int_{\R^n}\Phi\,dx=[h]_{\mathrm{unw},p,q}^p<\infty$ 给出支配函数 $\Phi\in L^1(\R^n)$；又对每个满足 $F(x)<\infty$ 的 $x$（几乎处处的 $x$），$\Phi_\varepsilon(x)\downarrow0$ 当 $\varepsilon\to0$。故由控制收敛定理 $b(\varepsilon)=\int_{\R^n}\Phi_\varepsilon\,dx\to0$。因此对每个 $\varepsilon>0$ 有
+\[
+  \limsup_{z\to0}\,[\tau_zh-h]_{\mathrm{unw},p,q}^p\le C\,b(\varepsilon);
+\]
+令 $\varepsilon\to0$ 即得结论。
+\end{proof}
+
+\begin{remark}[直觉]
+(a) 是 Bochner $L^p$ 空间上平移连续性的标准事实。(b) 把混合 Gagliardo 半范数重写为 $x\mapsto\big(u\mapsto h(x)-h(x-u)\big)$ 的 $L^p$ 范数。正确的结构不是单个 $L^q$ 空间，因为 $|u|^{-n-sq}du$ 只是 $\sigma$-有限的（在 $u=0$ 处发散）；办法是先截断奇点，取 $\mu_\varepsilon(du)=|u|^{-n-sq}\mathbf{1}_{\{|u|\ge\varepsilon\}}du$，在 $L^q(\mu_\varepsilon)$ 中施用 Bochner 理论，再令 $\varepsilon\to0$ 并用单调收敛。两个技术要点：逼近序列必须取 $1$-Lipschitz 的截断 $T_M(h)$ 而不是阈值截断，以保证 $|G^\varepsilon_M|\le|G^\varepsilon|$；而 $G(x)\in L^q$ 的几乎处处成员性来自 $F(x)<\infty$ a.e.，后者由 $[h]^p<\infty$ 推出，而不是来自某种乘积形式的 Tonelli 积分。
+\end{remark}
+
+%==================================================================
+\subsection{技术工具 II：混合范数加权空间的可积性（局部 \texorpdfstring{$L^q$}{Lq} 与情形 (I)）}
+%==================================================================
+
+\begin{lemma}[混合范数加权空间的可积性：局部 $L^q$ 恒成立，情形 (I) 下关于加权测度的 $L^q$]
+设 $n\ge1$，$\Om$ 是 $\R^n$ 中的非空有界区域，$d(x)=\dist(x,\partial\Om)$（$x\in\Om$），$s\in(0,1)$，$p,q\in[1,\infty)$，$a>0$，并对 Borel 集 $E\subset\Om$ 令 $\nuA(E):=\int_E d(y)^{-aq}\,dy$。设 $\Fsp$ 为 CLWZ 公式 (1.1)--(1.2) 的加权内蕴 Triebel--Lizorkin 空间，即使得
+\begin{equation}\label{eq:sec6-f6-seminorm}
+  [f]^p:=\int_\Om\Big(\int_\Om|f(x)-f(y)|^q\,|x-y|^{-n-sq}\,\nuA(dy)\Big)^{p/q}dx<\infty
+\end{equation}
+的 $f\in L^p(\Om)$ 之集（内层积分是关于 $\nuA$ 的 $L^q$ 范数）。则：
+\begin{enumerate}[label=(\roman*)]
+  \item 对每个 $a>0$，$\Fsp$ 含于 $L^q_{\mathrm{loc}}(\Om)$（不需要关于权的任何可积性假设）。
+  \item 若此外还有 $\nuA(\Om)=\int_\Om d(y)^{-aq}\,dy<\infty$（情形 (I)），则 $\Fsp$ 含于 $L^q(\Om,\nuA)$：$\int_\Om|f|^q\,d^{-aq}\,dy<\infty$。更确切地说，令 $D:=\diam(\Om)\in(0,\infty)$，$J(x):=\int_\Om|f(x)-f(y)|^q|x-y|^{-n-sq}\,\nuA(dy)$；则对每个 $f\in\Fsp$ 与每个满足 $|f(x_0)|<\infty$ 且 $J(x_0)<\infty$ 的 $x_0\in\Om$（这样的 $x_0$ 之集在 $\Om$ 中具有全 Lebesgue 测度），
+  \[
+    \int_\Om|f(y)|^q\,\nuA(dy)\le2^{q-1}\big(|f(x_0)|^q\nuA(\Om)+D^{n+sq}J(x_0)\big)<\infty .
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+令 $D:=\diam(\Om)$，故 $0<D<\infty$，并令 $c_0:=D^{-aq}>0$。由于对 $y\in\Om$ 有 $0<d(y)\le D$，故 $\nuA(dy)=d(y)^{-aq}dy\ge c_0\,dy$，权 $d^{-aq}$ 在开集 $\Om$ 上连续且为正，且 $\nuA$ 是 $\Om$ 上的非负 Borel 测度。
+
+设 $f\in\Fsp$。则 $f\in L^p(\Om)$，映射 $(x,y)\mapsto|f(x)-f(y)|^q|x-y|^{-n-sq}$ 在对角线外联合可测，且由 Tonelli 定理 $J$ 非负可测。由于 $\int_\Om J^{p/q}dx=[f]^p<\infty$ 且 $p/q>0$，对 Lebesgue 几乎每个 $x\in\Om$ 有 $J(x)<\infty$。又因 $f\in L^p(\Om)$，几乎处处有 $|f(x)|<\infty$。故集合
+\[
+  G:=\{x\in\Om:J(x)<\infty\ \text{与}\ |f(x)|<\infty\}
+\]
+具有全 Lebesgue 测度；特别地，由于 $\Om$ 是开集，$G$ 在 $\Om$ 中稠密。
+
+\emph{(i) 的证明}. 固定 $x_0\in G$ 与 $0<r<d(x_0)/2$，令 $B:=B(x_0,r)\cap\Om$。对 $y\in B$ 有 $|x_0-y|\le r$，故 $|x_0-y|^{-n-sq}\ge r^{-n-sq}$。利用 $\nuA\ge c_0\,dy$、$|a+b|^q\le2^{q-1}(|a|^q+|b|^q)$ 以及 $f(x_0)$ 的有限性，得
+\begin{align*}
+  \int_B|f(y)|^q\,dy
+  &\le2^{q-1}\Big(\int_B|f(x_0)-f(y)|^q\,dy+r^n|f(x_0)|^q\Big)\\
+  &\le2^{q-1}\Big(r^{n+sq}c_0^{-1}\int_B|f(x_0)-f(y)|^q\,|x_0-y|^{-n-sq}\,\nuA(dy)+r^n|f(x_0)|^q\Big)<\infty,
+\end{align*}
+因为 $r^{n+sq}c_0^{-1}J(x_0)<\infty$。因此对每个 $x_0\in G$ 与每个 $0<r<d(x_0)/2$ 有 $f\in L^q(B(x_0,r)\cap\Om)$。
+
+现在设 $K$ 是 $\Om$ 的紧子集，固定 $z\in K$。令 $\delta_z:=d(z)>0$。由于 $G$ 稠密，可取 $x_z\in G$ 使 $|x_z-z|<\delta_z/8$。则 $d(x_z)\ge d(z)-|x_z-z|>7\delta_z/8$，故 $r_z:=\delta_z/4$ 满足 $0<r_z<d(x_z)/2$，且 $|x_z-z|<r_z$；因此 $z\in B(x_z,r_z)$。由紧性，$K$ 可被有限多个这样的球 $B(x_j,r_j)$（$x_j\in G$，$0<r_j<d(x_j)/2$）覆盖；于是
+\[
+  \int_K|f|^q\,dy\le\sum_j\int_{B(x_j,r_j)\cap\Om}|f|^q\,dy<\infty .
+\]
+因此 $f\in L^q_{\mathrm{loc}}(\Om)$。这就证明了 (i)，其中关于 $\nuA$ 没有任何假设。
+
+\emph{(ii) 的证明}. 假设 $\nuA(\Om)<\infty$。对 $x_0\in G$ 与每个 $y\in\Om$ 有 $|x_0-y|\le D$，故 $|x_0-y|^{-n-sq}\ge D^{-n-sq}$。乘以 $|f(x_0)-f(y)|^q$ 并关于 $\nuA$ 积分得
+\[
+  J(x_0)\ge D^{-n-sq}\int_\Om|f(x_0)-f(y)|^q\,\nuA(dy),
+\]
+即 $\int_\Om|f(x_0)-f(y)|^q\,\nuA(dy)\le D^{n+sq}J(x_0)<\infty$。由 $L^q(\Om,\nuA)$ 范数的三角不等式，
+\[
+  \Big(\int_\Om|f(y)|^q\,\nuA(dy)\Big)^{1/q}
+  \le\Big(\int_\Om|f(x_0)-f(y)|^q\,\nuA(dy)\Big)^{1/q}+|f(x_0)|\,\nuA(\Om)^{1/q}.
+\]
+两边取 $q$ 次幂并用 $|a+b|^q\le2^{q-1}(|a|^q+|b|^q)$ 得
+\[
+  \int_\Om|f(y)|^q\,\nuA(dy)\le2^{q-1}\big(D^{n+sq}J(x_0)+|f(x_0)|^q\nuA(\Om)\big)<\infty,
+\]
+这正是所写的估计，并证明 $f\in L^q(\Om,\nuA)$。注意两项都用到了 $\nuA(\Om)<\infty$；情形 (I) 正是在此处进入。
+\end{proof}
+
+\begin{remark}[直觉]
+加权的内层积分 $J$ 对几乎每个 $x$ 有限，而在有界区域上核有下界 $D^{-n-sq}$；于是在一个「好点」$x_0$ 处 $J$ 的有限性就控制了 $f$ 的 $L^q(\nuA)$ 范数，因为 $\nuA(\Om)$ 有限。若没有 $\nuA(\Om)<\infty$，常数项 $|f(x_0)|^q\nuA(\Om)$ 就是无穷。局部地，同一个论证用 $\nuA\ge c_0\,dy$ 便免费给出 $L^q_{\mathrm{loc}}$（不需要任何情形假设）。
+\end{remark}

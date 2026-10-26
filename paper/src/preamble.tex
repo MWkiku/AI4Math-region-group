@@ -1,0 +1,61 @@
+% ===================================================================
+%  Preamble for the research report.  All section files assume these macros.
+% ===================================================================
+\documentclass[11pt,a4paper]{ctexart}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+
+% ---------- shorthands used by every section ----------
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Om}{\Omega}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\esssup}{\operatorname*{ess\,sup}}
+\newcommand{\codimA}{\operatorname{codim}_{A}}
+\newcommand{\codimAl}{\operatorname{codim}_{A}^{\mathrm{lower}}}
+\newcommand{\codimAu}{\operatorname{codim}_{A}^{\mathrm{upper}}}
+\newcommand{\dimM}{\dim_{M}}
+\newcommand{\Fsp}{F^{s}_{p,q}(\Om,d^{-aq})}
+\newcommand{\tiF}{\wt F^{s}_{p,q}(\Om,d^{-aq})}
+\newcommand{\hoF}{\wh F^{s}_{p,q}(\Om,d^{-aq})}
+\newcommand{\nuA}{\nu_{a}}
+\newcommand{\Omt}{\Om_{t}}
+\newcommand{\Omr}{\Om_{r}}
+\newcommand{\fid}[1]{\textnormal{\footnotesize\ttfamily #1}}
+\newcommand{\defterm}[1]{\textbf{#1}}
+
+% provenance note printed under each theorem
+\newcommand{\factnote}[3]{%
+  \par\noindent{\footnotesize\color{gray}%
+  事实 \fid{#1}\ \textbullet\ 作者 \texttt{#2}\ \textbullet\ 前置 #3}\par\vspace{2pt}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
+\newtheorem{remark}[theorem]{评注}
+\newtheorem{notation}[theorem]{记号}
+
+\setlist[itemize]{leftmargin=1.6em,itemsep=1pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.9em,itemsep=2pt,topsep=2pt}
+
+\setlength{\emergencystretch}{1.5em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small 加权 Triebel--Lizorkin 空间中 $C^\infty$ 稠密性}
+\rhead{\small 研究报告}
+\cfoot{\small\thepage}

@@ -1,0 +1,647 @@
+\input{preamble}
+
+\title{\bfseries 加权 Triebel--Lizorkin 空间中 $C^\infty$ 稠密性的若干精确结论\\[4pt]
+\large —— 基于 32 条机器验证事实，附第三方复核与修订记录}
+\author{Danus 多智能体研究项目 \texttt{cx-density-weighted-tl}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+本文研究如下问题：设 $\Om\subset\R^n$ 为有界区域，$d(x)=\dist(x,\partial\Om)$，$a>0$，
+$w(y)=d(y)^{-aq}$，问 $C^\infty(\Om)$ 与 $C_c^\infty(\Om)$ 是否在加权内在
+Triebel--Lizorkin 空间 $F^s_{p,q}(\Om,d^{-aq})$ 中稠密。
+
+本文的核心发现是一条\defterm{二分现象}：边界距离测度 $\nuA$ 的质量要么有限（情形 (I)），
+要么在每个边界层上都已经无穷（情形 (II)），二者必居其一。
+
+在情形 (II) 下，$\Fsp$ 退化为次数不超过 $k=\lfloor s\rfloor$ 的多项式空间，
+于是 $C^\infty$ 平凡稠密而 $C_c^\infty\cap\Fsp=\{0\}$；
+在情形 (I) 下，$C^\infty$ 稠密（$p=q$、$s\in(0,1)$），
+且对 Hardy 加强空间 $\tiF$ 有完整的强化结论
+\[
+  \wt F^{s,1}_{p,p}(\Om,d^{-ap})=\wt F^{s,2}_{p,p}(\Om,d^{-ap})=\wt F^s_{p,p}(\Om,d^{-ap}).
+\]
+
+本文进一步证明该强化\defterm{不能}推广为对 $F^s_{p,q}$ 本身的陈述：
+即使在权完全可积的情形 (I)，$\Om=(0,1)$、$s=\tfrac12$、$p=q=2$、$a=\tfrac14$ 时
+仍有 $F^{s,1}\neq F^s=F^{s,2}$。
+决定 $C_c^\infty$ 稠密性的临界量是 $sp+aq$ 与边界 Assouad 余维数
+$\codimA(\partial\Om)$ 的比较，而\defterm{不是} $\int_\Om d^{-aq}<\infty$ 是否成立。
+此外，本文证明整数阶修正空间中本质紧支的元素类稠密（截断引理），为 Poincar\'e 障碍所指出的「非整数 $s>1$ 时未加强空间不可稠密」提供一组正面对照。
+
+这一点同时解释了为何 CLWZ 型 Hardy 加强项不是冗余的：
+常数函数 $1\in\Fsp$ 但 $1\notin\tiF$，即 $\Fsp\not\subseteq\tiF$ 对一切非整数 $s$、一切 $a>0$、一切 $p,q$ 成立。
+
+\medskip
+\noindent\textbf{验证状态。}本文收录的 32 条结论，最初均由 LLM 验证器（\textsf{Verifier}）
+判定 \texttt{verdict=correct} 后写入事实图，其中两条支柱事实另经一次\defterm{独立重推}复核。
+此后一次\defterm{第三方（另一模型）审核}发现：第 \ref{sec:part2} 节中关于整数阶修正空间非退化的命题，
+其原证明含一处发散积分被误判为有限，且其所选 witness $d^k$ 在若干情形下不成立。
+本文已将该命题\defterm{改用 $C_c^\infty$ 作为 witness 重新证明}（结论仍然成立），
+并把原证明的失效分析与反例作为评注保留（见 \S\ref{sec:part2} 相应评注与 \S\ref{sec:revision}）。
+\textbf{这些结论未经形式化验证（无 Lean/Coq），亦未经人类同行评审}；所有渐近常数均未显式化。引用前须人工复核。
+\end{abstract}
+
+\tableofcontents
+\bigskip
+
+%=====================================================================
+\section{引言、设定与基本定义}
+%=====================================================================
+
+\subsection{研究对象}
+
+设 $n\ge1$，$\Om\subset\R^n$ 为非空有界域（连通、有界、开），
+\[
+  d(x):=\dist(x,\partial\Om),\qquad x\in\Om,
+\]
+为边界距离函数。固定参数
+\[
+  a>0,\qquad p,q\in[1,\infty),\qquad s\in(0,\infty),
+\]
+并记权函数
+\begin{equation}\label{eq:weight}
+  w(y):=d(y)^{-aq}.
+\end{equation}
+
+\begin{definition}[边界距离测度与边界层]\label{def:nu}
+定义 $\Om$ 上的 Borel 测度
+\begin{equation}\label{eq:nu}
+  \nuA(E):=\int_E d(y)^{-aq}\,dy=\int_E w(y)\,dy,
+\end{equation}
+并对 $r>0$ 记边界层
+\begin{equation}\label{eq:Omt}
+  \Omr:=\{x\in\Om:\ d(x)<r\}.
+\end{equation}
+\end{definition}
+
+\subsection{加权内在 Triebel--Lizorkin 范数}
+
+沿用 CLWZ 的定义。写 $s=k+\sigma$，其中 $k=\lfloor s\rfloor\in\N_0$、$\sigma\in(0,1)$。
+对 $f\in L^p_{\mathrm{loc}}(\Om)$，令
+\begin{equation}\label{eq:intrinsic}
+  \|f\|_{\Fsp}
+  :=\|f\|_{W^{k,p}(\Om)}
+  +\sum_{|\beta|=k}
+  \Bigg(\int_\Om
+    \Big(\int_\Om \big|D^\beta f(x)-D^\beta f(y)\big|^q\,|x-y|^{-n-\sigma q}
+          \,d(y)^{-aq}\,dy\Big)^{p/q}dx
+  \Bigg)^{1/p},
+\end{equation}
+各项取 $+\infty$ 时表示该量不有限。相应的空间为
+\[
+  \Fsp:=\Big\{f \text{ 在 } \Om \text{ 上 Lebesgue 可测}:\ \|f\|_{\Fsp}<\infty\Big\}.
+\]
+
+\begin{remark}[内层积分对全域取]\label{rem:fullintegral}
+\eqref{eq:intrinsic} 中的内层积分\textbf{对全部 $y\in\Om$} 取，而非截断到球
+$|x-y|<c\,d(x)$ 的局部化版本。这一结构是第 \ref{sec:part1} 节刚性引理
+（见 \S\ref{sec:part1} 中的 $\sigma$-引理）成立的前提，也是本文多处论证的关键。
+\end{remark}
+
+当 $k=0$（即 $s=\sigma\in(0,1)$）时 \eqref{eq:intrinsic} 化为
+\begin{equation}\label{eq:intrinsic-k0}
+  \|f\|_{\Fsp}
+  =\|f\|_{L^p(\Om)}
+  +\Big(\int_\Om\Big(\int_\Om |f(x)-f(y)|^q|x-y|^{-n-\sigma q}\,d(y)^{-aq}dy\Big)^{p/q}dx\Big)^{1/p}.
+\end{equation}
+
+\subsection{两个闭包与 Hardy 加强空间}
+
+\begin{definition}[$C_c^\infty$ 与 $C^\infty$ 的闭包]\label{def:closures}
+在范数 $\|\cdot\|_{\Fsp}$ 下定义
+\begin{align}
+  F^{s,1}_{p,q}(\Om,d^{-aq})&:=\overline{\,C_c^\infty(\Om)\cap \Fsp\,}^{\;\|\cdot\|_{\Fsp}},\label{eq:F1}\\
+  F^{s,2}_{p,q}(\Om,d^{-aq})&:=\overline{\,C^\infty(\Om)\cap \Fsp\,}^{\;\|\cdot\|_{\Fsp}}.\label{eq:F2}
+\end{align}
+称 $F^{s,1}$ 为\defterm{$C_c^\infty$ 闭包}、$F^{s,2}$ 为\defterm{$C^\infty$ 闭包}。
+\end{definition}
+
+\begin{definition}[Hardy 加强范数]\label{def:hardy}
+定义两个加强范数
+\begin{align}
+  \|f\|_{\tiF}&:=\|f\|_{\Fsp}
+    +\big\|f\,d^{-(s+a)}\big\|_{L^p(\Om)}
+    +\big\|f\,d^{-(s+a+n/q)}\big\|_{L^q(\Om)},\label{eq:tilde}\\
+  \|f\|_{\hoF}&:=\|f\|_{\Fsp}
+    +\big\|f\,d^{-(s+a)}\big\|_{L^p(\Om)}.\label{eq:hat}
+\end{align}
+相应空间记作 $\tiF$ 与 $\hoF$，其闭包
+$\wt F^{s,1},\wt F^{s,2},\wh F^{s,1},\wh F^{s,2}$
+按 \eqref{eq:F1}--\eqref{eq:F2} 以对应范数定义。
+\end{definition}
+
+\begin{notation}
+\eqref{eq:tilde}--\eqref{eq:hat} 中出现的两个权指数
+\[
+  s+a \qquad\text{与}\qquad s+a+\tfrac{n}{q}
+\]
+在本文中反复出现；后者因带额外因子 $d^{-n/q}$ 而严格更强，其作用见第
+\ref{sec:part6} 节。
+\end{notation}
+
+\subsection{边界几何量}
+
+本文多次用到边界的 Assouad 余维数与 Minkowski 维数。
+
+\begin{definition}[Assouad 余维数]\label{def:codim}
+设 $E\subset\R^d$ 非空，$B(x,R)$ 为欧氏球。称
+\[
+  \codimAl(E):=\sup\Big\{q\ge0:\ \exists C=C(q)\ge1,\ 
+  |E_r\cap B(x,R)|\le C|B(x,R)|\Big(\tfrac{r}{R}\Big)^{q}\ 
+  \Big\},
+\]
+\[
+  \codimAu(E):=\inf\Big\{s\ge0:\ \exists c=c(s)>0,\ 
+  |E_r\cap B(x,R)|\ge c|B(x,R)|\Big(\tfrac{r}{R}\Big)^{s}\ 
+  \Big\},
+\]
+两式中上确界与下确界均取遍使相应不等式对\defterm{一切} $x\in E$ 与 $0<r<R$ 成立的 $q$ 或 $s$；
+其中 $E_r:=\{t:\ \dist(t,E)\le r\}$ 为管状邻域。恒有 $\codimAl(E)\le\codimAu(E)$。
+\end{definition}
+
+\begin{definition}[Lipschitz 域与 uniform 域]\label{def:domains}
+称 $\Om$ 为 \defterm{Lipschitz 域}，若对每个 $x_0\in\partial\Om$ 存在 $r>0$、
+$\R^n$ 的一个旋转以及 Lipschitz 函数 $\varphi:\R^{n-1}\to\R$，使
+\[
+  \Om\cap B(x_0,r)=\{x=(x',x_n)\in B(x_0,r):\ x_n>\varphi(x')\},\quad
+  \partial\Om\cap B(x_0,r)=\{x\in B(x_0,r):\ x_n=\varphi(x')\}.
+\]
+称 $\Om$ 为 \defterm{uniform 域}，若存在 $c_1,c_2>0$，使任意 $x,y\in\Om$ 可用
+$\Om$ 内的可求长曲线 $\Gamma$ 连接，且
+$L(\Gamma)\le c_1|x-y|$、$\min\{|x-z|,|y-z|\}\le c_2 d(z)$ 对一切 $z\in\Gamma$ 成立。
+\end{definition}
+
+\subsection{本文的结论结构}
+
+全部 32 条事实按论证作用分为六组，分别对应第 \ref{sec:part1}--\ref{sec:part6} 节。其中 28 条在正文中以独立的定理、引理或命题形式陈述（即下表所计）；另 4 条仅作为前置或交叉引用出现，其标识同样列于附录 A：
+
+\begin{center}
+\small
+\begin{tabular}{@{}cll@{}}
+\toprule
+节 & 主题 & 条数 \\
+\midrule
+\S\ref{sec:part1} & 基础引理：二分、刚性引理、多项式引理与边界几何 & 6 \\
+\S\ref{sec:part2} & 情形 (II)：不可积权下的退化 & 5 \\
+\S\ref{sec:part3} & 情形 (I)：可积权下的稠密性 & 4 \\
+\S\ref{sec:part4} & 主强化定理与反例 & 3 \\
+\S\ref{sec:part5} & 临界条件：边界余维数，而非权可积性 & 4 \\
+\S\ref{sec:part6} & Hardy 项的非冗余性、延拓路线的终结与技术工具 & 6 \\
+\midrule
+ & 小计（独立陈述） & 28 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+第 \ref{sec:concl} 节汇总主结论、给出事实依赖图并列出尚未解决的问题；
+第 \ref{sec:limits} 节说明验证状态与局限。
+
+%=====================================================================
+\section{基础引理：二分、刚性引理、多项式引理与边界几何}\label{sec:part1}
+%=====================================================================
+\input{sec1_zh}
+
+%=====================================================================
+\section{情形 (II)：不可积权下的退化}\label{sec:part2}
+%=====================================================================
+\input{sec2_zh}
+
+%=====================================================================
+\section{情形 (I)：可积权下的稠密性}\label{sec:part3}
+%=====================================================================
+\input{sec3_zh}
+
+%=====================================================================
+\section{主强化定理与反例}\label{sec:part4}
+%=====================================================================
+\input{sec4_zh}
+
+%=====================================================================
+\section{临界条件：边界余维数，而非权可积性}\label{sec:part5}
+%=====================================================================
+\input{sec5_zh}
+
+%=====================================================================
+\section{Hardy 项的非冗余性、延拓路线的终结与技术工具}\label{sec:part6}
+%=====================================================================
+\input{sec6_zh}
+
+%=====================================================================
+\section{综合结论}\label{sec:concl}
+%=====================================================================
+
+\subsection{主结论汇总}
+
+将上述 32 条结论归并，可得如下四条主结论。
+
+\begin{theorem}[边界距离测度的二分；\S\ref{sec:part1}]\label{thm:main-dichotomy}
+对任意有界域 $\Om$，$a>0$，$q\in[1,\infty)$，以下二者恰有一个成立：
+\begin{enumerate}[label=\textup{(\Roman*)}]
+\item $\nuA(\Om)<\infty$；
+\item $\nuA(\Om)=\infty$，且此时自动地 $\nuA(\Omr)=\infty$ 对每个 $r>0$ 成立。
+\end{enumerate}
+若 $\Om$ 为有界 Lipschitz 域且 $aq\ge1$，则必属情形 (II)。
+\end{theorem}
+
+\begin{theorem}[情形 (II) 的完全退化；\S\ref{sec:part2}]\label{thm:main-degen}
+设 $\nuA(\Om)=\infty$，$s\in(0,\infty)\setminus\N$，$k=\lfloor s\rfloor$，$p,q\in[1,\infty)$。则
+\[
+  \Fsp=P_k(\Om),
+\]
+其中 $P_k(\Om)$ 为次数不超过 $k$ 的多项式在 $\Om$ 上的限制。从而
+$C^\infty(\Om)\cap\Fsp=\Fsp$（即 $F^{s,2}=\Fsp$）而
+$C_c^\infty(\Om)\cap\Fsp=\{0\}$（即 $F^{s,1}=\{0\}$）。
+\end{theorem}
+
+\begin{theorem}[情形 (I) 的 Hardy 强化；\S\ref{sec:part3}--\ref{sec:part4}]\label{thm:main-strength}
+设 $\Om$ 为任意非空有界域，$a>0$，$s\in(0,1)$，$p\in[1,\infty)$。则
+\[
+  \wt F^{s,1}_{p,p}(\Om,d^{-ap})=\wt F^{s,2}_{p,p}(\Om,d^{-ap})
+  =\wt F^s_{p,p}(\Om,d^{-ap}).
+\]
+特别地 $C_c^\infty(\Om)$ 在 $\wt F^s_{p,p}(\Om,d^{-ap})$ 中稠密。
+\end{theorem}
+
+\begin{theorem}[临界条件与强化的失效；\S\ref{sec:part4}--\ref{sec:part5}]\label{thm:main-crit}
+取 $n=1$、$\Om=(0,1)$、$d(x)=\min(x,1-x)$、$s=\tfrac12$、$p=q=2$、$a=\tfrac14$。则
+$\nuA(\Om)=2\sqrt2<\infty$（属情形 (I)），且
+\[
+  F^{1/2,1}_{2,2}\big((0,1),d^{-1/2}\big)\ \neq\ F^{1/2}_{2,2}\big((0,1),d^{-1/2}\big)
+  \ =\ F^{1/2,2}_{2,2}\big((0,1),d^{-1/2}\big).
+\]
+更一般地，对 $\Om=(0,1)$、权的指数 $b$，决定 $C_c^\infty$ 稠密性的临界比较是
+$sp+b$ 与 $\codimA(\partial\Om)$，而\defterm{不是} $b$ 与 $1$（即 $\int_\Om d^{-b}<\infty$）的比较。
+\end{theorem}
+
+\begin{remark}[为何需要 Hardy 加强]
+定理 \ref{thm:main-strength} 与定理 \ref{thm:main-crit} 并不矛盾：
+后者针对未加强的 $F^s_{p,q}$，而前者针对 Hardy 加强空间。
+加强之所以必要，原因是内蕴加权半范数在常数上为零、\defterm{看不见边界迹}，
+而 Hardy 项看得见：常数 $1\in\Fsp$ 但 $1\notin\tiF$，
+即 $\Fsp\not\subseteq\tiF$ 对一切非整数 $s$、一切 $a>0$、一切 $p,q$ 成立
+（\S\ref{sec:part6}）。
+\end{remark}
+
+\subsection{事实依赖图}
+
+圆括号内的数字为\defterm{附录 A 的序号}。
+（箭头由后置指向前置；仅列出有前置者）：
+
+\begin{center}
+\footnotesize
+\begin{longtable}{@{}lll@{}}
+\toprule
+后置事实 & 主题 & 前置事实 \\
+\midrule
+\endfirsthead
+\toprule
+后置事实 & 主题 & 前置事实 \\
+\midrule
+\endhead
+(12) & $\sigma$-引理 & (20) \\
+(27) & $\sigma$-引理（复证） & (20) \\
+(6) & 情形 (II) 退化 & (20) \\
+(11) & 情形 (II) 退化（复证） & (20), (12), (21) \\
+(25) & 情形 (II) 反例 & (6), (20) \\
+(28) & 高阶修正空间退化 & (20), (27) \\
+(31) & 情形 (II) 强化与失效 & (11), (8) \\
+(30) & $\R^n$ 上空间平凡 & (20), (6), (21) \\
+(7) & 整数阶非退化 & (6) \\
+(16) & 情形 (I) $C^\infty$ 稠密 & (20) \\
+(24) & Hardy 加强稠密 & (16) \\
+(18) & 修正高阶空间非退化 & (28), (14) \\
+(10) & 主强化定理 & (20), (31), (24) \\
+(23) & 区间高阶稠密 & (16), (6) \\
+(4) & 情形 (I) 反例 & (20), (16) \\
+(5) & 区间例（复核） & (20), (9), (16) \\
+(22) & Hardy 空间严格更小（复核） & (9) \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+无前置（根）事实为
+(20)（二分）、(21)（多项式引理）、
+(8)（单调性）、(9)（边界层下界）、
+(14)（内部半范数估计）、(15)（平移连续性）、
+(3)（Poincaré 障碍）、(13)、
+(17)、(19)、(26)。
+
+\subsection{尚未解决的问题}
+
+\begin{enumerate}
+\item \textbf{$p\neq q$ 的 Hardy 加强稠密性。}定理 \ref{thm:main-strength} 要求 $p=q$。
+情形 (I) 的 $C^\infty$ 稠密性（$p=q$）依赖 Kijaczko 定理 19 与 Dyda--Kijaczko 定理 3。
+对 $p\neq q$，事实 (26) 已确定：所需可积指数是 $aq$（内层变量 $y$ 的指数），
+\defterm{不是} $ap$；且 $p\neq q$ 时二者互不蕴含。
+但 Kijaczko 定理 19 只控制加权 Gagliardo 半范数部分，
+\defterm{不}控制 CLWZ 范数 \eqref{eq:intrinsic} 中额外的 $L^q(\Om)$ 项。
+故 $p\neq q$ 时 $\wt F^s$ 上的稠密性\textbf{仍未解决}。
+
+\item \textbf{高阶 $s$ 的情形。}事实 (3) 证明：
+对\defterm{非整数} $s>1$（即 $s\in(1,\infty)\setminus\N$）与任意 $a\in\R$，
+$C_c^\infty(\Om)$ 在 $F^s$ 中\textbf{绝不}稠密。
+故对未加强空间，\defterm{非整数} $s>1$ 时强化必然失败；
+\defterm{整数阶 $s\in\N$ 与端点 $s=1$ 的情形本文未作证明}，不能由上述结果推出。
+对 Hardy 加强空间 $\wt F^s$ 在 $s\ge1$ 时是否成立，尚无结论。
+目前唯一覆盖 $s\ge1$ 的正面结果是区间上的
+(23)（$\Om=(0,1)$、$p=q$），其证明用一维的
+「最高阶导数积分还原」绕过 Leibniz 障碍，不能推广到高维。
+
+\item \textbf{$a<0$ 的情形。}本文所有结论均设 $a>0$。
+$a<0$ 时权在边界附近衰减，二分与退化现象的结构如何变化，尚未处理。
+
+\item \textbf{常数显式化。}除个别估计外，本文所有 $\lesssim$ 均未给出常数，
+亦未追踪对 $\Om$、$s$、$p$、$q$、$a$ 的依赖。
+若需定量结果，须另行处理。
+
+\item \textbf{更弱的边界正则性。}除 (9)（Lipschitz）与
+(4)（区间，$\codimA(\partial\Om)=1$）外，
+本文未处理 $(\varepsilon,\delta)$-domain 等更弱的边界假设。
+\end{enumerate}
+
+%=====================================================================
+\section{验证状态与局限}\label{sec:limits}
+%=====================================================================
+
+\subsection{产出与验证流程}
+
+本文 32 条结论由 4 个自主 worker（\texttt{high}、\texttt{high2}、\texttt{xhigh}、\texttt{xhigh2}）
+在 DeepSeek Harness 上并行研究产出。每次提交须经一个独立的验证会话审核，
+给出 \texttt{correct} 或 \texttt{needs\_repair}；仅前者写入事实图。
+本项目共消耗 46 次以上验证会话，最终得到 32 条事实、230 条术语、35 条依赖边。
+
+\subsection{独立复核}
+
+由于事实 (4)（情形 (I) 反例）与 (13)
+（常数不属于 Hardy 加强空间）是整套结论的支点，二者另经一次\defterm{独立重推}：
+复核者被禁止读取这两条事实的正文，仅依据结论陈述与原始文献独立证明。
+复核产出为 (5)、(22) 与 (17)，
+其前置事实与被复核的两条\defterm{无交集}，结论与原事实一致。
+
+\subsection{第三方审核与修订记录}\label{sec:revision}
+
+在本稿完成之后，我们另请一个\defterm{独立的大语言模型}（非生产本稿的模型家族）对全文的 32 条结论做了逐条审核。
+审核共提出三类意见，我们逐条判断后的处置如下。
+
+\begin{enumerate}
+\item \textbf{确认为错误并已修订（1 条）。}
+  审核指出 \S\ref{sec:part2} 中整数阶修正空间非退化的原证明，把
+  $\int_{|h|<cd(x)}|h|^{-n-(k-r)q}dh=C_2d(x)^{-(k-r)q}$ 这一\emph{发散}积分当作有限量。
+  该指摘\defterm{成立}：当 $\alpha=(k-r)q>0$ 时该积分在 $|h|\to0$ 处为 $+\infty$。
+  （i）\defterm{原证明的积分估计有误}，（ii）\defterm{witness 的适用范围需精确化}，两点处置如下。
+  其一，原证明把发散的 $\int_{|h|<cd(x)}|h|^{-n-(k-r)q}dh$ 写成有限值，该指摘成立，其论证已删除。
+  其二，我们最初进一步断言 witness $f_0=d^k$ 在 $n=1,k=1$ 时亦不属于该空间；该断言\defterm{有误}，已被随后的机器独立复核（事实 (2)）推翻：$k=1$ 时 $d\in F^{1}_{p,q}((0,1))$，因为 $d$ 在中点两侧分别为仿射映射，二阶差分在小 $|h|$ 上恒为零。正确的结论是：$d^k$ 仅在 $k=1$ 时可用，$k\ge2$ 时确实不属于（事实 (1)）。
+  无论哪种情形，本文统一改用 $C_c^\infty$ 作 witness，该证明已由独立复核（事实 (29)）确认，结论（非退化）保持不变。
+
+\item \textbf{因外部文献到位而消除（1 条）。}
+  审核最初指出主强化定理依赖的 ``CLWZ 定理 1.2(i)'' 缺少可核验出处。
+  在提供该论文原文并核对定理 1.2(i)、整数阶定理与相关定义后，此项疑点消除，
+  外加强闭包等式可作为有明确出处的外部定理使用。
+
+\item \textbf{判断不完整，已据此修订（1 条）。}
+  首次审核即指出：平移连续性证明中把某尾项收敛归因于``单调收敛''不准确。
+  我们初次复核时认为该指摘有误，理由是被截断的集合 $\{|u|\ge\varepsilon\}$ 在 $\varepsilon\downarrow0$ 时\emph{增大}、
+  相应的 $E_\varepsilon$ 范数单调不减且极限 $[h]^p_{unw,p,q}<\infty$ 已知，故递增型单调收敛定理适用。
+
+  \textbf{后续更细致的审阅表明前述判断并不完整。}该证明同时涉及\defterm{两类方向相反}的截断：
+  \begin{enumerate}[label=(\alph*)]
+    \item 截断空间 $L^q(\mu_\varepsilon)$ 与范数 $\|G^\varepsilon\|_{E_\varepsilon}$：集合 $\{|u|\ge\varepsilon\}$
+          随 $\varepsilon\downarrow0$ 增大，范数单调不减且极限有限，此处单调收敛定理\emph{确实}适用；
+    \item 小尺度尾项 $b(\varepsilon)=\int_{\R^n}\big(\int_{|u|<\varepsilon}|G(x)(u)|^q|u|^{-n-sq}du\big)^{p/q}dx$：
+          集合 $\{|u|<\varepsilon\}$ 随 $\varepsilon\downarrow0$ \emph{收缩}，$b(\varepsilon)$ 单调\emph{不增}，
+          此处不能用递增型单调收敛定理；原稿又把它误写成``单调不减''并援引单调收敛。
+  \end{enumerate}
+  我们最初的反驳只针对 (a)，却误用它为 (b) 作保。现已在 \S\ref{sec:part6} 相应处改用
+  \defterm{控制收敛定理}（支配函数 $\Phi=F^p\in L^1$ 现成存在），并分别说明两类截断的不同单调方向。
+  结论本身不变，但论证依据已更正。
+
+\item \textbf{第三次审阅：四处可修补缺口的订正。}
+  最近一次逐页审核（2026 年 10 月 26 日）在确认主要结论不变的前提下，指出四处需要订正之处，均已落实：
+  \begin{enumerate}[label=(\arabic*)]
+    \item 评注 \ref{rem:int-counter} 中 $k\ge2$ 情形的下界指数误写为 $\lambda^{1-kq}$；
+          正确值为 $\lambda^{-(k-1)q}$（因 $\int_\lambda^{2\lambda}h^{-1-kq}dh\asymp\lambda^{-kq}$）。结论不变。
+    \item 整数阶非退化定理的证明中，原稿直接使用了 $d(x)\ge\delta$，但 $\Delta_h^m\varphi(x)\ne0$ 时 $x$ 未必在 $\supp\varphi$ 内；
+          现补入\defterm{支集传播}论证（$d(x)\ge\tfrac23\delta$）并把 $h$ 积分按 $|h|\le1$ 与 $|h|>1$ 两段分别估计。
+    \item 主强化定理的陈述中 $q$ 未被量化，现明确声明 $q:=p$。
+    \item 临界条件定理中子区间非空性的理由原为``由区间例子可知''，现改为边界余维数性质：
+          Lipschitz 域的 $\codimAl=\codimAu=1$，故所论区间为 $(\max\{0,1-sp\},1)$，非空。
+  \end{enumerate}
+\item \textbf{第四次复核：一处实质缺口与两处澄清。}
+  最近一次复核（2026 年 10 月 26 日）在确认其余各项已修复的同时，指出：
+  \begin{enumerate}[label=(\arabic*)]
+    \item 主强化定理所依赖的尺度选择原先只处理了两个 Hardy 项与 $L^p$ 项，
+          \defterm{漏掉了原加权分数阶半范数}这一项；而“存在一组尺度使半范数收敛”不能推出
+          “任意更小的逐立方体尺度仍收敛”（该半范数关于各尺度坐标并不单调）。
+          现已在统一选择中补入第四项阈值 $\theta^{(1)}_{n,k}$，并以 (H$_{\mathrm{quant}}$) 的形式
+          明确声明所用的是所引定理证明中的\defterm{定量}内容；
+    \item 外部定理的结论原写作“对对角选取 $\eta_k(Q_n)<1/k$ 有收敛”，已改为
+          \defterm{存在}一组满足该上界的尺度使其收敛；
+    \item $(H_{\infty})$ 原称对有界 Lipschitz 域“或一致区域”成立，已收窄为仅对有界 Lipschitz 域，
+          并注明一般一致区域缺少此处所需的边界层下界论证。
+  \end{enumerate}
+
+\item \textbf{第五次复核：把定量借用降为可核查的推导。}
+  再次复核确认核心缺口已原则上修复，并指出两处可改进：
+  \begin{enumerate}[label=(\arabic*)]
+    \item \emph{原加权分数阶半范数的阈值应给出推导，而不只是声明引自外部定理。}
+          现已在正文写出所引定理证明中的估计
+          $[P^{\eta}f-f]_{F^s}^p\le M\sum_n\int\|\tau_{\eta(Q_n)u}\phi_n-\phi_n\|_{L^p}^p\,h(u)\,du$，
+          并据此\defterm{逐项分配误差预算} $2^{-n}/(Mk)$、由平移在 $L^p$ 中的强连续性导出阈值
+          $\theta^{(1)}_{n,k}$，从而使 $[P^{\eta}f-f]_{F^s}^p\le1/k$ 成为\defterm{结论}而不再是一条外加假设。
+          本文只使用该估计的形状，不复述所引定理的证明。
+    \item \emph{定理 7.6 证明中``非零多项式因为模在无穷远处增长``的措辞有误。}
+          该理由对非零\defterm{常数}多项式不成立。现已改为分两种情形：
+          常数多项式因 $\R^n$ 的测度无穷而不属于 $L^p(\R^n)$；
+          次数至少为 $1$ 的非零多项式在某个正测度锥形区域内按多项式增长，故亦不属于 $L^p(\R^n)$。
+          结论（$P=0$ 从而空间为 $\{0\}$）不变。
+  \end{enumerate}
+
+\item \textbf{第六次复核：改正上一轮引入的估计简化与指数记账。}
+  本轮复核对照所引文献后指出，上一轮写下的半范数估计被\defterm{错误简化}为单变量形式。已作三处订正：
+  \begin{enumerate}[label=(\arabic*)]
+    \item 恢复所引定理证明中的\defterm{二变量加权估计}：以
+          $g_n(x,y)=\dfrac{f(x)\psi_n(x)-f(y)\psi_n(y)}{|x-y|^{n/p+s}}\mathbf 1_{\Om\times\Om}(x,y)$
+          为对象，估计中含奇异核、指示函数与权 $w\times v$；并明确指出该范数不是普通 $L^p(\Om)$ 范数，
+          普通平移连续性无法控制它。
+    \item 加权平移连续性原拟用“$C_c$ 在 $L^p(\omega)$ 中稠密”论证，但该论证对\defterm{非平移不变}的
+          $\omega=w\times v$ 无效（$\|\tau_{tu}(G-G')\|_{L^p(\omega)}\ne\|G-G'\|_{L^p(\omega)}$）。
+          现改用\defterm{紧支性 + 权的局部可比性}：在 Whitney 立方体附近的紧集上有
+          $\omega\asymp dx$，从而把加权平移模控制为 Lebesgue 平移模，再对 $|u|\le1$ 取一致估计。
+    \item 误差预算由 $2^{-n}/(Mk)$ 改为 $2^{-n}/(Mk^{p})$，使开 $p$ 次方后仍得 $1/k$
+          （原先由 $[\,\cdot\,]^p\le1/k$ 直接写 $[\,\cdot\,]\le1/k$，在 $p>1$ 时不成立）。
+  \end{enumerate}
+
+\item \textbf{第七次复核：对照文献原文逐句核对并定稿。}
+  复核指出上一轮的半范数估计被简化为单变量形式。我们\defterm{取得并核对了 arXiv:2110.04012v2 原文}，
+  其定理 19 的证明确实使用二变量差商
+  $g_n(x,y)=\dfrac{f(x)\psi_n(x)-f(y)\psi_n(y)}{|x-y|^{n/p+s}}\mathbf 1_{\Om\times\Om}(x,y)$
+  与二变量加权估计，常数 $M=12^{n(p-1)}$。据此：
+  \begin{enumerate}[label=(\arabic*)]
+    \item 恢复二变量估计并\defterm{逐字对齐}原文（含 $M=12^{n(p-1)}$、$\supp h=B(0,1)$ 与算子约束
+          $\eta(Q)<2\varepsilon l(Q)$）；
+    \item 补充说明原文对 $\|\tau_tg_n-g_n\|^p$ 的 $I_1+I_2+I_3$ 三分解及其归结；
+          本文改用\defterm{紧支 + 权的局部可比性}给出自足的平移连续性论证，并注明两种路线的一致性；
+    \item 加权平移连续性原拟用稠密性论证，该论证对非平移不变权\defterm{无效}，已改为可比性论证；
+    \item 误差预算改为 $2^{-n}/(Mk^{p})$，使开 $p$ 次方后仍得 $1/k$；
+    \item 补入\defterm{参考文献}，给出两篇文献的完整书目信息与逐条引用位置。
+  \end{enumerate}
+
+\item \textbf{第八次复核：订正 $g_n$ 的支集并恢复三分解。}
+  复核指出上一轮对二变量差商支集的判断有误。该指摘\defterm{成立}：取 $x\in\supp\psi_n$、
+  $y\in\Om\setminus Q_n^{**}$ 时 $\psi_n(y)=0$ 但 $g_n(x,y)\ne0$，正确支集为
+  $(Q_n^{**}\times\Om)\cup(\Om\times Q_n^{**})$，且 $g_n$ 也不是全局差商的限制。
+  据此：
+  \begin{enumerate}[label=(\arabic*)]
+    \item 删除“只在 $Q_n^{**}\times Q_n^{**}$ 上比较权”的论证（该论证不成立，因为交叉区域里
+          $v=d^{-ap}$ 可无界）；
+    \item 依 [\ref{ref:K}] 定理 19 与 [\ref{ref:DK}] 定理 12 恢复\defterm{$I_1+I_2+I_3$ 三分解}：
+          局部项用 $C_n=\sup_{Q_n^{**}}w\cdot\sup_{Q_n^{**}}v$ 控制，
+          交叉项用引理 11 的 $|x-y|\ge c|y-x_n|$ 因子化，并把权的作用归结为两个
+          \defterm{有限}常数 $D_n^{(v)},D_n^{(w)}$（其有限性用本节假设 $\int_\Om d^{-ap}<\infty$ 与 $w=1$ 验证）；
+    \item 阈值改由\defterm{Lebesgue} 平移连续性给出（不涉及非平移不变的 $w\times v$）；
+    \item 统一尺度中补入算子约束 $2\varepsilon l(Q_n)$，使 $\eta_k(Q_n)\le\varepsilon l(Q_n)<2\varepsilon l(Q_n)$。
+  \end{enumerate}
+
+\item \textbf{第九次复核：订正一处估计与三处符号冲突。}
+  复核指出两处问题，均\defterm{成立}，且都源于新加入的证明文本：
+  \begin{enumerate}[label=(\arabic*)]
+    \item 估计 $A_{\mathrm{II}}$ 时把因子 $|Q_n^{*}|$ 同时加到了两项上。由
+          $|f(x)-f(y)|^p\le2^{p-1}(|f(x)|^p+|f(y)|^p)$ 只能得
+          $\int_{Q_n^*}\!\int_\Om|f(x)-f(y)|^p\le2^{p-1}(|\Om|+|Q_n^{*}|)\|f\|^p_{L^p}$；
+          已按此订正。所得界依赖于 $n$，但每个固定 $n$ 均有限，这已足够（阈值本就允许依赖 $n,k$）。
+    \item 符号 $C_n$ 被\defterm{重复定义}：第 30 页的 Hardy 权常数 $\asymp l(Q_n)^{-(s+a)p}$ 与
+          第 32 页控制 $I_1$ 的局部常数 $\asymp l(Q_n)^{-ap}$ 同名，导致所选阈值在文字上
+          控制不了式 (3.8) 的系数。现已拆分为
+          $H_n,H'_n$（Hardy 权常数）、$A_n$（局部常数）、$D_n$（交叉项常数），
+          并把标量 $\int|u_n(\eta)|^p$ 由 $g_n(\eta)$ 改名为 $e_n(\eta)$（原 $g_n$ 已是二变量差商）。
+          两个 Hardy 阈值现明确写为 $H_n e_n(\eta)\le 2^{-n}/(C(N)k^{p})$ 与
+          $H'_n e_n(\eta)\le 2^{-n}/(C(N)k^{p})$，直接控制式 (3.8) 与 $w_Q$ 项的系数。
+  \end{enumerate}
+
+\end{enumerate}
+
+\noindent
+由此，本稿相对于初次成稿的实质更动是：\textbf{删除一处错误积分论证，更换其 witness 并重新证明}；
+其余 27 条结论的数学内容未因审核而变动。
+
+\subsection{必须声明的局限}
+
+\begin{enumerate}
+\item \textbf{验证器是 LLM，不是形式化证明助手。}
+它检查论证的合理性、跳步与隐含假设，但不做 Lean/Coq 式机器证明。
+\textbf{通过验证不等于数学真理。}
+本文全部结论\textbf{未经人类同行评审}。
+
+\item \textbf{常数未显式化。}见前节第 4 条。
+
+\item \textbf{独立复核只覆盖两条。}其余 26 条仅经过一次验证器审核。
+
+\item \textbf{$p\neq q$ 与 $s\ge1$ 的关键区间尚缺。}
+不得把本文结论外推到这些范围。
+
+\item \textbf{部分事实的独立性有限。}
+事实 (6) 与 (11)、
+(12) 与 (27) 分别为同一结论的两份独立证明，
+但后者可能已通过共享的全局内存了解前者的结论。
+\end{enumerate}
+
+\subsection*{给引用者的建议}
+
+把本文视为\defterm{研究草稿与路线图}。若需引用，应优先人工复核以下四条：
+(10)（主强化定理）、(4)（情形 (I) 反例）、
+(17)（临界条件机制）、(13)（Hardy 项非冗余）。
+其中 (10) 的正确性单向依赖于 CLWZ 定理 1.2(i) 的逐字表述，
+该表述需与原文核对。
+
+\bigskip
+\begin{center}
+\small
+数据来源：Danus 事实图 \texttt{cx-density-weighted-tl}\\
+32 条事实 \textbullet\ 230 条术语 \textbullet\ 35 条依赖边\\
+生产者：\texttt{high}（13）、\texttt{xhigh}（8）、\texttt{high2}（7）、\texttt{xhigh2}（4）\\
+\textbf{全部结论由 LLM 验证器判定，未经形式化验证或人类同行评审}
+\end{center}
+
+\newpage
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+
+\begin{enumerate}[label={[\arabic*]},leftmargin=2.2em,itemsep=2pt]
+  \item\label{ref:K} M.~Kijaczko, \emph{Fractional Sobolev spaces with power weights},
+        arXiv:2110.04012v2 [math.AP] (2021).
+        （期刊版：\emph{Annali dell'Universit\`a di Ferrara}, DOI 10.2422/2036-2145.202112\_002。）
+        本文引用其定理 2（全半范数与截断半范数可比）、定理 3(I)(III)、定理 4、定理 19（$C^\infty\cap\wt W$ 的密度）
+        及其证明中的二变量估计；算子 $P^\eta$ 的定义见该文 \S 2.2，常数 $M=12^{n(p-1)}$ 见该文定理 19 的证明。
+
+  \item\label{ref:DK} B.~Dyda, M.~Kijaczko, \emph{On density of smooth functions in weighted fractional Sobolev spaces},
+        arXiv:2009.00077 [math.FA]。
+        本文引用其定理 3（Whitney 磨光在 $L^p$ 中的收敛）；Kijaczko 定理 19 证明中的 $I_1,I_2,I_3$ 估计亦归结于该文定理 12 的证明。
+
+  \item\label{ref:CLWZ} CLWZ（待引）, \emph{加权 Triebel--Lizorkin 空间中的稠密性}（研究手稿）。
+        本文引用其定义 1.1--1.6（加权内蕴范数、Hardy 加强空间、修正整数阶空间）、定理 1.2(i)（低阶 Hardy 加强闭包等式）
+        与命题 1.12。
+\end{enumerate}
+
+\newpage
+\section*{附录 A：结论与事实图标识对照}
+\addcontentsline{toc}{section}{附录 A：结论与事实图标识对照}
+
+\noindent 本文每条结论都对应事实图 \texttt{cx-density-weighted-tl} 中一个内容寻址（哈希命名）的记录。
+为不干扰正文的数学阅读，正文一律使用规范的定理、引理编号，并以“附录 A”标注对应关系；
+\S 8.2 的依赖图与 \S 9.3 中用圆括号给出的数字，即为本附录的序号。
+下表按\defterm{事实标识的字典序}编号。
+
+\begin{footnotesize}
+\begin{longtable}{@{}p{1.0cm}p{4.3cm}p{8.1cm}@{}}
+\toprule
+序号 & 事实标识 & 主题 \\
+\midrule
+\endfirsthead
+\toprule
+序号 & 事实标识 & 主题 \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1 & \texttt{0ce5988234f5dee1} & THE WITNESS f 0(x) d(x) k IS NOT IN F k p,q (Omega) WHEN k 2 EXPLICIT D \\
+2 & \texttt{0ebddc640a94b546} & FOR k 1 THE DISTANCE FUNCTION d ITSELF BELONGS TO F 1 p,q ((0,1)), SO THE k \\
+3 & \texttt{10798b65b8d848a0} & THE POINCARE OBSTRUCTION FOR s 1, COMPACTLY SUPPORTED SMOOTH FUNCTIONS ARE \\
+4 & \texttt{1304371856329ed6} & 情形 (I) 反例 \\
+5 & \texttt{1ec46500fa263850} & 区间例 复核 \\
+6 & \texttt{237af5d532395487} & 情形 (II) 退化 \\
+7 & \texttt{2fc46552e3c35887} & 整数阶非退化 \\
+8 & \texttt{3f558528dee6c786} & MONOTONICITY OF DIVERGENCE OF DISTANCE-WEIGHT INTEGRALS \\
+9 & \texttt{44341d37c4dd3b94} & LINEAR LOWER BOUND FOR BOUNDARY LAYERS OF A LIPSCHITZ DOMAIN, AND NON-INTEGRAB \\
+10 & \texttt{4c2d28e56f14f811} & 主强化定理 \\
+11 & \texttt{5854a0ed976146d3} & 情形 (II) 退化 复证 \\
+12 & \texttt{6da1d5ac382868e7} & SIGMA-LEMMA (top derivatives are constant when the weight is non-integrable) \\
+13 & \texttt{7432f881124464bf} & CONSTANTS LIE IN F s p,q BUT NOT IN THE HARDY-AUGMENTED SPACE THE INTRINSIC \\
+14 & \texttt{770e5e88a6a0a3f4} & INTERIOR WEIGHTED-SEMINORM ESTIMATE AND MOLLIFICATION CONVERGENCE IN THE INTEG \\
+15 & \texttt{776da31b10113934} & TRANSLATION CONTINUITY IN VECTOR-VALUED L p AND IN THE UNWEIGHTED MIXED GAGLIA \\
+16 & \texttt{818859edc858ed7d} & CASE (I) C-INFINITY DENSITY FOR p q AND s IN (0,1) \\
+17 & \texttt{83625cdf3c7334ee} & WHY THE CLWZ HARDY TERMS ARE NOT REDUNDANT, AND WHY THE CRITICAL EXPONENT IS s \\
+18 & \texttt{858348dbbd70be5d} & 修正高阶空间非退化 \\
+19 & \texttt{94aa8a0dd29acb5e} & INTEGRABILITY OF THE MIXED-NORM WEIGHTED SPACE LOCAL L q ALWAYS, AND L q OF T \\
+20 & \texttt{9764dcb121fb7ece} & DICHOTOMY FOR THE BOUNDARY-DISTANCE WEIGHT \\
+21 & \texttt{a1ba0794b85a24ab} & POLYNOMIAL LEMMA CONSTANT TOP WEAK DERIVATIVES IMPLY f IS A POLYNOMIAL \\
+22 & \texttt{a397aeabf43b52b2} & Hardy 空间严格更小 复核 \\
+23 & \texttt{a663fb5f0a706ebe} & 区间高阶稠密 \\
+24 & \texttt{aeb82d868d91bb82} & Hardy 加强稠密 \\
+25 & \texttt{b42857020ae1b5e8} & 情形 (II) 反例 \\
+26 & \texttt{ca4e36cccd4cba14} & KIJACZKO'S DENSITY CONDITION FOR THE DISTANCE WEIGHT d -aq THE INTEGRABILIT \\
+27 & \texttt{ce71440005148eec} & NON-INTEGRABILITY RIGIDITY (sigma-lemma) \\
+28 & \texttt{d1d044d3a9fe58ce} & 高阶修正空间退化 \\
+29 & \texttt{da04613bf09ed7de} & C c infinity(Omega) IS CONTAINED IN THE INTEGER-ORDER MODIFIED SPACE F k p,q \\
+30 & \texttt{eb711496ca489785} & TRIVIALITY OF THE WEIGHTED R n SPACE AND NON-EXISTENCE OF A WEIGHTED EXTENSION \\
+31 & \texttt{ee7412a064416f68} & 情形 (II) 强化与失效 \\
+32 & \texttt{f845b7305ca6dece} & TRUNCATION LEMMA COMPACTLY SUPPORTED ELEMENTS ARE DENSE IN THE INTEGER-ORDER \\
+\end{longtable}
+\end{footnotesize}
+
+
+\end{document}
