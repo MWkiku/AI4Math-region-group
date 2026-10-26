@@ -1,5 +1,8 @@
 # paper/ · 论文归档快照
 
+> 📦 **2026-10-26 起，论文正本已迁至独立仓库 [`Cinfty-density`](https://github.com/MWkiku/Cinfty-density)。本目录保留历史快照，不再更新。**
+> 论文编辑现场仍在 **Overleaf**；本仓只做流程与 Issue 追踪。
+
 > ⚠️ **论文正文以 Overleaf 为准，这里只是归档快照，不是主位置。**
 > 最新可编辑版本请看 Overleaf（链接见 Issue #9）。改这里不会改变论文本体。
 
