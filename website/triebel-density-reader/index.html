@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="加权 Triebel 空间稠密性的八章可视化精读讲义">
+  <title>加权 Triebel 空间稠密性 · 可视化精读讲义</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="hero" id="top">
+    <nav class="topbar" aria-label="主导航">
+      <a class="brand" href="#top"><span class="brand-mark">T<sup>s</sup></span><span>AI4Math · 精读讲义</span></a>
+      <div class="nav-links">
+        <a href="#map">结构图</a>
+        <a href="#modules">八章模块</a>
+        <a href="#method">精读方法</a>
+      </div>
+    </nav>
+
+    <div class="hero-grid">
+      <section class="hero-copy">
+        <p class="eyebrow">WEIGHTED TRIEBEL–LIZORKIN DENSITY</p>
+        <h1>加权 Triebel 空间<br><span>稠密性的八章精读</span></h1>
+        <p class="lead">从加强空间的直接逼近，到 Hardy 传递、反例与局部化障碍。每一章都是独立可读、可替换版本的学习模块。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#modules">开始精读</a>
+          <button class="button ghost" id="continueReading">继续上次模块</button>
+        </div>
+        <div class="principles" aria-label="讲义原则">
+          <span>完整证明</span><span>依赖可追踪</span><span>版本可替换</span><span>进度本地保存</span>
+        </div>
+      </section>
+
+      <aside class="progress-panel" aria-label="学习进度">
+        <div class="progress-ring" id="progressRing"><strong id="progressPercent">0%</strong><span>总进度</span></div>
+        <div>
+          <p class="mini-label">当前学习状态</p>
+          <h2 id="progressTitle">尚未开始</h2>
+          <p id="progressDetail">选择一个章节模块，建立你的精读轨迹。</p>
+          <div class="stat-row">
+            <div><strong id="doneCount">0</strong><span>已完成</span></div>
+            <div><strong id="activeCount">0</strong><span>精读中</span></div>
+            <div><strong>8</strong><span>总模块</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section map-section" id="map">
+      <div class="section-heading">
+        <div><p class="eyebrow">RESEARCH MAP</p><h2>五条路径，八章结构</h2></div>
+        <p>主结果位于中心；空间关系与 Hardy 方法向原空间延伸，反例给出边界，局部化提供另一条分析路线。</p>
+      </div>
+
+      <div class="research-map" role="img" aria-label="八章知识依赖图">
+        <svg viewBox="0 0 1080 470" aria-hidden="true">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"/></marker>
+          </defs>
+          <g class="edges">
+            <path d="M190 90 C280 90 290 145 365 145"/>
+            <path d="M190 250 C285 250 290 170 365 170"/>
+            <path d="M535 160 C620 150 620 85 700 85"/>
+            <path d="M535 175 C620 190 620 235 700 235"/>
+            <path d="M535 180 C620 260 620 365 700 365"/>
+            <path d="M865 85 C950 120 950 185 950 235"/>
+            <path d="M865 235 C930 260 930 335 865 365"/>
+            <path d="M865 365 C930 390 945 420 950 430"/>
+          </g>
+        </svg>
+        <button class="map-node n1" data-module="1"><small>第 1 章</small><strong>问题与全景</strong></button>
+        <button class="map-node n2" data-module="2"><small>第 2 章</small><strong>统一记号</strong></button>
+        <button class="map-node main n3" data-module="3"><small>路径二 · 主结果</small><strong>加强空间稠密性</strong></button>
+        <button class="map-node n4" data-module="4"><small>路径一</small><strong>空间关系</strong></button>
+        <button class="map-node n5" data-module="5"><small>路径四</small><strong>Hardy 方法</strong></button>
+        <button class="map-node n6" data-module="6"><small>路径五</small><strong>反例与边界</strong></button>
+        <button class="map-node n7" data-module="7"><small>路径三</small><strong>局部化方法</strong></button>
+        <button class="map-node n8" data-module="8"><small>第 8 章</small><strong>统一结论</strong></button>
+      </div>
+    </section>
+
+    <section class="section" id="modules">
+      <div class="section-heading">
+        <div><p class="eyebrow">EIGHT READING MODULES</p><h2>点击模块，阅读独立章节</h2></div>
+        <p>每个模块均附带独立 PDF。上传该章修订版后，只覆盖当前模块；原版随时可以恢复。</p>
+      </div>
+      <div class="module-grid" id="moduleGrid"></div>
+    </section>
+
+    <section class="section method-section" id="method">
+      <div class="section-heading light">
+        <div><p class="eyebrow">DEEP READING LOOP</p><h2>从“看过”到“能够复述”</h2></div>
+        <p>参考 AI4Math 自适应精读工作流，将每章阅读拆为五个可检验动作。</p>
+      </div>
+      <ol class="method-steps">
+        <li><span>01</span><div><strong>定位</strong><p>先确认研究问题、对象和本章在全篇中的位置。</p></div></li>
+        <li><span>02</span><div><strong>依赖</strong><p>列出定义、引理和外部结果，检查条件是否真正满足。</p></div></li>
+        <li><span>03</span><div><strong>证明</strong><p>按关键估计重构证明，不用“显然”跳过核心步骤。</p></div></li>
+        <li><span>04</span><div><strong>边界</strong><p>用反例、临界指标和失败情形理解定理的适用范围。</p></div></li>
+        <li><span>05</span><div><strong>复述</strong><p>关闭原文，用自己的语言写出结论、路线和未解问题。</p></div></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>加权 Triebel 空间稠密性 · 可视化精读讲义</strong><p>模块文件与阅读状态保存在当前浏览器；AI 审读不替代人工数学核验。</p></div>
+    <a href="#top">返回顶部 ↑</a>
+  </footer>
+
+  <dialog id="moduleDialog" class="module-dialog">
+    <div class="dialog-shell">
+      <header class="dialog-header">
+        <div><p class="eyebrow" id="dialogKicker"></p><h2 id="dialogTitle"></h2></div>
+        <button class="icon-button" id="closeDialog" aria-label="关闭">×</button>
+      </header>
+      <div class="dialog-body">
+        <aside class="chapter-guide">
+          <p id="dialogSummary"></p>
+          <h3>阅读路线</h3>
+          <ol id="dialogRoute"></ol>
+          <h3>本章检查点</h3>
+          <div id="dialogChecks" class="check-list"></div>
+          <div class="version-box">
+            <span class="version-badge" id="versionBadge">原版</span>
+            <p id="versionInfo">当前显示随网页发布的章节 PDF。</p>
+            <label class="upload-button">上传修订版 PDF<input id="pdfUpload" type="file" accept="application/pdf,.pdf"></label>
+            <button class="text-button" id="restoreOriginal">恢复原版</button>
+          </div>
+        </aside>
+        <section class="pdf-stage">
+          <div class="pdf-toolbar">
+            <span id="pdfLabel">章节 PDF</span>
+            <a id="openExternal" target="_blank" rel="noopener">在新窗口打开 ↗</a>
+          </div>
+          <iframe id="pdfFrame" title="章节 PDF 阅读器"></iframe>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
