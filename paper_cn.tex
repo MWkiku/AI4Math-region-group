@@ -1,0 +1,421 @@
+\input{preamble_cn}
+
+\begin{document}
+
+\title{\bf 有界域上加权 Triebel--Lizorkin 空间的 $C^{\infty}$ 稠密性：\\[2pt]
+双分现象、Hardy 加强项与临界边界余维数}
+\author{Danus 多智能体研究项目\\[2pt]
+\texttt{cx-density-weighted-tl}}
+\date{}
+\maketitle
+
+\vspace{-0.4cm}
+\begin{center}
+\begin{minipage}{13.6cm}\small
+\noindent{\bf 摘要.}\quad
+设 $\Om\subset\R^n$ 为有界域，$d(x)=\dist(x,\pa\Om)$ 为边界距离函数，$s\in(0,\infty)$、$p,q\in[1,\infty)$、$a>0$。
+本文研究\textbf{加权的内蕴 Triebel--Lizorkin 空间} $\Fsp$ 中紧支光滑函数的稠密性。
+与经典（无权）情形不同，该问题呈现一条\textbf{双分现象}：决定稠密性的并不是权重本身的可积性
+$\nuA(\Om)=\int_\Om d^{-aq}dx$ 是否有限，而是两种机制\textbf{必居其一}——
+要么边界层测度无限、空间发生刚性退化，要么空间的非退化性与临界量 $sp+aq$ 决定 $C_c^\infty$ 的闭包。
+在 $\nu_a(\Om)=\infty$ 的情形，分数阶空间退化为多项式族，故 $C_c^\infty$ 的闭包平凡；
+在 $\nu_a(\Om)<\infty$ 的情形，$C^\infty(\Om)$ 稠密，而 $C_c^\infty$ 不必稠密——本文证明后者是否成立
+取决于临界量 $sp+aq$ 与边界 Assouad 余维数的比较，而非 $aq$ 本身。
+相应地，本文给出：(i) 两种情形下的完整刻画；(ii) 为恢复稠密性所需的 Hardy 加强空间及其闭包等式；
+(iii) 整数阶修正空间中的非退化性、截断引理与紧支元稠密性；(iv) 一个显式区间反例，说明
+$\int_\Om d^{-aq}<\infty$ 并不蕴含 $C_c^\infty$ 稠密；(v) 高阶情形（非整数 $s>1$）的 Poincar\'e 障碍，
+以及无限质量情形下加权有界延拓算子的不存在性。
+\medskip
+
+\noindent{\bf 关键词.}\quad 加权 Triebel--Lizorkin 空间；稠密性；距离权；Assouad 余维数；Hardy 加强；紧支光滑函数.
+\medskip
+
+\noindent{\bf 2020 数学主题分类.}\quad 46E35（主）；42B35, 26A33（次）.
+\end{minipage}
+\end{center}
+
+\vspace{0.1cm}
+\tableofcontents
+
+% ===================================================================
+\section{引言}\label{s1}
+% ===================================================================
+
+\subsection{研究对象与基本范数}\label{ss1.1}
+
+设 $\Om\subset\R^n$（$n\ge1$）是非空有界域，$\pa\Om$ 为其边界，
+$d=d(\cdot,\pa\Om):=\inf_{y\in\pa\Om}|\cdot-y|$ 为\defterm{边界距离函数}，记
+$\Om_t:=\{x\in\Om:\ d(x)<t\}$（$t>0$）为\defterm{边界层}。
+
+沿用 Prats \cite{p2019} 与 Triebel \cite{t2008,t2010} 的加权内蕴范数。
+对 $s=k+\sz\in(0,\infty)\setminus\N$（$k\in\N_0$、$\sz\in(0,1)$）定义
+\begin{equation}\label{eq:frac-norm}
+\begin{split}
+  \|f\|_{\cf^s_{p,q}(\Om,d^{-aq})}
+  &:=\sum_{|\az|\le k}\|D^{\az}f\|_{L^p(\Om)}
+  +\sum_{|\bz|=k}\Big\{\int_\Om\Big[\int_\Om
+    \frac{|D^\bz f(x)-D^\bz f(y)|^q}
+         {|x-y|^{n+\sz q}\,d(y)^{-aq}}\,dy\Big]^{p/q}dx\Big\}^{1/p},
+\end{split}
+\end{equation}
+并对整数 $s=k\in\N$ 定义
+\begin{equation}\label{eq:int-norm}
+  \|f\|_{\cf^k_{p,q}(\Om,d^{-aq})}
+  :=\|f\|_{L^p(\Om)}
+  +\Big\{\int_\Om\Big[\int_{|h|<d(x)/(2(k+1))}
+    \frac{|\Delta_h^{k+1}f(x)|^q}{|h|^{n+kq}\,d(x)^{-aq}}\,dh\Big]^{p/q}dx\Big\}^{1/p},
+\end{equation}
+其中 $\Delta_h^{m}f(x):=\sum_{\nu=0}^{m}(-1)^{m-\nu}\binom{m}{\nu}f(x+\nu h)$ 为 $m$ 阶差分。
+称 $\Fsp:=\{f\in L^p(\Om):\ \|f\|_{\cf^s_{p,q}(\Om,d^{-aq})}<\infty\}$ 为\defterm{加权内蕴
+Triebel--Lizorkin 空间}；当 $p=q$ 时它是半范数空间，本文的稠密性论断均指相应的半范数拓扑。
+
+记 $C_c^\infty(\Om)$ 为 $\Om$ 内紧支光滑函数全体，$C^\infty(\Om)$ 为 $\Om$ 上光滑函数全体。令
+\begin{equation}\label{eq:closures}
+\begin{aligned}
+  F^{s,1}_{p,q}(\Om,d^{-aq})&:=\clos{C_c^\infty(\Om)\cap\Fsp}^{\ \Fsp},\\
+  F^{s,2}_{p,q}(\Om,d^{-aq})&:=\clos{C^\infty(\Om)\cap\Fsp}^{\ \Fsp},
+\end{aligned}
+\end{equation}
+即两者的\defterm{闭包}。稠密性等价于 $F^{s,i}_{p,q}=\Fsp$（$i=1,2$）。
+由于加权范数并不强迫边界处消失，一般只能有 $C_c^\infty(\Om)\not\subset\Fsp$ 或 $F^{s,1}\subsetneq F^{s,2}$，
+故本文比较\defterm{两个闭包}，这一提法在无权的低阶情形（$a=0$、$s\in(0,1)$）退化为经典的稠密性定理。
+
+当 $C_c^\infty$ 的闭包不足时，引入\defterm{Hardy 加强空间}（CLWZ 型）：对 $s\in(0,1)$、$p=q$ 令
+\begin{equation}\label{eq:hardy-norm}
+  \|f\|_{\tiF}:= \|f\|_{\cf^s_{p,p}(\Om,d^{-aq})}
+  +\|f\,d^{-(s+a)}\|_{L^p(\Om)}
+  +\|f\,d^{-(s+a+n/p)}\|_{L^p(\Om)} ,
+\end{equation}
+即以两个\defterm{Hardy 项}补充边界处的高阶消失。相应地记 $\tiF^{s,1}$、$\tiF^{s,2}$ 为
+$C_c^\infty\cap\tiF$、$C^\infty\cap\tiF$ 在 $\tiF$ 中的闭包。
+
+\subsection{研究背景}\label{ss1.2}
+
+稠密性是函数空间理论中最基本的问题之一。对无权的分数阶 Sobolev 空间 $W^{s,p}(\Om)$，
+经典结果（参见 \cite{s1970} 及其中所引文献）断言 $C_c^\infty(\Om)$ 在 $W^{s,p}(\Om)$ 中稠密；
+对 Triebel--Lizorkin 空间 $F^s_{p,q}$，相应的稠密性在 $s\in(0,\infty)$ 上成立
+（Triebel \cite{t2001,t2008,t2010}）。当权重被引入时，情况发生本质变化：
+距离权 $d^{-aq}$ 在边界处发散，$C_c^\infty$ 的元素在其上可能不可积，
+于是 $C_c^\infty(\Om)\cap\Fsp$ 甚至可能为空集。
+
+近十年来，这一方向已积累了一批结果。Dyda 与 Kijaczko \cite{dk2021} 研究了一般权下
+$C^\infty$ 的稠密性；同一作者在 \cite{dk2022} 中处理紧支光滑函数，
+在 \cite{dk2024} 中给出尖锐的加权分数阶 Hardy 不等式。
+Kijaczko \cite{k2023} 系统研究了幂权情形，证明稠密性的判据由边界
+的\textbf{下、上 Assouad 余维数} $\codimAl(\pa\Om)$、$\codimAu(\pa\Om)$ 刻画，
+并给出闭包的显式形式；其核心技术是 Whitney 磨光算子 $P^\eta$ 与二变量差商估计。
+Ihnatsyeva 与 V\"ah\"akangas \cite{iv2013,iv2015} 将 Hardy 不等式引入
+Triebel--Lizorkin 空间，指出 Aikawa 维数在其中的作用。
+Heikkinen、Ihnatsyeva 与 Tuominen \cite{hit2016} 以及 Alvarado、Yang、Yuan \cite{ayy2022}
+从测度密度的角度研究 Besov 与 Triebel--Lizorkin 函数的延拓。
+在几何侧，Assouad 维数与管状邻域的估计见 K\"aenm\"aki、Lehrb\"ack 与 Vuorinen \cite{klv2013}；
+一致域与 $\kappa$-plump 域的定义与性质见 Gehring--Osgood \cite{go1979} 与 V\"ais\"al\"a \cite{v1988}；
+Jones \cite{j1981} 给出了 Sobolev 延拓的几何刻画。
+关于 $T(1)$、$T(P)$ 型定理与分数阶 Sobolev 空间的刻画，见 Prats--Saksman \cite{ps2017}、
+Prats--Tolsa \cite{pt2015} 与 Prats \cite{p2019}；加权 Sobolev 空间的一般理论见
+Agranovich \cite{a2015} 与 Stein \cite{s1970}。
+
+尽管上述工作覆盖了 Sobolev 型空间，\textbf{加权的 Triebel--Lizorkin 空间}中的稠密性仍有若干空白：
+其一，$q\ne p$ 时的处理需要混合范数估计，结构与 $p=q$ 时不同；
+其二，权重的可积性条件 $\int_\Om d^{-aq}<\infty$ 常被视为稠密性的门槛，
+但当 $p=q$ 而 $s$ 较小时，真正的临界量实为 $sp+aq$；
+其三，当 Hardy 项被加入范数时需要新的闭包等式，而高阶（$s\ge1$）情形会因 Léibniz 公式
+在 Whitney 截断下产生新的权重结构。本文针对这三点给出系统的答案。
+
+\subsection{主要结果}\label{ss1.3}
+
+本文的第一个观察是一条\defterm{双分现象}：边界层测度 $\nuA(\Om):=\int_\Om d^{-aq}dx$
+的质量要么有限、要么无限，而两种情形分别导致\textbf{完全不同的结论}，二者必居其一。
+
+\begin{theorem}[情形 (II)：不可积权下的刚性退化]\label{thm:degen}
+设 $\Om\subset\R^n$ 非空有界，$s\in(0,1)$，$p,q\in[1,\infty)$，$a>0$，并设
+\begin{equation}\label{eq:inf-mass}
+  \nuA(\Om)=\int_\Om d(x)^{-aq}\,dx=\infty .
+\end{equation}
+则 $\Fsp=P_{\lfloor s\rfloor}(\Om)$，即该空间恰由次数不超过 $\lfloor s\rfloor$ 的多项式构成；
+特别地，$C_c^\infty(\Om)$ 的闭包为 $\{0\}$。
+\end{theorem}
+
+定理 \ref{thm:degen} 表明：一旦权重不可积，内蕴空间不再含有任何\textbf{边界处非平凡}的函数。
+其证明（第 \ref{s3} 节）基于一条\defterm{$\sz$-引理}：在权的无限质量下，
+分数阶半范数迫使函数在任意小球上几乎处处为常数。
+
+第二个观察与此形成对照：当 $\nuA(\Om)<\infty$ 时，$C^\infty(\Om)$ 可以稠密，
+但 $C_c^\infty(\Om)$ 未必如此。为使论述完整，本文首先处理\textbf{整数阶}修正空间。
+
+\begin{theorem}[整数阶修正空间的非退化性]\label{thm:int-nondegen}
+设 $\Om$ 有界，$k\in\N$，$p,q\in[1,\infty)$，$F^k_{p,q}(\Om)$ 为 \eqref{eq:int-norm} 所定义的空间。则
+\begin{equation}\label{eq:c-in-fk}
+  C_c^\infty(\Om)\subset F^k_{p,q}(\Om),
+\end{equation}
+从而 $F^k_{p,q}(\Om)\not\subset P_{k-1}(\Om)$，即该空间含有非多项式元素。
+\end{theorem}
+
+\begin{theorem}[截断引理：紧支元的稠密性]\label{thm:truncation}
+在定理 \ref{thm:int-nondegen} 的假设下，取标准的 Whitney 截断 $\chi_\vez$（$\chi_\vez=1$ 于 $\{d\ge2\vez\}$、
+$\chi_\vez=0$ 于 $\{d<\vez\}$，且 $|D^\az\chi_\vez|\le C_{|\az|}\vez^{-|\az|}$），令 $g_\vez:=1-\chi_\vez$。
+则对每个 $f\in F^k_{p,q}(\Om)$：
+\begin{enumerate}[label=(\roman*)]
+  \item $f\chi_\vez\in F^k_{p,q}(\Om)$；
+  \item $\|f-f\chi_\vez\|^p_{F^k_{p,q}(\Om)}$ 被 $C(n,k,p,q)$ 乘以边界层 $\{d<4\vez\}$ 上 $k+3$ 个积分之和所控制，
+        从而 $\|f-f\chi_\vez\|_{F^k_{p,q}}\to0$（$\vez\to0$）；
+  \item 因此本质紧支的元素类 $F^k_{p,q,c}(\Om)$ 在 $F^k_{p,q}(\Om)$ 中稠密。
+\end{enumerate}
+\end{theorem}
+
+在可积权情形（$\nuA(\Om)<\infty$），本文得到如下刻画。
+
+\begin{theorem}[情形 (I)：$C^\infty$ 的稠密性]\label{thm:smooth-dense}
+设 $\Om$ 非空有界，$a>0$，$s\in(0,1)$，$p=q\in[1,\infty)$ 且 $\nuA(\Om)<\infty$。则
+\begin{equation}\label{eq:smooth-dense}
+  F^{s,2}_{p,q}(\Om,d^{-aq})=\Fsp ,
+\end{equation}
+即 $C^\infty(\Om)\cap\Fsp$ 在 $\Fsp$ 中稠密。
+\end{theorem}
+
+\begin{theorem}[Hardy 加强空间的闭包等式（主强化定理）]\label{thm:main-augmented}
+设 $\Om$ 非空有界，$a>0$，$s\in(0,1)$，$p=q\in[1,\infty)$，$\nuA(\Om)<\infty$。则
+\begin{equation}\label{eq:main-augmented}
+  \tiF^{s,1}_{p,p}(\Om,d^{-aq})=\tiF^{s,2}_{p,p}(\Om,d^{-aq})=\tiF^{s}_{p,p}(\Om,d^{-aq}),
+\end{equation}
+即两个 Hardy 加强闭包都等于整个 Hardy 加强空间。换言之，\eqref{eq:hardy-norm} 中的两个 Hardy 项
+恰是 $C_c^\infty$ 闭包所欠缺的全部条件。
+\end{theorem}
+
+定理 \ref{thm:main-augmented} 的证明（第 \ref{s5} 节）须建立 Whitney 磨光在 $\tiF$ 范数下的收敛性，
+其关键是为每个立方体选取尺度 $\eta_k(Q_n)$ 使\textbf{同一族}尺度同时控制内蕴半范数、
+两个 Hardy 项与 $L^p$ 项；本文给出统一的对角选取，并逐项给出误差预算。
+
+即使 $\nuA(\Om)<\infty$，$C_c^\infty$ 仍可能不稠密。本文给出一个显式反例。
+
+\begin{theorem}[区间反例：可积权下 $C^\infty$ 稠密而 $C_c^\infty$ 不稠密]\label{thm:interval}
+取 $\Om=(0,1)$、$d(x)=\min\{x,1-x\}$、$s=\tfrac12$、$p=q=2$、$a=\tfrac14$。则
+\begin{equation}\label{eq:interval}
+  \nuA(\Om)=\int_0^1 d(x)^{-1/2}dx=2\sqrt2<\infty ,
+\end{equation}
+即情形 (I) 成立，然而
+\begin{equation}\label{eq:interval-closure}
+  F^{1/2,1}_{2,2}\big((0,1),d^{-1/2}\big)\ \ne\ F^{1/2,2}_{2,2}\big((0,1),d^{-1/2}\big)=F^{1/2}_{2,2}\big((0,1),d^{-1/2}\big);
+\end{equation}
+事实上 $F^{1/2,1}_{2,2}=\{f\in F^{1/2}_{2,2}:\ \int_\Om|f|^2d^{-3/2}dx<\infty\}$ 是真子空间，且不含常数 $1$。
+\end{theorem}
+
+于是决定 $C_c^\infty$ 稠密性的并非 $aq$ 本身。
+
+\begin{theorem}[临界量是 $sp+aq$，而非 $aq$]\label{thm:critical}
+设 $\Om$ 为非空有界 Lipschitz 域，$0<s<1$、$p\in[1,\infty)$、$b\ge0$，并考虑加权内蕴空间
+$W^{s,p}_b(\Om)$ 及其 $C_c^\infty$ 闭包 $W^{s,p}_{b,0}(\Om)$。则
+\begin{enumerate}[label=(\roman*)]
+  \item 若 $0\le b<\codimAl(\pa\Om)$ 且 $sp+b>\codimAu(\pa\Om)$，则
+        \[
+          W^{s,p}_{b,0}(\Om)=\Big\{f\in W^{s,p}_b(\Om):\ \int_\Om|f|^p d^{-(sp+b)}dx<\infty\Big\}\ne W^{s,p}_b(\Om);
+        \]
+  \item 临界比较发生在 $sp+b$ 与边界余维数之间，而非 $b$ 与 $1$ 之间（即 $\int_\Om d^{-b}<\infty$ 并非判据）。
+        特别地，在子区间 $0\le b<\codimAl$、$sp+b>\codimAu$ 内，$C^\infty$ 稠密而 $C_c^\infty$ 不稠密。
+\end{enumerate}
+\end{theorem}
+
+当 $s\ge1$ 时，$C_c^\infty$ 的稠密性在\textbf{未加强}空间中彻底失效。
+
+\begin{theorem}[高阶 Poincar\'e 障碍]\label{thm:poincare}
+设 $\Om$ 非空有界，$k\in\N$，$\sz\in(0,1)$，$s=k+\sz$，$q\in[1,\infty)$，$a\in\R$。则对任意 $a$，
+\begin{equation}\label{eq:poincare}
+  C_c^\infty(\Om)\cap F^s_{q,q}(\Om,d^{-aq})\ \text{在}\ F^s_{q,q}(\Om,d^{-aq})\ \text{中永不稠密};
+\end{equation}
+即 $F^{s,1}_{q,q}(\Om,d^{-aq})\ne F^s_{q,q}(\Om,d^{-aq})$。其机理是：$F^s$ 范数控制 $W^{k,q}$ 范数，
+而 $W^{1,q}_0$ 的 Poincar\'e 不等式禁止紧支函数在 $F^s$ 中逼近非零常数。
+\end{theorem}
+
+最后，Hardy 加强项并非冗余，且无限质量情形下不存在有界延拓算子。
+
+\begin{proposition}[Hardy 加强空间严格更小]\label{prop:strict}
+对每一对 $p,q\in[1,\infty)$、每个权指数 $a$、每个非整数 $s>0$，有
+\begin{equation}\label{eq:strict}
+  \Fsp\ \not\subset\ \tiF ,
+\end{equation}
+即 Hardy 加强空间是内蕴空间的真子空间。
+\end{proposition}
+
+\begin{theorem}[无限质量情形：无有界加权延拓]\label{thm:noext}
+设 $a>0$、$p,q\in[1,\infty)$、$s\in(0,\infty)\setminus\N$，并设 $\nuA(\Om)=\infty$。若 $\pa\Om$ 满足
+下方 Ahlfors 正则性（$|\{d<t\}|\ge ct$，$t>0$ 充分小；有界 Lipschitz 域均满足），则
+\begin{enumerate}[label=(\roman*)]
+  \item $\R^n$ 上的加权内蕴空间 $F^s_{p,q}(\R^n,d^{-aq})=\{0\}$；
+  \item 不存在从 $\Fsp$ 到 $F^s_{p,q}(\R^n,d^{-aq})$ 的\textbf{有界线性}延拓算子 $E$（即满足 $(Ef)|_\Om=f$ 者）。
+\end{enumerate}
+\end{theorem}
+
+定理 \ref{thm:degen}--\ref{thm:noext} 构成一条完整的图景：
+\begin{itemize}
+  \item 权的\textbf{可积性}决定空间是否发生刚性退化（定理 \ref{thm:degen}）；
+  \item 在\textbf{不}退化的情形，$C^\infty$ 总是稠密（定理 \ref{thm:smooth-dense}）；
+  \item $C_c^\infty$ 是否稠密由 $sp+aq$ 与边界余维数决定（定理 \ref{thm:critical}、\ref{thm:interval}）；
+  \item 若要求 $C_c^\infty$ 稠密，须以 Hardy 项加强，且加强后的闭包可被完全刻画（定理 \ref{thm:main-augmented}）；
+  \item 对 $s\ge1$，未加强空间中的稠密性彻底失效（定理 \ref{thm:poincare}），
+        而修正后的整数阶空间仍含紧支元（定理 \ref{thm:truncation}）。
+\end{itemize}
+
+\subsection{方法概述}\label{ss1.4}
+
+本文的技术路线可概括为四点。
+\defterm{(a) 刚性机制.} 在 $\nuA(\Om)=\infty$ 时，利用权在边界层的无限质量与非奇异核的有界性，
+证明分数阶半范数强迫函数局部为常数（$\sz$-引理），进而整体为多项式。
+\defterm{(b) Whitney 磨光与二变量差商.} 在 $\nuA(\Om)<\infty$ 时，采用 Kijaczko \cite{k2023} 的磨光算子
+$P^\eta f=\sum_n(f\psi_n)*h_{\eta(Q_n)}$，其收敛性归结为二变量差商
+$g_n(x,y)=\frac{f(x)\psi_n(x)-f(y)\psi_n(y)}{|x-y|^{n/p+s}}\mathbf 1_{\Om\times\Om}(x,y)$
+在加权空间 $L^p(\Om\times\Om,w\times v)$ 中的平移连续性；由于 $g_n$ 的支集延伸到
+$(Q_n^{**}\times\Om)\cup(\Om\times Q_n^{**})$，须按局部项 $I_1$ 与交叉项 $I_2,I_3$ 分别处理。
+\defterm{(c) 统一尺度与误差预算.} 为同时控制内蕴半范数、两个 Hardy 项与 $L^p$ 项，
+对每个立方体取阈值的最小值，并把每一项的误差预算分配为 $2^{-n}k^{-p}$ 的量级，
+使各方差在 $p$ 次方后仍给出 $1/k$ 的界。
+\defterm{(d) 截断与 Léibniz 结构.} 整数阶情形下，截断函数在 Léibniz 公式中产生额外的权结构，
+这正是修正整数阶范数中 $d(x)^{-rq}$ 因子的来源，也是定理 \ref{thm:truncation} 的核心。
+
+\subsection{记号}\label{ss1.5}
+
+除特别说明外：$\N=\{1,2,\dots\}$，$\N_0=\N\cup\{0\}$；$B(x,r)$ 为欧氏球，$|E|$ 为 Lebesgue 测度；
+$\lesssim$、$\gtrsim$ 表示双侧至多差一个仅依赖于固定参数（$n,s,p,q,a,\Om$，必要时还有 Whitney 常数）的正常数；
+$P_k(\Om)$ 表示次数不超过 $k$ 的多项式在 $\Om$ 上的限制；
+$\mathcal W=\{Q_n\}_{n\in\N}$ 为 $\Om$ 的 Whitney 分解，$Q^*$、$Q^{**}$ 为其标准放大（见第 \ref{s2} 节）。
+
+% ===================================================================
+\section{预备知识}\label{s2}
+% ===================================================================
+
+本节汇集全文所需的几何对象与初等引理。\S\ref{ss2.1} 给出边界几何量，\S\ref{ss2.2} 给出 Whitney 结构，
+\S\ref{ss2.2} 起为后文反复使用的引理，其证明一并给出。
+
+\subsection{边界几何：Assouad 余维数}\label{ss2.1}
+
+本文多次用到边界的 Assouad 余维数与 Minkowski 维数。
+
+\input{sec0_defs}
+
+\subsection{Whitney 分解与基本引理}\label{ss2.2}
+
+以下引理为后文的基本工具：权的二分、$\sz$-引理、多项式引理、权的单调性与边界层下界。
+
+\input{sec1_zh}
+
+% ===================================================================
+\section{情形 (II)：不可积权下的退化}\label{s3}
+% ===================================================================
+
+本节证明定理 \ref{thm:degen}，并给出整数阶修正空间的非退化性（定理 \ref{thm:int-nondegen}）
+与截断引理（定理 \ref{thm:truncation}）。
+
+\input{sec2_zh}
+
+% ===================================================================
+\section{情形 (I)：可积权下的稠密性}\label{s4}
+% ===================================================================
+
+本节证明定理 \ref{thm:smooth-dense}，并建立 Whitney 磨光在加权范数下的收敛性，
+为第 \ref{s5} 节的闭包等式作准备。
+
+\input{sec3_zh}
+
+% ===================================================================
+\section{主强化定理与反例}\label{s5}
+% ===================================================================
+
+本节证明定理 \ref{thm:main-augmented} 与定理 \ref{thm:interval}。
+
+\input{sec4_zh}
+
+% ===================================================================
+\section{临界条件：边界余维数}\label{s6}
+% ===================================================================
+
+本节证明定理 \ref{thm:critical}，给出区间子例的完整验算，
+并说明 Hardy 项的不可约性。
+
+\input{sec5_zh}
+
+% ===================================================================
+\section{高阶情形与延拓}\label{s7}
+% ===================================================================
+
+本节证明定理 \ref{thm:poincare}、命题 \ref{prop:strict} 与定理 \ref{thm:noext}。
+
+\input{sec0_spaces}
+
+\input{sec6_zh}
+
+% ===================================================================
+\section{结语与未解决的问题}\label{s8}
+% ===================================================================
+
+本文的图景可归纳为一条判据：\defterm{权的可积性决定空间是否退化，而临界量 $sp+aq$ 与边界余维数的比较决定紧支光滑函数是否稠密。}
+在两种情形下，$C^\infty$ 的稠密性均成立；$C_c^\infty$ 的稠密性则需以 Hardy 项加强，
+加强后的闭包可被完全刻画（定理 \ref{thm:main-augmented}）。
+
+以下问题尚未解决：
+\begin{enumerate}[label=(\arabic*)]
+  \item \defterm{$q\ne p$ 时的稠密性.} 本文的闭包等式只在 $p=q$ 下建立；混合范数情形需要
+        对 $\ell^q$ 求和与 $L^p$ 积分交换次序的额外估计，尚无结论。
+  \item \defterm{高阶 Hardy 加强.} 定理 \ref{thm:poincare} 说明 $s\ge1$ 时未加强空间不可稠密；
+        是否能以有限个 Hardy 项加强后恢复稠密性，本文未作回答。
+  \item \defterm{负指数 $a<0$.} 此时权在边界附近衰减，二分现象与退化机制的结构是否保持，尚未处理。
+  \item \defterm{常数的显式化.} 除个别估计外，本文所有 $\lesssim$ 均未给出常数，
+        亦未追踪其对 $\Om$、$s$、$p$、$q$、$a$ 的依赖。
+\end{enumerate}
+
+\noindent\defterm{方法与局限说明.}
+本文的证明在撰写过程中借助自动推理与机器校验工具辅助整理，但\textbf{未经 Lean/Coq 等形式化验证，
+亦未经人类同行评审}；所有渐近常数均未显式化。读者引用前请自行核对。
+
+% ===================================================================
+\begin{thebibliography}{30}
+
+\bibitem{a2015} M. S. Agranovich, \emph{Sobolev Spaces, Their Generalizations and Elliptic Problems in Smooth and Lipschitz Domains}, Monographs in Mathematics, Springer, Cham, 2015.
+
+\bibitem{ayy2022} R. Alvarado, D. Yang and W. Yuan, \emph{A measure characterization of embedding and extension domains for Sobolev, Triebel--Lizorkin, and Besov spaces on spaces of homogeneous type}, preprint.
+
+\bibitem{c2000} A. M. Caetano, \emph{Approximation by functions of compact support in Besov--Triebel--Lizorkin spaces on irregular domains}, Studia Math. \textbf{142} (2000), 267--292.
+
+\bibitem{cjlz2022} J. Cao, Y. Jin, Y. Li and Q. Zhang, \emph{Hardy inequalities and interrelations of fractional Triebel--Lizorkin spaces in a bounded uniform domain}, preprint.
+
+\bibitem{clwz2026} J. Cao, H. Lu, G. Wang and C. Zhu, \emph{Revised density property for Triebel--Lizorkin spaces on bounded domains in full smoothness range}, manuscript, 2026.
+
+\bibitem{dk2021} B. Dyda and M. Kijaczko, \emph{On density of smooth functions in weighted fractional Sobolev spaces}, Nonlinear Anal. \textbf{205} (2021), Paper No. 112231.
+
+\bibitem{dk2022} B. Dyda and M. Kijaczko, \emph{On density of compactly supported smooth functions in fractional Sobolev spaces}, Ann. Mat. Pura Appl. (4) \textbf{201} (2022), 2493--2512.
+
+\bibitem{dk2024} B. Dyda and M. Kijaczko, \emph{Sharp weighted fractional Hardy inequalities}, Studia Math. \textbf{274} (2024), 153--171.
+
+\bibitem{go1979} F. W. Gehring and B. G. Osgood, \emph{Uniform domains and the quasihyperbolic metric}, J. Anal. Math. \textbf{36} (1979), 50--74.
+
+\bibitem{hit2016} T. Heikkinen, L. Ihnatsyeva and H. Tuominen, \emph{Measure density and extension of Besov and Triebel--Lizorkin functions}, J. Fourier Anal. Appl. \textbf{22} (2016), 334--382.
+
+\bibitem{iv2013} L. Ihnatsyeva and A. V. V\"ah\"akangas, \emph{Hardy inequalities in Triebel--Lizorkin spaces}, Indiana Univ. Math. J. \textbf{62} (2013), 1785--1807.
+
+\bibitem{iv2015} L. Ihnatsyeva and A. V. V\"ah\"akangas, \emph{Hardy inequalities in Triebel--Lizorkin spaces II. Aikawa dimension}, Ann. Mat. Pura Appl. (4) \textbf{194} (2015), 479--493.
+
+\bibitem{j1981} P. W. Jones, \emph{Quasiconformal mappings and extendability of functions in Sobolev spaces}, Acta Math. \textbf{147} (1981), 71--88.
+
+\bibitem{k2023} M. Kijaczko, \emph{Fractional Sobolev spaces with power weights}, Ann. Sc. Norm. Super. Pisa Cl. Sci. (5) \textbf{24} (2023), 1741--1764 (arXiv:2110.04012v2).
+
+\bibitem{klv2013} A. K\"aenm\"aki, J. Lehrb\"ack and M. Vuorinen, \emph{Dimensions, Whitney covers, and tubular neighborhoods}, Indiana Univ. Math. J. \textbf{62} (2013), 1861--1889.
+
+\bibitem{p2019} M. Prats, \emph{Measuring Triebel--Lizorkin fractional smoothness on domains in terms of first-order differences}, J. Lond. Math. Soc. (2) \textbf{100} (2019), 692--716.
+
+\bibitem{ps2017} M. Prats and E. Saksman, \emph{A $T(1)$ theorem for fractional Sobolev spaces on domains}, J. Geom. Anal. \textbf{27} (2017), 2490--2538.
+
+\bibitem{pt2015} M. Prats and X. Tolsa, \emph{A $T(P)$ theorem for Sobolev spaces on domains}, J. Funct. Anal. \textbf{268} (2015), 2946--2989.
+
+\bibitem{s1970} E. M. Stein, \emph{Singular Integrals and Differentiability Properties of Functions}, Princeton Mathematical Series 30, Princeton University Press, Princeton, 1970.
+
+\bibitem{t2001} H. Triebel, \emph{The Structure of Functions}, Monographs in Mathematics 97, Birkh\"auser, Basel, 2001.
+
+\bibitem{t2008} H. Triebel, \emph{Function Spaces and Wavelets on Domains}, EMS Tracts in Mathematics 7, European Mathematical Society, Z\"urich, 2008.
+
+\bibitem{t2010} H. Triebel, \emph{Theory of Function Spaces}, Modern Birkh\"auser Classics, Birkh\"auser/Springer, Basel, 2010.
+
+\bibitem{v1988} J. V\"ais\"al\"a, \emph{Uniform domains}, Tohoku Math. J. (2) \textbf{40} (1988), 101--118.
+
+\bibitem{zyy2024} Z. Zeng, D. Yang and W. Yuan, \emph{Extension and embedding of Triebel--Lizorkin-type spaces built on ball quasi-Banach spaces}, J. Geom. Anal. \textbf{34} (2024), Paper No. 121.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,2611 @@
+\documentclass[11pt,twoside]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{txfonts}
+% \usepackage{newtxtext}   % 正文文本字体
+% \usepackage{newtxmath}   % 如果需要数学字体
+\usepackage{enumerate}
+%\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage{hyperref}
+%\usepackage{esint}
+\usepackage{latexsym,amssymb}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage[normalem]{ulem}
+\newcommand{\rev}[1]{{\color{red}#1}}
+\newcommand{\revdel}[1]{{\color{red}\sout{#1}}}
+\newcommand{\revnote}[1]{{\color{red}\footnotesize\textit{#1}}}
+
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\pagestyle{empty}
+
+%\usepackage{refcheck}
+
+
+%\usepackage[notref,notcite]{showkeys}
+
+%\let\mathbb=\varmathbb
+%\DeclareSymbolFont{letters}{OML}{ztmcm}{m}{it}
+
+\allowdisplaybreaks
+
+\pagestyle{myheadings}
+\markboth{\footnotesize\rmfamily\scshape Jun Cao, Haonan Lu, Guangzheng Wang and Chenfeng Zhu}
+{\footnotesize\rmfamily\scshape 
+Revised Density Property for  Triebel--Lizorkin Spaces on Bounded  Domains 
+in Full Smoothness Range}
+
+\textwidth=15truecm
+\textheight=21.6truecm
+\oddsidemargin 0.35cm
+\evensidemargin 0.35cm
+
+
+
+\makeatletter
+\def\@cite#1#2{#1}
+\makeatother
+\def\rr{{\mathbb R}}
+\def\rn{{\mathbb{R}^n}}
+\def\urn{\mathbb{R}_+^{n+1}}
+\def\zz{{\mathbb Z}}
+\def\cc{{\mathbb C}}
+\def\aa{{\mathbb A}}
+\def\nn{{\mathbb N}}
+\def\nno{\nn_0}
+\def\hh{{\mathbb H}}
+\def\ff{{\mathbb F}}
+\def\bbg{{\mathbb G}}
+\def\ca{{\mathcal A}}
+\def\cb{{\mathcal B}}
+\def\ccc{{\mathcal C}}
+\def\cd{{\mathcal D}}
+\def\ce{{\mathcal E}}
+\def\cf{{\mathcal F}}
+\def\hf{{\mathscr F }}
+\def\cg{{\mathcal G}}
+\def\ch{{\mathcal H}}
+\def\hhh{{\mathscr H}}
+\def\cj{{\mathcal J}}
+\def\cci{{\mathcal I}}
+\def\cl{{\mathcal L}}
+\def\cm {{\mathcal M}}
+\def\cn{{\mathcal N}}
+\def\cp{{\mathcal P}}
+\def\cq{{\mathcal Q}}
+\def\mr{{\mathcal R}}
+\def\cs{{\mathcal S}}
+\def\ct{{\mathcal T}}
+\def\cx{{\mathcal X}}
+\def\cy{{\mathcal Y}}
+\def\mi{{\mathrm I}}
+\def\mj{{\mathrm J}}
+\def\mh{{\mathrm H}}
+\def\mrm{\mathrm}
+\def\cw{\mathcal W}
+\def\sxing{S^{*}}
+\def\qxing{Q^{*}}
+\def\pxing{P^{*}}
+\def\Qi{\frac{11}{10}Q_i}
+\def\Qkk{\frac{6}{5}Q_k}
+\def\Qk{\frac{11}{10}Q_k}
+\def\Qii{\frac{6}{5}Q_i}
+\def\Qj{\frac{11}{10}Q_j}
+
+\def\fz{\infty }
+\def\az{\alpha}
+\def\bz{\beta}
+\def\dz{\delta}
+\def\bdz{\Delta}
+\def\ez{\epsilon}
+\def\gz{{\gamma}}
+\def\bgz{{\Gamma}}
+\def\kz{\kappa}
+\def\lz{\lambda}
+\def\blz{\Lambda}
+\def\oz{{\omega}}
+\def\boz{{\Omega}}
+\def\tz{\theta}
+\def\sz{\sigma}
+\def\vz{\varphi}
+\def\vez{\varepsilon}
+
+\def\lf{\left}
+\def\r{\right}   
+\def\lfz{{\lfloor}}              %中括号
+\def\rfz{{\rfloor}}
+\def\la{\langle}                 %尖括号
+\def\ra{\rangle}
+\def\hs{\hspace{0.25cm}}
+\def\ls{\lesssim}                %小于约等于
+\def\gs{\gtrsim}                 %大于约等于
+\def\tr{\Delta}
+\def\pa{\partial}                %偏导
+\def\ov{\overline}               %上划线（闭包）
+\def\noz{\nonumber}
+\def\wz{\widetilde}              %波浪线
+\def\wh{\widehat}                %尖帽子
+\def\ev{\equiv}                  %恒等于
+\def\com{\complement}            %补集符号
+\def\bh{\backslash}              %差集符号
+\def\gfz{\genfrac{}{}{0pt}{}}
+\def\wee{\wedge}                 %尖型交
+\def\st{\subset}                 %包含于
+
+\def\dis{\displaystyle}
+\def\dlimsup{\displaystyle\limsup}
+\def\dist{\mathop\mathrm{\,dist\,}}
+\def\loc{{\mathop\mathrm{\,loc\,}}}
+\def\supp{\mathop\mathrm{\,supp\,}}
+\def\atom{\mathop\mathrm{\,atom\,}}
+
+\def\cappqk{\text{cap}_{\cf_{p,q}^{\sz}(\boz)}(K)}
+\def\capft{\text{cap}_{\cf_{p,q}^{\sz}(\boz)}(\left\{|f|>t \right\})}
+\def\hcondition{(\text{H})_{\sz,p,q}-condition}
+\def\qiuhetwo{\sum_{j \in \Lambda_2} \sum_{\substack{\bz\in\nn^n \\ \bz \leq \az}} \binom{\az}{\bz}}
+\def\fpjzuhel{\sum_{\bz \leq \az} \binom{\az}{\bz} D^{\bz}f(x) D^{\az - \bz} \psi_j(x)}
+\def\fpjzuhely{\sum_{\bz \leq \az} \binom{\az}{\bz} D^{\bz}f(y) D^{\az - \bz} \psi_j(y)}
+\def\fpjzuhe{D^{\bz}f(x) \sum_{j \in \Lambda_2}D^{\az - \bz} \psi_j(x)}
+\def\fpjzuhey{D^{\bz}f(y) \sum_{j \in \Lambda_2}D^{\az - \bz} \psi_j(y)}
+\def\we{w_{\varepsilon}}
+\def\axdk{\sum_{\lvert \alpha \rvert \leq k}}
+\def\adk{\sum_{\substack{\az\in\nno^n \\ \lvert \alpha \rvert = k}}}
+\def\huae{\varepsilon}
+\def\ve{v_{\varepsilon}}
+\def\bozthreee{\boz_{3\huae}}
+\def\bozfour{\Omega_{14\huae}}
+\def\fhuaf{{F}_{p,q}^s(\boz)}
+\def\fq{\mathring{F}_{p,q}^s(\boz)}
+\def\fw{\widetilde{F}_{p,q}^s(\boz)}
+\def\huaf{{\cf}_{p,q}^s(\boz)}
+\def\huafwe{{\cf}_{p,q}^s(\boz,d^{-aq})}
+\def\huafweab{{\hf}_{p,q}^{s}(\boz)}
+\def\huafsz{{\cf}_{p,q}^\sz(\boz)}
+\def\huafq{\mathring{\cf}_{p,q}^s(\boz)}
+\def\huafqw{\mathring{\cf}_{p,q}^s(\boz,d^{-aq})}
+\def\huafqwab{\mathring{\hf}_{p,q}^{s}(\boz)}
+\def\huafw{\widetilde{\cf}_{p,q}^s(\boz)}
+\def\capfk{\sum_{k = -\infty}^{\infty} 2^{kp} \text{cap}_{\huafsz} (\{|f| > 2^k\})}
+\def\cro{\ccc_\rho}
+\def\mz{{\frac n2(\frac 1{p_\Phi^-}-\frac12)}}
+\def\mzx{{\frac n2(\frac 1{\wz p_\Phi}-\frac12)}}
+\def\hl{{\mathrm H}_l}
+\def\jl{{\mathrm J}_l}
+\def\rb{{\rho(\mu(B))[\mu(B)]^{1/2}}}
+\def\rkb{{\rho(\mu(2^kB))[\mu(2^kB)]^{1/2}}}
+\def\rjb{{\rho(\mu(B_j))[\mu(B_j)]^{1/2}}}
+\def\dxt{\,\frac{d\mu(x)\,dt}{t}}
+\def\dyt{\,\frac{d\mu(y)\,dt}{t}}
+\def\dt{\,\frac{dt}{t}}
+\def\ds{\,\frac{ds}{s}}
+\def\cub{\chi_{U_k(B)}}
+\def\lp{{L^p(\cx)}}
+\def\lx{{L^\Phi(\cx)}}
+\def\xt{{\cx\times(0,\fz)}}
+\def\ml{{M ^{M,\ez}_\Phi(L)}}
+\def\mlx{{M ^{M,\ez}_\Phi(L^*)}}
+\def\mly{{M ^{M_1}_{\Phi,L}(\cx)}}
+\def\tx{{T_\Phi(\cx)}}
+\def\txx{{(T_\Phi(\cx))^*}}
+\def\txz{{T_\Phi^\fz(\cx)}}
+\def\txv{{T_{\Phi,{\rm v}}^\fz(\cx)}}
+\def\txl{{T_{\Phi,0}^\fz(\cx)}}
+\def\txy{{T_{\Phi,1}^\fz(\cx)}}
+\def\txb{{T_{2,b}^2(\cx)}}
+\def\txe{{T_{2}^2(\cx)}}
+\def\ttx{{\wz T_\Phi(\cx)}}
+\def\dfb{\dz_k(f,B)}
+\def\tml{(t^2L)^Me^{-t^2L}}
+\def\tmlx{(t^2L^*)^Me^{-t^2L^*}}
+\def\tmy{(t^2L)^{M_1}e^{-t^2L}}
+\def\iem{(I-e^{-r_B^2L})^M}
+\def\ilm{(I-[I+r_B^2L]^{-1})^M}
+\def\Iem{\lf(I-e^{-r_B^2L}\r)^M}
+\def\Ilm{\lf(I-[I+r_B^2L]^{-1}\r)^M}
+\def\iemx{(I-e^{-r_B^2L^{\ast}})^M}
+\def\Iemx{\lf(I-e^{-r_B^2L^{\ast}}\r)^M}
+\def\tl{t^2Le^{-t^2L}}
+\def\tlx{t^2L^*e^{-t^2L^*}}
+\def\vy{{V_{k,1}(B)}}
+\def\pme{(\Phi,\,M,\,\ez)_L}
+\def\pml{(\Phi,\,\wz M,\,\ez)_{L^*}}
+\def\pmx{(\Phi,\,M,\,\ez)_{L^*}}
+\def\bmol{{\mathop\mathrm{\,BMO}^M_{\rho,L}(\cx)}}
+\def\bmolx{{\mathop\mathrm{\,BMO}^M_{\rho,L^*}(\cx)}}
+\def\vmol{{\mathop\mathrm{\,VMO}^M_{\rho,L}(\cx)}}
+\def\tvmol{{\mathop\mathrm{\wz{\,VMO}}^M_{\rho,L}(\cx)}}
+\def\vmo{{\mathop\mathrm{\,VMO}_{\rho,L}(\cx)}}
+\def\bmo{{\mathop\mathrm{\,BMO}_{\rho,L}(\cx)}}
+\def\bmox{{\mathop\mathrm{\,BMO}_{\rho,L^*}(\cx)}}
+\def\bmoxx{{(\bmox)^*}}
+\def\vmox{{(\vmo)^*}}
+\def\hx{{H_{\Phi,L}(\cx)}}
+\def\hxx{{H_{\Phi,L^*}(\cx)}}
+\def\hmfl{{H_{\Phi,\mathrm {fin},L}^{\mathrm {mol},\ez, M}(\cx)}}
+\def\hmflx{{H_{\Phi,\mathrm {fin},L^*}^{\mathrm {mol},\ez, M}(\cx)}}
+\def\hmx{{H_{\Phi,L}^{M,\ez}(\cx)}}
+\def\bmx{{B_{\Phi,L}^{M,\ez}(\cx)}}
+\def\byx{{B_{\Phi,L}^{M_1,\ez_1}(\cx)}}
+\def\bx{{B_{\Phi,L}(\cx)}}
+\def\bxx{{B_{\Phi,L^*}(\cx)}}
+\def\plm{\pi_{L,M}}
+\def\ply{\pi_{L,1}}
+\def\vlp{{L^{p(\cdot)}(\rn)}}
+\def\vhs{H^{p(\cdot)}(\rn)}
+\def\cps{\cl_{q,p(\cdot),s}(\rn)}
+\def\cpss{\cl_{1,p(\cdot),s}(\rn)}
+\def\tlve{f_{p(\cdot),q(\cdot)}^{w(\cdot),\phi}(\rn)}
+\def\btlve{F_{p(\cdot),q(\cdot)}^{w(\cdot),\phi}(\rn)}
+\def\beve{b_{p(\cdot),q(\cdot)}^{w(\cdot),\phi}(\rn)}
+\def\bbeve{\dot B_{p,q}^{\az}(\rn)}
+\def\mbeve{{\mathcal{N}}_{p,q,\lz}^s(\rn)}
+\def\dmbeve{{FH}_{(p,\lz),q}^s(\rn)}
+\def\lpqbl{{\mathcal{H}}^{(p,\lz),q}_{\bz}(\rr^{2n})}
+\def\Lz{\Lambda}
+\def\d{\mathcal{D}}
+\def\s{\mathcal{S}}
+\newcommand{\Fdot}{\dot{\mathfrak F}}
+
+\newcounter{assum}
+\renewcommand{\theassum}{\Roman{assum}}
+\newtheorem{assumption}[assum]{Assumption}
+\newtheorem{theorem}{Theorem}[section]
+\usepackage{amsthm}
+
+\newtheoremstyle{mylem}
+{}{}{\itshape}{}{\bfseries}{.}{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{\normalfont([#3])}}
+
+\theoremstyle{mylem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\renewcommand{\appendix}{\par
+\setcounter{section}{0}%
+\setcounter{subsection}{0}%
+\setcounter{subsubsection}{0}%
+\gdef\thesection{\@Alph\c@section}%
+\gdef\thesubsection{\@Alph\c@section.\@arabic\c@subsection}%
+\gdef\theHsection{\@Alph\c@section.}%
+\gdef\theHsubsection{\@Alph\c@section.\@arabic\c@subsection}%
+\csname appendixmore\endcsname
+}
+
+\newtheorem{notation}[theorem]{Notation}
+
+\numberwithin{equation}{section}
+
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{ffqqqq}{rgb}{1,0,0}
+
+
+
+\begin{document}
+\arraycolsep=1pt
+\title{\bf Revised Density Property for  Triebel--Lizorkin Spaces on Bounded  Domains 
+in Full Smoothness Range
+\footnotetext{\hspace{-0.35cm} 2020 {\it Mathematics Subject Classification}.
+Primary 46E35; Secondary 42B35, 26A33.
+\endgraf {\it Key words and phrases.}  Triebel--Lizorkin space, 
+Density property, Distance weight, Uniform domain, Hardy inequality.}}
+\author{Jun Cao, Haonan Lu, Guangzheng Wang and Chenfeng Zhu\footnote{Corresponding author,
+E-mail: \texttt{chenfengzhu@zjut.edu.cn}/{\color{red}\today}/Final version.}}
+\date{}
+\maketitle
+
+\vspace{-0.8cm}
+
+\begin{center}
+\begin{minipage}{13cm}\small
+{\noindent{\bf Abstract.}
+Let $\Omega\subset\mathbb{R}^n$ be  a bounded domain and
+$d(x)=d(x,\partial\Omega)$ be the boundary distance function.
+Suppose that $s\in(0,\infty)$, $p,q\in[1,\infty)$ and $a\in(0,\infty)$.
+This paper investigates the problem of compactly supported smooth functions approximation in 
+weighted Triebel--Lizorkin space $\mathcal{F}_{p,q}^{s}(\Omega,d^{-aq})$, whose intrinsic norm is  
+augmented by suitable Hardy-type terms. Since weighted 
+Meyers--Serrin approximation is not available in general,
+we formulate such problem to a revised version by comparing the closures of 
+$C_{\mathrm{c}}^\infty(\Omega)\cap\mathcal{F}_{p,q}^{s}(\Omega,d^{-aq})$
+and $C^\infty(\Omega)\cap\mathcal{F}_{p,q}^{s}(\Omega,d^{-aq})$ within $\mathcal{F}_{p,q}^{s}(\Omega,d^{-aq})$.
+This formulation reduces to the classical density property in the unweighted low-order case (i.e. $a=0$ and $s\in(0,1)$). 
+The main results prove that the revised density property holds in the full smoothness range $s\in(0,\infty)$.
+A new feature in the higher-order smoothness
+case $s\in [1,\infty)$ is that the distance weight structure arises naturally from Leibniz's rule under Whitney cutoffs. 
+Finally, in the range $s\in(0,1)$, 
+we show that the density property is stable when the intrinsic norm is replaced by a restriction norm,
+provided the domain supports a suitable Hardy inequality.
+}
+\end{minipage}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  section 1  %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{0.2cm}
+
+\tableofcontents
+
+\section{Introduction}
+
+Let $\Omega$ be a domain in the Euclidean space $\rn$
+with $\pa\boz$ being its boundary.  Denote by $d=d(\cdot,\partial\Omega):=\inf_{y\in\pa\boz}|\cdot-y|$
+the \emph{boundary distance function}.
+For any $s\in(0,\infty)$, 
+$p,q\in[1,\fz)$ and $a\in\rr$,  define the \emph{weighted Triebel--Lizorkin space}
+$\mathcal{F}_{p, q}^{s}(\boz,d^{-aq})$ by setting  
+\begin{align}\label{eqn-TLs1}
+\mathcal{F}_{p, q}^{s}(\boz,d^{-aq}):=\left\{f\in L^p(\boz): \ \|f\|_{\mathcal{F}_{p, q}^{s}(\boz,d^{-aq})}<\fz\right\},
+\end{align}
+where, in the case $s=k+\sigma\in (0,\infty)\setminus \nn$ with $k\in\nn_0$ and $\sigma\in (0,1)$, the
+\emph{fractional-order Triebel--Lizorkin norm} (see, e.g.,  [\cite{p2019}] for the case $a=0$) is defined by 
+\begin{align}\label{eqn-1.3}
+&\|f\|_{\mathcal F_{p,q}^s(\Omega,d^{-aq})}\nonumber\\
+&\quad:=\sum_{\substack{\az\in {\nno^n} \\ |\alpha| \leq k}}\left\| D^{\alpha}f \right\|_{L^p(\Omega)}
++\sum_{\substack{\beta\in {\nno^n} \\ |\beta|=k }}\left\{\int_{\Omega} \left[\int_{\Omega} 
+\frac{|D^\beta f(x)-D^\beta f(y)|^q}
+{|x - y|^{n+\sigma q}d(y,\pa\boz)^{aq}} \,dy \right]^{\frac{p}{q}}\, dx \right\}^{\frac{1}{p}} \nonumber\\
+&\quad\,=:\| f \|_{W^{k,p}(\Omega)} 
++\sum_{\substack{\beta\in {\nno^n} \\ |\beta|=k }}\left|D^\beta f\right|_{\mathcal{F}_{p,q}^{\sz}(\Omega,d^{-aq})}.
+\end{align}
+In the integer-case $s=k\in\nn$, the \emph{integer-order Triebel--Lizorkin norm} (see, e.g.,  [\cite{t2010}, p.\,101, (2)] for the case $\boz=\rn$ and $a=0$) is defined by 
+\begin{align}\label{1614}
+&\|f\|_{\mathcal F_{p,q}^s(\boz,d^{-aq})}\nonumber\\
+&\quad:=\left\| f \right\|_{L^p(\Omega)}+\left\{
+\int_{\boz}
+\left[
+\int_{|h|<\frac{d(x,\pa\boz)}{2(k+1)} }
+\frac{\left|\Delta_h^{k+1}f(x)\right|^q}
+{|h|^{n+kq}d(x,\partial \Omega)^{aq}}
+\,d h
+\right]^\frac{p}{q}
+\,d x
+\right\}^\frac{1}{p}.
+\end{align}
+Here, for any $m\in\nn$,  $x\in \Omega$ and $h\in \rn$  satisfying $m|h|<d(x,\pa\boz)$, 
+the \emph{$m$-order difference} of $f$ at $x$ is defined by
+\begin{align*}
+\Delta_h^m f(x)
+:=\sum_{\nu=0}^m (-1)^{m-\nu}\binom{m}{\nu}f(x+\nu h).
+\end{align*}
+Note that the norm 
+$\|f\|_{\mathcal F_{p,q}^s(\boz,d^{-aq})}$ is equivalent if we replace
+the weight $d(x,\partial \Omega)$ by $d(x+h,\partial \Omega)$ in \eqref{1614}, due to the fact 
+$|h|<\frac{d(x,\pa\boz)}{2(k+1)}$.
+The range of \(h\) ensures that all points $x+\nu h$, $0\leq\nu\leq k+1$, remain in $\Omega$, it is permissible to suitably enlarge the upper bound of \(h\), provided that all the above points remain in \(\Omega\).
+Moreover, in the case  $a=0$, we simply write $\mathcal F_{p,q}^s(\Omega)$ 
+instead of $\mathcal F_{p,q}^s(\Omega,1)$. In the case
+$a>0$, we have the inclusion
+$$\mathcal{F}_{p, q}^{s}(\boz,d^{-aq})\subset\mathcal F_{p,q}^s(\Omega)
+\subset \mathcal{F}_{p, q}^{s}(\boz,d^{aq}),$$ whenever $\boz$ is bounded.
+
+
+In this paper, we investigate the density property of the Triebel--Lizorkin
+spaces $\mathcal{F}_{p,q}^{s}(\boz,d^{-aq})$. To be precise, 
+denote by $C_{\mathrm{c}}^{\fz}(\boz)$ the set of all smooth functions with compact support in 
+$\boz$.
+Let 
+\begin{align}\label{eqn-1.4}
+\mathcal F_{p,q}^{s,1}(\boz,d^{-aq}):=\overline{C_{\mathrm{c}}^{\fz}(\boz)\cap \mathcal F_{p, q}^{s}(\boz,d^{-aq})}^{\|\cdot\|_{\mathcal F_{p,q}^s(\boz,d^{-aq})}}
+\end{align}
+endowed with the norm
+$\|\cdot\|_{\mathcal F_{p,q}^s(\Omega,d^{-aq})}$ as in \eqref{eqn-TLs1}. 
+If $a=0$,  we simply write ${\mathcal F}_{p,q}^{s,1}(\boz)$. Motivated by the research in [\cite{c2000}, \cite{cjlz2022}, \cite{dk2021}, \cite{dk2022}, \cite{k2023}] on the density problem in function spaces, we naturally consider the following question.
+
+\medskip 
+
+{\noindent{\bf Question I}. When does the identity $\mathcal F_{p,q}^{s,1}(\boz,d^{-aq})=\mathcal F_{p,q}^{s}(\boz,d^{-aq})$ hold?}
+
+\medskip
+This question plays a fundamental role in the analysis of $\mathcal F_{p, q}^{s}(\boz,d^{-aq})$, since 
+it determines whether the class of  ``simple" compactly supported smooth functions can approximate
+every function in this space.  This problem is highly complicated and relies heavily on the weight exponent $a$, 
+smoothness parameter $s$ and domain geometry. 
+Below we provide a partial overview of existing research on this subject.
+If $a=0$ (unweighted case),  Question {\bf I} was answered in the affirmative  by Caetano [\cite{c2000}], 
+for $s\in (0,{(n-\mathrm{dim}_M(\partial\Omega))}/{p})$ in terms of the upper Minkowski dimension $\mathrm{dim}_M(\partial\Omega)$
+of $\partial \Omega$ (see [\cite{klv2013}] for the definition of $\mathrm{dim}_M(\partial\Omega)$).
+
+
+\medskip
+{\noindent{\bf Theorem A} ([\cite{c2000}, Proposition 2.2]).   Let \(\Omega\subset\mathbb{R}^n\) be a bounded domain 
+with  its boundary upper Minkowski dimension $\mathrm{dim}_M(\partial\Omega)<n$. Then for any $ p,q\in[1,\infty)$ and $s\in (0,
+{(n-\mathrm{dim}_M(\partial\Omega))}/{p})$,
+\begin{align*}
+\mathcal F_{p,q}^{s,1}(\boz)={\mathcal F}_{p,q}^{s}(\boz).
+\end{align*}
+}
+
+Note that the exponent ${(n-\mathrm{dim}_M(\partial\Omega))}/{p}$ in Theorem {\bf A}
+is sharp since there are counterexamples showing that 
+the conclusion of Theorem {\bf A} may fail 
+for any $s>{(n-\mathrm{dim}_M(\partial\Omega))}/{p}$. This indicates that to deal with the 
+case $s>{(n-\mathrm{dim}_M(\partial\Omega))}/{p}$, we
+need more conditions.
+Among them, one of the most commonly used conditions is the following Hardy condition: 
+Let $s\in(0,\infty)$, $p,q,r\in[1,\infty)$ and $a,b\in\rr$.
+We say a function $f$ satisfies the 
+\emph{Hardy condition} $(H)_{s,p,q,a,r,b}$
+if $f\in \mathcal F_{p, q}^{s}(\boz,d^{-aq})$ and
+\begin{align*}
+\int_{\boz}  \frac{|f(x)|^r}{d (x, \pa\boz)^{b}}\,dx < \infty.
+\end{align*}
+Note that the Hardy-type condition $(H)_{s,p,q,a,r,b}$ imposes a specific decay bound for functions 
+$f\in \mathcal{F}_{p,q}^{s}(\Omega,d^{-aq})$ as $x$ approaches the boundary $\partial\Omega$.
+If $\Omega$ is bounded, then it is easy to see $(H)_{s,p,q,a,r,b_2}\Rightarrow (H)_{s,p,q,a,r,b_1}$
+for any $0<b_1<b_2<\infty$.
+Recall that such condition was already used in [\cite{dk2022}] to study the density property of weighted 
+fractional Sobolev space $\mathcal W^{s,p}(\Omega,d^{-ap})$ in the 
+case $s\in (0,1)$ and $p\in [1,\infty)$. 
+Recall that $\mathcal W^{s,p}(\Omega,d^{-ap})=\mathcal F_{p, p}^{s}(\boz,d^{-ap})$ and for 
+any $f\in \mathcal W^{s,p}(\Omega,d^{-ap})$, its 
+\emph{weighted Gagliardo norm} is defined by setting
+\begin{align*}
+\|f\|_{\mathcal W^{s,p}(\Omega,d^{-ap})}:=\| f \|_{L^{p}(\Omega)} 
++\left[ \int_{\Omega} \int_{\Omega} 
+\frac{\left| f(x)- f(y)\right|^p}
+{|x - y|^{n+s p}d(y,\pa\boz)^{a p}}\,dy\,dx \right]^{\frac{1}{p}}.
+\end{align*}
+The space $\mathring{\mathcal{W}}^{s,p}(\boz,d^{-ap})$ is
+defined similarly to $\mathcal F_{p,q}^{s,1}(\boz,d^{-aq})$ by replacing $\mathcal F_{p, q}^{s}
+(\boz,d^{-aq})$ with $\mathcal{W}^{s,p}(\boz,d^{-ap})$ in \eqref{eqn-1.4}. To study the relation between
+$\mathring{\mathcal{W}}^{s,p}(\boz,d^{-ap})$
+and $\mathcal{W}^{s,p}(\boz,d^{-ap})$,
+we first recall the definition of uniform domains (see, e.g., [\cite{go1979}, \cite{v1988}]).
+A domain \(\boz\subset\rn\) is called a \emph{uniform domain} if there exist constants 
+\(c_1,c_2>0\) such that any two points \(x,y\in\boz\) can be connected by a rectifiable curve \(\bgz\subset\boz\) satisfying that
+\begin{align*}
+\begin{cases}
+L(\bgz)\leq c_1 |x-y|, \ \text{where} \ L(\bgz)\ \text{denotes the Euclidean arc length of}\ \bgz;  \\
+\min\{|x-z|,|y-z|\}\leq c_2 d(z,\pa\boz)\text{ for any } z\in\bgz.
+\end{cases}
+\end{align*}
+The uniform domain is a global condition, whereas the \((\vez,\delta)\)-domain is a local condition (see \cite{j1981} for the definition of \((\vez,\delta)\)-domains). A uniform domain is necessarily an \((\vez,\delta)\)-domain for some \(\delta\), while a general \((\vez,\delta)\)-domain need not be a uniform domain. When the domain is bounded, a uniform domain is equivalent to some \((\vez,\delta)\)-domain.
+We refer to \cite{j1981} for more details about the relation of
+above domains.
+
+Kijaczko [\cite{k2023}] proved the following result
+(see [\cite{klv2013}] for the definitions of upper and lower Assouad co-dimensions $\overline{\mathrm{codim}}_A(\partial\Omega)$
+and $\underline{\mathrm{codim}}_A(\partial\Omega)$.
+In particular, it is known that
+$\underline{\mathrm{codim}}_A(\partial\Omega)=n-\mathrm{dim}_M(\partial\Omega)$ as in 
+Theorem {\bf A}, when $\partial \Omega$ is $n-\underline{\mathrm{codim}}_A(\partial\Omega)$-homogeneous, where a set is called $s$-homogeneous when its lower and upper Assouad dimensions both equal $s$).
+
+\medskip
+{\noindent{\bf Theorem B} ([\cite{k2023}, Theorem 4]).  Let $\Omega\subset\mathbb{R}^n$ be a 
+bounded uniform domain with $\overline{\mathrm{codim}}_A(\partial\Omega)$ and $\underline{\mathrm{codim}}_A(\partial\Omega)$
+being its boundary upper and lower Assouad co-dimensions.
+Let $s\in(0,1)$,  $p\in[1,\infty)$ and $a\in[0, \underline{\mathrm{codim}}_A(\partial\Omega)/p)$. 
+If $s> \overline{\mathrm{codim}}_A(\partial\Omega)/p-a$,
+then
+\begin{align*}
+\mathring{\mathcal{W}}^{s,p}(\boz,d^{-ap}) = \left\{ f\in \mathcal{W}^{s,p}(\boz,d^{-ap}):
+\int_\Omega \frac{|f(x)|^p}{d(x,\pa\boz)^{(s+a)p}}\,dx < \infty \right\}.
+\end{align*}
+}
+
+For the case where $p\ne q\in [1,\infty)$, $s\in (0,1)$ and $a=0$, the following result was proven in [\cite{cjlz2022}].
+
+\medskip
+{\noindent{\bf Theorem C} ([\cite{cjlz2022}, Proposition 1]).   Let \(\Omega\subset\mathbb{R}^n\) be a bounded uniform domain, 
+$s\in(0, 1)$ and $p,q\in[1,\infty)$. If $f\in\mathcal F_{p,q}^s(\Omega)$ satisfies the Hardy condition $(H)_{s,p,q,0,p,sp}$, then
+\begin{align*}
+\|f\|_{\mathcal F_{p,q}^{s,1}(\boz)}\sim\|f\|_{{\mathcal F}_{p,q}^{s}(\boz)},
+\end{align*}
+where the positive equivalence constants are independent of $f$.
+}
+
+Motivated by the aforementioned results, we aim to investigate Question {\bf I} in both the weighted case $a>0$ 
+and the higher-order setting $s\ge 1$. As it turns out, both the weight function $d^{-ap}$ and higher-order regularity 
+introduce additional difficulties to this problem. Let us first come to the weighted case 
+$a>0$. In this case, 
+one \emph{difficulty} is that the weighted Meyers--Serrin theorem (i.e. $C^\infty(\Omega)$
+is dense in ${\mathcal F}_{p,q}^{s}(\boz,d^{-aq})$) is known to hold only under very strict condition on the parameter $a$,
+even when $p=q\in [1,\infty)$ and $s\in (0,1)$ (see, e.g., [\cite{dk2021}, Theorem 12]). To circumvent it, 
+we introduce another space 
+\begin{align}\label{eqn-1.xx4}
+\mathcal F_{p,q}^{s,2}(\boz,d^{-aq}):=\overline{C^\infty(\boz)\cap \mathcal F_{p, q}^{s}(\boz,d^{-aq})}^{\|\cdot\|_{\mathcal F_{p,q}^s(\boz,d^{-aq})}}
+\end{align}
+as the completion of $C^\infty(\boz)\cap \mathcal F_{p, q}^{s}(\boz,d^{-aq})$
+with respect to the norm $\|\cdot\|_{\mathcal F_{p,q}^s(\boz,d^{-aq})}$ define as in 
+\eqref{eqn-1.3}.
+Note that if the weighted Meyers--Serrin theorem holds, then we immediately have the identity
+$${\mathcal F}_{p,q}^{s}(\boz,d^{-aq})=\mathcal F_{p,q}^{s,2}(\boz,d^{-aq}).$$
+Also, we know that such identity always holds in the unweighted case $a=0$.
+Moreover, based on the Hardy condition in Theorem {\bf B}
+and Theorem {\bf C}, we naturally introduce the following
+two weighted Triebel--Lizorkin norms with Hardy term
+\begin{align}\label{159}
+\|f\|_{\widetilde{\mathcal{F}}_{p,q}^s(\Omega,d^{-aq})}
+:=\|f\|_{\mathcal F_{p,q}^s(\Omega,d^{-aq})}
++\left\|\frac{f}{d^{s+a}}\right\|_{L^p(\Omega)}
++\left\|\frac{f}{d^{s+a+\frac{n}{q}}}\right\|_{L^q(\Omega)}
+\end{align}
+and
+\begin{align*}
+\|f\|_{\widehat{\mathcal{F}}_{p,q}^s(\Omega,d^{-aq})}
+:=\|f\|_{\mathcal F_{p,q}^s(\Omega,d^{-aq})}
++\left\|\frac{f}{d^{s+a}}\right\|_{L^p(\Omega)}.
+\end{align*}
+We then define
+\begin{align*}
+\widetilde{\mathcal{F}}_{p,q}^s(\Omega,d^{-aq})
+:=\left\{f\in L^p(\boz):\|f\|_{\widetilde{\mathcal{F}}_{p,q}^s(\Omega,d^{-aq})}<\infty\right\}
+\end{align*}
+and
+\begin{align*}
+\widehat{\mathcal{F}}_{p,q}^s(\Omega,d^{-aq})
+:=\left\{f\in L^p(\boz):\|f\|_{\widehat{\mathcal{F}}_{p,q}^s(\Omega,d^{-aq})}<\infty\right\}.
+\end{align*}
+The spaces $\widetilde{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq})$ and $\widehat{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq})$
+are defined similarly to that in \eqref{eqn-1.4},
+and the spaces
+$\widetilde{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})$ and $\widehat{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})$ are defined similarly to that in \eqref{eqn-1.xx4}.
+
+\begin{remark}\label{remark}
+Let $\Omega\subset\mathbb{R}^n$, $s\in(0,1)$,
+$p,q\in[1,\infty)$ and $a\in(0,\infty)$.
+\begin{enumerate}
+\item[\rm(i)] 
+If $\Omega$ supports the following Hardy
+inequality: for any $f\in\mathcal F_{p,q}^s(\Omega,d^{-aq})$,
+\begin{align*}
+\left\|\frac{f}{d^{s+a}}\right\|_{L^p(\Omega)}
++\left\|\frac{f}{d^{s+a+\frac{n}{q}}}\right\|_{L^q(\Omega)}
+\lesssim\|f\|_{\mathcal F_{p,q}^s(\Omega,d^{-aq})},
+\end{align*}
+then $\widetilde{\mathcal{F}}_{p,q}^s(\Omega,d^{-aq})=\widehat{\mathcal F}_{p,q}^{s}(\Omega,d^{-aq})
+=\mathcal{F}_{p,q}^s(\Omega,d^{-aq})$
+with equivalent norms.
+\item[\rm(ii)]
+If $\Omega$ supports the following Hardy
+inequality: for any $f\in\mathcal F_{p,q}^s(\Omega,d^{-aq})$,
+\begin{align*}
+\left\|\frac{f}{d^{s+a}}\right\|_{L^p(\Omega)}
+\lesssim\|f\|_{\mathcal F_{p,q}^s(\Omega,d^{-aq})},
+\end{align*}
+then $\widehat{\mathcal{F}}_{p,q}^s(\Omega,d^{-aq})
+=\mathcal{F}_{p,q}^s(\Omega,d^{-aq})$ with equivalent norms.
+\end{enumerate}
+\end{remark}
+
+Based on the aforementioned argument, if a suitable weighted Meyers--Serrin theorem
+were available, we could address Question {\bf I}. However, in the absence
+of such a theorem, we must modify Question {\bf I}. 
+We shall reformulate
+Question {\bf I} in three different smoothness regimes (see
+Question {\bf I-1} for \(s\in(0,1)\), Question {\bf I-2} for
+\(s\in(1,\infty)\setminus\mathbb N\), and Question {\bf I-3} for
+\(s\in\mathbb N\)). 
+These three modifications are essential for the approach adopted in this
+paper. Moreover, we believe that without such modifications, 
+the parameter range to which the original Question {\bf I} applies would be
+quite limited.
+We first reformulate Question {\bf I} for \(s\in(0,1)\) as
+the following question.
+
+\medskip 
+
+{\noindent{\bf Question I-1}. 
+When do the identities
+\[
+\widetilde{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq}) =\widetilde{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})
+\]
+or
+\[
+\widehat{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq})= \widehat{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})
+\]
+hold?}	
+
+
+\medskip
+
+The following Theorem \ref{thm-main} is our first main result, which 
+provides an affirmative answer to Question {\bf I-1} in the case $s\in (0,1)$ (see [\cite{a2015}, \cite{pt2015}, 
+\cite{s1970}] for the definition of Lipschitz domains).
+
+\begin{theorem}\label{thm-main} 
+Let \(\Omega\subset\mathbb{R}^n\) be a bounded domain, 
+$s\in (0, 1)$, $p,q\in[1,\infty)$ and $a\in(0,\infty)$.
+\begin{enumerate}
+\item[\rm(i)]
+Then $\widetilde{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq}) =\widetilde{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})$.
+\item[\rm(ii)]
+Assume further that \(\Omega\subset\mathbb{R}^n\) is a Lipschitz domain and
+$aq<1$. Then $$\widehat{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq})= \widehat{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq}).$$
+\end{enumerate}
+\end{theorem}
+
+
+The Hardy term $\|{f}/{d^{s+a+\frac{n}{q}}}\|_{L^q(\Omega)}$
+in \eqref{159} appears rather restrictive yet unavoidable within our approach. 
+Indeed, for any $\delta\in (0,\infty)$, let
+\begin{align}\label{eqn-OBD}
+\boz_\delta:=\left\{x\in\boz: d(x,\partial \boz)<\dz\right\}.
+\end{align}
+Given $\varepsilon >0$ sufficiently small, in many scenarios of the proof of Theorem \ref{thm-main}, 
+we need the Hardy term $\|{f}/{d^{s+a+\frac{n}{q}}}\|_{L^q(\Omega)}$ to bound the following term
+\begin{align*}
+\mathrm{I}:=\int_{\Omega \setminus \Omega_{14\varepsilon}} \left[  \int_{\Omega_{3\varepsilon}} 
+\frac{| f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align*}
+Note that in the unweighted case $a=0$, the term $\mathrm{I}$ can be bounded via the Hardy term $\|{f}/{d^{s}}\|_{L^q(\Omega)}$ as in Theorem {\bf C} via polar coordinates:
+\begin{align*}
+\mathrm{I}&\lesssim \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \int_{\Omega_{3\varepsilon}} 
+\frac{| f(y)-f(x)|^q}{|x - y|^{s q + n} }\,dy \right]^{\frac{p}{q}}\,dx\\
+&\quad+\int_{\Omega \setminus \Omega_{14\varepsilon}} \left[  \int_{\Omega_{3\varepsilon}} 
+\frac{| f(x)|^q}{|x - y|^{s q + n} }\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \|f\|_{\mathcal{F}_{p,q}^s(\boz)}^p+\int_{\Omega \setminus \Omega_{14\varepsilon}} 
+\frac{|f(x)|^p}{d(x,\partial \boz)^{sp}}\,dx.
+\end{align*}
+Moreover, if $aq<1$, we can get rid of the Hardy term $\|{f}/{d^{s+a+\frac{n}{q}}}\|_{L^q(\Omega)}$
+by virtue of the summation property of Whitney cubes (see the proof of Theorem \ref{thm-main} for more details). 
+In particular, it is proven in [\cite{dilt2019}, Corollary 3.8] that if  $\partial\Omega\subset\rn$ is a closed set with 
+upper Assouad dimension 
+$\overline{\mathrm{dim}}_A(\Omega)=n-1$,  then 
+the boundary  distance $d^{-aq}$ is an $A_1$ weight if and only if $aq\in(0,1)$.
+
+Next, we come to the higher-order smoothness setting $s\in (1,\infty)\setminus\nn$. 
+Here, Leibniz's rule for higher-order derivatives creates extra 
+difficulties. Indeed, in the density problem, we always need to approximate 
+a given function $f$ by the product of $f$ and a suitably chosen bump function $\psi$ over a Whitney cube
+(see, for instance, \eqref{eqn-4.23} in the proof of 
+Theorem \ref{thm-main}). Since $s>1$, Leibniz's rule 
+gives rise to intermediate derivative terms of the form $D^\beta fD^{\alpha-\beta}\psi$ with $\beta<\alpha$. 
+By virtue of the scaling properties of bump functions, the  term
+$D^{\alpha-\beta}\psi$ induce a distance weight $d^{-|\alpha-\beta|}$,
+which only disappears in the case $s\in (0,1)$.
+
+The above argument points to the following three definitions of modified weighted intrinsic Triebel--Lizorkin spaces,
+the first of which when $k=0$ reduces back to the space $\mathcal F_{p,q}^s(\Omega)$.
+
+\begin{definition}\label{def-secmain}
+Let \( k \in \nn_0 \), \(\sz\in(0,1) \) and \( p, q\in[1, \infty) \). Let \( \boz \subset \rn\) be a domain and
+$s := k + \sz\in (0,\infty)\setminus \nn$. The \emph{modified weighted intrinsic Triebel--Lizorkin spaces}
+$\hf_{p,q}^{s}(\boz)$,
+$\widetilde{\mathscr{F}}_{p,q}^{s}(\boz)$ 
+and $\widehat{\mathscr{F}}_{p,q}^{s}(\boz)$
+are defined as
+\begin{align*}
+\hf_{p,q}^{s}(\boz):=\left\{ f \in L^p(\boz) : \| f \|_{\hf_{p,q}^{s}(\boz)} < \infty \right\},
+\end{align*}
+\begin{align*}
+\widetilde{\mathscr{F}}_{p,q}^{s}(\boz) := \left\{ f \in L^p(\boz) : \| f \|_{\widetilde{\mathscr{F}}_{p,q}^{s}(\boz)} < \infty \right\}
+\end{align*}
+and
+\begin{align*}
+\widehat{\mathscr{F}}_{p,q}^{s}(\boz):= \left\{ f \in L^p(\boz) : \| f \|_{\widehat{\mathscr{F}}_{p,q}^{s}(\boz)} < \infty \right\},
+\end{align*}
+where
+\begin{align}\label{eqn-GWN}
+\| f \|_{\hf_{p,q}^{s}(\boz)}
+:=\| f \|_{\cf_{p,q}^{s}(\boz)} + \sum_{\substack{\bz\in\nno^n \\ | \bz |\leq k}} 
+\left|D^{\bz}f\right|_{\cf_{p,q}^{\sz}(\boz,d^{-(k-|\bz|)q})},
+\end{align}
+\begin{align*}
+\| f \|_{\widetilde{\mathscr{F}}_{p,q}^{s}(\boz)}
+:=\| f \|_{\hf_{p,q}^{s}(\boz)}+ \sum_{\substack{\bz\in\nno^n \\ |\bz| \leq k}}
+\left(\left\|\frac{D^\beta f}{d^{s-|\beta|}}\right\|_{L^p(\Omega)}+\left\|\frac{D^\beta f}{d^{s-|\beta|+\frac{n}{q}}}\right\|_{L^q(\Omega)}\right)
+\end{align*}
+and
+\begin{align*}
+\| f \|_{\widehat{\mathscr{F}}_{p,q}^{s}(\boz)}
+:=\| f \|_{\hf_{p,q}^{s}(\boz)}+\sum_{\substack{\bz\in\nno^n \\ |\bz| \leq k}}
+\left\|\frac{D^\beta f}{d^{s-|\beta|}}\right\|_{L^p(\Omega)}+\sum_{\substack{\bz\in\nno^n \\|\bz| < k}} \left\|\frac{D^\beta f}{d^{s-|\beta|+\frac{n}{q}}}\right\|_{L^q(\Omega)}.
+\end{align*}
+\end{definition}
+Similarly, the {\it completion spaces} $\widetilde{\hf}_{p,q}^{s,1}(\boz)$, $\widetilde{\hf}_{p,q}^{s,2}(\boz)$,
+$\widehat{\hf}_{p,q}^{s,1}(\boz)$ and
+$\widehat{\hf}_{p,q}^{s,2}(\boz)$
+are 
+defined, respectively, as 
+\begin{align*}
+\widetilde{\hf}_{p,q}^{s,1}(\boz):=\overline{C_{\mathrm{c}}^{\fz}(\boz)\cap {\widetilde{\hf}}_{p, q}^{s}(\boz)}^{\|\cdot\|_{{\widetilde{\hf}}_{p,q}^s(\boz)}}, \ \ \widetilde{\hf}_{p,q}^{s,2}(\boz):=\overline{C^\infty(\boz)\cap {\widetilde{\hf}}_{p, q}^{s}(\boz)}^{\|\cdot\|_{{\widetilde{\hf}}_{p,q}^s(\boz)}},
+\end{align*}
+\begin{align*}
+\widehat{\hf}_{p,q}^{s,1}(\boz):=\overline{C_{\mathrm{c}}^{\fz}(\boz)\cap {\widehat{\hf}}_{p, q}^{s}(\boz)}^{\|\cdot\|_{{\widehat{\hf}}_{p,q}^s(\boz)}}
+\ \ \text{and}\ \ 
+\widehat{\hf}_{p,q}^{s,2}(\boz):=\overline{C^\infty(\boz)\cap {\widehat{\hf}}_{p, q}^{s}(\boz)}^{\|\cdot\|_{{\widehat{\hf}}_{p,q}^s(\boz)}}.
+\end{align*}
+
+\begin{remark}
+Let \( \boz \subset \rn\) be a domain, \( k \in \nn_0 \), \(\sz\in(0,1) \), \( p, q\in[1, \infty) \)  and	$s := k + \sz$.
+\begin{enumerate}
+\item[\rm(i)] 
+Recall that, if $s\in (0,1)$ and $\Omega$
+is a bounded uniform domain, then, by Definition \ref{def-secmain} and  the  extension property of  ${\cf}_{p,q}^{s,2}(\boz)$ (see, e.g., [\cite{ps2017}]), we know 
+\begin{align*}
+\hf_{p,q}^{s}(\boz)=\mathcal{F}_{p,q}^{s}(\boz)={\hf}_{p,q}^{s,2}(\boz).
+\end{align*}
+
+\item[\rm(ii)] 
+If $\Omega$ supports the following Hardy
+inequality: for any $f\in\hf_{p,q}^{s}(\boz)$,
+\begin{align*}
+\sum_{\substack{\bz\in\nno^n \\ |\bz| \leq k}}
+\left(\left\|\frac{D^\beta f}{d^{s-|\beta|}}\right\|_{L^p(\Omega)}+\left\|\frac{D^\beta f}{d^{s-|\beta|+\frac{n}{q}}}\right\|_{L^q(\Omega)}\right)
+\lesssim\|f\|_{\hf_{p,q}^{s}(\boz)},
+\end{align*}
+then $\widetilde{\mathscr{F}}_{p,q}^{s}(\boz)
+=\hf_{p,q}^{s}(\boz)$
+with equivalent norms.
+
+\item[\rm(iii)]
+If $\Omega$ supports the following Hardy
+inequality: for any $f\in\hf_{p,q}^{s}(\boz)$,
+\begin{align*}
+\sum_{\substack{\bz\in\nno^n \\ |\bz| \leq k}}
+\left\|\frac{D^\beta f}{d^{s-|\beta|}}\right\|_{L^p(\Omega)}+\sum_{\substack{\bz\in\nno^n \\|\bz| < k}} \left\|\frac{D^\beta f}{d^{s-|\beta|+\frac{n}{q}}}\right\|_{L^q(\Omega)}
+\lesssim\|f\|_{\hf_{p,q}^{s}(\boz)},
+\end{align*}
+then $\widehat{\mathscr{F}}_{p,q}^{s}(\boz)
+=\hf_{p,q}^{s}(\boz)$ with equivalent norms.
+\end{enumerate}
+\end{remark}
+
+We now refine  Question {\bf I} in the case $s\in(1,\infty)\setminus\mathbb{N}$ to the following question.
+\medskip 
+
+{\noindent{\bf Question I-2}.
+When do the identities $\widetilde{\hf}_{p,q}^{s,1}(\boz) =\widetilde{\hf}_{p,q}^{s,2}(\boz)$
+or $\widehat{\hf}_{p,q}^{s,1}(\boz)
+=\widehat{\hf}_{p,q}^{s,2}(\boz)$ hold?}	
+
+\medskip 
+
+Now, we state the second main result of this paper as follows, which provides an answer to 
+Question {\bf I-2} in an affirmative way.
+
+\begin{theorem}\label{thm-secmain}
+Let $k \in \nn$, $p, q \in [1, \infty)$ and $\sigma\in(0,1)$. Suppose that $\boz$ is a bounded domain and let $s := k + \sz$.
+\begin{enumerate}
+\item[\rm(i)]
+Then $\widetilde{\hf}_{p,q}^{s,1}(\boz) =\widetilde{\hf}_{p,q}^{s,2}(\boz)$.
+
+\item[\rm(ii)]
+Assume further that \(\Omega\subset\mathbb{R}^n\) is a Lipschitz domain.
+Then $\widehat{\hf}_{p,q}^{s,1}(\boz)=
+\widehat{\hf}_{p,q}^{s,2}(\boz)$.
+\end{enumerate} 
+\end{theorem}
+
+Now, we come to the integer-order smoothness setting. We define the weighted local difference seminorms 
+and introduce the modified weighted  Triebel--Lizorkin space based on differences as follows.
+
+\begin{definition}
+Let $\Omega\subset\mathbb{R}^n$ be a domain,
+$k\in\mathbb{N}$ and $p,q\in[1,\infty)$.
+\begin{enumerate}
+\item[\rm(i)] 
+For any given measurable function $f$ on $\Omega$ and for any $r\in\{0,1,\dots,k\}$,
+define its \emph{weighted local difference seminorm} by
+\begin{align*}
+[f]_{r,k}
+:=
+\left\{
+\int_{\boz}
+\left[
+\int_{|h|<\frac{d(x,\pa\boz)}{2(k+1)}}
+\frac{\left|\Delta_h^{k+1-r}f(x)\right|^q}
+{|h|^{n+(k-r)q}d(x,\pa\boz)^{rq}}
+\,d h
+\right]^\frac{p}{q}
+\,d x
+\right\}^\frac{1}{p}.
+\end{align*}
+\item[\rm(ii)]
+The \emph{modified weighted Triebel--Lizorkin space based on differences} $\mathfrak F^{k}_{p,q}(\boz)$ is defined to be the set of all measurable functions $f$ on $\boz$ such that
+\begin{align}\label{diffnorm}
+\|f\|_{\mathfrak F^{k}_{p,q}(\boz)}
+:=
+\|f\|_{L^p(\boz)}
++
+\sum_{r=0}^k [f]_{r,k}
++
+\left\|\frac{f}{d^k}\right\|_{L^p(\boz)}
+\end{align}
+is finite.
+\item[\rm(iii)]
+Define the completion spaces 
+$\mathfrak F^{k,1}_{p,q}(\boz)$
+and	$\mathfrak F^{k,2}_{p,q}(\boz)$	as
+\begin{align*}
+\mathfrak F^{k,1}_{p,q}(\boz)
+:=
+\overline{
+C_{\mathrm{c}}^{\fz}(\boz)\cap \mathfrak F^{k}_{p,q}(\boz)
+}^{\|\cdot\|_{\mathfrak F^{k}_{p,q}(\boz)}}
+\end{align*}
+and
+\begin{align*}
+\mathfrak F^{k,2}_{p,q}(\boz)
+:=
+\overline{
+C^\infty(\boz)\cap \mathfrak F^{k}_{p,q}(\boz)
+}^{\|\cdot\|_{\mathfrak F^{k}_{p,q}(\boz)}}.
+\end{align*}
+\end{enumerate}
+\end{definition}
+
+We now refine Question {\bf I} in the case $s\in\mathbb{N}$ to the following question.
+\medskip 
+
+{\noindent{\bf Question I-3}.
+When does the identity $\mathfrak F^{k,1}_{p,q}(\boz)=\mathfrak F^{k,2}_{p,q}(\boz)$ hold?}
+
+\medskip 
+
+Now, we state the third main result of this paper as follows, which provides an answer to 
+Question {\bf I-3} in an affirmative way.
+
+\begin{theorem}\label{thm-third}
+Let $\boz\subset\rn$ be a bounded domain, $k\in\nn$ and $p,q\in[1,\infty)$.  Then
+\begin{align*}
+\mathfrak F^{k,1}_{p,q}(\boz)=\mathfrak F^{k,2}_{p,q}(\boz).
+\end{align*}
+\end{theorem}
+
+\begin{remark}
+The above three main results, namely
+Theorems~\ref{thm-main},~\ref{thm-secmain} and~\ref{thm-third}, concern
+only distance weight $d(y,\pa\boz)$. If one also allows
+distance weight $d(x,\pa\boz)$, the situation is as
+follows. For \(s\in(0,1)\), a result analogous to
+Theorem~\ref{thm-main} can be obtained simply by modifying the indices
+in the Hardy term. 
+For \(s\in(1,\infty)\setminus\mathbb N\), the distance weight arises from the Leibniz rule, and adding distance weight $d(x,\pa\boz)$ would affect this derivation, so the weights $d(y,\pa\boz)$ and $d(x,\pa\boz)$ cannot be considered simultaneously.
+Hence such weights are not considered in Theorem~\ref{thm-secmain} here. 
+For \(s\in\mathbb N\), the
+restriction on the inner integral domain implies that the two distance
+weights \(d(x,\pa\boz)\) and \(d(x+h,\pa\boz)\) are comparable, and hence
+the corresponding norms are equivalent; therefore only one weight needs
+to be considered in Theorem~\ref{thm-third}.
+\end{remark}
+
+In the remainder of the introduction, we study a question closely related to 
+Question {\bf I}: whether the density property still holds when 
+the intrinsic norm in \eqref{eqn-1.3} is replaced by another  restriction norm. 
+%let  $s\in\rr$, $p\in(0,\infty)$, $q\in(0,\infty]$ and 
+%$\varphi=\{\varphi_j\}_{j=0}^{\infty}$ be a family of unity of resolution.
+%Recall that the \emph{Triebel--Lizorkin space} $F_{p,q}^s(\rn)$ on the whole Euclidean space
+%$\rn$ is defined by setting
+%\begin{align*}
+%F_{p,q}^s(\rn):=\left\{f\in\mathcal{S}'(\rn): \|f\|_{F_{p,q}^s(\rn)}
+%:=\left\|\left[\sum_{j=0}^{\infty}\left|2^{sj}\left(\varphi_j 
+%\hat{f}\right)^\vee\right|^q\right]^{\frac{1}{q}}\right\|_{L^p(\rn)}<\infty \right\},
+%\end{align*} 
+%where $\hat{f}$ and $\check{f}$ denotes respectively the 
+%Fourier and inverse Fourier transform of $f$. 
+We study this question only in the case $s\in (0,1)$. To be precise, 
+let $\Omega\subset \rn$ be a domain. We introduce the following definitions of 
+weighted restriction and completion Triebel--Lizorkin spaces $F_{p, q}^{s}(\boz,d^{-aq})$ and 
+${F}_{p,q}^{s,1}(\boz,d^{-aq})$, which reduce back 
+to the corresponding Triebel--Lizorkin spaces  $F_{p, q}^{s}(\boz)$ and ${F}_{p,q}^{s,1}(\boz)$ 
+from [\cite{cjlz2022,t2001,t2008}] when  $a=0$.
+
+
+\begin{definition}
+Let $\Omega\subset\rn$ be a domain, $s\in(0,1)$,  $p,q\in[1,\fz)$ and $a\in\rr$.
+\begin{enumerate}
+\item[\rm(i)]The \emph{weighted restriction Triebel--Lizorkin space} $F_{p, q}^{s}(\boz,d^{-aq})$ is defined by setting
+$$
+F_{p, q}^{s}(\boz,d^{-aq}):=\left\{f\in L^p(\boz): \exists\ g\in F_{p,q}^s(\rn,d^{-aq}) \text{ such that }g=f\text{ on }\Omega\right\}
+$$ endowed with the norm
+\begin{align}\label{eqn-wrctls}
+\|f\|_{F_{p, q}^{s}(\boz,d^{-aq})}:=\inf\|g\|_{F_{p,q}^s(\rn,d^{-aq})},
+\end{align}
+where the infimum is taken over all $g\in F_{p,q}^s(\rn,d^{-aq})$ as above and
+\begin{align*}
+\|g\|_{F_{p,q}^s(\rn,d^{-aq})}
+&:=\|g\|_{L^p(\rn)}+ \left\{ \int_{\rn} \left[\int_{\rn} \frac{|g(x) -g(y)|^q}
+{|x - y|^{s q + n}}\,dy \right]^{\frac{p}{q}}\,dx \right\}^{\frac{1}{p}} \nonumber\\ 
+&\hs\hs+\left\{ \int_{\rn} \left[\int_{\rn} \frac{|g(x)-g(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \right\}^{\frac{1}{p}}.
+\end{align*}
+
+\item[\rm(ii)]
+The \emph{weighted restriction Triebel--Lizorkin space with Hardy term} $\widetilde{F}_{p, q}^{s}(\boz,d^{-aq})$ is defined by setting
+\begin{align*}
+\widetilde{F}_{p, q}^{s}(\boz,d^{-aq}):=\left\{
+f\in L^p(\boz):
+\|f\|_{\widetilde{F}_{p, q}^{s}(\boz,d^{-aq})}:=\|f\|_{F_{p, q}^{s}(\boz,d^{-aq})}
++\left\|\frac{f}{d^{s+a+\frac{n}{q}}}\right\|_{L^q(\Omega)}<\infty\right\}.
+\end{align*}
+
+\item[\rm(iii)]
+The \emph{weighted completion Triebel--Lizorkin spaces} 
+$F_{p,q}^{s,1}(\boz,d^{-aq})$, $F_{p,q}^{s,2}(\boz,d^{-aq})$,
+$\widetilde{F}_{p,q}^{s,1}(\boz,d^{-aq})$ and
+$\widetilde{F}_{p,q}^{s,2}(\boz,d^{-aq})$ are defined, respectively, by setting $$F_{p,q}^{s,1}
+(\boz,d^{-aq}):=\overline{C_{\mathrm{c}}^{\fz}(\boz)\cap F_{p, q}^{s}(\boz,d^{-aq})}^{\|\cdot\|_{F_{p,q}^s(\boz,d^{-aq})}},$$ 
+$$F_{p,q}^{s,2}(\boz,d^{-aq}):=\overline{C^\infty(\boz)\cap F_{p, q}^{s}(\boz,d^{-aq})}^{\|\cdot\|_{F_{p,q}^s(\boz,d^{-aq})}},$$
+$$\widetilde{F}_{p,q}^{s,1}
+(\boz,d^{-aq}):=\overline{C_{\mathrm{c}}^{\fz}(\boz)\cap\widetilde{F}_{p, q}^{s}(\boz,d^{-aq})}^{\|\cdot\|_{\widetilde{F}_{p,q}^s(\boz,d^{-aq})}}$$
+and 
+$$\widetilde{F}_{p,q}^{s,2}(\boz,d^{-aq}):=\overline{C^\infty(\boz)\cap\widetilde{F}_{p, q}^{s}(\boz,d^{-aq})}^{\|\cdot\|_{\widetilde{F}_{p,q}^s(\boz,d^{-aq})}}.$$
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Let $a=0$, $p,q\in[1,\infty)$ and $s\in(\max\{0,\frac{n}{p} - \frac{n}{q}\},1)$. It is proved in [\cite{ps2017}, Theorem 1.2] that $\|\cdot\|_{F_{p,q}^s(\rn,1)}$ is equivalent to the classical Triebel--Lizorkin norm (see [\cite{t2010}, Definition 2.3.1] for the definition of classical Triebel--Lizorkin norms).
+\end{remark}
+We also need the following version of Hardy's inequality
+(see, e.g.,  [\cite{dk2024}, \cite{k2023},\cite{iv2013}, \cite{iv2015}] for some related interesting results on this topic).
+
+\begin{assumption}\label{1617}
+Let $a\in(0,\infty)$, $ p, q\in[1,\infty)$, $s\in(0,1)$ and $\boz \subsetneqq \rn$ be a domain.
+We assume that $\boz$ supports {Hardy's inequality}
+$(HI)_{s,p,q,a}$ in the following sense: for any $f \in \mathcal F_{p, q}^{s}(\boz,d^{-aq})$ defined as in \eqref{eqn-TLs1},
+\begin{equation}\label{eqn-Hardy}
+\int_{\boz}  \frac{|f(x)|^p}{d(x, \pa\boz)^{(s+a)p}} dx \lesssim  \int_{\boz} \left[\int_{\boz} \frac{|f(x) - f(y)|^q}
+{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{equation}
+\end{assumption}
+
+
+
+Using Assumption \ref{1617}, the following result provides an affirmative answer to  Question {\bf I-1}
+with  the intrinsic norm in \eqref{eqn-1.3} replaced by the restriction norm in \eqref{eqn-wrctls}.
+
+
+\begin{theorem}\label{co-main} 
+Let $a\in(0,\infty)$, $p,q \in [1, \infty)$ and $s\in(\max\{0,\frac{n}{p} - \frac{n}{q}\},1)$. 
+Assume that \(\Omega\subset\mathbb{R}^n\) is a bounded uniform domain that  supports Hardy's inequality
+$(HI)_{s,p,q,a}$. Then the following statements are true.
+\begin{enumerate}
+\item[\rm(i)]$F_{p,q}^{s}(\boz,d^{-aq})=\mathcal F_{p,q}^{s}(\boz,d^{-aq})$ with equivalent norms.
+\item[\rm(ii)]
+$\widetilde{F}_{p,q}^{s,1}
+(\boz,d^{-aq})
+=\widetilde{F}_{p,q}^{s,2}
+(\boz,d^{-aq})
+=\widetilde{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq}) =\widetilde{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})$
+with equivalent norms.
+\item[\rm(iii)]
+Assume further that $aq<1$ and $\Omega$ is a Lipschitz domain.
+Then 
+\begin{align*}
+F_{p,q}^{s,1}(\boz,d^{-aq})
+&= F_{p,q}^{s,2}(\boz,d^{-aq})
+=\widehat{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq})
+=\widehat{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})\\
+&=\mathcal{F}_{p,q}^{s,1}(\boz,d^{-aq})= \mathcal{F}_{p,q}^{s,2}(\boz,d^{-aq})
+\end{align*}
+with equivalent norms.
+\end{enumerate}
+\end{theorem}
+
+The most crucial part of Theorem \ref{co-main} is (i). To prove it, we need the following boundedness of linear extension operator, which 
+when $a=0$ was proven by Prats and Saksman in [\cite{ps2017}, Lemma 3.10]. The extension problem in Triebel--Lizorkin spaces has been extensively studied 
+(see, e.g., [\cite{ayy2022}, \cite{hit2016}, \cite{zyy2024}]) .
+
+\begin{proposition}\label{pro-main}
+Let $a\in(0,\infty)$, $p,q \in [1, \infty)$ and $s\in(\max\{0,\frac{n}{p} - \frac{n}{q}\},1)$. Assume that $\boz$ is a bounded uniform domain
+that  supports Hardy's inequality $(HI)_{s,p,q,a}$.
+Then there exists a bounded linear extension operator $\Lambda_0\colon \huafwe \to F_{p,q}^{s}(\rn,d^{-aq})$.
+\end{proposition}
+
+The rest of this paper is organized as follows.
+Section~\ref{s2} collects some preliminaries on the Whitney decomposition of a domain,
+which will be used throughout the proofs.
+Section~\ref{s3} is devoted to the density property of the weighted Triebel--Lizorkin space
+in the case $s\in(0,1)$.
+To be precise, we prove Theorem~\ref{thm-main} in this section.
+In Section~\ref{s4} we show the density property for Triebel--Lizorkin spaces on $\Omega$
+in the higher-order smoothness case $s\in(1,\infty)\setminus\mathbb{N}$
+by proving Theorem~\ref{thm-secmain}.
+Section~\ref{sN} deals with the integer-order smoothness case;
+we establish Theorem~\ref{thm-third} there.
+Finally, in Section~\ref{s5} we prove that the density property is stable
+if the intrinsic norm is replaced by the restriction norm defined in \eqref{eqn-wrctls}.
+This is achieved by first proving the bounded linear extension operator
+in Proposition~\ref{pro-main} and then using it to obtain Theorem~\ref{co-main}.
+
+We end this introduction by making some convention on the notation.
+
+\noindent {\bf Notation}. Throughout the paper, let $\nn:=\left\{1,2,...\right\}$ and $\nn_0:=\nn\cup\{0\}$. 
+We use $C$ to denote a positive constant that is independent of the main parameters involved; its value may differ from 
+line to line, and we do not distinguish between different constants $C$ appearing in different steps.
+The symbol $A\lesssim B$ means that there exists a universal constant $C$ such that $A\leq CB$, while $A\sim B$ 
+means $A\lesssim B$ and $B\lesssim A$. For any cube $Q\subset\mathbb{R}^n$, let $\mathrm{diam\,}Q:=
+\sup_{x,y\in Q}|x-y|$ and $l(Q)$ be its sidelength. By a domain, we mean a connected open set. 
+For any set $E\subset \rn$, denote by $E^\complement $ the set $\rn\setminus E$, by $\overline{E}$ the 
+closure of $E$, by $|E|$ the Lebesgue measure of $E$ and by $\#E$ the cardinality of $E$. Moreover, for any 
+$x\in\rn$, define $d(x,E):=\inf_{y\in E}|x-y|$ and $d(E,F):=\inf_{y\in E}d(y,F)$.
+We also use $\chi_E$ to denote the characteristic function of $E$. When $|E|\in(0,\infty)$, for any 
+$f\in L_{\mathrm{loc}}^1(\rn)$ (the set of all locally integrable functions on $\rn$), we denote by 
+$f_E:=\frac{1}{|E|}\int_E f(x)\,dx$ the integral mean of $f$ over $E$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%  section 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Preliminaries}\label{s2}
+
+\hspace{1em} In this section, we collect some basic properties of Whitney decomposition of domain $\boz$, with emphasis on those Whitney cubes that are close to the boundary. These properties play an important role in the proofs of our main results.
+
+\begin{lemma}[\cite{g2008}, \cite{s1970}]\label{lem2.1}
+Let \( \boz \subsetneq \rn \) be a domain. There exists a family of cubes \( \{Q_j\}_{j=1}^{\infty} \) with sides parallel to the coordinate axes and satisfying
+\begin{enumerate}
+\item[\rm(i)]\( Q_j^o \cap Q_k^o = \emptyset \) if \( j \neq k \), where \( Q_j^o \) denotes the interior of \( Q_j \);
+\item[\rm(ii)]for any \( j \in \nn \), \( \mathrm{diam} \, Q_j \leq d(Q_j, \pa\boz) \leq 4 \, \mathrm{diam} \, Q_j \);
+\item[\rm(iii)]
+\( \boz = \bigcup_{j=1}^{\infty}Q_j \);
+\item[\rm(iv)]
+each \( x \in \boz \) is contained in at most \( 12^n \) cubes \( \frac{11}{10}Q_j \), where, for any \(j\in\nn\), \( \frac{11}{10}Q_j \) is the concentric cube of \( Q_j \) with sidelength \( \frac{11}{10} l_j \) and $l_j$ denotes the side length of $Q_j$;
+\item[\rm(v)]if \( Q_i \) and \( Q_j \) touch, namely, \( \overline{Q_i} \cap \overline{Q_j} \neq \emptyset \) and \( Q_i^o \cap Q_j^o = \emptyset \), then
+\[
+\frac{1}{4} \, \mathrm{diam} \, Q_i \leq \textup{diam} \, Q_j \leq 4 \, \mathrm{diam} \, Q_i.
+\]
+\end{enumerate}
+\end{lemma}
+Let \( \{Q_j\}_{j=1}^{\infty} \) be the Whitney decomposition of \( \Omega \) as in Lemma \ref{lem2.1}. It is known that there exists a family of bump functions \( \{\psi_j\}_{j=1}^{\infty} \subset C_{\mathrm{c}}^\infty(\mathbb{R}^n) \) satisfying the following properties.
+\begin{enumerate}
+\item[\rm(i)]
+For any \(j\in\nn\), \( \psi_j \equiv 1 \) on \( \frac{10}{11}Q_j \), \(0\leq\ \psi_j\leq1\) on \(\rn\) and \( \text{supp}\,\psi_j \subset\frac{11}{10}Q_j \).
+\item[\rm(ii)]For any \( x \in \Omega \), it holds that
+\begin{equation}\label{eqn-2.1}
+\sum_{j=1}^{\infty} \psi_j(x) = 1.
+\end{equation}
+\item[\rm(iii)]There exists a positive constant \( C \) such that for any \( x \in \mathbb{R}^n \), \(j\in\nn\) and \( k \in \mathbb{N} \),
+\begin{equation}\label{eqn-2.2}
+|D^{k}\psi_j(x)| \leq \frac{C}{(\mathrm{diam}\,Q_j)^{k}}. 
+\end{equation}
+\end{enumerate}
+Let \( \varepsilon > 0 \). The following classes of index sets represent three subgroups of \( \{Q_j\}_{j=1}^{\infty} \) that are closely related to the boundary layer in \( \boz \). Let
+\begin{align}\label{eqn-2.3}
+\Lambda_1 := \left\{ j \in \mathbb{N} : d(Q_j, \partial\Omega) \geq \varepsilon \right\}, \ \ \Lambda_2 := \left\{ j \in \mathbb{N} : d(Q_j, \partial\Omega) < \varepsilon \right\}
+\end{align}
+and
+\begin{align}\label{eqn-2.4}
+\Lambda_3 &:= \left\{ j \in \mathbb{N} : Q_j \cap (\Omega \setminus \Omega_{14\varepsilon}) \neq \emptyset \right\}
+\end{align} 
+with \( \boz_{14\varepsilon} \) as in \eqref{eqn-OBD}. Note that $\Lambda_1\cup\Lambda_2=\mathbb{N}$ and $\Lambda_1\cap\Lambda_2=\emptyset$.
+
+\medskip
+The following lemmas collect some basic properties  from [\cite{cjlz2022}] on the above three index sets.
+
+\begin{lemma}[\cite{cjlz2022}]\label{lem2.2}
+Let \( \varepsilon > 0 \) and \( \blz_1 \), \( \blz_2 \), \(\Lambda_3\) be the index sets as in \eqref{eqn-2.3} and \eqref{eqn-2.4}. Then the following three assertions hold.
+\begin{enumerate}
+\item[\rm(i)]There exists a positive constant $C$ such that
+\begin{equation}\label{eqn-2.5}
+\bigcup_{j \in \blz_1} \frac{11}{10}Q_j \subseteq \left\{ x \in \boz : d(x, \pa\boz) \geq C\varepsilon \right\}.
+\end{equation}
+\item[\rm(ii)]\begin{equation}\label{eqn-2.6}
+\bigcup_{j \in \blz_2} \frac{6}{5}Q_j \subseteq \boz_{3\varepsilon} 
+\end{equation}
+with \( \boz_{3\varepsilon} \) as in \eqref{eqn-OBD}.
+\item[\rm(iii)]For any \( k \in \blz_2 \), \( j \in \blz_3 \), \( x \in \Qkk \) and \( y \in Q_j \), it holds that
+\begin{align*}
+|x - y| \sim D(Q_j, Q_k),
+\end{align*}
+where 
+$$D(Q_j, Q_k) := d(Q_j, Q_k) + l_j + l_k$$
+and the positive equivalence constants are independent of \( \varepsilon \), \( j \), \( k \), \( x \) and \( y \).
+\end{enumerate}
+\end{lemma}
+
+We recall the following useful estimate from \cite{pt2015}.
+
+\begin{lemma}[\cite{pt2015}, Lemma 3.13]\label{lem2.3}
+Let \( \boz \) be a bounded Lipschitz domain and \( \{Q_j\}_{j=1}^{\infty} \) its Whitney decomposition. Let $b>a>n-1$. Then there exists a positive constant \( C \) such that for any $j_0\in\nn$,
+\[
+\sum_{j=1}^{\infty} \frac{l(Q_j)^a}{D(Q_j, Q_{j_0})^{b}} \leq Cl(Q_{j_0})^{a-b}.
+\]
+\end{lemma}	
+
+We end this section by giving properties of two subgroups of Whitney cubes from \( \blz_2 \) as in \eqref{eqn-2.3}. 
+To this end, for any fixed \( i \in \blz_2 \), we make a subdivision of \( \blz_2 \) by setting
+\begin{equation}
+\label{eqn-2.8}
+\begin{aligned}
+\blz_{2,1}(i) &:= \left\{ k \in \blz_2 : \Qkk \cap \Qi \neq \emptyset \right\}, \\
+\text{and}\ \ \blz_{2,2}(i) &:= \left\{ k \in \blz_2 : \Qkk \cap \Qi = \emptyset \right\}.
+\end{aligned}
+\end{equation}
+For any \( i \in \blz_2 \) and \( k \in \blz_{2,1}(i) \), let
+\begin{equation}\label{eqn-2.9}
+\blz_{2,3}(i,k) := \left\{ j \in \blz_2 : \Qj \cap \Qi \neq \emptyset \text{ or } \Qj \cap \Qkk \neq \emptyset \right\}.
+\end{equation}
+
+\begin{lemma}[\cite{cjlz2022}]\label{lem2.4}
+Let \( \boz \) be a bounded domain, \( \varepsilon > 0 \) and \( \blz_2 \) be as in \eqref{eqn-2.3}. Then the following two assertions hold.
+\begin{enumerate}
+\item[\rm(i)] For any \( i \in \blz_2 \), let \( \blz_{2,1}(i) \) be the index set as in \eqref{eqn-2.8}. Then there exists a constant $c$ such that for any \( x \in \Qi \),
+\[
+\bigcup_{k \in \blz_{2,1}(i)} \Qkk \subseteq B(x, cl_i).
+\]
+\item[\rm(ii)]For any \( i \in \blz_2 \) and \( k \in \blz_{2,1}(i) \), let \( \blz_{2,3}(i,k) \) be the index set as in \eqref{eqn-2.9}.
+Then there exists \( N \in \nn \), independent of \( i \) and \( k \), such that
+\begin{align*}
+\#\blz_{2,3}(i,k) \leq N,
+\end{align*}
+moreover, for any \( j \in \blz_{2,3}(i,k) \),
+\begin{align*}
+l_i \sim l_j 
+\end{align*}
+with positive equivalence constants independent of \( i \) and \( j \).
+\end{enumerate}
+\end{lemma}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%  section 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The case $s\in(0,1)$}\label{s3}
+
+This section is devoted to the density property of the weighted 
+Triebel--Lizorkin space in the case $s\in (0,1)$. To be precise, 
+we prove Theorem \ref{thm-main} in this section.
+
+\begin{proof}[Proof of Theorem \ref{thm-main}]
+We first prove (i). 
+It is obvious to see that $\widetilde{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq}) \subset\widetilde{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})$
+since $C_{\mathrm{c}}^\infty(\boz)\subset C^\infty(\boz)$. Thus, we only need to prove $\widetilde{\mathcal{F}}_{p,q}^{s,2}(\boz,d^{-aq})\subset\widetilde{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq})$. To this end, it suffices to show 
+\begin{align}\label{eqn-thm-mainc}
+C^\infty(\boz)\cap \widetilde{\mathcal F}_{p, q}^{s}(\boz,d^{-aq})
+\subset\widetilde{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq}).
+\end{align}
+Let \( f \in C^\infty(\boz)\cap\widetilde{\mathcal F}_{p, q}^{s}(\boz,d^{-aq}) \), and let \( \{Q_j\}_{j=1}^{\infty} \) and \( \{\psi_j\}_{j=1}^{\infty} \subset C_{\mathrm{c}}^\infty(\mathbb{R}^n) \) be, respectively, the Whitney decomposition and its associated partition of unity fixed in Section~\ref{s2}.
+For any \( \varepsilon > 0 \) and \( x \in \Omega \), using the index sets $\Lambda_1$ and 
+$\Lambda_2$ in \eqref{eqn-2.3}, we divide $f$ by    
+\begin{align}\label{eqn-4.1}
+f(x)= \sum_{j \in \Lambda_1} \psi_j(x) f(x) + \sum_{j \in \Lambda_2} \psi_j(x) f(x) 
+=: v_{\varepsilon}(x) + w_{\varepsilon}(x).
+\end{align}
+For \( v_{\varepsilon} \), let \( \psi := \sum_{j \in \Lambda_1} \psi_j \). From the fact that $\psi_j\in C_{\mathrm{c}}^\infty(\mathbb{R}^n) $ and \eqref{eqn-2.5}, it follows that \( \psi \in C_{\mathrm{c}}^{\fz}(\boz) \). Then, by the fact \( f \in C^\infty(\boz) \) and \eqref{eqn-4.1}, we find that 
+$v_{\varepsilon}\in C_{\mathrm{c}}^{\fz}(\boz)$.  Thus, to prove \eqref{eqn-thm-mainc}, it suffices 
+to show the following identity
+\begin{equation}\label{eqn-4.2}
+\lim_{\huae \to 0} \| \we \|_{\widetilde{\mathcal F}_{p, q}^{s}(\boz,d^{-aq}) }=0.
+\end{equation}
+Indeed, if \eqref{eqn-4.2} holds, then it is easy to see 
+$v_{\varepsilon}\in C_{\mathrm{c}}^{\fz}(\boz)\cap\widetilde{\mathcal F}_{p, q}^{s}(\boz,d^{-aq}) $. This, together with \eqref{eqn-4.1} and \eqref{eqn-4.2}, further implies $f\in\widetilde{\mathcal{F}}_{p,q}^{s,1}(\boz,d^{-aq})$ and hence \eqref{eqn-thm-mainc} holds. 
+
+We now prove \eqref{eqn-4.2}. To this end, we divide the proof into several 
+steps.
+
+{\bf Step 1}. By \eqref{eqn-4.1}, \eqref{eqn-2.6} and \eqref{eqn-2.1}, we obtain
+\begin{align*}
+\int_{\boz}| \we(x)|^p\,dx\leq\int_{{\boz}_{3\varepsilon}}\left|f(x)\sum_{j =1}^\infty \psi_j(x)\right|^p\,dx=\int_{{\boz}_{3\varepsilon}}| f(x)|^p\,dx,
+\end{align*}
+which tends to $0$ as $\varepsilon\to 0$ and hence 
+$$
+\lim_{\huae \to 0} \| \we \|_{L^p(\Omega)}=0.
+$$
+Similarly, we have
+$$
+\lim_{\huae \to 0}\left(\left\|\frac{\we}{d^{s+a}}\right\|_{L^p(\Omega)}
++\left\|\frac{\we}{d^{s+a+\frac{n}{q}}}\right\|_{L^q(\Omega)}\right)=0.
+$$
+Thus, to prove \eqref{eqn-4.2}, it
+remains to show that
+\begin{equation}\label{eqn-4.3}
+\lim_{\huae \to 0} | \we |_{\huafwe}=0.
+\end{equation}
+By \eqref{eqn-4.1} and the fact that \( \text{supp}\,\psi_j \subset \frac{11}{10}Q_j \) for any $j\in\Lambda_2$, we write
+\begin{align}\label{eqn-4.4}
+&|\we|_{\huafwe}^p \nonumber\\
+&\quad=\int_{\boz} \left[\int_{\boz} \frac{| f(x)\sum_{j \in \Lambda_2} \psi_j(x) -  f(y)\sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\quad=\left[ \int_{\bigcup_{i \in \blz_2} \Qi}+ \int_{\bozfour \setminus \bigcup_{i \in \blz_2} \Qi}+ \int_{\boz \setminus \bozfour} \right]\left(\int_{\boz}\dots\,dy\right)^{\frac{p}{q}}\,dx \nonumber \\
+&\quad\sim\int_{\bigcup_{i \in \blz_2} \Qi} \left[ \int_{\bigcup_{k \in \blz_2} \Qkk} \frac{| f(x)\sum_{j \in \Lambda_2} \psi_j(x) -  f(y)\sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n} {d(y,\pa\boz)^{aq}}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber  \\
+&\qquad+  \int_{\bigcup_{i \in \blz_2} \Qi} \left[ \int_{\boz \setminus \bigcup_{k \in \blz_2} \Qkk} \frac{| f(x)\sum_{j \in \Lambda_2} \psi_j(x) |^q}{|x - y|^{s q + n}{d(y,\pa\boz)^{aq}}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\qquad+ \int_{\bozfour \setminus \bigcup_{i \in \blz_2} \Qi} \left[ \int_{\bigcup_{k \in \blz_2} \Qk} \frac{| f(x)\sum_{j \in \Lambda_2} \psi_j(x) -  f(y)\sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}{d(y,\pa\boz)^{aq}}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\qquad+ \int_{\boz \setminus \bozfour} \left[ \int_{\bigcup_{k \in \blz_2} \Qk} \frac{| f(y)\sum_{j \in \Lambda_2} \psi_j(y) |^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\quad=:\mathrm{I}_1(\vez)+\mathrm{I}_2(\vez)+\mathrm{II}(\vez)+\mathrm{III}(\vez).
+\end{align}
+
+{\bf Step 2}. In this step, we estimate $\mathrm{I}_2(\vez)$.
+By Lemma \ref{lem2.1}(ii), we find that,
+for any $x\in\bigcup_{i \in \blz_2} \Qi$ and $y\in\boz \setminus\bigcup_{k \in \blz_2} \Qkk$, 
+$$d(x,\pa\boz)<d(y,\pa\boz),$$ which further implies
+\begin{align}\label{1353}
+\mathrm{I}_2(\vez)\leq \sum_{i \in \Lambda_2} \int_{\Qi} \frac{| f(x) |^p}{d(x,\pa\boz)^{ap}} \left( \int_{\boz \setminus \bigcup_{k \in \blz_2} \Qkk} \frac{1}{|x - y|^{s q + n}}\,dy \right)^{\frac{p}{q}} \,dx. 
+\end{align}
+Note that for any given $i\in\blz_2$, since $\boz \setminus\bigcup_{k \in \blz_2}\Qkk\subset\boz \setminus \Qii$, it follows that, for any \(x \in \Qi\) and \( y \in \boz \setminus \bigcup_{k \in \blz_2}\Qkk\),
+\begin{align}\label{eqn-7.5}
+|x-y|\geq \frac{6}{5}\cdot\frac{l_i}{2}-\frac{11}{10}\cdot\frac{l_i}{2} =\frac{l_i}{20}.
+\end{align}
+From this, \eqref{1353} and polar coordinates, we deduce that
+\begin{align*}
+\mathrm{I}_2(\vez)
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{| f(x) |^p}{d(x,\pa\boz)^{ap}} \left( \int_{\frac{l_i}{20}}^\infty \rho^{-s q - 1}\,d\rho \right)^{\frac{p}{q}}\,dx\\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{| f(x) |^p}{d(x,\pa\boz)^{ap}}   {l_i}^{-s p}\,dx .
+\end{align*}
+By this, Lemma \ref{lem2.1}, \eqref{eqn-2.6} and the fact that $f$ satisfies the Hardy condition $(H)_{s,p,q,a,p,(s+a)p}$, we obtain
+\begin{align*}
+\mathrm{I}_2(\vez)
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{| f(x)|^p}{d(x, \partial\Omega)^{(s+a) p}}\,dx 
+\sim \int_{\bigcup_{i \in \Lambda_2} \Qi} \frac{| f(x)|^p}{d(x, \partial\Omega)^{(s+a) p}}\,dx \nonumber \\
+&\leq \int_{\bozthreee}\frac{ |f(x)|^p}{d(x, \partial\Omega)^{(s+a)p}}\,dx \to 0 
+\end{align*}
+as $\varepsilon \to 0$. Thus,
+\begin{equation}\label{eqn-4.6}
+\lim_{\varepsilon \to 0} \mathrm{I}_2(\vez) = 0. 
+\end{equation}
+
+{\bf Step 3}. In this step, we estimate $\mathrm{III}(\vez)$. 
+From \eqref{eqn-2.6}, \eqref{eqn-2.3} and Lemma \ref{lem2.1}(ii),
+we infer that, for any $k\in\blz_2$,  
+$$\Qk\subset\Omega_{3\varepsilon}
+\ \ \text{and}\ \ l_k\lesssim \varepsilon.
+$$
+This implies that for any $x\in\Omega \setminus \Omega_{14\varepsilon}$ and $y\in\Qk$ with $k\in\blz_2$,
+\begin{align}\label{eqn-8.8}
+|x-y|\geq 14\varepsilon-3\varepsilon\gtrsim l_k,
+\end{align}
+which, combined with Lemma \ref{lem2.1}, \eqref{eqn-2.6},
+the fact that $|\Omega|<\infty$ since $\Omega$ is bounded, and the fact that $f$ satisfies the Hardy condition $(H)_{s,p,q,a,q,(s+a)q+n}$, further implies that
+\begin{align*}
+\mathrm{III}(\vez) &\leq \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \sum_{k\in\Lambda_2}\int_{ \Qk} \frac{| f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \sum_{k\in\Lambda_2}\int_{ \Qk} \frac{| f(y)|^q}{{l_k}^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx  \\
+&\lesssim \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \sum_{k\in\Lambda_2}\int_{ \Qk} \frac{| f(y)|^q}{d(y,\pa\boz)^{(s+a)q+n}}\,dy \right]^{\frac{p}{q}}\,dx  \\
+&\sim\int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qk} \frac{| f(y)|^q}{d(y,\pa\boz)^{(s+a)q+n}}\,dy \right]^{\frac{p}{q}}\,dx  \\
+&\leq \left|\boz\right| \left[ \int_{\bozthreee} \frac{| f(y)|^q}{d(y,\pa\boz)^{(s+a)q+n}}\,dy \right]^{\frac{p}{q}}\to 0 
+\end{align*}
+as $\varepsilon \to 0$. Thus,
+\begin{align}\label{eqn-4.7}
+\lim_{\varepsilon \to 0}\mathrm{III}(\vez)= 0.
+\end{align}
+
+{\bf Step 4}. In this step, we estimate \( \mathrm{I}_1(\vez) \). To this end, we first decompose \( \mathrm{I}_1(\vez) \) as
+\begin{align*}
+\mathrm{I}_1(\vez)
+&\lesssim \int_{\bigcup_{i \in \Lambda_2} \Qi} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qkk} \frac{| f(x) - f(y)|^q |\sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\quad+ \int_{\bigcup_{i \in \Lambda_2} \Qi} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qkk} \frac{| f(x)|^q |\sum_{j \in \Lambda_2} \psi_j(x) - \sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&=: \mathrm{I}_{1,1}(\vez) + \mathrm{I}_{1,2}(\vez).
+\end{align*}
+For \( \mathrm{I}_{1,1}(\vez) \), by \eqref{eqn-2.1} and \eqref{eqn-2.6}, we obtain
+\begin{align}\label{eqn-4.8}
+\mathrm{I}_{1,1}(\vez)
+&\leq \int_{\bigcup_{i \in \Lambda_2} \Qi} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qkk} \frac{| f(x) - f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\leq \int_{\Omega_{3\varepsilon}} \left[ \int_{\Omega_{3\varepsilon}} \frac{| f(x) -  f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align}
+Since \( f \in \huafwe \), it follows from \eqref{eqn-4.8} that $\mathrm{I}_{1,1}(\vez)\to 0$ as \( \varepsilon \to 0 \).
+
+Next, we estimate \( \mathrm{I}_{1,2}(\vez) \). By \eqref{eqn-2.8}, we write
+\begin{align}\label{eqn-4.9}
+\mathrm{I}_{1,2}(\vez)
+&\leq \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qkk} \frac{| f(x)|^q |\sum_{j \in \Lambda_2} \psi_j(x) - \sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \int_{\bigcup_{k \in \Lambda_{2,1}(i)} \Qkk} \frac{| f(x)|^q |\sum_{j \in \Lambda_2} \psi_j(x) - \sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\quad+ \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \int_{\bigcup_{k \in \Lambda_{2,2}(i)} \Qkk} \frac{| f(x)|^q |\sum_{j \in \Lambda_2} \psi_j(x) - \sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&=: \mathrm{I}_{1,2}^1(\vez) + \mathrm{I}_{1,2}^2(\vez).
+\end{align}
+By $\psi_j \in C_{\mathrm{c}}^{\fz}(\boz)$, \eqref{eqn-2.9}, the mean value theorem, \eqref{eqn-2.2}, Lemmas \ref{lem2.4} and \ref{lem2.1}, \eqref{eqn-2.8}, polar coordinates, \eqref{eqn-2.6} and the fact that $f$ satisfies the Hardy condition $(H)_{s,p,q,a,p,(s+a)p}$, we conclude that
+\begin{align}\label{eqn-4.10}
+\mathrm{I}_{1,2}^1(\vez)
+&\leq \sum_{i \in \Lambda_2} \int_{\Qi} | f(x)|^p \left[ \sum_{k \in \Lambda_{2,1}(i)} \int_{\Qkk} \frac{|\sum_{j \in \Lambda_{2,3}(i,k)} \psi_j(x) -\sum_{j \in \Lambda_{2,3}(i,k)} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} | f(x)|^p \left[ \sum_{k \in \Lambda_{2,1}(i)} \int_{\Qkk} \sum_{j \in \Lambda_{2,3}(i,k)}{\| \nabla \psi_j \|_{L^\infty}^q |x - y|^{q(1 - s)-n}{l_k}^{-aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} | f(x)|^p \left[ \sum_{k \in \Lambda_{2,1}(i)} \int_{\Qkk} {{l_i}^{-q} |x - y|^{q(1 - s)-n}{l_i}^{-aq}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} | f(x)|^p \left[ \sum_{k \in \Lambda_{2,1}(i)} \int_{\Qkk} {{d(x,\pa\boz)}^{-(1+a)q} |x - y|^{q(1 - s)-n}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\leq \sum_{i \in \Lambda_2} \int_{\Qi} \frac{ |f(x)|^p}{{d(x,\pa\boz)}^{(1+a)p}} \left[ \int_0^{cl_i} \rho^{q(1 - s) - 1}\,d\rho \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{ |f(x)|^p}{{d(x,\pa\boz)}^{(1+a)p}}  {l_i}^{p(1-s)}\,dx \sim \int_{\bigcup_{i \in \Lambda_2} \Qi} \frac{| f(x)|^p}{d(x, \partial\Omega)^{(s+a) p}}\,dx \nonumber \\
+&\leq\int_{\bozthreee}\frac{ |f(x)|^p}{d(x, \partial\Omega)^{(s+a)p}}\, dx  \to 0
+\end{align}
+as $\varepsilon \to 0$. For \( \mathrm{I}_{1,2}^2(\vez) \), we write
+\begin{align*}
+\mathrm{I}_{1,2}^2(\vez)
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k\geq l_i}}\int_{\Qkk} \frac{| f(x)|^q |\sum_{j \in \Lambda_2} \psi_j(x) - \sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\quad+\sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k< l_i}}\int_{\Qkk} \frac{| f(x)|^q |\sum_{j \in \Lambda_2} \psi_j(x) - \sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&=:\mathrm{I}_{1,2}^{2,1}(\vez)+\mathrm{I}_{1,2}^{2,2}(\vez).
+\end{align*} 
+To estimate $\mathrm{I}_{1,2}^{2,1}(\vez)$, by Lemma \ref{lem2.1}(v), we obtain, for any $x\in\Qi$ and $y\in\Qkk$ with $i\in\Lambda_2$ and $k\in\Lambda_{2,2}(i)$ satisfying $l_k\geq l_i$,
+\begin{align}\label{eqn-8.13}
+|x-y|\geq\frac{l_k}{4}-\left(\frac{l_i}{20}+\frac{l_k}{10}\right)\geq\frac{l_k}{4}-\frac{3}{20}l_k=\frac{l_k}{20}\geq\frac{l_i}{20},
+\end{align}
+which, combined with \eqref{eqn-2.1}, Lemma \ref{lem2.1}, polar coordinates, \eqref{eqn-2.6} and the fact that $f$ satisfies the Hardy condition $(H)_{s,p,q,a,p,(s+a)p}$, further implies that
+\begin{align}\label{eqn-4.11}
+\mathrm{I}_{1,2}^{2,1}(\vez)&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{k \in \Lambda_{2,2}(i)} \int_{\Qkk} \frac{| f(x)|^q }{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{k \in \Lambda_{2,2}(i)} \int_{\Qkk} \frac{| f(x)|^q }{|x - y|^{s q + n}{l_i}^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\sim\sum_{i \in \Lambda_2} \int_{\Qi} \frac{ |f(x)|^p}{{d(x,\pa\boz)}^{ap}} \left( \int_{\frac{l_i}{20}}^{\infty} \rho^{- sq - 1}\,d\rho \right)^{\frac{p}{q}}\,dx \nonumber \\
+&\sim\sum_{i \in \Lambda_2} \int_{\Qi} \frac{ |f(x)|^p}{{d(x,\pa\boz)}^{ap}}  {l_i}^{-sp}\,dx
+\nonumber\\
+&\sim \int_{\bigcup_{i \in \Lambda_2} \Qi} \frac{| f(x)|^p}{d(x, \partial\Omega)^{(s+a) p}}\,dx \nonumber \\
+&\leq \int_{\bozthreee}\frac{ |f(x)|^p}{d(x, \partial\Omega)^{(s+a)p}}\,dx \to 0 
+\end{align}
+as $\varepsilon \to 0$. To estimate $\mathrm{I}_{1,2}^{2,2}(\vez)$, from the fact that $0\leq\sum_{j\in\Lambda_2}\psi_j(z)\leq\sum_{j\in\nn}\psi_j(z)=1$ for any $z\in\boz$, we infer that
+\begin{align}\label{eqn-8.14}
+\mathrm{I}_{1,2}^{2,2}(\vez)
+&\leq\sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k< l_i}}\int_{\Qkk} \frac{| f(x)|^q }{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}} \,dx \nonumber\\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k< l_i}}\int_{\Qkk} \frac{| f(x)-f(y)|^q }{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+ \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k< l_i}}\int_{\Qkk}\frac{| f(y)|^q }{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}} \,dx. 
+\end{align}
+By \( f \in \huafwe \) and an argument similar to that used in the estimation of \eqref{eqn-4.8}, we find that the first term on the right-hand side of \eqref{eqn-8.14} tends to 0 as $\vez\to 0$, and by  an argument similar to that used in the estimation of  $\mathrm{III}(\vez)$, we find that the second term on the right-hand side of \eqref{eqn-8.14} tends to 0 as $\vez\to 0$. Hence,
+\begin{align}\label{eqn-4.12}
+\lim_{\varepsilon \to 0}\mathrm{I}_{1,2}^{2,2}(\vez)= 0. 
+\end{align}
+Combining \eqref{eqn-4.8}--\eqref{eqn-4.12}, we obtain
+\begin{align}\label{eqn-4.13}
+\lim_{\varepsilon \to 0}\mathrm{I}_{1}(\vez)= 0. 
+\end{align}
+
+{\bf Step 5}. Finally, we estimate \( \mathrm{II}(\vez) \). To this end, we write
+\begin{align}\label{1713}
+\mathrm{II}(\vez)
+&\leq \int_{\bozfour} \left[ \int_{\bigcup_{k \in \blz_2} \Qk} \frac{| f(x)\sum_{j \in \Lambda_2} \psi_j(x) -  f(y)\sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}{d(y,\pa\boz)^{aq}}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\lesssim \int_{\bozfour} \left[ \int_{\bigcup_{k \in \blz_2} \Qk} \frac{| f(x) - f(y)|^q |\sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+ \int_{\bozfour} \left[ \int_{\bigcup_{k \in \blz_2} \Qk} \frac{| f(x)|^q |\sum_{j \in \Lambda_2} \psi_j(x) - \sum_{j \in \Lambda_2} \psi_j(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align}
+By an argument similar to that used in the estimation of \( \mathrm{I}_{1,1}(\vez) \), we find that the first term on the right-hand side of \eqref{1713} tends to 0 as $\vez\to 0$, and by an argument similar to that used in the estimation of  \( \mathrm{I}_{1,2}(\vez) \), we find that the second term on the right-hand side of \eqref{1713} tends to 0 as $\vez\to 0$. Hence,
+\begin{align}\label{eqn-4.14}
+\lim_{\varepsilon \to 0} \mathrm{II}(\vez) = 0.
+\end{align}
+Combining \eqref{eqn-4.4}, \eqref{eqn-4.6}, \eqref{eqn-4.7}, \eqref{eqn-4.13} and \eqref{eqn-4.14}, we obtain 
+$$\lim_{\huae \to 0} | \we |_{\huafwe}=0,$$ which proves \eqref{eqn-4.3} and hence 
+completes the proof of (i).
+
+Next, we prove (ii). Based on the proof of (i), we only need to show 
+how to estimate the term $\mathrm{III}(\vez)$ in Step 3
+without using the Hardy condition $\|\frac{f}{d^{s+a+n/q}}\|_{L^q(\Omega)}<\infty$.
+Indeed, by the fact that $0\leq\sum_{j\in\Lambda_2}\psi_j(z)\leq\sum_{j\in\nn}\psi_j(z)=1$ 
+for any $z\in\boz$, we write
+\begin{align*}
+\mathrm{III}(\vez)
+&\leq \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qk} \frac{| f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\lesssim \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qk} \frac{| f(x) - f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+ \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qk} \frac{|f(x) |^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&=:\mathrm{III}_1(\vez) + \mathrm{III}_2(\vez).
+\end{align*}
+To estimate $\mathrm{III}_1(\vez)$, according to \( f \in \huafwe \) and \eqref{eqn-2.6}, we have
+\begin{align*}
+\lim_{\varepsilon \to 0}\mathrm{III}_1(\vez) \leq \lim_{\varepsilon \to 0}\int_\Omega \left[ \int_{\Omega_{3\varepsilon}} \frac{|f(x) -  f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}} \,dx = 0. 
+\end{align*}
+To estimate \( \mathrm{III}_2(\vez) \), for any \( x \in \Omega \), define
+$$
+K_\varepsilon(x)
+:=
+\int_{\bigcup_{k\in\Lambda_2}\frac{11}{10}Q_k}
+\frac{dy}
+{|x-y|^{sq+n}d(y,\partial\Omega)^{aq}}.
+$$
+Then it is easy to see that
+\begin{align*}
+\mathrm{III}_2(\varepsilon)
+\le
+\int_{\Omega}
+|f(x)|^p K_\varepsilon(x)^\frac{p}{q}dx.
+\end{align*}
+We claim that for a.e. $x\in \Omega$, it holds that
+
+\begin{align}\label{eqn=3.x22}
+K_\varepsilon(x)
+\lesssim
+d(x,\partial\Omega)^{-(s+a)q}
+\end{align}
+and 
+\begin{align}\label{eqn=3.x22x}
+\lim_{\vez\to0}K_\varepsilon(x)= 0 .
+\end{align}
+
+Assuming these two estimates for the moment, we obtain
+\[
+|f(x)|^pK_\varepsilon(x)^\frac{p}{q}
+\lesssim
+\frac{|f(x)|^p}{d(x,\partial\Omega)^{(s+a)p}},
+\]
+which, combined with the Lebesgue dominated convergence theorem (we used the fact that $f$ satisfies the Hardy condition $(H)_{s,p,q,a,p,(s+a)p}$ here), further implies that 
+\[
+\lim_{\varepsilon\to0}{\rm III}_2(\varepsilon)=0.
+\]
+
+It remains to verify \eqref{eqn=3.x22} and \eqref{eqn=3.x22x}.
+Fix $x\in\Omega$, and choose the Whitney cube $Q_i$ such that $x\in Q_i$. 
+If $x\in\Omega\setminus\Omega_{14\varepsilon}$, then $i\in\Lambda_3$. For $y\in\frac{11}{10}Q_k$ with $k\in\Lambda_2$, by 
+Lemma \ref{lem2.2}(iii), with harmless changes of constants due to the dilation $\frac{11}{10}Q_k$, we have
+\[
+|x-y|\sim D(Q_i,Q_k).
+\]
+Moreover, for any $y\in \frac{11}{10}Q_k$, it holds that
+$
+d(y,\partial\Omega)\sim l_k.
+$
+Hence,
+\[
+K_\varepsilon(x)
+\lesssim
+\sum_{k\in\Lambda_2}
+\frac{l_k^n}
+{D(Q_i,Q_k)^{sq+n}l_k^{aq}}
+=
+\sum_{k\in\Lambda_2}
+\frac{l_k^{n-aq}}
+{D(Q_i,Q_k)^{sq+n}}.
+\]
+Since $\Lambda_2\subset\mathbb N_+$, we may enlarge the sum and obtain
+\[
+K_\varepsilon(x)
+\lesssim
+\sum_{k=1}^\infty
+\frac{l_k^{n-aq}}
+{D(Q_i,Q_k)^{sq+n}}.
+\]
+Now we apply Lemma~\ref{lem2.3} to obtain
+\[
+\sum_{k=1}^\infty
+\frac{l_k^{n-aq}}
+{D(Q_i,Q_k)^{sq+n}}
+\lesssim
+l_i^{n-aq-(sq+n)}
+=
+l_i^{-(s+a)q}.
+\]
+Since $x\in Q_i$, we have 
+\[
+K_\varepsilon(x)
+\lesssim
+d(x,\partial\Omega)^{-(s+a)q}.
+\]
+This proves \eqref{eqn=3.x22}.
+
+Finally, we prove the pointwise convergence \eqref{eqn=3.x22x}. For the fixed cube $Q_i$ containing $x$, we have
+\[
+K_\varepsilon(x)
+\lesssim
+\sum_{k\in\Lambda_2}
+\frac{l_k^{n-aq}}
+{D(Q_i,Q_k)^{sq+n}}.
+\]
+The full series
+\[
+\sum_{k=1}^\infty
+\frac{l_k^{n-aq}}
+{D(Q_i,Q_k)^{sq+n}}
+\]
+is finite by Lemma~\ref{lem2.3}. Moreover, for each fixed $k$, the condition $k\in\Lambda_2$ means
+$
+d(Q_k,\partial\Omega)<\varepsilon.
+$
+Thus, for every fixed $k$, when $\varepsilon<d(Q_k,\partial\Omega)$, we have $k\notin\Lambda_2$. Hence,
+$
+\mathbf{1}_{\Lambda_2}(k)\to0
+$
+as $\vez\to0$ for every fixed $k$. By dominated convergence for series,
+\[
+\sum_{k\in\Lambda_2}
+\frac{l_k^{n-aq}}
+{D(Q_i,Q_k)^{sq+n}}
+\to0
+\]
+as $\vez\to0$. Consequently, $K_\varepsilon(x)\to 0$ as $\vez\to0$
+for every $x\in\Omega$.
+This verifies \eqref{eqn=3.x22x}, which finally proves (ii)
+and hence completes the proof of Theorem \ref{thm-main}.
+\end{proof}
+
+\section{The case $s\in(1,\infty)\setminus\mathbb{N}$}\label{s4}
+
+In this section, we show the density property for Triebel--Lizorkin 
+spaces on $\boz$ in higher-order smoothness 
+case $s\in(1,\infty)\setminus\mathbb{N}$ by proving Theorem \ref{thm-secmain}.
+
+\begin{proof}[Proof of Theorem \ref{thm-secmain}]
+We first prove (i). Let 
+\( f \in C^\infty(\boz)\cap\widetilde{\mathscr{F}}_{p,q}^{s}(\boz)\),  
+\( \{Q_j\}_{j=1}^{\infty} \) and \( \{\psi_j\}_{j=1}^{\infty} \subset C_{\mathrm{c}}^\infty(\mathbb{R}^n) \) 
+be the Whitney decomposition and its associated partition of unity fixed in Section~\ref{s2}. For any \( \varepsilon > 0 \) and \( x \in \Omega \), by \eqref{eqn-2.1} and the definitions of \( \Lambda_1\) and \( \Lambda_2 \) in \eqref{eqn-2.3}, we write
+\begin{align}\label{eqn-4.19}
+f(x)= \sum_{j \in \Lambda_1} \psi_j(x) f(x) + \sum_{j \in \Lambda_2} \psi_j(x) f(x)
+=: v_{\varepsilon}(x) + w_{\varepsilon}(x).
+\end{align}
+Similar to the argument used in the proof of Theorem \ref{thm-main},  it suffices to prove
+$$
+\lim_{\huae \to 0} \| \we \|_{\widetilde{\mathscr{F}}_{p,q}^{s}(\boz)}=0,
+$$
+which, combined with \eqref{eqn-GWN}, is equivalent to verify the following four identities:
+\begin{align}\label{eqn-4.20}
+\lim_{\huae \to 0} \| \we \|_{W^{k,p}(\Omega)}=0,
+\end{align}
+\begin{align}\label{1048}
+\lim_{\varepsilon\to0}
+\sum_{\substack{\bz\in\nno^n \\ |\bz| \leq k}}
+\left(\left\|\frac{D^\beta w_\varepsilon}{d^{s-|\beta|}}\right\|_{L^p(\Omega)}+\left\|\frac{D^\beta w_\varepsilon}{d^{s-|\beta|+\frac{n}{q}}}\right\|_{L^q(\Omega)}\right)=0,
+\end{align}
+\begin{align}\label{eqn-4.21}
+\lim_{\huae \to 0} \adk \left| D^{\az} \we \right|_{\cf_{p,q}^{\sz}(\boz)}=0
+\end{align}
+and
+\begin{align}\label{eqn-4.22}
+\lim_{\huae \to 0}
+\sum_{\substack{\bz\in\nno^n \\ | \bz| \leq k}} \left|D^{\bz}\we\right|_{\cf_{p,q}^{\sz}(\boz,d^{-(k-|\bz|)q})}=0.
+\end{align}
+We divide the proofs of \eqref{eqn-4.20}--\eqref{eqn-4.22} into several steps.
+
+{\bf Step 1}. In this step, we show \eqref{eqn-4.20}
+and \eqref{1048}. By \eqref{eqn-1.3}, we have
+\[
+\| \we \|_{W^{k,p}(\boz)}=\sum_{\substack{\az\in\nno^n \\ |\alpha| \leq k}}
+\left\| D^{\alpha}\we \right\|_{L^p(\Omega)}.
+\]
+Let $\az\in\nno^n$ and $|\az|\leq k$. To estimate \(\| D^{\alpha}\we \|_{L^p(\Omega)}\), by \eqref{eqn-4.19}, Lemma \ref{lem2.1}(iv), Leibniz's rule and \( \text{supp}\,\psi_j \subset \frac{11}{10}Q_j \) for any $j\in\Lambda_2$, we find that
+\begin{align*}
+\left\|D^{\alpha}\we\right\|_{L^p(\Omega)}^p
+&= \int_{\boz} \left| \sum_{j \in \Lambda_2} D^{\alpha} (f \psi_j)(x) \right|^p\,dx\\
+&\lesssim \sum_{j \in \Lambda_2} \int_{\Qj} | D^{\alpha} (f \psi_j)(x) |^p\,dx \\
+&=\sum_{j \in \Lambda_2} \int_{\Qj} \left| \sum_{\substack{\bz\in\nno^n \\ \bz \leq \az}} \binom{\az}{\bz} D^{\bz}f(x) D^{\az - \bz} \psi_j(x) \right|^p\,dx \\
+&\lesssim \sum_{\substack{\bz\in\nno^n \\ \bz \leq \az}} \binom{\az}{\bz} \sum_{j \in \Lambda_2} \int_{\Qj} | D^{\bz}f(x) D^{\az - \bz} \psi_j(x) |^p\,dx.
+\end{align*}
+According to \eqref{eqn-2.2}, Lemma \ref{lem2.1}(ii) and \eqref{eqn-2.6}, we obtain for any $\bz\in\nno^n$ with $\bz\leq\az$,
+\begin{align*}
+&\sum_{j \in \Lambda_2}\int_{\Qj} \left| D^{\bz}f(x) D^{\az - \bz} \psi_j(x) \right|^p\, dx\\
+&\quad\lesssim \sum_{j \in \Lambda_2}\int_{\Qj} \frac{|D^{\bz}f(x)|^p}{(\mathrm{diam\,} Q_j)^{|\az-\bz|p}}\,dx\\
+&\quad\lesssim \int_{\bigcup_{j \in \Lambda_2} \Qj} \frac{|D^{\bz}f(x)|^p}{d(x,\pa\boz)^{|\az-\bz|p}}\,dx 
+\leq \int_{\boz_{3\huae}} \frac{|D^{\bz}f(x)|^p}{d(x,\pa\boz)^{|\az-\bz|p}}\,dx,
+\end{align*}
+which tends to 0 as \( \huae \to 0 \) by the fact
+that $\|\frac{D^\beta f}{d^{|\alpha-\beta|}}\|_{L^p(\Omega)}<\infty$. Thus,
+\[
+\left\| D^{\alpha}\we\right\|_{L^p(\Omega)}^p \lesssim  \sum_{\substack{\bz\in\nno^n \\ \bz \leq \az}} \binom{\az}{\bz} \int_{\boz_{3\huae}} \frac{|D^{\bz}f(x)|^p}{d(x,\pa\boz)^{|\az-\bz|p}} \,dx \to 0
+\]
+as $\huae \to 0$.
+Hence,
+\[
+\lim_{\huae \to 0} \| \we \|_{W^{k,p}(\Omega)}
+=\lim_{\huae \to 0}  \sum_{|\alpha| \leq k} \left\| D^{\alpha}\we \right\|_{L^p(\Omega)}
+=\sum_{|\alpha| \leq k} \lim_{\huae \to 0} \left\| D^{\alpha}\we \right\|_{L^p(\Omega)}=0.
+\]
+This completes the proof of \eqref{eqn-4.20}.
+The proof of \eqref{1048} is similar.
+
+{\bf Step 2}. To show \eqref{eqn-4.21}, by \eqref{eqn-4.19}, Lemma \ref{lem2.1}(iv) and Leibniz's rule, we obtain for any $\az\in\nno^n$ with $|\az|=k$,
+\begin{align}\label{eqn-8.5}
+&\left| D^{\az} \we \right|_{\cf_{p,q}^{\sz}(\boz)}^p \nonumber\\
+&\quad= \left| D^{\alpha} \left(f \sum_{j \in \Lambda_2} \psi_j\right) \right|_{\cf_{p,q}^{\sz}(\boz)}^p \nonumber\\
+&\quad= \int_{\boz} \left[\int_{\boz} \frac{|D^{\alpha} (f \sum_{j \in \Lambda_2} \psi_j)(x) - D^{\alpha} (f \sum_{j \in \Lambda_2} \psi_j)(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad\lesssim \sum_{\substack{\bz\in\nno^n \\ \bz \leq \az}} \binom{\az}{\bz} \int_{\boz} \left[ \int_{\boz} \frac{| \fpjzuhe -  \fpjzuhey|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align}
+Now, we fix $j\in\Lambda_2$ and $\az,\bz\in\nno^n$ satisfying both $|\az|=k$ and $\bz\leq\az$. Since supp \(\psi_j \subseteq \Qj\), we write
+\begin{align}\label{eqn-4.23}
+&\int_{\boz} \left[\int_{\boz} \frac{| \fpjzuhe -  \fpjzuhey|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\quad= \left[ \int_{\bigcup_{i \in \blz_2} \Qi}
++ \int_{\bozfour \setminus \bigcup_{i \in \blz_2} \Qi}
++ \int_{\boz \setminus \bozfour} \right]
+\left(\int_{\boz}\dots\,dy\right)^{\frac{p}{q}}\,dx \nonumber \\
+&\quad\sim \int_{\bigcup_{i \in \blz_2} \Qi}\nonumber \\
+&\quad\quad\times\left[ \int_{\bigcup_{k \in \blz_2} \Qkk}
+\frac{| \fpjzuhe -  \fpjzuhey|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\qquad+ \int_{\bigcup_{i \in \blz_2} \Qi}
+\left[ \int_{\boz \setminus \bigcup_{k \in \blz_2} \Qkk}
+\frac{| \fpjzuhe |^q}{|x - y|^{\sz q + n}} \,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\qquad+ \int_{\bozfour \setminus \bigcup_{i \in \blz_2} \Qi} \nonumber \\
+&\qquad\times \left[ \int_{\bigcup_{k \in \blz_2} \Qk}
+\frac{| \fpjzuhe -  \fpjzuhey|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\qquad+ \int_{\boz \setminus \bozfour}
+\left[ \int_{\bigcup_{k \in \blz_2} \Qk}
+\frac{| \fpjzuhey |^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\quad=:\tilde{\mathrm{I}}_1(\vez)+\tilde{\mathrm{I}}_2(\vez)
++\tilde{\mathrm{II}}(\vez)+\tilde{\mathrm{III}}(\vez).
+\end{align}
+
+{\bf Step 3}. In this step, we estimate $\tilde{\mathrm{I}}_2(\vez)$. By \eqref{eqn-2.2}, \eqref{eqn-2.6}, and both (ii) and (iv) of Lemma \ref{lem2.1}, we find that for any $z\in\boz$,
+\begin{align}\label{eqn-xiutwo}
+\left| \sum_{j\in\Lambda_2}D^{\az-\bz}\psi_j(z) \right|\lesssim \chi_{\boz_{3\vez}}(z)\sum_{j\in\Lambda_2}\frac{1}{(\mathrm{diam\,}Q_j)^{|\az-\bz|}}\lesssim \frac{\chi_{\boz_{3\vez}}(z)}{d(z,\pa\boz)^{|\az-\bz|}}.
+\end{align}
+From this, \eqref{eqn-7.5} and polar coordinates, we deduce that
+\begin{align*}
+\tilde{\mathrm{I}}_2(\vez)
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{| D^{\bz}f(x) |^p}{d(x,\pa\boz)^{|\az-\bz|p}} \left( \int_{\boz \setminus \bigcup_{k \in \blz_2} \Qkk} \frac{1}{|x - y|^{\sz q + n}}\,dy \right)^{\frac{p}{q}}\,dx\\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{| D^{\bz}f(x) |^p}{d(x,\pa\boz)^{|\az-\bz|p}} \left( \int_{\frac{l_i}{20}}^\infty \rho^{-\sz q - 1}\,d\rho \right)^{\frac{p}{q}}\,dx \\
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{| D^{\bz}f(x) |^p}{d(x,\pa\boz)^{|\az-\bz|p}} {l_i}^{-\sz p}\,dx.
+\end{align*}
+By this, Lemma \ref{lem2.1}, \eqref{eqn-2.6} and 
+the fact
+that $\|\frac{D^\beta f}{d^{s-|\beta|}}\|_{L^p(\Omega)}<\infty$, we obtain
+\begin{align*}
+\tilde{\mathrm{I}}_2(\vez)
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{|D^\beta f(x)|^p}{d(x, \partial\Omega)^{(\sz+|\az-\bz|) p}}\,dx\\
+&\sim \int_{\bigcup_{i \in \Lambda_2} \Qi} \frac{|D^\beta f(x)|^p}{d(x, \partial\Omega)^{(\sz+|\az-\bz|) p}}\,dx \nonumber \\
+&\leq \int_{\bozthreee}  \frac{|D^\beta f(x)|^p}{d(x, \partial\Omega)^{(s-|\bz|) p}}\,dx \to 0
+\end{align*}
+as $\varepsilon \to 0.$ Thus,
+\begin{equation}\label{eqn-4.25}
+\lim_{\varepsilon \to 0} \tilde{\mathrm{I}}_2(\vez) = 0.
+\end{equation}
+
+{\bf Step 4}. In this step, we estimate \(\tilde{\mathrm{III}}(\vez)\). By \eqref{eqn-xiutwo}, \eqref{eqn-8.8}, Lemma \ref{lem2.1}, \eqref{eqn-2.6},
+the fact that $|\Omega|<\infty$ (since $\Omega\subset\mathbb{R}^n$ is bounded),
+and the fact
+that $\|\frac{D^\beta f}{d^{s-|\beta|+n/q}}\|_{L^q(\Omega)}<\infty$, we find that
+\begin{align*}
+\tilde{\mathrm{III}}(\vez) &\leq\int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \sum_{k\in\Lambda_2}\int_{ \Qk} \frac{| D^{\bz} f(y)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{|\az-\bz|q}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \sum_{k\in\Lambda_2}\int_{ \Qk} \frac{|D^\bz f(y)|^q}{{l_k}^{\sz q + n}d(y,\pa\boz)^{|\az-\bz|q}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\sim \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \sum_{k\in\Lambda_2}\int_{ \Qk} \frac{|D^\bz f(y)|^q}{d(y,\pa\boz)^{(\sz+|\az-\bz|)q+n}}\,dy \right]^{\frac{p}{q}} \,dx \\
+&\sim \int_{\Omega \setminus \Omega_{14\varepsilon}} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qk} \frac{|D^\bz f(y)|^q}{d(y,\pa\boz)^{(\sz+|\az-\bz|)q+n}}\,dy \right]^{\frac{p}{q}} \,dx \\
+&\leq |\boz|\left[ \int_{\bozthreee} \frac{|D^\bz f(y)|^q}{d(y,\pa\boz)^{(s-|\bz|)q+n}}\,dy \right]^{\frac{p}{q}} \to 0
+\end{align*}
+as $\varepsilon \to 0.$ Thus,
+\begin{equation}\label{eqn-4.26}
+\lim_{\varepsilon \to 0}\tilde{\mathrm{III}}(\vez)= 0. 
+\end{equation}
+
+{\bf Step 5}. In this step, we estimate \( \tilde{\mathrm{I}}_1(\vez) \). To this end, we first decompose \( \tilde{\mathrm{I}}_1(\vez) \) as
+\begin{align*}
+\tilde{\mathrm{I}}_1(\vez)
+&\lesssim \int_{\bigcup_{i \in \Lambda_2} \Qi} \left[ \int_{\bigcup_{k \in \Lambda_2}\Qkk} \frac{|D^\beta f(x) - D^\beta f(y)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\quad+ \int_{\bigcup_{i \in \Lambda_2} \Qi} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qkk} \frac{|D^\beta f(x)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(x) - \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&=: \tilde{\mathrm{I}}_{1,1}(\vez) + \tilde{\mathrm{I}}_{1,2}(\vez).
+\end{align*}
+To estimate \( \tilde{\mathrm{I}}_{1,1}(\vez) \), by \eqref{eqn-xiutwo} and \eqref{eqn-2.6}, we conclude that
+\begin{align}\label{eqn-4.27}
+\tilde{\mathrm{I}}_{1,1}(\vez)
+&\lesssim\int_{\bigcup_{i \in \Lambda_2} \Qi} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qkk} \frac{|D^\beta f(x) - D^\beta f(y)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{|\az-\bz|q}}\,dy \right]^{\frac{p}{q}}\,dx\nonumber\\
+&\leq \int_{\Omega_{3\varepsilon}} \left[ \int_{\Omega_{3\varepsilon}} \frac{|D^\beta f(x) - D^\beta f(y)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{(k-|\bz|)q}}\,dy \right]^{\frac{p}{q}}\,dx. 
+\end{align}
+Since \( f \in \huafweab \), it follows from \eqref{eqn-4.27} that $\tilde{\mathrm{I}}_{1,1}(\vez)\to 0$ as \( \varepsilon \to 0 \).
+
+Next, we estimate \( \tilde{\mathrm{I}}_{1,2}(\vez) \). By \eqref{eqn-2.8}, we write
+\begin{align*}
+\tilde{\mathrm{I}}_{1,2}(\vez)
+&\leq \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qkk} \frac{|D^\beta f(x)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(x) - \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \int_{\bigcup_{k \in \Lambda_{2,1}(i)} \Qkk} \frac{|D^\beta f(x)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(x) - \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\quad+ \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \int_{\bigcup_{k \in \Lambda_{2,2}(i)} \Qkk} \frac{|D^\beta f(x)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(x) - \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&=:\tilde{\mathrm{I}}_{1,2}^1(\vez) + \tilde{\mathrm{I}}_{1,2}^2(\vez).
+\end{align*}
+By the mean value theorem, \eqref{eqn-2.2}, Lemmas \ref{lem2.4} and \ref{lem2.1}, \eqref{eqn-2.8}, polar coordinates, \eqref{eqn-2.6} and 
+the fact
+that $\|\frac{D^\beta f}{d^{s-|\beta|}}\|_{L^p(\Omega)}<\infty$, we conclude that
+\begin{align}\label{eqn-4.29}
+\tilde{\mathrm{I}}_{1,2}^1(\vez)
+&\leq \sum_{i \in \Lambda_2} \int_{\Qi} |D^\bz f(x)|^p \nonumber\\
+&\quad\times\left[ \sum_{k \in \Lambda_{2,1}(i)} \int_{\Qkk} \frac{|\sum_{j \in \Lambda_{2,3}(i,k)} D^{\alpha - \beta}\psi_j(x) -\sum_{j \in \Lambda_{2,3}(i,k)} D^{\alpha - \beta}\psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} |D^\bz f(x)|^p \left[ \sum_{k \in \Lambda_{2,1}(i)} \int_{\Qkk} \sum_{j \in \Lambda_{2,3}(i,k)}{\| D^{\az-\bz+1} \psi_j \|_{L^\infty}^q |x - y|^{q(1 - \sz)-n}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} |D^\bz f(x)|^p \left[ \sum_{k \in \Lambda_{2,1}(i)} \int_{\Qkk} {{l_i}^{-q(|\az-\bz|+1)} |x - y|^{q(1 - \sz)-n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} |D^\bz f(x)|^p \left[ \sum_{k \in \Lambda_{2,1}(i)} \int_{\Qkk} {{d(x,\pa\boz)}^{-q(|\az-\bz|+1)} |x - y|^{q(1 - \sz)-n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{ |D^\bz f(x)|^p}{{d(x,\pa\boz)}^{(1+|\az-\bz|)p}} \left[ \int_0^{cl_i} \rho^{q(1 - \sz) - 1}\,d\rho \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\sim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{ |D^\bz f(x)|^p}{{d(x,\pa\boz)}^{(1+|\az-\bz|)p}}  {l_i}^{p(1-\sz)}\,dx
+\sim \int_{\bigcup_{i \in \Lambda_2} \Qi} \frac{|D^\bz f(x)|^p}{d(x, \partial\Omega)^{(\sz+|\az-\bz|) p}}\,dx  \nonumber \\
+&\leq \int_{\bozthreee}\frac{|D^\bz f(x)|^p}{d(x, \partial\Omega)^{(s-|\bz|) p}}\,dx \to 0
+\end{align}
+as $\varepsilon \to 0.$ For $\tilde{\mathrm{I}}_{1,2}^2(\vez)$, we write
+\begin{align*}
+\tilde{\mathrm{I}}_{1,2}^2(\vez)
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k\geq l_i}}\int_{\Qkk} \frac{|D^\beta f(x)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(x) - \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\quad+\sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k< l_i}}\int_{\Qkk} \frac{|D^\beta f(x)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(x) - \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&=:\tilde{\mathrm{I}}_{1,2}^{2,1}(\vez)+\tilde{\mathrm{I}}_{1,2}^{2,2}(\vez).
+\end{align*} 
+To estimate $\tilde{\mathrm{I}}_{1,2}^{2,1}(\vez)$, by \eqref{eqn-2.2}, \eqref{eqn-xiutwo}, Lemma \ref{lem2.1}, \eqref{eqn-8.13}, polar coordinates, \eqref{eqn-2.6} and 
+$\|\frac{D^\beta f}{d^{s-|\beta|}}\|_{L^p(\Omega)}<\infty$, we find that
+\begin{align}\label{eqn-4.30}
+\tilde{\mathrm{I}}_{1,2}^{2,1}(\vez)
+&\lesssim  \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{k \in \Lambda_{2,2}(i)} \int_{\Qkk} \frac{| D^\bz f(x)|^q }{|x - y|^{\sz q + n}{l_i}^{|\az-\bz|q}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{k \in \Lambda_{2,2}(i)} \int_{\Qkk} \frac{|D^\bz f(x)|^q }{|x - y|^{\sz q + n}{d(x,\pa\boz)}^{|\az-\bz|p}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{ |D^\bz f(x)|^p}{{d(x,\pa\boz)}^{|\az-\bz|p}} \left( \int_{\frac{l_i}{20}}^{\infty} \rho^{- \sz q - 1}\,d\rho \right)^{\frac{p}{q}}\,dx \nonumber \\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \frac{ |D^\bz f(x)|^p}{{d(x,\pa\boz)}^{|\az-\bz|p}}  {l_i}^{-\sz p}\,dx\nonumber\\
+&\sim \int_{\bigcup_{i \in \Lambda_2} \Qi} \frac{|D^\bz f(x)|^p}{d(x, \partial\Omega)^{(\sz+|\az-\bz|) p}}\,dx \nonumber \\
+&\leq \int_{\bozthreee} \frac{|D^\bz f(x)|^p}{d(x, \partial\Omega)^{(s-|\bz|) p}}\,dx \to 0
+\end{align}
+as $\varepsilon \to 0.$ To estimate $\tilde{\mathrm{I}}_{1,2}^{2,2}(\vez)$, by \eqref{eqn-2.2}, \eqref{eqn-xiutwo} and Lemma \ref{lem2.1}(ii), we find that
+\begin{align}\label{eqn-9.14}
+\tilde{\mathrm{I}}_{1,2}^{2,2}(\vez)
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k< l_i}}\int_{\Qkk} \frac{|D^\bz f(x)|^q }{|x - y|^{\sz q + n}d(y,\pa\boz)^{|\az-\bz|q}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\lesssim \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k< l_i}}\int_{\Qkk} \frac{| D^\bz f(x)-D^\bz f(y)|^q }{|x - y|^{\sz q + n}d(y,\pa\boz)^{|\az-\bz|q}} \,dy \right]^{\frac{p}{q}} \nonumber\\
+&\quad+ \sum_{i \in \Lambda_2} \int_{\Qi} \left[ \sum_{\substack{k\in\Lambda_{2,2}(i) \\ l_k< l_i}}\int_{\Qkk}\frac{|D^\bz f(y)|^q }{|x - y|^{\sz q + n}d(y,\pa\boz)^{|\az-\bz|q}}\,dy \right]^{\frac{p}{q}}\,dx. 
+\end{align}
+By \( f \in \huafweab \) and an argument similar to that used in the estimation of \eqref{eqn-4.27}, we find that the first term on the right-hand side of \eqref{eqn-9.14} tends to 0 as $\vez\to 0$, and by an argument similar to that used in the estimation of  $\tilde{\mathrm{III}}(\vez)$, we find that the second term on the right-hand side of \eqref{eqn-9.14} tends to 0 as $\vez\to 0$. Hence,
+\begin{equation}\label{eqn-4.31}
+\lim_{\varepsilon \to 0}\tilde{\mathrm{I}}_{1,2}^{2,2}(\vez)= 0. 
+\end{equation}
+Combining \eqref{eqn-4.27}--\eqref{eqn-4.31}, we obtain
+\begin{equation}\label{eqn-4.32}
+\lim_{\varepsilon \to 0}\tilde{\mathrm{I}}_{1}(\vez)= 0.
+\end{equation}
+
+{\bf Step 6}. In this step, we estimate \( \tilde{\mathrm{II}}(\vez) \). To this end, we write
+\begin{align}\label{1717}
+\tilde{\mathrm{II}}(\vez)
+&\leq \int_{\Omega_{14\varepsilon}} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qk} \frac{|D^\beta f(x) \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(x) - D^\beta f(y) \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber\\
+&\lesssim \int_{\Omega_{14\varepsilon}} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qk} \frac{|D^\beta f(x)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(x) - \sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+ \int_{\Omega_{14\varepsilon}} \left[ \int_{\bigcup_{k \in \Lambda_2} \Qk} \frac{|D^\beta f(x) - D^\beta f(y)|^q |\sum_{j\in\Lambda_2}D^{\alpha - \beta} \psi_j(y)|^q}{|x - y|^{\sz q + n}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align}
+By an argument similar to that used in the estimation of \( \tilde{\mathrm{I}}_{1,1}(\vez) \), we find that the first term on the right-hand side of \eqref{1717} tends to 0 as $\vez\to 0$, and by an argument similar to that used in the estimation of \( \tilde{\mathrm{I}}_{1,2}(\vez) \), we find that the second term on the right-hand side of \eqref{1717} tends to 0 as $\vez\to 0$. Hence,
+\begin{equation}\label{eqn-4.33}
+\lim_{\varepsilon \to 0} \tilde{\mathrm{II}}(\vez) = 0.
+\end{equation}
+Combining \eqref{eqn-8.5}, \eqref{eqn-4.23}, \eqref{eqn-4.25}, \eqref{eqn-4.26}, \eqref{eqn-4.32} and \eqref{eqn-4.33}, we obtain
+\[
+\lim_{\huae \to 0} \adk \left| D^{\az} \we \right|_{\cf_{p,q}^{\sz}(\boz)}=0,
+\]
+which proves \eqref{eqn-4.21}.
+
+{\bf Step 7}. In this step, we prove \eqref{eqn-4.22}. From an argument similar to that used in the estimation in Step 3, we deduce that
+\begin{align*}
+& \sum_{\substack{\bz\in\nno^n \\ | \bz| \leq k}} \left|D^{\bz}\we\right|_{\cf_{p,q}^{\sz}(\boz,d^{-(k-|\bz|)q})}^p \\ &\quad\lesssim \sum_{\substack{\bz\in\nno^n \\|\bz| \leq k}}  \sum_{\substack{\gamma\in\nno^n \\ \gamma \leq \bz}} \binom{\bz}{\gamma} \int_{\boz} \left[\int_{\boz} \frac{| D^\gamma f(x) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(x) - D^\gamma f(y) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(y)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{(k-|\bz|)q}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align*}
+Similar to the decomposition in \eqref{eqn-4.23}, we obtain
+\begin{align*}
+&\int_{\boz} \left[ \int_{\boz} \frac{| D^\gamma f(x) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(x) - D^\gamma f(y) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(y)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{(k-|\bz|)q}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\quad\lesssim \int_{\bigcup_{i \in \blz_2} \Qi} \\
+&\qquad\times\left[ \int_{\bigcup_{k \in \blz_2} \Qkk} \frac{| D^\gamma f(x) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(x) - D^\gamma f(y)\sum_{j\in\Lambda_2} D^{\bz - \gamma} \psi_j(y)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{ (k-|\bz|)q}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\qquad+ \int_{\bigcup_{i \in \blz_2} \Qi} \left[ \int_{\boz \setminus \bigcup_{k \in \blz_2} \Qkk} \frac{| D^\gamma f(x) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(x)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{(k-|\bz|)q}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\qquad+\int_{\bozfour \setminus \bigcup_{i \in \blz_2} \Qi} \\
+&\qquad\times\left[ \int_{\bigcup_{k \in \blz_2} \Qk} \frac{| D^\gamma f(x) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(x) - D^\gamma f(y) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(y)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{(k-|\bz|)q}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\qquad+ \int_{\boz \setminus \bozfour} \left[ \int_{\bigcup_{k \in \blz_2} \Qk} \frac{| D^\gamma f(y) \sum_{j\in\Lambda_2}D^{\bz - \gamma} \psi_j(y)|^q}{|x - y|^{\sz q + n}d(y,\pa\boz)^{(k-|\bz|)q}}\,dy \right]^{\frac{p}{q}}\,dx. 
+\end{align*}
+Using this and following the same proof method as for \eqref{eqn-4.21}, \eqref{eqn-4.22} can be obtained via straightforward calculations by simply replacing $\bz$ with $\gamma$ in the proof process; the details are omitted. This completes the proof of part (i) of Theorem \ref{thm-secmain}.
+
+The proof of  (ii) is similar to the corresponding part 
+of Theorem \ref{thm-main}, the details being omitted.
+This completes the proof of Theorem \ref{thm-secmain}.
+\end{proof}
+
+\section{The case $s\in\mathbb{N}$}\label{sN}
+
+In this section, we show the density property for Triebel--Lizorkin 
+spaces on $\boz$ in integer-order smoothness 
+case by proving Theorem \ref{thm-third}. To this end,
+we need the following three technical lemmas.
+Throughout this section, we always fix the smoothness index
+$s=k\in\mathbb{N}$.
+
+\begin{lemma}\label{lembls}
+There exists a constant $C\in(0,\infty)$ such that,
+for any $x\in\boz$ and $h\in\mathbb{R}^n$ satisfying
+\begin{align*}
+|h|<\frac{d(x,\pa\boz)}{2(k+1)}
+\ \ \text{and}\ \ 
+x+\nu h\in\Omega_{3\varepsilon}
+\end{align*}
+for some $\nu\in\mathbb{N}_0\cap[0,k+1]$,
+it holds that $x\in\Omega_{C\varepsilon}$.
+\end{lemma}
+
+\begin{proof}
+If $z:=x+\nu h\in\boz_{3\vez}$ for some $0\le\nu\le k+1$, then
+the triangle inequality implies that
+\begin{align*}
+d(x,\pa\boz)
+\leq d(z,\pa\boz)+|z-x|
+\leq 3\vez+(k+1)|h|
+< 3\vez+\frac{1}{2} d(x,\pa\boz).
+\end{align*}
+The last inequality implies $d(x,\pa\boz)\lesssim\vez$. Hence $x\in\boz_{C\vez}$.
+\end{proof}
+
+\begin{lemma}[\cite{g2014}, Proposition~1.4.5]\label{lemdwc}
+Let $f$ be a ${C}^b$ function on $\boz$ for some $b\in\nn$. Then for any $x\in\boz$ and $h\in\rn$ satisfying $b|h|<d(x,\pa\boz)$, the following identity holds:
+\begin{align*}
+\Delta_h^{b}(f)(x)&=
+\int_{0}^{1} \cdots \int_{0}^{1} \sum_{j_1=1}^{n} \cdots \sum_{j_b=1}^{n} h_{j_1} \cdots h_{j_b} \\
+&\quad \times \left(\partial_{j_1} \cdots \partial_{j_b} f\right)\big(x+(s_1+\cdots+s_b)h\big)
+\,ds_1\cdots ds_b.
+\end{align*}
+\end{lemma}
+
+\begin{lemma}[\cite{j1965}, p.\,95, (6)]\label{lemdlf}
+Let $f$ and $g$ be two functions defined on $\boz$. Then, for any $m\in\nn$, $x\in\boz$ and $h\in\rn$ satisfying $m|h|<d(x,\pa\boz)$,
+\begin{align*}
+\Delta_h^m(fg)(x)
+=\sum_{b=0}^m \binom{m}{b}
+\Delta_h^{m-b}f(x)
+\Delta_h^b g\left(x+(m-b)h\right).
+\end{align*}
+\end{lemma}
+
+Now, we are ready to prove Theorem \ref{thm-third}.
+
+\begin{proof}[Proof of Theorem \ref{thm-third}]
+The inclusion
+${\mathfrak F}^{k,1}_{p,q}(\boz)
+\subset{\mathfrak F}^{k,2}_{p,q}(\boz)$
+is from the fact that $C_{\mathrm c}^\infty(\Omega)\subset C^\infty(\boz)$. 
+
+Next, we prove the reverse inclusion.
+Let
+$f\in C^\infty(\boz)\cap\mathfrak F^{k}_{p,q}(\boz)$,
+$\{Q_j\}_{j=1}^\infty$ and $\{\psi_j\}_{j=1}^\infty\subset C_{\mathrm c}^\infty(\Omega)$ be the Whitney decomposition and its associated partition of unity fixed in Section~\ref{s2}. For any given \( \varepsilon\in(0,\infty)\), by \eqref{eqn-2.1} and \eqref{eqn-2.3}, we divide $f$ by, for any $x\in\Omega$,
+\begin{align*}
+f(x)= \sum_{j \in \Lambda_1} \psi_j(x) f(x) + \sum_{j \in \Lambda_2} \psi_j(x) f(x)
+=: v_{\varepsilon}(x) + w_{\varepsilon}(x).
+\end{align*}
+Similar to the argument used in the proof of Theorem \ref{thm-main}, it suffices to  prove that
+\begin{align}\label{eqn-integerw}
+\lim_{\vez\to0}\|w_\vez\|_{\mathfrak F^{k}_{p,q}(\boz)}=0,
+\end{align}
+which, combined with \eqref{diffnorm}, is equivalent to verifying the following three identities:
+\begin{align}\label{eqn5.2}
+\lim_{\vez\to0}\|w_\vez\|_{L^p(\boz)}=0,
+\end{align}
+\begin{align}\label{eqn5.3}
+\lim_{\vez\to0}\left\|\frac{w_\vez}{d^k}\right\|_{L^p(\boz)}=0
+\end{align}
+and
+\begin{align}\label{eqn5.4}
+\lim_{\vez\to0}\sum_{r=0}^k [w_\vez]_{r,k}=0.
+\end{align}
+We divide the proofs of \eqref{eqn5.2}--\eqref{eqn5.4} into three steps.
+
+{\bf Step 1}. In this step, we show \eqref{eqn5.2}.
+By \eqref{eqn-2.6} and $|w_\vez|\le |f|$, we obtain
+\begin{align*}
+\lim_{\vez\to0}\|w_\vez\|_{L^p(\boz)}^p
+\le
+\lim_{\vez\to0}\int_{\boz_{3\vez}} |f(x)|^p\,dx
+=0.
+\end{align*}
+
+{\bf Step 2}. In this step, we show \eqref{eqn5.3}. Let $\theta_\vez:=\sum_{j \in \Lambda_2} \psi_j$.
+By \eqref{eqn-2.6}, $|\theta_\vez|\le1$ and $f/d^k\in L^p(\boz)$, we obtain
+\begin{align*}
+\left\|\frac{w_\vez}{d^k}\right\|_{L^p(\boz)}^p
+=
+\int_{\boz}\frac{|f(x)\theta_\vez(x)|^p}{d(x,\pa\boz)^{kp}}\,dx
+\le
+\int_{\boz_{3\vez}}\frac{|f(x)|^p}{d(x,\pa\boz)^{kp}}\,dx,
+\end{align*}
+which tends to $0$ as $\vez\to0$.
+
+{\bf Step 3}. In this step, we show \eqref{eqn5.4}.
+Fix $r\in\{0,1,\dots,k\}$ and let
+$m:=k+1-r$.
+By Lemma \ref{lemdlf}, we find that, for any $x\in\boz$ and $h\in\rn$ satisfying $|h|<\frac{d(x,\pa\boz)}{2(k+1)}$,
+\begin{align*}
+\Delta_h^m(f\theta_\vez)(x)
+=
+\sum_{b=0}^m \binom{m}{b}
+\Delta_h^{m-b}f(x)
+\Delta_h^b\theta_\vez(x+(m-b)h).
+\end{align*}
+Hence, we have
+\begin{align*}
+[w_\vez]_{r,k}
+\lesssim
+\sum_{b=0}^m T_{r,b}(\vez),
+\end{align*}
+where, for any $b\in\{0,\ldots,m\}$,
+\begin{align*}
+T_{r,b}(\vez)^p
+:=
+\int_\boz
+\left[
+\int_{|h|<\frac{d(x,\pa\boz)}{2(k+1)}}
+\frac{
+|\Delta_h^{m-b}f(x)|^q
+|\Delta_h^b\theta_\vez(x+(m-b)h)|^q
+}
+{|h|^{n+(k-r)q}d(x,\pa\boz)^{rq}}
+\,dh
+\right]^\frac{p}{q}
+\,dx.
+\end{align*}
+
+We first consider the terms for which $0\le b\le m-1$.  Since $m=k+1-r$, this means $b\le k-r$.  By Lemma \ref{lemdwc}, the support condition of $\psi_j$ for any $j\in\Lambda_2$,
+Lemma~\ref{lem2.1} and \eqref{eqn-2.2}, we obtain, for any $x\in\boz$ and $h\in\rn$ satisfying $|h|<\frac{d(x,\pa\boz)}{2(k+1)}$,
+\begin{align}\label{deltatheta}
+&\left|\Delta_h^b\theta_\vez(x+(m-b)h)\right|\nonumber\\
+&\quad\leq bn|h|^b\sup_{\delta\in(0,1)}\sup_{\beta\in\mathbb{N}_0^n,\,|\beta|=b}
+\left|D^\beta \theta_\varepsilon(x+(m-b)h+\delta bh)\right|\nonumber\\
+&\quad\lesssim|h|^b\sup_{z\in B(x,m|h|)}\sup_{\beta\in\mathbb{N}_0^n,\,|\beta|=b}
+\left|D^\beta \theta_\varepsilon(z)\right|\nonumber\\
+&\quad\leq|h|^b\sup_{z\in B(x,\frac{1}{2}d(x,\pa\boz))}\sup_{\beta\in\mathbb{N}_0^n,\,|\beta|=b}
+\left|D^\beta \theta_\varepsilon(z)\right|\nonumber\\
+&\quad\leq|h|^b\sup_{z\in B(x,\frac{1}{2}d(x,\pa\boz))}\sup_{\beta\in\mathbb{N}_0^n,\,|\beta|=b}\sum_{j\in\Lambda_2,\,\mathrm{supp\,}\psi_j\cap B(x,\frac{1}{2}d(x,\pa\boz))\neq\emptyset}
+\left|D^\beta\psi_j(z)\right|\nonumber\\
+&\quad\lesssim|h|^b\sup_{z\in B(x,\frac{1}{2}d(x,\pa\boz))}\sup_{\beta\in\mathbb{N}_0^n,\,|\beta|=b}\sup_{j\in\Lambda_2,\,\mathrm{supp\,}\psi_j\cap B(x,\frac{1}{2}d(x,\pa\boz))\neq\emptyset}
+\left|D^\beta\psi_j(z)\right|\nonumber\\
+&\quad\lesssim|h|^b\sup_{z\in B(x,\frac{1}{2}d(x,\pa\boz))}\sup_{\beta\in\mathbb{N}_0^n,\,|\beta|=b}\sup_{j\in\Lambda_2,\,\mathrm{supp\,}\psi_j\cap B(x,\frac{1}{2}d(x,\pa\boz))\neq\emptyset}
+\frac{1}{(\mathrm{diam\,}Q_j)^b}\nonumber\\
+&\quad\sim\frac{|h|^b}{d(x,\pa\boz)^b}.
+\end{align}
+%On the other hand, since $0\leq\theta_\varepsilon\leq1$,
+%it follows from \eqref{deltabh} that %$\left|\Delta_h^b\theta_\vez(x+(m-b)h)\right|\lesssim1$.
+%This, together with \eqref{deltatheta},
+%implies that
+%\begin{align}\label{deltatheta1}
+%\left|\Delta_h^b\theta_\vez(x+(m-b)h)\right|\lesssim\min\left\{1,\,\frac{|h|^%b}{d(x)^b}\right\}.
+%\end{align}
+Now observe that \eqref{eqn-2.6} implies $\supp\theta_\vez\subset\boz_{3\varepsilon}$, hence by Lemma \ref{lembls}, we find that $x\in\boz_{C\vez}$. Combining this and \eqref{deltatheta}, further implies that
+\begin{align*}
+T_{r,b}(\vez)^p
+\lesssim
+\int_{\boz_{C\vez}}
+\left[
+\int_{|h|<\frac{d(x,\pa\boz)}{2(k+1)}}
+\frac{|\Delta_h^{k+1-(r+b)}f(x)|^q}
+{|h|^{n+(k-(r+b))q}d(x,\pa\boz)^{(r+b)q}}
+\,d h
+\right]^\frac{p}{q}
+\,d x.
+\end{align*}
+Because $[f]_{r+b,k}<\infty$, the last integral tends to $0$ as $\vez\to0$.
+Thus, for any $0\le b\le m-1$,
+\begin{align*}
+\lim_{\vez\to0}T_{r,b}(\vez)	=0.
+\end{align*}
+
+It remains to treat the pure cutoff term $b=m$.  Since $m=k+1-r$, by an argument similar to that used in the estimation of \eqref{deltatheta}
+with $b$ and $x+(m-b)h$ replaced, respectively, by $m$ and $x$, we obtain, for any $x\in\boz$ and $h\in\rn$ satisfying $|h|<\frac{d(x,\pa\boz)}{2(k+1)}$,
+\begin{align*}
+\frac{|f(x)|^q|\Delta_h^m\theta_\vez(x)|^q}
+{|h|^{n+(k-r)q}d(x,\pa\boz)^{rq}}
+\lesssim
+\frac{|f(x)|^q |h|^{mq}}
+{|h|^{n+(k-r)q}d(x,\pa\boz)^{(r+m)q}}
+=\frac{|f(x)|^q |h|^q}{|h|^n d(x,\pa\boz)^{(k+1)q}}.
+\end{align*}
+Combining this and polar coordinates, further implies that, for any $x\in\boz$,
+\begin{align*}
+\int_{|h|<\frac{d(x,\pa\boz)}{2(k+1)}}
+\frac{|f(x)|^q |h|^q}{|h|^n d(x,\pa\boz)^{(k+1)q}}\,dh
+\lesssim
+\frac{|f(x)|^q}{d(x,\pa\boz)^{kq}}.
+\end{align*}
+Again this term is supported in a boundary layer.  Consequently,
+\begin{align*}
+T_{r,m}(\vez)^p
+\lesssim
+\int_{\boz_{C\vez}}\frac{|f(x)|^p}{d(x,\pa\boz)^{kp}}\,dx
+\to0
+\end{align*}
+as $\vez\to0$ because $f/d^k\in L^p(\boz)$.
+
+Combining the estimates for $b\in\{0,1,\dots,m\}$, further implies that
+\begin{align*}
+\lim_{\vez\to0}[w_\vez]_{r,k}=0.
+\end{align*}
+Since $r\in\{0,1,\dots,k\}$ was arbitrary and there are only finitely many $r$, \eqref{eqn5.4} follows.
+
+Combining \eqref{eqn5.2}, \eqref{eqn5.3} and \eqref{eqn5.4},
+we then conclude that \eqref{eqn-integerw} holds. This completes the proof of Theorem \ref{thm-third}.
+\end{proof}
+
+\section{Stability under the restriction norm}\label{s5}
+
+In this section, we show that the density property is stable if the intrinsic norm is replaced by 
+the restriction norm defined in \eqref{eqn-wrctls}. To this end, let us recall the 
+definition of linear extension operators.
+Let $\boz\subset\mathbb{R}^n$ be a bounded uniform domain, $\mathcal{W}_1$ the Whitney
+decomposition of $\Omega$, $\mathcal{W}_2$ the Whitney
+decomposition of $\overline{\Omega}^\complement$, and 
+$\mathcal{W}_3$ the collection of cubes in $\mathcal{W}_2$ whose side lengths are sufficiently small
+(depending only on \(\Omega\)). By [\cite{j1981}, Lemma~2.4] (see also [\cite{ps2017}, Section~3]), for every $Q\in\mathcal W_3$ one may choose a cube $Q^*\in\mathcal W_1$ such that
+\begin{align}\label{eqn-7.1}
+D(Q,Q^*) \lesssim l(Q) \quad\text{and}\quad l(Q)\sim l(Q^*).
+\end{align}
+We call any such chosen $Q^*$ a \emph{symmetric cube} of $Q$; the choice need not be unique, and we fix one choice for each $Q$ before invoking the following lemma.
+
+\begin{lemma}[\cite{ps2017}, Lemma 3.9]\label{lem5.1}
+Let $Q_1$, $Q_2 \in \mathcal{W}_3$ and $S \in \mathcal{W}_1$. Then
+\begin{enumerate}
+\item[\rm(i)]there exists a positive constant $C$ such that $\#\{Q \in \mathcal{W}_3: Q^* = S\} \leq C$;
+\item[\rm(ii)]
+$D(Q_1^{*}, Q_2^{*}) \sim D(Q_1, Q_2)$ and $D(Q_1^{*}, S)\sim D(Q_1, S)$; 
+\item[\rm(iii)]if $\overline{Q_1} \cap \overline{Q_2} \neq \varnothing$, then
+$
+D(Q_1^{*}, Q_2^{*}) \sim l(Q_1).
+$
+\end{enumerate}
+\end{lemma}
+
+With the family of bump functions $\{\psi_Q\}_{Q\in\mathcal{W}_2}$ defined as immediately after Lemma \ref{lem2.1}, simply by replacing $Q_j$ with $Q$, we define the extension operator $\Lambda_0$ by setting, for any $f \in L^1_{\text{loc}}(\Omega)$ and $x\in\rn$,
+\begin{equation}\label{eqn-3.1}
+\Lambda_0 f(x) := f(x)\chi_\Omega(x) + \sum_{Q\in\mathcal{W}_3} \psi_Q(x) f_{Q^{*}}.
+\end{equation}
+In particular, it follows from $\psi_Q\subset\frac{11}{10}Q$, Lemma \ref{lem2.1} and \eqref{eqn-3.1} that,
+for any $x\in\pa\boz$, $\Lambda_0 f(x)=0$.
+
+\begin{lemma}[\cite{ps2017}, Lemma 3.10]\label{L6.2}
+Let $p,q \in [1, \infty)$ and $s\in(\max\{0,\frac{n}{p} - \frac{n}{q}\},1)$. Assume that $\boz$ is a uniform domain. Then there exists a bounded linear extension operator $\Lambda_0\colon \huaf \to F_{p,q}^{s}(\rn)$.
+\end{lemma}
+
+\begin{remark}
+The result [\cite{ps2017}, Lemma 3.10] is stated only for $p,q>1$. The cases $p=1$ or $q=1$,
+which are not covered there, also satisfy the conclusion of Lemma~\ref{L6.2}.
+Indeed, the proof is exactly the same as that of [\cite{ps2017}, Lemma 3.10] and can be repeated verbatim.
+\end{remark}
+Now, we are ready to show Proposition \ref{pro-main}.
+\begin{proof}[Proof of Proposition \ref{pro-main}]
+Let $f\in\cf_{p,q}^{s}(\boz,d^{-aq})$ and $\Lambda_0 f$ be as in \eqref{eqn-3.1}. We only need to show
+\begin{align}\label{eqn-6.2}
+\left\| \Lambda_0 f \right\|_{F_{p,q}^{s}(\rn,d^{-aq})}
+&\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}.
+\end{align}
+To this end, from the proof of [\cite{ps2017}, Lemma~3.10]
+(we need the assumption that $\Omega$ is a uniform domain here),
+we deduce that
+\begin{align*}
+\| \Lambda_0 f \|_{F_{p,q}^{s}(\rn,d^{-aq})}
+&= \| \Lambda_0 f \|_{\cf_{p,q}^{s}(\rn)} +\left\{\int_{\rn} \left[ \int_{\rn} \frac{|\Lambda_0 f(x) - \Lambda_0 f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \right\}^{\frac{1}{p}} \\
+&\lesssim\|f\|_{\cf_{p,q}^{s}(\Omega)} +\left\{\int_{\rn} \left[ \int_{\rn} \frac{|\Lambda_0 f(x) - \Lambda_0 f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \right\}^{\frac{1}{p}},
+\end{align*}
+which, combined with the fact that
+\begin{align}\label{1544}
+&\int_{\boz} \left[ \int_{\boz} \frac{|f(x)-f(y)|^q}{|x - y|^{s q + n}}\,dy \right]^{\frac{p}{q}}\,dx\nonumber\\
+&\quad\leq
+(\mathrm{diam\,}\Omega)^{ap}\int_{\boz} \left[ \int_{\boz} \frac{|f(x) - f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx
+\end{align}
+(since $\Omega$ is bounded),
+further implies that
+\begin{align*}
+\| \Lambda_0 f \|_{F_{p,q}^{s}(\rn,d^{-aq})}
+&\lesssim\|f\|_{\cf_{p,q}^{s}(\boz,d^{-aq})}\\
+&\quad+\left\{\int_{\rn} \left[ \int_{\rn} \frac{|\Lambda_0 f(x) - \Lambda_0 f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \right\}^{\frac{1}{p}}.
+\end{align*}
+Therefore, to prove \eqref{eqn-6.2}, we only need to prove
+\begin{align}\label{eqn-aim}
+\int_{\rn} \left[ \int_{\rn} \frac{|\Lambda_0 f(x) - \Lambda_0 f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}} \,dx \lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^p.
+\end{align}
+More precisely, we will prove that
+\[
+X+Y+Z \lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p},
+\]
+where 
+\begin{align*}
+&X:= \int_{\boz} \left[ \int_{{\boz}^\complement} \frac{|\Lambda_0 f(x) - \Lambda_0 f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx,  \\
+&Y:= \int_{{\boz}^\complement} \left[ \int_{\boz} \frac{|\Lambda_0 f(x) - \Lambda_0 f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx,
+\end{align*}
+and
+\begin{align*}
+Z:= \int_{{\boz}^\complement} \left[ \int_{{\boz}^\complement} \frac{|\Lambda_0 f(x) - \Lambda_0 f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align*}
+
+We first estimate $X$.
+By \eqref{eqn-3.1}, we write
+\begin{align}\label{eqn-5.3}
+X&= \int_{\boz} \left[ \int_{{\boz}^\complement} \frac{| f(x) - \sum_{S\in\mathcal{W}_3} \psi_S(y) f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\lesssim \sum_{Q\in\mathcal{W}_1}  \int_{Q} \left[ \int_{{\boz}^\complement} \frac{| f(x) |^q |1- \sum_{S\in\mathcal{W}_3} \psi_S(y) |^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+ \sum_{Q\in\cw_1} \int_{Q} \left[ \int_{{\boz}^\complement} \frac{| \sum_{S\in\mathcal{W}_3} \psi_S(y)|^q |f(x)- f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&=:X_1+X_2.
+\end{align}
+Let 
+$$
+\cw_4:=\left\{S\in\cw_3:\text {all the neighbors of S are in } \cw_3 \right\}.
+$$
+Note that, for any $y\in P\in\cw_4$, we have that $1-\sum_{S\in\mathcal{W}_3}\psi_{S}(y) \equiv 0$  and, otherwise 
+\begin{align}\label{1719}
+0\leq 1-\sum_{S\in\mathcal{W}_3}\psi_{S}(y)\leq 1.
+\end{align}
+By this and Lemma \ref{lem2.1}, we obtain
+\begin{align}\label{eqn-6.6}
+X_1&\leq\sum_{Q\in\mathcal{W}_1}  \int_{Q} \left[ \sum_{P\in\cw_2\setminus\cw_4} \int_{P}\frac{| f(x) |^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\lesssim \sum_{Q\in\mathcal{W}_1}  \int_{Q} \left[\sum_{P\in\cw_2\setminus\cw_4} \int_{P} \frac{| f(x) |^q}{D(Q,P)^{s q + n}l(P)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&=\sum_{Q\in\mathcal{W}_1}  \int_{Q} \left[\sum_{P\in\cw_2\setminus\cw_4} \frac{l(P)^{n-aq}}{D(Q,P)^{s q + n}} \right]^{\frac{p}{q}}|f(x)|^p\,dx \nonumber\\
+&\leq \left[\sum_{P\in\cw_2\setminus\cw_4} \frac{l(P)^{n-aq}}{d(P,\pa\boz)^{s q + n}} \right]^{\frac{p}{q}}\|f\|_{L^{p}(\boz)}^p\nonumber\\
+&\sim \left[\sum_{P\in\cw_2\setminus\cw_4} \frac{1}{l(P)^{(s+a)q}} \right]^{\frac{p}{q}}\|f\|_{L^{p}(\boz)}^p.
+\end{align}
+Note that for any $P\in\cw_2\setminus\cw_4$, we have $l(P)>l_0$,
+where $l_0$ is a positive constant depending only on $\boz$. Let \(m\in\mathbb N_0\) and
+\begin{align*}
+N_m:=\#\left\{P\in\cw_2\setminus\cw_4:
+2^ml_0<l(P)\leq2^{m+1}l_0\right\}.
+\end{align*}
+From this and the assumption that \(\Omega\) is bounded, it follows that the
+numbers \(N_m\) are uniformly bounded by a constant \(N\) depending only
+on \(\Omega\) and the dimension \(n\). Hence,
+\begin{align}\label{eqn-3.3}
+\left[\sum_{P\in\cw_2\setminus\cw_4} \frac{1}{l(P)^{(s+a)q}} \right]^{\frac{p}{q}}
+\lesssim \left[N\sum_{m=0}^{\infty}(2^m l_0)^{-(s+a)q}\right]^{\frac pq}
+\lesssim l_0^{-(s+a)p}.
+\end{align}
+By this and \eqref{eqn-6.6}, we conclude that
+\begin{equation}\label{eqn-3.4}
+X_1\lesssim l_0^{-(s+a)p}\|f\|_{L^{p}(\boz)}^p\lesssim\|f\|_{L^{p}(\boz)}^p.
+\end{equation}
+To estimate $X_2$, by $\text{supp}\,\psi_S \subset \frac{11}{10}S$ for any $S\in\mathcal{W}_3$ and Lemma \ref{lem2.1}, we obtain
+\begin{align}\label{1518}
+X_2&\lesssim \sum_{Q\in\cw_1} \int_{Q} \left[ \sum_{S\in\mathcal{W}_3}\int_{\frac{11}{10}S} \frac{ |\psi_S(y)|^q |f(x)- f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx\nonumber\\
+&\lesssim \sum_{Q\in\cw_1} \int_{Q} \left[ \sum_{S\in\mathcal{W}_3} \frac{|f(x)- f_{S^{*}}|^q}{D(Q,S)^{s q + n}l(S)^{aq}} \int_{\frac{11}{10}S} |\psi_S(y)|^q\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align}
+By the fact that $0\leq\psi_S\leq1$,
+\eqref{eqn-7.1} and H\"older's inequality, we find that for any $S\in\mathcal{W}_3$,
+$$
+|f(x)- f_{S^{*}}|^q\int_{\frac{11}{10}S} |\psi_S(y)|^q\,dy\lesssim
+|f(x)- f_{S^{*}}|^q l(S^{*})^n
+\leq\int_{S^{*}} |f(x)-f(\xi)|^q\,d\xi,
+$$
+which, together with
+\eqref{1518} and Lemmas \ref{lem2.1} and \ref{lem5.1}, further implies that
+\begin{align}\label{eqn-3.5}
+X_2&\lesssim \sum_{Q\in\cw_1} \int_{Q} \left[ \sum_{S\in\mathcal{W}_3} \frac{\int_{S^{*}} |f(x)-f(\xi)|^q\,d\xi}{D(Q,\sxing)^{s q + n}l(\sxing)^{aq}} \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\lesssim \sum_{Q\in\cw_1} \int_{Q} \left[ \sum_{S\in\mathcal{W}_3} \int_{S^{*}} \frac{|f(x)-f(\xi)|^q}{|x - \xi|^{s q + n}d(\xi,\pa\boz)^{aq}}\,d\xi \right]^{\frac{p}{q}}\,dx \nonumber  \\
+&\leq \int_{\boz} \left[ \int_{\boz} \frac{| f(x) - f(\xi)|^q}{|x - \xi|^{s q + n}d(\xi,\pa\boz)^{aq}}\,d\xi \right]^{\frac{p}{q}}\,dx
+\leq \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{align}
+Combining \eqref{eqn-5.3}, \eqref{eqn-3.4} and \eqref{eqn-3.5}, we have
+\begin{equation}\label{eqn-3.6}
+X\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{equation}
+
+Next, we estimate Y. Write
+\begin{align}\label{eqn-5.8}
+Y&= \int_{{\boz}^\complement} \left[ \int_{\boz} \frac{| \sum_{Q\in\mathcal{W}_3} \psi_Q(x) f_{Q^{*}}-f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&\lesssim \int_{{\boz}^\complement} \left[ \int_{\boz} \frac{| \sum_{Q\in\mathcal{W}_3} \psi_Q(x)|^q | f_{Q^{*}}-f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\quad+ \int_{{\boz}^\complement} \left[ \int_{\boz} \frac{ |1- \sum_{Q\in\mathcal{W}_3} \psi_Q(x) |^q | f(y) |^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx  \nonumber \\
+&=:Y_1+Y_2.
+\end{align}
+For $Y_1$,
+by $\text{supp}\,\psi_Q \subset \frac{11}{10}Q$ for any $Q\in\mathcal{W}_3$ and Lemma \ref{lem2.1}, we obtain
+\begin{align*}
+Y_1
+&\lesssim \sum_{Q\in\mathcal{W}_3} \int_{\frac{11}{10}Q} | \psi_Q(x)|^p \left[ \sum_{S\in\mathcal{W}_1}\int_{S} \frac{ | f_{Q^{*}}-f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{Q\in\mathcal{W}_3} l(Q)^n \left\{ \sum_{S\in\mathcal{W}_1}\int_{S} \frac{\left[ \frac{1}{l(Q)^n}\int_{Q^{*}} |f(\xi)-f(y)| d\xi\right]^q}{D(Q,S)^{s q + n}l(S)^{aq}}\,dy \right\}^{\frac{p}{q}}.
+\end{align*}
+By this, Minkowski's inequality and H\"older's inequality, we obtain
+\begin{align}\label{eqn-3.7}
+Y_1
+&\lesssim \sum_{Q\in\mathcal{W}_3} \frac{l(Q)^n}{l(Q)^{np}} \left\{ \int_{\qxing} \left[\sum_{S\in\mathcal{W}_1}\int_{S}\frac{ |f(\xi)-f(y)|^q }{|\xi - y|^{s q + n}d(y,\pa\boz)^{aq}} \,dy\right]^{\frac{1}{q}}\,d\xi \right\}^{p}  \nonumber \\
+&\lesssim \sum_{Q\in\mathcal{W}_3} \frac{1}{l(Q)^{n(p-1)}} \left\{ \int_{\qxing} \left[\int_{\boz}\frac{ |f(\xi)-f(y)|^q }{|\xi - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy\right]^{\frac{p}{q}}\,d\xi \right\}l(Q)^{n(p-1)} \nonumber \\
+&\leq \int_{\boz} \left[\int_{\boz}\frac{ |f(\xi)-f(y)|^q }{|\xi - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy\right]^{\frac{p}{q}}\,d\xi
+\leq \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{align}
+For $Y_2$, by \eqref{1719} and Lemma \ref{lem2.1}, we obtain
+\begin{align}\label{1538}
+Y_2
+&= \sum_{P\in\cw_2\setminus\cw_4} \int_{P}\left[ \int_{\boz} \frac{ |1- \sum_{Q\in\mathcal{W}_3} \psi_Q(x) |^q | f(y) |^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\leq\sum_{P\in\cw_2\setminus\cw_4} \int_{P}\left[ \int_{\boz} \frac{ | f(y) |^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}} \,dx \nonumber\\
+&\sim \sum_{P\in\cw_2\setminus\cw_4} \int_{P} \left[ \sum_{S\in\mathcal{W}_1} \int_{S} \frac{ | f(y) |^q}{D(P,S)^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\leq \sum_{P\in\cw_2\setminus\cw_4} \int_{P} \left[ \sum_{S\in\mathcal{W}_1} \int_{S} \frac{ | f(y) |^q}{d(P,\pa\boz)^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\sim\sum_{P\in\cw_2\setminus\cw_4}l(P)^{n-sp-\frac{np}{q}}\left[ \sum_{S\in\mathcal{W}_1} \int_{S} \frac{ | f(y) |^q}{d(y,\pa\boz)^{aq}} \,dy \right]^{\frac{p}{q}}.
+\end{align}
+Since $s>\frac{n}{p}-\frac{n}{q}$, we have that $s p + \frac{np}{q}-n>0$,
+which, combined with \eqref{1538} and an argument similar to that used in the estimation of \eqref{eqn-3.3}, further implies that
+\begin{align}\label{1539}
+Y_2 \lesssim l_0^{n-sp - \frac{np}{q}}\left[ \sum_{S\in\mathcal{W}_1} \int_{S} \frac{ | f(y) |^q}{d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}. 
+\end{align}
+To further estimate the right-hand side of \eqref{1539},
+we consider the following two cases for $p$ and $q$.
+
+{\bf Case (1)} $q\leq p$. In this case, by Lemma \ref{lem2.1}(i), H\"older's inequality, the assumption that $\boz$ is bounded and Hardy's inequality \eqref{eqn-Hardy} with $a+s$ replaced by $a$, we find that
+\begin{align}
+Y_2 &\lesssim\left[ \int_{\boz} \frac{ | f(y) |^q}{d(y,\pa\boz)^{aq}} \,dy \right]^{\frac{p}{q}}
+\lesssim \int_{\boz}\frac{ | f(x) |^p}{d(x,\pa\boz)^{ap}}\,dx 
+\lesssim \int_{\boz}\frac{ | f(x) |^p}{d(x,\pa\boz)^{(a+s)p}}\,dx\nonumber \\
+&\lesssim \int_{\boz} \left[ \int_{\boz} \frac{|f(x) - f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx
+\leq \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{align}
+
+{\bf Case (2)} $p<q$. In this case, we first write
+\begin{align*}
+Y_2&\lesssim \left[ \sum_{S\in\mathcal{W}_1} \int_{S} \frac{ | f(y) |^q}{d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}} \\
+&\leq \sum_{S\in\mathcal{W}_1} \frac{1}{l(S)^n} \int_{S }\left[\int_{S} \frac{ | f(y) |^q}{d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{S\in\mathcal{W}_1} \frac{1}{l(S)^n} \int_{S }\left[\int_{S} \frac{ | f(x)-f(y) |^q}{d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\quad+\sum_{S\in\mathcal{W}_1} \frac{1}{l(S)^n} \int_{S }\left[\int_{S} \frac{ | f(x) |^q}{d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&=:Y_{2,1}+Y_{2,2}.
+\end{align*}
+To estimate $Y_{2,1}$, since $\boz$ is bounded,
+it follows that for any $S\in\mathcal{W}_1$ and $x,y\in S$,
+$$
+|x-y|\leq \mathrm{diam\,}\boz\lesssim1
+\ \ \text{and}\ \ 
+|x-y|\leq\mathrm{diam\,}S\sim l(S)$$
+and hence
+\begin{align}\label{eqn-3.8}
+Y_{2,1}&\lesssim \sum_{S\in\mathcal{W}_1}\int_{S }\left[\int_{S} \frac{ | f(x)-f(y) |^q}{|x-y|^{sq+n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\leq \int_{\boz}\left[\int_{\boz} \frac{ | f(x)-f(y) |^q}{|x-y|^{sq+n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx 
+\leq \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{align}
+To estimate $Y_{2,2}$,
+by Lemma \ref{lem2.1}(ii),
+the fact that $d(x,\partial\Omega)\leq\mathrm{diam\,}\Omega\lesssim1$
+for any $x\in\Omega$,
+$s>\frac{n}{p}-\frac{n}{q}$ and Hardy's inequality \eqref{eqn-Hardy}, we obtain
+\begin{align}\label{eqn-3.9}
+Y_{2,2}&\sim \sum_{S\in\mathcal{W}_1} \frac{1}{l(S)^{p(\frac{n}{p}-\frac{n}{q})}} \int_{S }\frac{ | f(x) |^p}{d(x,\pa\boz)^{ap}}\,dx \nonumber \\
+&\sim \sum_{S\in\mathcal{W}_1}\int_{S}\frac{ | f(x) |^p}{d(x,\pa\boz)^{(a+\frac{n}{p}-\frac{n}{q})p}}\,dx \nonumber \\
+&\lesssim\int_{\boz}\frac{ | f(x) |^p}{d(x,\pa\boz)^{(a+s)p}}\,dx
+\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{align}
+By \eqref{eqn-5.8}--\eqref{eqn-3.9}, we conclude that
+\begin{align}\label{eqn-3.10}
+Y\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{align}
+
+Finally, we estimate Z. Write
+\begin{align}\label{eqn-6.18}
+Z
+&= \int_{{\boz}^\complement} \left[ \int_{{\boz}^\complement} \frac{| \sum_{P\in\mathcal{W}_3} \psi_P(x) f_{P^{*}} - \sum_{S\in\mathcal{W}_3} \psi_S(y) f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+& \lesssim \sum_{Q\in\cw_2} \int_{Q} \left[ \int_{{\boz}^\complement} \frac{| \sum_{P\in\mathcal{W}_3} \psi_P(x) f_{P^{*}} - \sum_{S\in\mathcal{W}_3} \psi_S(y) f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx.
+\end{align}
+For any $ x \in Q\in \cw_2$ and $y\in{\boz}^\complement$, we have
+\begin{align}\label{eqn-3.11}
+&\sum_{P\in\mathcal{W}_3} \psi_P(x) f_{P^{*}} - \sum_{S\in\mathcal{W}_3} \psi_S(y) f_{S^{*}} \nonumber \\
+&\quad=\sum_{P\in\mathcal{W}_3} \psi_P(x) f_{P^{*}} \left[\sum_{S\in\mathcal{W}_3} \psi_S(y)+1-\sum_{S\in\mathcal{W}_3} \psi_S(y)\right] \nonumber \\
+&\qquad- \sum_{S\in\mathcal{W}_3} \psi_S(y) f_{S^{*}} \left[\sum_{P\in\mathcal{W}_3} \psi_P(x)+1-\sum_{P\in\mathcal{W}_3} \psi_P(x)\right] \nonumber \\
+&\quad=\sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \sum_{S\in\mathcal{W}_3} \psi_P(x) \psi_S(y)(f_{\pxing}-f_{\sxing})\nonumber \\
+&\qquad+ \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}}  \psi_P(x) f_{\pxing} \left[1-\sum_{S\in\mathcal{W}_3} \psi_S(y)\right] \nonumber \\
+&\qquad-\sum_{S\in\mathcal{W}_3} \psi_S(y)f_{S^{*}}\left[1-\sum_{P\in\mathcal{W}_3} \psi_P(x)\right].
+\end{align}
+From this and an argument similar to that used in the proof of [\cite{cyz2025}, Lemma 3.10(ii)], we infer that for any $x \in Q\in \cw_2$ and $y\in B(x,\frac{l(Q)}{10})$,
+\begin{align*}
+\sum_{P\in\mathcal{W}_3} \psi_P(x) f_{P^{*}} - \sum_{S\in\mathcal{W}_3} \psi_S(y) f_{S^{*}}=\sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}} (\psi_S(x)-\psi_S(y))f_{S^{*}}.
+\end{align*}
+By this, \eqref{eqn-6.18} and \eqref{eqn-3.11}, we find that
+\begin{align}\label{eqn-6.19}
+Z&\lesssim \sum_{Q\in\cw_4} \int_{Q} \left[ \int_{\boz^\complement\setminus B(x,\frac{l(Q)}{10})} \frac{|\sum_{P\in\mathcal{W}_3,\frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing} \sum_{S\in\mathcal{W}_3} \psi_P(x) \psi_S(y)(f_{\pxing}-f_{\sxing})|^q
+}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+\sum_{Q\in\cw_4} \int_{Q} \left[ \int_{\boz^\complement\setminus B(x,\frac{l(Q)}{10})} \frac{|\sum_{P\in\mathcal{W}_3, \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}  \psi_P(x) f_{\pxing} [1-\sum_{S\in\mathcal{W}_3} \psi_S(y)]|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+ \sum_{Q\in\cw_4} \int_{Q} \left[ \int_{ B(x,\frac{l(Q)}{10})} \frac{| \sum_{S\in\mathcal{W}_3, \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing} (\psi_S(x)-\psi_S(y))f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+ \sum_{Q\in\cw_2\setminus\cw_4} \int_{Q} \left[ \int_{B(x,\frac{l(Q)}{10})} \frac{|\sum_{S\in\mathcal{W}_3, \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing} (\psi_S(x)-\psi_S(y))f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&\quad+ \sum_{Q\in\cw_2\setminus\cw_4} \int_{Q} \left[ \int_{\boz^\complement\setminus B(x,\frac{l(Q)}{10})} \frac{| \sum_{P\in\mathcal{W}_3} \psi_P(x) f_{P^{*}} - \sum_{S\in\mathcal{W}_3} \psi_S(y) f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber\\
+&=:Z_{1,1}+Z_{1,2}+Z_2+Z_3+Z_4.
+\end{align}
+To estimate $Z_{1,1}$, by the support condition and the size condition of bump functions,
+Lemma \ref{lem2.1}, \eqref{eqn-7.1}, the fact that $|x-y|\gtrsim D(P,S)$ for any $x\in Q\in \mathcal{W}_4$ and $y\in S\in\mathcal{W}_3$ with $\overline{Q}\cap\frac{11}{10}\overline{P}\neq\varnothing$ and Lemma \ref{lem5.1}, we obtain
+\begin{align*}
+Z_{1,1}&\lesssim \sum_{Q\in\cw_4} \int_{Q} \left[ \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \sum_{S\in\mathcal{W}_3}\int_{\frac{11}{10}S}\frac{| \psi_P(x) \psi_S(y)(f_{\pxing}-f_{\sxing})|^q
+}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{Q\in\cw_4} \int_{Q} \left[  \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \sum_{S\in\mathcal{W}_3}\int_{\frac{11}{10}S}\frac{| f_{\pxing}-f_{\sxing}|^q
+}{D(P,S)^{s q + n}l(S)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{Q\in\cw_4} l(Q)^n \left[  \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \sum_{S\in\mathcal{W}_3} l(\sxing)^{n} \frac{| f_{\pxing}-f_{\sxing}|^q
+}{D(\pxing,\sxing)^{s q + n}l(\sxing)^{aq}}  \right]^{\frac{p}{q}}  \\
+&\leq \sum_{Q\in\cw_4} l(Q)^n \left\{\sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \sum_{S\in\mathcal{W}_3} l(\sxing)^{n} \frac{\left[ \frac{1}{l(\sxing)^n l(\pxing)^n} \int_{\sxing} \int_{\pxing} |f(x)-f(y)|\,dx\,dy \right]^q
+}{D(\pxing,\sxing)^{s q + n}l(\sxing)^{aq}}  \right\}^{\frac{p}{q}}. 
+\end{align*}
+By this, \eqref{eqn-7.1}, Lemma \ref{lem2.1}(v), H$\ddot{\text{o}}$lder's inequality, Minkowski's inequality, Tonelli's theorem, the fact that $D(P^*,S^*)\gtrsim |x-y|$ for any $x\in P^*$ and $y\in S^*$, and Lemma \ref{lem2.1}(ii), we conclude that
+\begin{align}\label{eqn-3.13}
+Z_{1,1}&\lesssim \sum_{Q\in\cw_4} l(Q)^n \left\{ \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \sum_{S\in\mathcal{W}_3} \frac{1}{ l(\pxing)^{nq}} \frac{  \int_{\sxing} [\int_{\pxing} |f(x)-f(y)|\,dx]^q\,dy 
+}{D(\pxing,\sxing)^{s q + n}l(\sxing)^{aq}}  \right\}^{\frac{p}{q}} \nonumber  \\
+&\sim \sum_{Q\in\cw_4} \frac{l(Q)^n}{l(Q)^{np}}\sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \left\{ \sum_{S\in\mathcal{W}_3} \int_{\sxing} \frac{   [\int_{\pxing} |f(x)-f(y)|\,dx]^q 
+}{D(\pxing,\sxing)^{s q + n}l(\sxing)^{aq}}\,dy \right\}^{\frac{p}{q}} \nonumber \\
+&\leq \sum_{Q\in\cw_4} \frac{1}{l(Q)^{n(p-1)}}\sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \left\{ \int_{\pxing} \left[\sum_{S\in\mathcal{W}_3}\int_{\sxing} \frac{ |f(x)-f(y)|^q 
+}{D(\pxing,\sxing)^{s q + n}l(\sxing)^{aq}}\,dy \right]^{\frac{1}{q}} \,dx \right\}^p \nonumber \\
+&\lesssim \sum_{Q\in\cw_4} \frac{1}{l(Q)^{n(p-1)}}   \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} l(\pxing)^{\frac{np}{p'}} \int_{\pxing} \left[\int_{\boz} \frac{    |f(x)-f(y)|^q 
+}{|x-y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx
+\nonumber \\
+&\sim \sum_{\substack{P\in\mathcal{W}_3}} \sum_{\substack{Q\in\mathcal{W}_4\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \int_{\pxing} \left[\int_{\boz} \frac{    |f(x)-f(y)|^q 
+}{|x-y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \nonumber \\
+&\lesssim \sum_{\substack{P\in\mathcal{W}_3}}  \int_{\pxing} \left[\int_{\boz} \frac{    |f(x)-f(y)|^q 
+}{|x-y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx
+\leq \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{align}
+To estimate $Z_{1,2}$, by \eqref{1719}, Lemma~\ref{lem2.1}(iv), the facts that $0\leq\psi_P\leq1$ for any $P\in\mathcal{W}_3$ and $d(y,\pa\boz)>l_0$ for any $y\in R\in\mathcal{W}_2\setminus\mathcal{W}_4$, and H\"older's inequality, we obtain
+\begin{align}\label{1222}
+Z_{1,2}
+&\lesssim\sum_{Q\in\cw_4} \int_{Q} \left[\sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \int_{(\bigcup_{R\in\cw_2\setminus\cw_4}R)\setminus B(x,\frac{l(Q)}{10})
+} \frac{|  \psi_P(x) f_{\pxing} |^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx\nonumber\\
+&\lesssim\sum_{Q\in\cw_4} \int_{Q} \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}}|f_{\pxing}|^p \left[ \int_{(\bigcup_{R\in\cw_2\setminus\cw_4}R)\setminus B(x,\frac{l(Q)}{10})} \frac{1}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx\nonumber\\
+&\leq \sum_{Q\in\cw_4} \int_{Q} \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}}\left[ \frac{1}{l(\pxing)^n}\int_{P^{*}} |f(\xi)|\,d\xi\right]^p \nonumber \\
+&\quad\times\left[ \int_{(\bigcup_{R\in\cw_2\setminus\cw_4}R)\setminus B(x,\frac{l(Q)}{10})} \frac{1}{|x - y|^{s q + n}{l_0}^{aq}}\,dy \right]^{\frac{p}{q}}\,dx\nonumber\\
+&\lesssim \sum_{Q\in\cw_4} \int_{Q} \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \frac{1}{l(\pxing)^n}\int_{P^{*}} |f(\xi)|^p\,d\xi \nonumber \\
+&\quad\times\left[ \int_{(\bigcup_{R\in\cw_2\setminus\cw_4}R)\setminus B(x,\frac{l(Q)}{10})} \frac{1}{|x - y|^{s q + n}}\,dy \right]^{\frac{p}{q}}\,dx\nonumber\\
+&\lesssim \sum_{Q\in\cw_4} \int_{Q} \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \frac{1}{l(\pxing)^n}\int_{P^{*}} |f(\xi)|^p\,d\xi\nonumber\\
+&\quad\times \sum_{\substack{R\in\mathcal{W}_2\setminus\cw_4 \\ \overline{R}\cap\overline{Q} =\varnothing}}\left( \int_{R} \frac{1}{|x - y|^{s q + n}}\,dy \right)^{\frac{p}{q}}\,dx.
+\end{align}
+Note that, by Lemma~\ref{lem2.1}, we find that,
+for any $x\in Q\in\cw_4$ and $y\in R\in\cw_2\setminus\cw_4$ with $\overline{R}\cap\overline{Q}=\varnothing$, there exists a positive constant $C$ such that $|x-y|\geq Cl(R)$, which,
+combined with \eqref{1222} and polar coordinates, further implies that
+\begin{align*}
+Z_{1,2}&\lesssim\sum_{Q\in\cw_4} \int_{Q} \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \frac{1}{l(\pxing)^n}\int_{P^{*}} |f(\xi)|^p\,d\xi \sum_{\substack{R\in\mathcal{W}_2\setminus\cw_4 \\ \overline{R}\cap\overline{Q} =\varnothing}}\left[ \int_{Cl(R)}^{\infty} \rho^{-s q-1}\,d\rho  \right]^{\frac{p}{q}}\,dx \\
+&\sim \sum_{Q\in\cw_4} l(Q)^n \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \frac{1}{l(\pxing)^n}\int_{P^{*}} |f(\xi)|^p\,d\xi \sum_{\substack{R\in\mathcal{W}_2\setminus\cw_4 \\ \overline{R}\cap\overline{Q} =\varnothing}} \frac{1}{l(R)^{sp}}.
+\end{align*}
+From this, an argument similar to that used in the estimation of \eqref{eqn-3.3}, and Lemma \ref{lem5.1}, it follows that
+\begin{align}\label{eqn-3.14}
+Z_{1,2}&\lesssim \sum_{Q\in\cw_4} l(Q)^n \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \frac{1}{l(\pxing)^n}\int_{P^{*}} |f(\xi)|^p\,d\xi \nonumber \\
+&\lesssim \sum_{Q\in\cw_4}  \sum_{\substack{P\in\mathcal{W}_3\\ \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}} \int_{P^{*}} |f(\xi)|^p \,d\xi
+\lesssim \int_{\boz} |f(\xi)|^p\,d\xi
+\leq \| f \|_{\cf_{p,q}^{s}(\boz,d^{-bq})}^{p}.
+\end{align}
+For $Z_2$, the trick is to use that $\left\{\psi_Q \right\}$ is a partition of the unity with $\psi_Q$ supported in $\frac{11}{10}Q$, that is, for any $x\in Q\in\cw_4$ and $y\in B(x,\frac{l(Q)}{10})$, $\sum_{S\in\mathcal{W}_3}\psi_S(x)=\sum_{S\in\mathcal{W}_3}\psi_S(y)=1$. Thus,
+\[
+Z_2=\sum_{Q\in\cw_4} \int_{Q} \left[ \int_{ B(x,\frac{l(Q)}{10})} \frac{| \sum_{S\in\mathcal{W}_3, \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing} (\psi_S(x)-\psi_S(y))(f_{S^{*}}-f_{\qxing})|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx.
+\]
+Using this, the mean value theorem and \eqref{eqn-2.2}, we conclude that
+\begin{align*}
+Z_2&\lesssim \sum_{Q\in\cw_4} \int_{Q} \left[ \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}} |f_{S^{*}}-f_{\qxing}|^q \int_{ B(x,\frac{l(Q)}{10})} \frac{1}{l(Q)^q} \frac{1}{|x - y|^{s q + n-q}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{Q\in\cw_4} \int_{Q} \left[ \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}} |f_{S^{*}}-f_{\qxing}|^q \frac{1}{l(Q)^q l(Q)^{aq}}\int_{ 0}^{\frac{l(Q)}{10}} \rho^{(1-s)q-1}\,d\rho \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{Q\in\cw_4} l(Q)^n \left[ \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}}\frac{ |f_{S^{*}}-f_{\qxing}|^q }{l(Q)^{sq} l(Q)^{aq}} \right]^{\frac{p}{q}}.
+\end{align*}
+From this and Lemma \ref{lem5.1}, we deduce that
+\[
+Z_2 \lesssim \sum_{Q\in\cw_4} l(Q)^n \left[ \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}}\frac{ |f_{S^{*}}-f_{\qxing}|^q }{D(\qxing,\sxing)^{sq} l(Q)^{aq}} \right]^{\frac{p}{q}}.
+\]
+By this and an argument similar to that used in the estimation of $Z_{1,1}$, it is easy to show that
+\begin{equation}\label{eqn-3.15}
+Z_2\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{equation}
+For $Z_3$, by the mean value theorem, \eqref{eqn-2.2}, Lemma \ref{lem2.1}(ii), polar coordinates and H$\ddot{\text{o}}$lder's inequality, we conclude that
+\begin{align*}
+Z_3&\lesssim \sum_{Q\in\cw_2\setminus\cw_4} \int_{Q} \left[ \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}}\int_{B(x,\frac{l(Q)}{10})} \frac{| (\psi_S(x)-\psi_S(y))f_{S^{*}}|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}} \,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{Q\in\cw_2\setminus\cw_4} \int_{Q}  \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}} |f_{S^{*}}|^p \left[\int_{B(x,\frac{l(Q)}{10})} \frac{1}{l(Q)^q}\frac{1}{|x - y|^{(s-1) q + n}l(Q)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&=\sum_{Q\in\cw_2\setminus\cw_4} \int_{Q}  \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}} \frac{|f_{S^{*}}|^p}{l(Q)^p l(Q)^{ap}} \left[\int_{0}^{\frac{l(Q)}{10} }\rho^{(1-s) q -1 }\,d\rho \right]^{\frac{p}{q}}\,dx \\
+&\sim \sum_{Q\in\cw_2\setminus\cw_4} \frac{l(Q)^n}{l(Q)^{ap} l(Q)^{sp}} \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}} |f_{S^{*}}|^p \\
+&\lesssim \sum_{Q\in\cw_2\setminus\cw_4} \frac{1}{l(Q)^{(a+s)p}} \sum_{\substack{S\in\mathcal{W}_3\\ \frac{11}{10}\overline{S}\cap\overline{Q} \neq\varnothing}} \int_{\sxing} |f(x)|^p\,dx,
+\end{align*}
+which, together with an argument similar to that used in the estimation of \eqref{eqn-3.3}, implies that
+\begin{align}\label{eqn-3.16}
+Z_3&\lesssim {l_0}^{-(a+s)p} \sum_{S\in\mathcal{W}_3} \int_{\sxing} |f(x)|^p\,dx
+\lesssim \int_{\boz} |f(x)|^p\,dx
+\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{align}
+For $Z_4$, by \eqref{eqn-3.11}, we write
+\begin{align*}
+Z_4
+&\lesssim \sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[ \int_{\boz^\complement\setminus B(x,\frac{l(Q)}{10})} \frac{|\sum_{P\in\mathcal{W}_3, \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing} \sum_{S\in\mathcal{W}_3} \psi_P(x) \psi_S(y)(f_{\pxing}-f_{\sxing})|^q
+}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\quad+\sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[ \int_{\boz^\complement\setminus B(x,\frac{l(Q)}{10})} \frac{|\sum_{P\in\mathcal{W}_3, \frac{11}{10}\overline{P}\cap\overline{Q} \neq\varnothing}  \psi_P(x) f_{\pxing} [1-\sum_{S\in\mathcal{W}_3} \psi_S(y)]|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\quad+\sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[ \int_{\boz^\complement\setminus B(x,\frac{l(Q)}{10})} \frac{|\sum_{S\in\mathcal{W}_3}  \psi_S(y) f_{\sxing} [1-\sum_{P\in\mathcal{W}_3} \psi_P(x)]|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&=:Z_{4,1}+Z_{4,2}+Z_{4,3}.
+\end{align*}
+By an argument similar to that used in the estimations of $Z_{1,1}$ and $Z_{1,2}$, it is easy to see that
+\begin{equation}\label{eqn-3.17}
+Z_{4,1}\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}
+\end{equation}
+and
+\begin{equation}\label{eqn-3.18}
+Z_{4,2}\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{equation}
+For $Z_{4,3}$, we write
+\begin{align*}
+Z_{4,3}&\lesssim \sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[ \int_{(\bigcup_{R\in\cw_2\setminus\cw_4}R)\setminus B(x,\frac{l(Q)}{10})}\sum_{S\in\mathcal{W}_3} |\psi_S(y) f_{\sxing}|^q \frac{|  1-\sum_{P\in\mathcal{W}_3} \psi_P(x)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\quad+\sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[ \int_{(\bigcup_{R\in\cw_4}R)\setminus B(x,\frac{l(Q)}{10})} \sum_{S\in\mathcal{W}_3}|\psi_S(y) f_{\sxing}|^q \frac{|   1-\sum_{P\in\mathcal{W}_3} \psi_P(x)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&=:Z_{4,3}^1+Z_{4,3}^2.
+\end{align*}
+For $Z_{4,3}^1$, by the properties of bump functions, the fact that $d(y,\pa\boz)>l_0$ for any $y\in\frac{11}{10}R$ with $R\in \mathcal{W}_2\setminus\mathcal{W}_4$, Lemma \ref{lem5.1} and H$\ddot{\text{o}}$lder's inequality, we obtain
+\begin{align*}
+Z_{4,3}^1&\leq \sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[ \sum_{S\in\mathcal{W}_3}\int_{\frac{11}{10}S} |\psi_S(y) f_{\sxing}|^q \frac{1}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}} \,dx \\
+&\leq \sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[\sum_{S\in\mathcal{W}_3} |f_{\sxing}|^q \int_{\frac{11}{10}S} |\psi_S(y) |^q \frac{1}{|x - y|^{s q + n}{l_0}^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[\sum_{S\in\mathcal{W}_3} |f_{\sxing}|^q \int_{\frac{11}{10}S} \frac{1}{D(Q,S)^{s q + n}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\leq \sum_{Q\in \cw_2\setminus\cw_4} l(Q)^n \left\{\sum_{S\in\mathcal{W}_3} \frac{1}{l(\sxing)^n} \left[\int_{\sxing} |f(\xi)|^q\,d\xi\right] l(\sxing)^n \frac{1}{D(Q,S)^{s q + n}} \right\}^{\frac{p}{q}} \\
+&\sim \sum_{Q\in \cw_2\setminus\cw_4} l(Q)^n \left[\sum_{S\in\mathcal{W}_3} \frac{1}{D(Q,\sxing)^{sq+n}} \int_{\sxing}|f(\xi)|^q\,d\xi\right]^{\frac{p}{q}} \\
+&\lesssim \sum_{Q\in \cw_2\setminus\cw_4} \frac{1}{l(Q)^{sp+\frac{np}{q}-n}} \left[ \int_{\boz}|f(\xi)|^q \,d\xi\right]^{\frac{p}{q}}
+\lesssim \|f\|_{L^q(\boz)}^{p}.
+\end{align*}
+If $q\leq p$, then $\|f\|_{L^q(\boz)}\lesssim \|f\|_{L^p(\boz)}$ by H\"older's inequality and the assumption that $\boz$ is bounded. If $p<q$, by an argument similar to that used in the estimation of $Y_2$, [\cite{ps2017}, Lemma 3.10] and \eqref{1544}, we find that 
+\[
+\|f\|_{L^q(\boz)} \lesssim \| f \|_{\cf_{p,q}^{s}(\boz)} \lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}.
+\]
+Therefore,
+\begin{equation}\label{eqn-3.19}
+Z_{4,3}^1 \lesssim  \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p}.
+\end{equation}
+For $Z_{4,3}^2$, by the properties of bump functions, Lemma \ref{lem2.1}(ii), \eqref{eqn-7.1}, Lemma \ref{lem5.1} and H$\ddot{\text{o}}$lder's inequality, we obtain
+\begin{align*}
+Z_{4,3}^2 &\leq \sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[ \int_{(\bigcup_{R\in\cw_4}R)\setminus B(x,\frac{l(Q)}{10})} \sum_{S\in\mathcal{W}_3}|f_{\sxing}|^q \frac{|   \psi_S(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\leq \sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[\sum_{S\in\mathcal{W}_3} \int_{\frac{11}{10}S} |f_{\sxing}|^q \frac{1}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}} \,dx \\
+&\lesssim \sum_{Q\in \cw_2\setminus\cw_4} \int_{Q} \left[\sum_{S\in\mathcal{W}_3} |f_{\sxing}|^q \int_{\frac{11}{10}S} \frac{1}{D(Q,S)^{s q + n}l(\sxing)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \\
+&\lesssim \sum_{Q\in \cw_2\setminus\cw_4} l(Q)^n \left[\sum_{S\in\mathcal{W}_3} \frac{\int_{\sxing}|f(\xi)|^q \,d\xi}{l(\sxing)^{aq} l(\sxing)^n}  \frac{l(\sxing)^n}{D(Q,\sxing)^{sq+n}}\right]^{\frac{p}{q}} \\
+&\lesssim \sum_{Q\in \cw_2\setminus\cw_4} \frac{1}{l(Q)^{sp+\frac{np}{q}-n}} \left[\sum_{S\in\mathcal{W}_3} \int_{\sxing} \frac{|f(\xi)|^q}{d(\xi,\pa\boz)^{aq}}\,d\xi \right]^{\frac{p}{q}} \\
+&\lesssim \left[\int_{\boz} \frac{|f(\xi)|^q}{d(\xi,\pa\boz)^{aq}}\,d\xi \right]^{\frac{p}{q}}.
+\end{align*}
+By this, \eqref{eqn-Hardy} and an argument similar to that used in the estimation of $Y_2$, we conclude that
+\begin{equation}\label{eqn-3.20}
+Z_{4,3}^2\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^p.
+\end{equation}
+Combining \eqref{eqn-6.19}--\eqref{eqn-3.20}, we conclude that
+\[
+Z\lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^p.
+\] 
+From this, \eqref{eqn-3.6} and \eqref{eqn-3.10}, we deduce that 
+\[
+X+Y+Z \lesssim \| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}^{p},
+\]
+which completes the proof of \eqref{eqn-aim} and hence Proposition \ref{pro-main}.
+\end{proof}
+
+\begin{remark}
+Let all the symbols be as in Proposition \ref{pro-main}.
+Since, for any $g\in F_{p,q}^{s}(\rn,d^{-aq})$,
+\begin{align*}
+\|g\|_{\mathcal{F}_{p,q}^{s}(\rn,d^{-aq})}
+&\leq\|g\|_{\cf_{p,q}^{s}(\rn)} +\left\{\int_{\rn} \left[ \int_{\rn} \frac{|g(x) -g(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right]^{\frac{p}{q}}\,dx \right\}^{\frac{1}{p}}\\
+&=\|g \|_{F_{p,q}^{s}(\rn,d^{-aq})},
+\end{align*}
+it follows from Proposition \ref{pro-main}
+that $\Lambda_0$ defined in \eqref{eqn-3.1}
+is also a bounded linear extension operator
+from $\huafwe$
+to $\mathcal{F}_{p,q}^{s}(\rn,d^{-aq})$.
+\end{remark}
+
+Using Proposition \ref{pro-main}, we are now ready to prove Theorem \ref{co-main}.
+
+\begin{proof}[Proof of Theorem \ref{co-main}]
+First, we prove (i). On the one hand, by Proposition \ref{pro-main}, we find that for any $f\in \huafwe$,
+\begin{align}\label{eqn-5.31}
+\|f\|_{F_{p, q}^{s}(\boz,d^{-aq})}
+&=\inf_{{g\in F_{p,q}^s(\rn,d^{-aq})} , g|_{\boz}=f} \|g\|_{F_{p,q}^s(\rn,d^{-aq})}\nonumber\\
+&\leq \|\Lambda_0 f\|_{{F_{p,q}^s(\rn,d^{-aq})}} \lesssim \|f\|_{\huafwe}.
+\end{align}
+On the other hand, for any given $f\in F_{p,q}^s(\boz,d^{-aq})$ and for any $g\in F_{p,q}^s(\rn,d^{-aq})$ such that $g|_{\boz}=f$,
+\begin{align*}
+\| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})}
+&=\| f \|_{L^p(\boz)} + \left[ \int_{\boz} \left( \int_{\boz} \frac{|f(x) - f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}}\,dy \right)^{\frac{p}{q}}\,dx \right]^{\frac{1}{p}} \\ 
+&\leq \| f \|_{\cf_{p,q}^{s}(\boz)} + \left[ \int_{\boz} \left( \int_{\boz} \frac{|f(x) - f(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}} \,dy \right)^{\frac{p}{q}}\,dx \right]^{\frac{1}{p}} \\ 
+&\leq \| g \|_{\cf_{p,q}^{s}(\rn)} + \left[ \int_{\rn} \left( \int_{\rn} \frac{|g(x) - g(y)|^q}{|x - y|^{s q + n}d(y,\pa\boz)^{aq}} \,dy \right)^{\frac{p}{q}}\,dx \right]^{\frac{1}{p}}.
+\end{align*}
+Taking the infimum over all $g$ as above, we then conclude that 
+\[
+\| f \|_{\cf_{p,q}^{s}(\boz,d^{-aq})} \lesssim \inf_{{g\in F_{p,q}^s(\rn,d^{-aq})} , g|_{\boz}=f} \|g\|_{F_{p,q}^s(\rn,d^{-aq})} = \|f\|_{F_{p, q}^{s}(\boz,d^{-aq})},
+\]
+which, together with \eqref{eqn-5.31}, completes the proof of (i).
+
+(ii) and (iii) follow from (i), the definitions
+of these function spaces, Theorem \ref{thm-main}
+and Remark~\ref{remark}(ii).
+This completes the proof of Theorem \ref{co-main}.
+\end{proof}
+
+\noindent\textbf{Acknowledgements}\quad
+The authors would like to thank both referees for their careful reading
+and valuable comments,
+which have definitely improved the quality of this article.
+
+\medskip
+
+\noindent\textbf{Funding}\quad
+This work was partially supported by
+the National Natural Science Foundation of China
+(Grant Nos. 12571108 and 12501129).
+
+\medskip
+
+\noindent\textbf{Data Availability}\quad
+Data sharing is not applicable to this article
+as no datasets were generated or analyzed during the current study.
+
+\section*{Declarations}
+
+\noindent\textbf{Conflict of interest}\quad
+The authors declare
+that they have no conflict of interest.
+
+
+\begin{thebibliography}{30}
+
+\vspace{-0.3cm}
+\bibitem{a2015}
+M. S. Agranovich, Sobolev Spaces, Their Generalizations and Elliptic Problems in Smooth and Lipschitz Domains, Monographs in Mathematics, Springer, 2015.
+
+\vspace{-0.3cm}
+\bibitem{ayy2022}
+R. Alvarado, D. Yang and W. Yuan, A measure characterization of embedding and extension domains for Sobolev, Triebel--Lizorkin, and Besov spaces on spaces of homogeneous type, J. Funct. Anal. 283 (2022), Paper No. 109687, 71 pp.
+
+\vspace{-0.3cm}
+\bibitem{c2000}
+A. M. Caetano, Approximation by functions of compact support in Besov--Triebel--Lizorkin spaces on irregular domains, Studia. Math. 142 (2000), 47--63.
+
+\vspace{-0.3cm}
+\bibitem{cjlz2022}
+J. Cao, Y. Jin, Y. Li and Q. Zhang, Hardy inequalities and interrelations of fractional Triebel--Lizorkin spaces in a bounded uniform domain, Mathematics 10 (2022), Paper No. 637, 25 pp.
+
+\vspace{-0.3cm}
+\bibitem{cyz2025}
+J. Cao, D. Yang and Q. Zhang, Equivalent characterizations of fractional Sobolev spaces with partially vanishing traces on $(\vez, \delta, D)$-domains supporting $
+D$-adapted fractional Hardy inequalities, Acta Math. Sin. Engl. Ser. (to appear).
+
+%\vspace{-0.3cm}
+%\bibitem{ci2017}
+%A. Cianchi and N. Ioku, Canceling effects in higher-order %Hardy--Sobolev inequalities, Calc. Var. Partial Differential Equations %56 (2017), Paper No. 31, 18 pp.
+
+\vspace{-0.3cm}
+\bibitem{dilt2019}
+B. Dyda, L. Ihnatsyeva, J. Lehrb\"{a}ck, H. Tuominen and A. V. V\"{a}h\"{a}kangas, Muckenhoupt $A_p$-properties of distance functions and applications to Hardy--Sobolev-type inequalities, Potential Anal. 50 (2019), 83--105.
+
+\vspace{-0.3cm}
+\bibitem{dk2021}
+B. Dyda and M. Kijaczko, On density of smooth functions in weighted fractional Sobolev spaces, Nonlinear Anal. 205 (2021), Paper No. 112231, 10 pp.
+
+\vspace{-0.3cm}
+\bibitem{dk2022}
+B. Dyda and M. Kijaczko, On density of compactly supported smooth functions in fractional Sobolev spaces, Ann. Mat. Pura Appl. (4) 201 (2022), 1855--1867.
+
+\vspace{-0.3cm}
+\bibitem{dk2024}
+B. Dyda and M. Kijaczko, Sharp weighted fractional Hardy inequalities, Studia Math. 274 (2024), 153--171.
+
+\vspace{-0.3cm}
+\bibitem{go1979}
+F. W. Gehring and B. G. Osgood, Uniform domains and the quasihyperbolic metric, J. Anal. Math. 36 (1979), 50--74 (1980).
+
+\vspace{-0.3cm}
+\bibitem{g2008}
+L. Grafakos, Classical Fourier Analysis, Third edition, Graduate Texts in Math. 249, Springer, New York, 2014.
+
+\vspace{-0.3cm}
+\bibitem{g2014}
+L. Grafakos, Modern Fourier Analysis, Third edition, Graduate Texts in Math. 250, Springer, New York, 2014.
+
+\vspace{-0.3cm}
+\bibitem{hit2016}
+T. Heikkinen, L. Ihnatsyeva and H. Tuominen, Measure density and extension of Besov and Triebel--Lizorkin functions, J. Fourier Anal. Appl. 22 (2016), 334--382.
+
+\vspace{-0.3cm}
+\bibitem{iv2013}
+L. Ihnatsyeva and A. V. V\"{a}h\"{a}kangas, Hardy inequalities in Triebel--Lizorkin spaces, Indiana Univ. Math. J. 62 (2013), 1785--1807.
+
+\vspace{-0.3cm}
+\bibitem{iv2015}
+L. Ihnatsyeva and A. V. V\"{a}h\"{a}kangas, Hardy inequalities in Triebel--Lizorkin spaces II. Aikawa dimension, Ann. Mat. Pura Appl. (4) 194 (2015), 479--493.
+
+\vspace{-0.3cm}
+\bibitem{j1981}
+P. W. Jones, Quasiconformal mappings and extendability of functions in Sobolev spaces, Acta Math. 147 (1981), 71--88.
+
+\vspace{-0.3cm}
+\bibitem{j1965}
+K. Jord\'an, Calculus of Finite Differences, American Mathematical Soc. 1965.
+
+\vspace{-0.3cm}
+\bibitem{k2023}
+M. Kijaczko, Fractional Sobolev spaces with power weights, Ann. Sc. Norm. Super. Pisa Cl. Sci. (5) 24 (2023), 1741--1764.
+
+\vspace{-0.3cm}
+\bibitem{klv2013}
+A. K\"{a}enm\"{a}ki, J. Lehrb\"{a}ck and M. Vuorinen, Dimensions, Whitney covers, and tubular neighborhoods, India Univ. Math. J. 62 (2013), 1861--1889.
+
+%\vspace{-0.3cm}
+%\bibitem{o1999}
+%M. P. Owen, The Hardy--Rellich inequality for polyharmonic operators, %Proc. Roy. Soc. Edinburgh Sect. A 129 (1999), 825--839.
+
+\vspace{-0.3cm}
+\bibitem{p2019}
+M. Prats, Measuring Triebel--Lizorkin fractional smoothness on domains in terms of first-order differences, J. Lond. Math. Soc. (2) 100 (2019), 692--716.
+
+\vspace{-0.3cm}
+\bibitem{ps2017}
+M. Prats and E. Saksman, A T(1) theorem for fractional Sobolev spaces on domains, J. Geom. Anal. 27 (2017), 2490--2538.
+
+\vspace{-0.3cm}
+\bibitem{pt2015}
+M. Prats and X. Tolsa, A T(P) theorem for Sobolev spaces on domains, J. Funct. Anal. 268 (2015), 2946--2989.
+
+\vspace{-0.3cm}
+\bibitem{s1970}
+E. M. Stein, Singular Integrals and Differentiability Properties of Functions, Princeton Mathematical Series, Princeton University Press, Princeton, 1970.
+
+
+\vspace{-0.3cm}
+\bibitem{t2001}
+H. Triebel, The Structure of Functions, Monographs in Mathematics 97, Birkh\"{a}user Verlag, Basel, 2001.
+
+\vspace{-0.3cm}
+\bibitem{t2008}
+H. Triebel, Function Spaces and Wavelets on Domains, EMS Tracts in Mathematics 7, European Mathematical Society, Z\"{u}rich, 2008.
+
+\vspace{-0.3cm}
+\bibitem{t2010}
+H. Triebel, Theory of Function Spaces, Modern Birkh\"{a}user Classics, Birkh\"{a}user/Springer Basel AG, Basel, 2010.
+
+\vspace{-0.3cm}
+\bibitem{v1988}
+J. V\"{a}is\"{a}l\"{a}, Uniform domains, Tohoku Math. J. (2) 40 (1988), 101--118.
+
+%\vspace{-0.3cm}
+%\bibitem{ysy10}
+%W. Yuan, W. Sickel and D. Yang,
+%Morrey and Campanato Meet Besov, Lizorkin
+%and Triebel,
+%Lecture Notes in Math. 2005, Springer-Verlag, Berlin, 2010.
+
+\vspace{-0.3cm}
+\bibitem{zyy2024}
+Z. Zeng, D. Yang and W. Yuan, Extension and embedding of Triebel--Lizorkin-type spaces built on ball quasi-Banach spaces, J. Geom. Anal. 34 (2024), Paper No. 335, 71 pp.
+
+\end{thebibliography}
+
+\bigskip
+
+\noindent Jun Cao, Haonan Lu, Guangzheng Wang and Chenfeng Zhu (Corresponding author)
+
+\medskip
+
+\noindent  	School of Mathematical Sciences,
+Zhejiang University of Technology, Hangzhou 310023,
+The People's Republic of China
+
+\smallskip
+
+\noindent {\it E-mails}: \texttt{caojun1860@zjut.edu.cn} (J. Cao)
+
+\noindent\phantom{{\it E-mails:}} \texttt{haonan@zjut.edu.cn} (H. Lu)
+
+\noindent\phantom{{\it E-mails:}} \texttt{211124090004@zjut.edu.cn} (G. Wang)
+
+\noindent\phantom{{\it E-mails:}} \texttt{chenfengzhu@zjut.edu.cn} (C. Zhu)
+\end{document} 
